@@ -14,6 +14,9 @@ They are not intended as playable layouts.
 - `southeastern-nomesh-replaced.blk` is the complete Southeastern mission with
   only the two `nt_assembly_area_nomesh` unit classes replaced by the standard
   `nt_assembly_area_foundation` class used by the working mission.
+- `southeastern-objects-01-50.blk` and
+  `southeastern-objects-51-98.blk` split the Southeastern map-object
+  definitions across two otherwise working units blocks.
 
 Interpretation:
 

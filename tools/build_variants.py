@@ -520,6 +520,63 @@ def replace_top_level_block(text: str, donor: str, name: str) -> str:
     return text[:target_start] + donor[donor_start:donor_end] + text[target_end:]
 
 
+def named_object_group_blocks(text: str) -> list[tuple[int, int, str, str]]:
+    """Return character spans, names, and text for compact objectGroups blocks."""
+    blocks: list[tuple[int, int, str, str]] = []
+    lines = text.splitlines(keepends=True)
+    offset = 0
+    index = 0
+    while index < len(lines):
+        if lines[index].strip() != "objectGroups{":
+            offset += len(lines[index])
+            index += 1
+            continue
+        start = offset
+        depth = 0
+        block_lines: list[str] = []
+        while index < len(lines):
+            line = lines[index]
+            block_lines.append(line)
+            depth += line.count("{") - line.count("}")
+            offset += len(line)
+            index += 1
+            if depth == 0:
+                break
+        block = "".join(block_lines)
+        match = re.search(r'(?m)^\s*name:t="([^"]+)"$', block)
+        if not match:
+            raise ValueError("objectGroups block has no name")
+        blocks.append((start, offset, match.group(1), block))
+    return blocks
+
+
+def replace_named_object_groups(
+    base: str, donor: str, selected_names: set[str]
+) -> str:
+    donor_blocks = {
+        name: block for _, _, name, block in named_object_group_blocks(donor)
+    }
+    missing = selected_names - donor_blocks.keys()
+    if missing:
+        raise ValueError(f"Donor is missing object groups: {sorted(missing)}")
+
+    output: list[str] = []
+    cursor = 0
+    replaced: set[str] = set()
+    for start, end, name, block in named_object_group_blocks(base):
+        output.append(base[cursor:start])
+        if name in selected_names:
+            output.append(donor_blocks[name])
+            replaced.add(name)
+        else:
+            output.append(block)
+        cursor = end
+    output.append(base[cursor:])
+    if replaced != selected_names:
+        raise ValueError(f"Base is missing object groups: {sorted(selected_names-replaced)}")
+    return "".join(output)
+
+
 def flatten_southeastern_imports(text: str) -> str:
     """Embed the two internal templates required by a standalone URL mission.
 
@@ -698,11 +755,39 @@ def build_southeastern_city_variants() -> None:
         "Southeastern mission with only its two no-mesh assembly-area classes replaced.",
     )
 
+    southeastern_object_names = [
+        name for _, _, name, _ in named_object_group_blocks(normal)
+    ]
+    if len(southeastern_object_names) != 98:
+        raise ValueError(
+            f"Expected 98 Southeastern object groups, got {len(southeastern_object_names)}"
+        )
+    first_object_half = set(southeastern_object_names[:50])
+    second_object_half = set(southeastern_object_names[50:])
+    objects_first_half = replace_named_object_groups(
+        southeastern_logic_archipelago_units, normal, first_object_half
+    )
+    objects_first_half = set_pretty_english_metadata(
+        objects_first_half,
+        "DIAGNOSTIC · OBJECTS 1-50",
+        "Known-working units block with Southeastern object groups 1 through 50.",
+    )
+    objects_second_half = replace_named_object_groups(
+        southeastern_logic_archipelago_units, normal, second_object_half
+    )
+    objects_second_half = set_pretty_english_metadata(
+        objects_second_half,
+        "DIAGNOSTIC · OBJECTS 51-98",
+        "Known-working units block with Southeastern object groups 51 through 98.",
+    )
+
     diagnostic_variants = {
         "archipelago-content-southeastern-level.blk": archipelago_on_southeastern,
         "southeastern-content-archipelago-level.blk": southeastern_on_archipelago,
         "southeastern-logic-archipelago-units.blk": southeastern_logic_archipelago_units,
         "southeastern-nomesh-replaced.blk": southeastern_nomesh_replaced,
+        "southeastern-objects-01-50.blk": objects_first_half,
+        "southeastern-objects-51-98.blk": objects_second_half,
     }
     for name, variant in diagnostic_variants.items():
         assert_balanced(variant)
