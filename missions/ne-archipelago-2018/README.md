@@ -7,6 +7,7 @@
 | [`source.blk`](source.blk) | Enabled | Enabled | Original |
 | [`no-lrsam.blk`](no-lrsam.blk) | Removed | Enabled | Tested: long-range sites absent |
 | [`no-lrsam-no-airfield-aa.blk`](no-lrsam-no-airfield-aa.blk) | Removed | Removed | Generated; needs in-game validation |
+| [`silent-lrsam-experimental.blk`](silent-lrsam-experimental.blk) | Present, zero-ammo override | Enabled | Experimental; needs in-game validation |
 
 ### Direct URLs
 
@@ -19,6 +20,8 @@ https://raw.githubusercontent.com/Adams-Galaxy/war-thunder-custom-missions/main/
 https://raw.githubusercontent.com/Adams-Galaxy/war-thunder-custom-missions/main/missions/ne-archipelago-2018/no-lrsam.blk
 
 https://raw.githubusercontent.com/Adams-Galaxy/war-thunder-custom-missions/main/missions/ne-archipelago-2018/no-lrsam-no-airfield-aa.blk
+
+https://raw.githubusercontent.com/Adams-Galaxy/war-thunder-custom-missions/main/missions/ne-archipelago-2018/silent-lrsam-experimental.blk
 ```
 
 ## Defense layers in the source mission
@@ -29,3 +32,11 @@ https://raw.githubusercontent.com/Adams-Galaxy/war-thunder-custom-missions/main/
 
 Removing only the strategic site objects does not remove airfield or point
 defenses.
+
+## Silent-site experiment
+
+The experimental file keeps the procedural S-300 and SAMP/T factories but
+overrides their `sam_site__unitSettings` arrays. It retains every launcher and
+radar while giving the launchers zero missiles and an effectively unreachable
+rearm time. Whether multiplayer mission loading permits this nested ECS
+component override must be established in game.

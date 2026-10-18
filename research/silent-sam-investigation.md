@@ -22,11 +22,20 @@ tracking radar, and one `ussr_ai_sam_radar_5n64s` search radar. The SAMP/T
 template creates four `it_samp_t_launcher` launchers and two `it_samp_t_fcs`
 units.
 
-## Next experiment
+## Current experiment
 
-Test whether a multiplayer user mission may import or locally override an ECS
-template that replaces only the launchers' `bulletsCount` with zero. This would
-preserve the procedural layout and avoid manually placing 96 component units.
+`silent-lrsam-experimental.blk` overrides the existing
+`sam_site__unitSettings:array` inside each mission object. The copied settings
+retain the procedural launcher/radar composition but give launchers a
+`bulletsCount` of zero and a rearm time of 1,000,000,000 seconds.
+
+The game-side `sam_sites.das` implementation confirms that these values are
+read from the settings array and passed to each generated launcher as
+`setting__bulletsCount` and `unit_params__rearmTimeOnField`.
+
+The remaining uncertainty is whether multiplayer URL mission parsing accepts a
+nested array component override inside `additionalEcsTemplates`. This must be
+established by an in-game load and launch test.
 
 If server-side template overrides are rejected, the fallback is to generate
 named units automatically from each site's transform—not to place them by hand.

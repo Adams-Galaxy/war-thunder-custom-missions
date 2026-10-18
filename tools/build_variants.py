@@ -68,6 +68,73 @@ def tag_title(text: str, tag: str) -> str:
     )
 
 
+S300_ZERO_AMMO_SETTINGS = '''      sam_site_s300{
+        "sam_site__unitSettings:array"{
+          "unit:object"{
+            name:t="ussr_ai_sam_launcher_5p85se"
+            templateName:t="tank+sam_site_unit"
+            spawnName:t="launcher"
+            death_substract_tickets:i=30
+            count:i=4
+            rearmTimeOnField:r=1000000000.0
+            "bulletsCount:list<i>"{
+              c:i=0
+            }
+          }
+          "unit:object"{
+            name:t="ussr_ai_sam_radar_5n63s"
+            templateName:t="tank+sam_site_unit"
+            spawnName:t="tracker_radar"
+            death_substract_tickets:i=100
+            count:i=1
+          }
+          "unit:object"{
+            name:t="ussr_ai_sam_radar_5n64s"
+            templateName:t="tank+sam_site_unit"
+            spawnName:t="detector_radar"
+            death_substract_tickets:i=100
+            count:i=1
+          }
+        }
+'''
+
+
+SAMPT_ZERO_AMMO_SETTINGS = '''      sam_site_sampt{
+        "sam_site__unitSettings:array"{
+          "unit:object"{
+            name:t="it_samp_t_launcher"
+            templateName:t="tank+sam_site_unit"
+            spawnName:t="launcher"
+            death_substract_tickets:i=30
+            count:i=4
+            dontCreateChar:b=yes
+            rearmTimeOnField:r=1000000000.0
+            "bulletsCount:list<i>"{
+              c:i=0
+            }
+          }
+          "unit:object"{
+            name:t="it_samp_t_fcs"
+            templateName:t="tank+sam_site_unit"
+            spawnName:t="tracker_radar"
+            death_substract_tickets:i=100
+            count:i=2
+          }
+        }
+'''
+
+
+def add_zero_ammo_sam_settings(text: str) -> str:
+    s300_count = text.count("      sam_site_s300{\n")
+    sampt_count = text.count("      sam_site_sampt{\n")
+    if (s300_count, sampt_count) != (8, 8):
+        raise ValueError(
+            f"Expected 8 S-300 and 8 SAMP/T sites, got {s300_count} and {sampt_count}"
+        )
+    text = text.replace("      sam_site_s300{\n", S300_ZERO_AMMO_SETTINGS)
+    return text.replace("      sam_site_sampt{\n", SAMPT_ZERO_AMMO_SETTINGS)
+
+
 def assert_balanced(text: str) -> None:
     if text.count("{") != text.count("}"):
         raise ValueError("Generated BLK has unbalanced braces")
@@ -95,6 +162,14 @@ def main() -> None:
     write_variant(
         "no-lrsam-no-airfield-aa.blk",
         tag_title(no_lrsam_no_airfield_aa, "NO LRSAM / NO AIRFIELD AA"),
+    )
+
+    silent_lrsam = add_zero_ammo_sam_settings(source)
+    if silent_lrsam.count("rearmTimeOnField:r=1000000000.0") != 16:
+        raise ValueError("Not every strategic SAM launcher definition was overridden")
+    write_variant(
+        "silent-lrsam-experimental.blk",
+        tag_title(silent_lrsam, "SILENT LRSAM EXPERIMENT"),
     )
 
 
