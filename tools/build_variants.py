@@ -575,6 +575,18 @@ def set_player_respawn_delay(text: str, seconds: int) -> str:
     return text
 
 
+def set_allowed_unit_type(text: str, setting: str, allowed: bool) -> str:
+    text, count = re.subn(
+        rf"(?m)^(\s*{re.escape(setting)}:b=)(?:yes|no)$",
+        rf"\g<1>{'yes' if allowed else 'no'}",
+        text,
+        count=1,
+    )
+    if count != 1:
+        raise ValueError(f"Could not set {setting}")
+    return text
+
+
 def limit_missile_ship_engagements(text: str, distance: float) -> str:
     """Add a mission-level engagement cap to every missile escort ship."""
     lines = text.splitlines(keepends=True)
@@ -702,6 +714,189 @@ def add_airfield_air_spawns(
 
     trigger = (
         "  create_airfield_air_spawns{\n"
+        "    is_enabled:b=yes\n"
+        '    comments:t=""\n'
+        "    props{\n"
+        '      actionsType:t="PERFORM_ONE_BY_ONE"\n'
+        '      conditionsType:t="ALL"\n'
+        "      enableAfterComplete:b=no\n"
+        "    }\n"
+        "    events{\n"
+        "      initMission{\n\n"
+        "      }\n"
+        "    }\n"
+        "    conditions{\n\n"
+        "    }\n"
+        "    actions{\n"
+        + "".join(respawn_actions)
+        + "    }\n"
+        "    else_actions{\n\n"
+        "    }\n"
+        "  }\n"
+    )
+    _, _, triggers_end = top_level_block_span(text, "triggers")
+    return text[: triggers_end - 2] + trigger + text[triggers_end - 2 :]
+
+
+def add_frontal_helicopter_spawns(
+    text: str,
+    field_suffixes: tuple[str, ...] = ("01", "02", "03"),
+    height_above_field: float = 300.0,
+    rear_offset: float = 2000.0,
+) -> str:
+    """Add low helicopter-only spawns behind each frontal airfield."""
+    groups = {name: block for _, _, name, block in named_object_group_blocks(text)}
+
+    def position(name: str) -> tuple[float, float, float]:
+        block = groups[name]
+        match = re.search(
+            r"tm:m=\[\[[^\]]+\] \[[^\]]+\] \[[^\]]+\] \[([^\]]+)\]\]",
+            block,
+        )
+        if not match:
+            raise ValueError(f"Could not read transform for {name}")
+        return tuple(float(value.strip()) for value in match.group(1).split(","))
+
+    area_blocks: list[str] = []
+    respawn_actions: list[str] = []
+    for team_number, team_letter, opponent_number in ((1, "A", 2), (2, "B", 1)):
+        enemy_x, _, enemy_z = position(f"t{opponent_number}_airfield_main")
+        for suffix in field_suffixes:
+            field_name = f"t{team_number}_airfield_{suffix}"
+            field_x, field_y, field_z = position(field_name)
+            dx = enemy_x - field_x
+            dz = enemy_z - field_z
+            length = math.hypot(dx, dz)
+            forward_x = dx / length
+            forward_z = dz / length
+            spawn_x = field_x - forward_x * rear_offset
+            spawn_y = field_y + height_above_field
+            spawn_z = field_z - forward_z * rear_offset
+            area_name = f"{field_name}_helicopter_spawn"
+            radius = 120.0
+            area_blocks.append(
+                f"  {area_name}{{\n"
+                '    type:t="Sphere"\n'
+                f"    tm:m=[[{forward_x * radius:.6f}, 0.0, {forward_z * radius:.6f}] "
+                "[0.0, 35.0, 0.0] "
+                f"[{-forward_z * radius:.6f}, 0.0, {forward_x * radius:.6f}] "
+                f"[{spawn_x:.3f}, {spawn_y:.1f}, {spawn_z:.3f}]]\n"
+                "    objLayer:i=0\n"
+                "    props{\n\n"
+                "    }\n"
+                "  }\n"
+            )
+            respawn_actions.append(
+                "      missionMarkAsRespawnPoint{\n"
+                f'        loc_name:t="Helicopter Spawn · Field {int(suffix)} · 300 m AGL"\n'
+                "        radius:r=-1.0\n"
+                f'        target:t="{area_name}"\n'
+                f'        team:t="{team_letter}"\n'
+                "        isStrictPosAndDir:b=yes\n"
+                "        offset:p3=0.0, 0.0, 0.0\n"
+                "        tags{\n"
+                "          air:b=no\n"
+                "          helicopter:b=yes\n"
+                "          tank:b=no\n"
+                "          ship:b=no\n"
+                "          boat:b=no\n"
+                "        }\n"
+                "      }\n"
+            )
+
+    _, _, areas_end = top_level_block_span(text, "areas")
+    text = text[: areas_end - 2] + "".join(area_blocks) + text[areas_end - 2 :]
+    trigger = (
+        "  create_frontal_helicopter_spawns{\n"
+        "    is_enabled:b=yes\n"
+        '    comments:t=""\n'
+        "    props{\n"
+        '      actionsType:t="PERFORM_ONE_BY_ONE"\n'
+        '      conditionsType:t="ALL"\n'
+        "      enableAfterComplete:b=no\n"
+        "    }\n"
+        "    events{\n"
+        "      initMission{\n\n"
+        "      }\n"
+        "    }\n"
+        "    conditions{\n\n"
+        "    }\n"
+        "    actions{\n"
+        + "".join(respawn_actions)
+        + "    }\n"
+        "    else_actions{\n\n"
+        "    }\n"
+        "  }\n"
+    )
+    _, _, triggers_end = top_level_block_span(text, "triggers")
+    return text[: triggers_end - 2] + trigger + text[triggers_end - 2 :]
+
+
+def add_carrier_forward_naval_spawns(
+    text: str, forward_offset: float = 3000.0
+) -> str:
+    """Add two ship/boat spawns per team ahead of the initial carriers."""
+    carrier_transforms: dict[str, tuple[float, float, float, float]] = {}
+    pattern = re.compile(
+        r'(?ms)^  ships\{\n    name:t="(t[12]_aircraftcarrier_0[12])"\n'
+        r"    tm:m=\[\[([^\]]+)\] \[[^\]]+\] \[[^\]]+\] \[([^\]]+)\]\]"
+    )
+    for match in pattern.finditer(text):
+        forward_x, _, forward_z = (
+            float(value.strip()) for value in match.group(2).split(",")
+        )
+        x, _, z = (float(value.strip()) for value in match.group(3).split(","))
+        carrier_transforms[match.group(1)] = (forward_x, forward_z, x, z)
+    if len(carrier_transforms) != 4:
+        raise ValueError(f"Expected four carrier transforms, got {len(carrier_transforms)}")
+
+    area_blocks: list[str] = []
+    respawn_actions: list[str] = []
+    for team_number, team_letter in ((1, "A"), (2, "B")):
+        for carrier_number in (1, 2):
+            carrier_name = f"t{team_number}_aircraftcarrier_{carrier_number:02d}"
+            forward_x, forward_z, carrier_x, carrier_z = carrier_transforms[carrier_name]
+            length = math.hypot(forward_x, forward_z)
+            forward_x /= length
+            forward_z /= length
+            spawn_x = carrier_x + forward_x * forward_offset
+            spawn_z = carrier_z + forward_z * forward_offset
+            area_name = f"{carrier_name}_naval_spawn"
+            radius = 650.0
+            area_blocks.append(
+                f"  {area_name}{{\n"
+                '    type:t="Sphere"\n'
+                f"    tm:m=[[{forward_x * radius:.6f}, 0.0, {forward_z * radius:.6f}] "
+                "[0.0, 50.0, 0.0] "
+                f"[{-forward_z * radius:.6f}, 0.0, {forward_x * radius:.6f}] "
+                f"[{spawn_x:.3f}, 0.0, {spawn_z:.3f}]]\n"
+                "    objLayer:i=0\n"
+                "    props{\n\n"
+                "    }\n"
+                "  }\n"
+            )
+            respawn_actions.append(
+                "      missionMarkAsRespawnPoint{\n"
+                f'        loc_name:t="Naval Spawn · Carrier {carrier_number}"\n'
+                "        radius:r=-1.0\n"
+                f'        target:t="{area_name}"\n'
+                f'        team:t="{team_letter}"\n'
+                "        isStrictPosAndDir:b=yes\n"
+                "        offset:p3=0.0, 0.0, 0.0\n"
+                "        tags{\n"
+                "          air:b=no\n"
+                "          helicopter:b=no\n"
+                "          tank:b=no\n"
+                "          ship:b=yes\n"
+                "          boat:b=yes\n"
+                "        }\n"
+                "      }\n"
+            )
+
+    _, _, areas_end = top_level_block_span(text, "areas")
+    text = text[: areas_end - 2] + "".join(area_blocks) + text[areas_end - 2 :]
+    trigger = (
+        "  create_carrier_forward_naval_spawns{\n"
         "    is_enabled:b=yes\n"
         '    comments:t=""\n'
         "    props{\n"
@@ -1145,10 +1340,25 @@ def main() -> None:
         },
         main_forward_suffixes=("04", "05"),
     )
+    quick_start_experiment = set_allowed_unit_type(
+        quick_start_experiment, "isHelicoptersAllowed", True
+    )
+    quick_start_experiment = set_allowed_unit_type(
+        quick_start_experiment, "isShipsAllowed", True
+    )
+    quick_start_experiment = set_allowed_unit_type(
+        quick_start_experiment, "isTanksAllowed", False
+    )
+    quick_start_experiment = add_frontal_helicopter_spawns(
+        quick_start_experiment
+    )
+    quick_start_experiment = add_carrier_forward_naval_spawns(
+        quick_start_experiment
+    )
     quick_start_experiment = set_english_metadata(
         quick_start_experiment,
-        "EXPERIMENT · QUICK-START AIRSPAWNS",
-        "Strategic sites are silent; HQ-11 and missile-ship engagement are capped at 18 km; player respawn is 30 seconds; every airfield has a rear-offset air spawn.",
+        "EXPERIMENT · AIR + HELI + NAVAL",
+        "Strategic sites are silent; HQ-11 and missile-ship engagement are capped at 18 km; player respawn is 30 seconds; aircraft, helicopter, and naval spawns are enabled.",
     )
     write_variant("experimental-quick-start-airspawns.blk", quick_start_experiment)
 

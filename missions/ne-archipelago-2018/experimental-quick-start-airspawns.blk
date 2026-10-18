@@ -94,17 +94,17 @@ mission_settings{
     afterRespawnDelaySec:i=30
     useSpawnDelay:b=yes
     timeToLoseInstantDetection:r=10.0
-    locName:t="Nuclear Escalation · Archipelago · Training (2018) [EXPERIMENT · QUICK-START AIRSPAWNS]"
-    locDesc:t="Custom version of the event mission with 2018-era air defenses. Stars mark Soviet-aligned air defenses; crosses mark NATO. Strategic sites are silent; HQ-11 and missile-ship engagement are capped at 18 km; player respawn is 30 seconds; every airfield has a rear-offset air spawn."
+    locName:t="Nuclear Escalation · Archipelago · Training (2018) [EXPERIMENT · AIR + HELI + NAVAL]"
+    locDesc:t="Custom version of the event mission with 2018-era air defenses. Stars mark Soviet-aligned air defenses; crosses mark NATO. Strategic sites are silent; HQ-11 and missile-ship engagement are capped at 18 km; player respawn is 30 seconds; aircraft, helicopter, and naval spawns are enabled."
     scoreLimit:i=9000
     timeLimit:i=90
     deathPenaltyMul:r=0.2
     showTacticalMapCellSize:b=yes
     allowedUnitTypes{
       isAirplanesAllowed:b=yes
-      isTanksAllowed:b=yes
-      isShipsAllowed:b=no
-      isHelicoptersAllowed:b=no
+      isTanksAllowed:b=no
+      isShipsAllowed:b=yes
+      isHelicoptersAllowed:b=yes
     }
   }
   briefing{
@@ -1540,6 +1540,200 @@ triggers{
           type_longrange_bomber:b=no
           tank:b=no
           ship:b=no
+        }
+      }
+    }
+    else_actions{
+
+    }
+  }
+  create_frontal_helicopter_spawns{
+    is_enabled:b=yes
+    comments:t=""
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+    events{
+      initMission{
+
+      }
+    }
+    conditions{
+
+    }
+    actions{
+      missionMarkAsRespawnPoint{
+        loc_name:t="Helicopter Spawn · Field 1 · 300 m AGL"
+        radius:r=-1.0
+        target:t="t1_airfield_01_helicopter_spawn"
+        team:t="A"
+        isStrictPosAndDir:b=yes
+        offset:p3=0.0, 0.0, 0.0
+        tags{
+          air:b=no
+          helicopter:b=yes
+          tank:b=no
+          ship:b=no
+          boat:b=no
+        }
+      }
+      missionMarkAsRespawnPoint{
+        loc_name:t="Helicopter Spawn · Field 2 · 300 m AGL"
+        radius:r=-1.0
+        target:t="t1_airfield_02_helicopter_spawn"
+        team:t="A"
+        isStrictPosAndDir:b=yes
+        offset:p3=0.0, 0.0, 0.0
+        tags{
+          air:b=no
+          helicopter:b=yes
+          tank:b=no
+          ship:b=no
+          boat:b=no
+        }
+      }
+      missionMarkAsRespawnPoint{
+        loc_name:t="Helicopter Spawn · Field 3 · 300 m AGL"
+        radius:r=-1.0
+        target:t="t1_airfield_03_helicopter_spawn"
+        team:t="A"
+        isStrictPosAndDir:b=yes
+        offset:p3=0.0, 0.0, 0.0
+        tags{
+          air:b=no
+          helicopter:b=yes
+          tank:b=no
+          ship:b=no
+          boat:b=no
+        }
+      }
+      missionMarkAsRespawnPoint{
+        loc_name:t="Helicopter Spawn · Field 1 · 300 m AGL"
+        radius:r=-1.0
+        target:t="t2_airfield_01_helicopter_spawn"
+        team:t="B"
+        isStrictPosAndDir:b=yes
+        offset:p3=0.0, 0.0, 0.0
+        tags{
+          air:b=no
+          helicopter:b=yes
+          tank:b=no
+          ship:b=no
+          boat:b=no
+        }
+      }
+      missionMarkAsRespawnPoint{
+        loc_name:t="Helicopter Spawn · Field 2 · 300 m AGL"
+        radius:r=-1.0
+        target:t="t2_airfield_02_helicopter_spawn"
+        team:t="B"
+        isStrictPosAndDir:b=yes
+        offset:p3=0.0, 0.0, 0.0
+        tags{
+          air:b=no
+          helicopter:b=yes
+          tank:b=no
+          ship:b=no
+          boat:b=no
+        }
+      }
+      missionMarkAsRespawnPoint{
+        loc_name:t="Helicopter Spawn · Field 3 · 300 m AGL"
+        radius:r=-1.0
+        target:t="t2_airfield_03_helicopter_spawn"
+        team:t="B"
+        isStrictPosAndDir:b=yes
+        offset:p3=0.0, 0.0, 0.0
+        tags{
+          air:b=no
+          helicopter:b=yes
+          tank:b=no
+          ship:b=no
+          boat:b=no
+        }
+      }
+    }
+    else_actions{
+
+    }
+  }
+  create_carrier_forward_naval_spawns{
+    is_enabled:b=yes
+    comments:t=""
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+    events{
+      initMission{
+
+      }
+    }
+    conditions{
+
+    }
+    actions{
+      missionMarkAsRespawnPoint{
+        loc_name:t="Naval Spawn · Carrier 1"
+        radius:r=-1.0
+        target:t="t1_aircraftcarrier_01_naval_spawn"
+        team:t="A"
+        isStrictPosAndDir:b=yes
+        offset:p3=0.0, 0.0, 0.0
+        tags{
+          air:b=no
+          helicopter:b=no
+          tank:b=no
+          ship:b=yes
+          boat:b=yes
+        }
+      }
+      missionMarkAsRespawnPoint{
+        loc_name:t="Naval Spawn · Carrier 2"
+        radius:r=-1.0
+        target:t="t1_aircraftcarrier_02_naval_spawn"
+        team:t="A"
+        isStrictPosAndDir:b=yes
+        offset:p3=0.0, 0.0, 0.0
+        tags{
+          air:b=no
+          helicopter:b=no
+          tank:b=no
+          ship:b=yes
+          boat:b=yes
+        }
+      }
+      missionMarkAsRespawnPoint{
+        loc_name:t="Naval Spawn · Carrier 1"
+        radius:r=-1.0
+        target:t="t2_aircraftcarrier_01_naval_spawn"
+        team:t="B"
+        isStrictPosAndDir:b=yes
+        offset:p3=0.0, 0.0, 0.0
+        tags{
+          air:b=no
+          helicopter:b=no
+          tank:b=no
+          ship:b=yes
+          boat:b=yes
+        }
+      }
+      missionMarkAsRespawnPoint{
+        loc_name:t="Naval Spawn · Carrier 2"
+        radius:r=-1.0
+        target:t="t2_aircraftcarrier_02_naval_spawn"
+        team:t="B"
+        isStrictPosAndDir:b=yes
+        offset:p3=0.0, 0.0, 0.0
+        tags{
+          air:b=no
+          helicopter:b=no
+          tank:b=no
+          ship:b=yes
+          boat:b=yes
         }
       }
     }
@@ -11079,6 +11273,86 @@ areas{
   t2_airfield_main_air_spawn{
     type:t="Sphere"
     tm:m=[[-144.869975, 0.0, -137.886513] [0.0, 50.0, 0.0] [137.886513, 0.0, -144.869975] [60931.600, 7000.0, 31850.986]]
+    objLayer:i=0
+    props{
+
+    }
+  }
+  t1_airfield_01_helicopter_spawn{
+    type:t="Sphere"
+    tm:m=[[80.009501, 0.0, 89.434220] [0.0, 35.0, 0.0] [-89.434220, 0.0, 80.009501] [-8330.662, 680.9, -43452.370]]
+    objLayer:i=0
+    props{
+
+    }
+  }
+  t1_airfield_02_helicopter_spawn{
+    type:t="Sphere"
+    tm:m=[[51.974775, 0.0, 108.160172] [0.0, 35.0, 0.0] [-108.160172, 0.0, 51.974775] [20995.254, 736.1, -56425.670]]
+    objLayer:i=0
+    props{
+
+    }
+  }
+  t1_airfield_03_helicopter_spawn{
+    type:t="Sphere"
+    tm:m=[[96.269940, 0.0, 71.638667] [0.0, 35.0, 0.0] [-71.638667, 0.0, 96.269940] [-16086.999, 1037.6, -20517.778]]
+    objLayer:i=0
+    props{
+
+    }
+  }
+  t2_airfield_01_helicopter_spawn{
+    type:t="Sphere"
+    tm:m=[[-95.011353, 0.0, -73.299678] [0.0, 35.0, 0.0] [73.299678, 0.0, -95.011353] [48631.523, 587.9, 3316.431]]
+    objLayer:i=0
+    props{
+
+    }
+  }
+  t2_airfield_02_helicopter_spawn{
+    type:t="Sphere"
+    tm:m=[[-107.763827, 0.0, -52.791643] [0.0, 35.0, 0.0] [52.791643, 0.0, -107.763827] [57689.464, 636.8, -18526.339]]
+    objLayer:i=0
+    props{
+
+    }
+  }
+  t2_airfield_03_helicopter_spawn{
+    type:t="Sphere"
+    tm:m=[[-72.068340, 0.0, -95.948707] [0.0, 35.0, 0.0] [95.948707, 0.0, -72.068340] [20305.039, 789.5, 17853.445]]
+    objLayer:i=0
+    props{
+
+    }
+  }
+  t1_aircraftcarrier_01_naval_spawn{
+    type:t="Sphere"
+    tm:m=[[475.272203, 0.0, -443.414403] [0.0, 50.0, 0.0] [443.414403, 0.0, 475.272203] [33870.164, 0.0, -82324.428]]
+    objLayer:i=0
+    props{
+
+    }
+  }
+  t1_aircraftcarrier_02_naval_spawn{
+    type:t="Sphere"
+    tm:m=[[482.284835, 0.0, -435.776706] [0.0, 50.0, 0.0] [435.776706, 0.0, 482.284835] [29644.630, 0.0, -87088.777]]
+    objLayer:i=0
+    props{
+
+    }
+  }
+  t2_aircraftcarrier_01_naval_spawn{
+    type:t="Sphere"
+    tm:m=[[461.021587, 0.0, -458.212937] [0.0, 50.0, 0.0] [458.212937, 0.0, 461.021587] [82023.092, 0.0, -33228.529]]
+    objLayer:i=0
+    props{
+
+    }
+  }
+  t2_aircraftcarrier_02_naval_spawn{
+    type:t="Sphere"
+    tm:m=[[458.711438, 0.0, -460.525588] [0.0, 50.0, 0.0] [460.525588, 0.0, 458.711438] [86932.930, 0.0, -28521.903]]
     objLayer:i=0
     props{
 
