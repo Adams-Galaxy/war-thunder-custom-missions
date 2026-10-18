@@ -23,6 +23,10 @@ The no-long-range-SAM version removes the complete dynamic object groups that
 would instantiate S-300 or SAMP/T batteries in the 2018 era. Airfield and
 point-defense groups are not removed.
 
+All three playable variants quote the eight fuel/ammo template keys containing
+`+`. The game's local tooling accepts those keys unquoted, but its remote custom
+mission parser rejects them and reports only `Mission download failed`.
+
 ### Direct URLs
 
 Paste one of these into **Custom battles → Missions by URL**. If necessary,

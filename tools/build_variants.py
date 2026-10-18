@@ -499,6 +499,18 @@ def compact_scalar_syntax(text: str) -> str:
     return text.expandtabs(2)
 
 
+def quote_plus_sign_storage_templates(text: str) -> str:
+    """Quote storage template keys required by the remote mission parser."""
+    text, count = re.subn(
+        r'(?m)^(\s*)(fortification\+(?:fuel|ammo)_factory_2018)\s*\{$',
+        r'\1"\2"{',
+        text,
+    )
+    if count != 8:
+        raise ValueError(f"Expected to quote 8 storage templates, got {count}")
+    return text
+
+
 def top_level_block_span(text: str, name: str) -> tuple[int, int, int]:
     """Return block start, inner start, and block end for one top-level block."""
     match = re.search(rf"(?m)^{re.escape(name)}\s*\{{\n", text)
@@ -664,12 +676,12 @@ def prune_ranked_blocks(text: str, mission_rank: int) -> str:
 
 
 def build_southeastern_city_variants() -> None:
-    source = prune_ranked_blocks(
+    source = quote_plus_sign_storage_templates(prune_ranked_blocks(
         flatten_southeastern_imports(
             SOUTHEASTERN_CITY_SOURCE.read_text(encoding="utf-8")
         ),
         mission_rank=37,
-    )
+    ))
 
     normal = compact_scalar_syntax(set_pretty_english_metadata(
         source,
@@ -755,17 +767,8 @@ def build_southeastern_city_variants() -> None:
         "Southeastern mission with only its two no-mesh assembly-area classes replaced.",
     )
 
-    southeastern_quoted_storage_templates, quoted_storage_count = re.subn(
-        r'(?m)^(\s*)(fortification\+(?:fuel|ammo)_factory_2018)\{$',
-        r'\1"\2"{',
-        normal,
-    )
-    if quoted_storage_count != 8:
-        raise ValueError(
-            f"Expected to quote 8 storage templates, got {quoted_storage_count}"
-        )
     southeastern_quoted_storage_templates = set_pretty_english_metadata(
-        southeastern_quoted_storage_templates,
+        normal,
         "DIAGNOSTIC · QUOTED STORAGE TEMPLATES",
         "Complete Southeastern mission with its eight plus-sign storage template names quoted.",
     )

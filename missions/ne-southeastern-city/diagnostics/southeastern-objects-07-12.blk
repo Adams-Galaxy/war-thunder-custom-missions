@@ -1500,7 +1500,7 @@ units{
       active:b=yes
     }
     additionalEcsTemplates{
-      fortification+fuel_factory_2018{
+      "fortification+fuel_factory_2018"{
         rankRange:ip2=37, 50
         unit__className:t="nt_fuel_factory"
         unit__ownsUnitId:b=yes
@@ -1518,7 +1518,7 @@ units{
       active:b=yes
     }
     additionalEcsTemplates{
-      fortification+fuel_factory_2018{
+      "fortification+fuel_factory_2018"{
         rankRange:ip2=37, 50
         unit__className:t="nt_fuel_factory"
         unit__ownsUnitId:b=yes
@@ -1554,7 +1554,7 @@ units{
       active:b=yes
     }
     additionalEcsTemplates{
-      fortification+fuel_factory_2018{
+      "fortification+fuel_factory_2018"{
         rankRange:ip2=37, 50
         unit__className:t="nt_fuel_factory"
         unit__ownsUnitId:b=yes
@@ -1572,7 +1572,7 @@ units{
       active:b=yes
     }
     additionalEcsTemplates{
-      fortification+fuel_factory_2018{
+      "fortification+fuel_factory_2018"{
         rankRange:ip2=37, 50
         unit__className:t="nt_fuel_factory"
         unit__ownsUnitId:b=yes
@@ -1608,7 +1608,7 @@ units{
       active:b=yes
     }
     additionalEcsTemplates{
-      fortification+ammo_factory_2018{
+      "fortification+ammo_factory_2018"{
         rankRange:ip2=37, 50
         unit__className:t="nt_ammo_factory"
         unit__ownsUnitId:b=yes
@@ -1626,7 +1626,7 @@ units{
       active:b=yes
     }
     additionalEcsTemplates{
-      fortification+ammo_factory_2018{
+      "fortification+ammo_factory_2018"{
         rankRange:ip2=37, 50
         unit__className:t="nt_ammo_factory"
         unit__ownsUnitId:b=yes
