@@ -24,6 +24,9 @@ They are not intended as playable layouts.
 - `southeastern-objects-01-06.blk`, `southeastern-objects-07-12.blk`,
   `southeastern-objects-13-18.blk`, and `southeastern-objects-19-25.blk`
   bisect both independently failing branches.
+- `southeastern-objects-07-10.blk`, `southeastern-objects-11-12.blk`,
+  `southeastern-objects-13-14.blk`, and `southeastern-objects-15-18.blk`
+  isolate fuel storage, each team's ammo storage, and the adjacent bases.
 
 Interpretation:
 

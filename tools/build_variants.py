@@ -832,6 +832,22 @@ def build_southeastern_city_variants() -> None:
             f"southeastern-objects-{first:02d}-{last:02d}.blk"
         ] = variant
 
+    focused_object_ranges = ((7, 10), (11, 12), (13, 14), (15, 18))
+    focused_object_variants: dict[str, str] = {}
+    for first, last in focused_object_ranges:
+        selected = set(southeastern_object_names[first - 1 : last])
+        variant = replace_named_object_groups(
+            southeastern_logic_archipelago_units, normal, selected
+        )
+        variant = set_pretty_english_metadata(
+            variant,
+            f"DIAGNOSTIC · OBJECTS {first}-{last}",
+            f"Known-working units block with Southeastern object groups {first} through {last}.",
+        )
+        focused_object_variants[
+            f"southeastern-objects-{first:02d}-{last:02d}.blk"
+        ] = variant
+
     diagnostic_variants = {
         "archipelago-content-southeastern-level.blk": archipelago_on_southeastern,
         "southeastern-content-archipelago-level.blk": southeastern_on_archipelago,
@@ -844,6 +860,7 @@ def build_southeastern_city_variants() -> None:
         "southeastern-objects-01-12.blk": objects_first_eighth,
         "southeastern-objects-13-25.blk": objects_second_eighth,
         **narrowed_object_variants,
+        **focused_object_variants,
     }
     for name, variant in diagnostic_variants.items():
         assert_balanced(variant)
