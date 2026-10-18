@@ -2,6 +2,7 @@
 """Build maintained Nuclear Escalation mission variants from source.blk."""
 
 from pathlib import Path
+import math
 import re
 
 
@@ -562,6 +563,151 @@ def named_object_group_blocks(text: str) -> list[tuple[int, int, str, str]]:
     return blocks
 
 
+def set_player_respawn_delay(text: str, seconds: int) -> str:
+    text, count = re.subn(
+        r"(?m)^(\s*afterRespawnDelaySec:i=)\d+$",
+        rf"\g<1>{seconds}",
+        text,
+        count=1,
+    )
+    if count != 1:
+        raise ValueError("Could not set player respawn delay")
+    return text
+
+
+def limit_missile_ship_engagements(text: str, distance: float) -> str:
+    """Add a mission-level engagement cap to every missile escort ship."""
+    lines = text.splitlines(keepends=True)
+    output: list[str] = []
+    index = 0
+    modified = 0
+    overlay = (
+        "      custom_gun_properties{\n"
+        f"        custom_gun_properties__aimMaxDist:r={distance:.1f}\n"
+        f"        custom_gun_properties__attackMaxDist:r={distance:.1f}\n"
+        "      }\n"
+    )
+    while index < len(lines):
+        if lines[index] != "  ships{\n":
+            output.append(lines[index])
+            index += 1
+            continue
+        block_lines: list[str] = []
+        depth = 0
+        while index < len(lines):
+            line = lines[index]
+            block_lines.append(line)
+            depth += line.count("{") - line.count("}")
+            index += 1
+            if depth == 0:
+                break
+        block = "".join(block_lines)
+        if "rocket_naval" in block:
+            if "custom_gun_properties{" in block:
+                raise ValueError("Missile ship already has a custom gun overlay")
+            marker = "    additionalEcsTemplates{\n"
+            if marker not in block:
+                raise ValueError("Missile ship has no additionalEcsTemplates block")
+            block = block.replace(marker, marker + overlay, 1)
+            modified += 1
+        output.append(block)
+    if modified != 48:
+        raise ValueError(f"Expected 48 missile ships, modified {modified}")
+    return "".join(output)
+
+
+def add_airfield_air_spawns(
+    text: str, altitude_by_suffix: dict[str, float], rear_offset: float = 500.0
+) -> str:
+    """Add one rear-offset airborne respawn point for each listed airfield."""
+    groups = {name: block for _, _, name, block in named_object_group_blocks(text)}
+
+    def position(name: str) -> tuple[float, float, float]:
+        block = groups[name]
+        match = re.search(
+            r"tm:m=\[\[[^\]]+\] \[[^\]]+\] \[[^\]]+\] \[([^\]]+)\]\]",
+            block,
+        )
+        if not match:
+            raise ValueError(f"Could not read transform for {name}")
+        x, y, z = (float(value.strip()) for value in match.group(1).split(","))
+        return x, y, z
+
+    area_blocks: list[str] = []
+    respawn_actions: list[str] = []
+    for team_number, team_letter, opponent_number in ((1, "A", 2), (2, "B", 1)):
+        enemy_x, _, enemy_z = position(f"t{opponent_number}_airfield_main")
+        for suffix, altitude in altitude_by_suffix.items():
+            field_name = f"t{team_number}_airfield_{suffix}"
+            field_x, _, field_z = position(field_name)
+            dx = enemy_x - field_x
+            dz = enemy_z - field_z
+            length = math.hypot(dx, dz)
+            forward_x = dx / length
+            forward_z = dz / length
+            spawn_x = field_x - forward_x * rear_offset
+            spawn_z = field_z - forward_z * rear_offset
+            area_name = f"{field_name}_air_spawn"
+            radius = 200.0
+            area_blocks.append(
+                f"  {area_name}{{\n"
+                '    type:t="Sphere"\n'
+                f"    tm:m=[[{forward_x * radius:.6f}, 0.0, {forward_z * radius:.6f}] "
+                "[0.0, 50.0, 0.0] "
+                f"[{-forward_z * radius:.6f}, 0.0, {forward_x * radius:.6f}] "
+                f"[{spawn_x:.3f}, {altitude:.1f}, {spawn_z:.3f}]]\n"
+                "    objLayer:i=0\n"
+                "    props{\n\n"
+                "    }\n"
+                "  }\n"
+            )
+            field_label = "Main" if suffix == "main" else f"Field {int(suffix)}"
+            respawn_actions.append(
+                "      missionMarkAsRespawnPoint{\n"
+                f'        loc_name:t="Air Spawn · {field_label} · {altitude / 1000:g} km"\n'
+                "        radius:r=-1.0\n"
+                f'        target:t="{area_name}"\n'
+                f'        team:t="{team_letter}"\n'
+                "        isStrictPosAndDir:b=yes\n"
+                "        offset:p3=0.0, 0.0, 0.0\n"
+                "        tags{\n"
+                "          air:b=yes\n"
+                "          type_longrange_bomber:b=no\n"
+                "          tank:b=no\n"
+                "          ship:b=no\n"
+                "        }\n"
+                "      }\n"
+            )
+
+    _, _, areas_end = top_level_block_span(text, "areas")
+    text = text[: areas_end - 2] + "".join(area_blocks) + text[areas_end - 2 :]
+
+    trigger = (
+        "  create_airfield_air_spawns{\n"
+        "    is_enabled:b=yes\n"
+        '    comments:t=""\n'
+        "    props{\n"
+        '      actionsType:t="PERFORM_ONE_BY_ONE"\n'
+        '      conditionsType:t="ALL"\n'
+        "      enableAfterComplete:b=no\n"
+        "    }\n"
+        "    events{\n"
+        "      initMission{\n\n"
+        "      }\n"
+        "    }\n"
+        "    conditions{\n\n"
+        "    }\n"
+        "    actions{\n"
+        + "".join(respawn_actions)
+        + "    }\n"
+        "    else_actions{\n\n"
+        "    }\n"
+        "  }\n"
+    )
+    _, _, triggers_end = top_level_block_span(text, "triggers")
+    return text[: triggers_end - 2] + trigger + text[triggers_end - 2 :]
+
+
 def replace_named_object_groups(
     base: str, donor: str, selected_names: set[str]
 ) -> str:
@@ -962,6 +1108,30 @@ def main() -> None:
             "Strategic sites cannot engage; HQ-11 sensors activate only within 18 km.",
         ),
     )
+
+    quick_start_experiment = limit_missile_ship_engagements(
+        hq11_18km, distance=18000.0
+    )
+    quick_start_experiment = set_player_respawn_delay(
+        quick_start_experiment, seconds=30
+    )
+    quick_start_experiment = add_airfield_air_spawns(
+        quick_start_experiment,
+        {
+            "01": 1500.0,
+            "02": 1500.0,
+            "03": 1500.0,
+            "04": 3500.0,
+            "05": 3500.0,
+            "main": 6000.0,
+        },
+    )
+    quick_start_experiment = set_english_metadata(
+        quick_start_experiment,
+        "EXPERIMENT · QUICK-START AIRSPAWNS",
+        "Strategic sites are silent; HQ-11 and missile-ship engagement are capped at 18 km; player respawn is 30 seconds; every airfield has a rear-offset air spawn.",
+    )
+    write_variant("experimental-quick-start-airspawns.blk", quick_start_experiment)
 
     hq11_silent = override_team1_airfield_roster(
         zero_channel_lrsam,

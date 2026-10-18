@@ -11,6 +11,7 @@
 | [`sead-training-strategic-sams-silent.blk`](sead-training-strategic-sams-silent.blk) | Present, missile/target channels set to zero | Enabled | **Tested: strategic sites do not launch** |
 | [`sead-training-hq11-18km.blk`](sead-training-hq11-18km.blk) | Present, unable to engage | HQ-11 sensor activation reduced to 18 km | Experimental; needs in-game validation |
 | [`sead-training-hq11-silent.blk`](sead-training-hq11-silent.blk) | Present, unable to engage | HQ-11 radar and initial missiles disabled | Experimental; needs in-game validation |
+| [`experimental-quick-start-airspawns.blk`](experimental-quick-start-airspawns.blk) | Present, unable to engage; missile ships capped at 18 km | HQ-11 sensor activation reduced to 18 km | Experimental; 30-second respawn and one air spawn per airfield |
 
 `silent-lrsam-zero-channels-experimental.blk` remains available as a
 compatibility alias for the previously published stable URL.
@@ -36,6 +37,8 @@ https://raw.githubusercontent.com/Adams-Galaxy/war-thunder-custom-missions/main/
 https://raw.githubusercontent.com/Adams-Galaxy/war-thunder-custom-missions/main/missions/ne-archipelago-2018/sead-training-hq11-18km.blk
 
 https://raw.githubusercontent.com/Adams-Galaxy/war-thunder-custom-missions/main/missions/ne-archipelago-2018/sead-training-hq11-silent.blk
+
+https://raw.githubusercontent.com/Adams-Galaxy/war-thunder-custom-missions/main/missions/ne-archipelago-2018/experimental-quick-start-airspawns.blk
 ```
 
 ## Defense layers in the source mission
