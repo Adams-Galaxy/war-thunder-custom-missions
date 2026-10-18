@@ -494,7 +494,9 @@ def compact_scalar_syntax(text: str) -> str:
     """Use the canonical scalar syntax accepted by the game's URL loader."""
     text = re.sub(r"(:[A-Za-z0-9<>]+)\s*=\s*", r"\1=", text)
     text = re.sub(r"(:b=)true\b", r"\1yes", text)
-    return re.sub(r"(:b=)false\b", r"\1no", text)
+    text = re.sub(r"(:b=)false\b", r"\1no", text)
+    text = re.sub(r"(?m)^(\s*)(.*?)\s+\{$", r"\1\2{", text)
+    return text.expandtabs(2)
 
 
 def top_level_block_span(text: str, name: str) -> tuple[int, int, int]:
