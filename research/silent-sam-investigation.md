@@ -22,7 +22,7 @@ tracking radar, and one `ussr_ai_sam_radar_5n64s` search radar. The SAMP/T
 template creates four `it_samp_t_launcher` launchers and two `it_samp_t_fcs`
 units.
 
-## Current experiment
+## Zero-ammo experiment (failed)
 
 `silent-lrsam-experimental.blk` overrides the existing
 `sam_site__unitSettings:array` inside each mission object. The copied settings
@@ -33,12 +33,22 @@ The game-side `sam_sites.das` implementation confirms that these values are
 read from the settings array and passed to each generated launcher as
 `setting__bulletsCount` and `unit_params__rearmTimeOnField`.
 
-The remaining uncertainty is whether multiplayer URL mission parsing accepts a
-nested array component override inside `additionalEcsTemplates`. This must be
-established by an in-game load and launch test.
+In-game testing established that multiplayer URL mission loading ignored this
+nested array override: the generated sites retained their standard ammunition
+and fired normally.
 
-If server-side template overrides are rejected, the fallback is to generate
-named units automatically from each site's transform—not to place them by hand.
+## Zero-channel experiment
+
+`silent-lrsam-zero-channels-experimental.blk` sets
+`sam_site__missile_channels_max` and `sam_site__target_channels_max` to zero on
+every strategic site. These scalar components are passed directly to the
+server-side `set_sam_site` call and avoid attempting to replace the protected
+unit-settings array. The meaning of a zero channel limit needs an in-game test.
+
+If a zero channel limit is treated as unlimited or ignored, the fallback is to
+generate named units automatically from each site's transform—not to place
+them by hand. The factory-created child units cannot be targeted by mission
+actions because the factory gives them entity IDs but no mission-editor names.
 
 ## Data references
 

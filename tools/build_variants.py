@@ -135,6 +135,24 @@ def add_zero_ammo_sam_settings(text: str) -> str:
     return text.replace("      sam_site_sampt{\n", SAMPT_ZERO_AMMO_SETTINGS)
 
 
+def disable_sam_channels(text: str) -> str:
+    """Set the server-side strategic-site channel limits to zero.
+
+    Unlike the unit-settings array experiment, these are ordinary scalar ECS
+    components already supported in each mission object's template overlay.
+    """
+    site_pattern = re.compile(r"(      sam_site_(?:s300|sampt)\{\n)")
+    matches = site_pattern.findall(text)
+    if len(matches) != 16:
+        raise ValueError(f"Expected 16 strategic SAM sites, got {len(matches)}")
+    return site_pattern.sub(
+        r"\1"
+        "        sam_site__missile_channels_max:i=0\n"
+        "        sam_site__target_channels_max:i=0\n",
+        text,
+    )
+
+
 def assert_balanced(text: str) -> None:
     if text.count("{") != text.count("}"):
         raise ValueError("Generated BLK has unbalanced braces")
@@ -170,6 +188,14 @@ def main() -> None:
     write_variant(
         "silent-lrsam-experimental.blk",
         tag_title(silent_lrsam, "SILENT LRSAM EXPERIMENT"),
+    )
+
+    zero_channel_lrsam = disable_sam_channels(source)
+    if zero_channel_lrsam.count("sam_site__missile_channels_max:i=0") != 16:
+        raise ValueError("Not every strategic SAM site's missile channels were disabled")
+    write_variant(
+        "silent-lrsam-zero-channels-experimental.blk",
+        tag_title(zero_channel_lrsam, "SILENT LRSAM ZERO CHANNELS"),
     )
 
 
