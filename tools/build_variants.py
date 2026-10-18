@@ -11,6 +11,7 @@ SOURCE = MISSION_DIR / "source.blk"
 SOUTHEASTERN_CITY_DIR = ROOT / "missions" / "ne-southeastern-city"
 SOUTHEASTERN_CITY_SOURCE = SOUTHEASTERN_CITY_DIR / "source.blk"
 ARCHIPELAGO_SOURCE = MISSION_DIR / "source.blk"
+SOUTHEASTERN_DIAGNOSTICS_DIR = SOUTHEASTERN_CITY_DIR / "diagnostics"
 
 
 def remove_object_groups_with_templates(text: str, templates: tuple[str, ...]) -> str:
@@ -587,6 +588,43 @@ def build_southeastern_city_variants() -> None:
     for name, variant in variants.items():
         assert_balanced(variant)
         (SOUTHEASTERN_CITY_DIR / name).write_text(variant, encoding="utf-8")
+
+    # Two-way isolation for the remote custom-room validator. If only the
+    # first file fails, the new/reworked level is not accepted. If only the
+    # second fails, a Southeastern mission entity or action is rejected.
+    SOUTHEASTERN_DIAGNOSTICS_DIR.mkdir(exist_ok=True)
+    archipelago_on_southeastern = ARCHIPELAGO_SOURCE.read_text(encoding="utf-8")
+    archipelago_on_southeastern = archipelago_on_southeastern.replace(
+        'level:t="levels/air_archipelago.bin"',
+        'level:t="levels/air_south_eastern_city.bin"',
+        1,
+    )
+    archipelago_on_southeastern = set_english_metadata(
+        archipelago_on_southeastern,
+        "DIAGNOSTIC · SOUTHEASTERN LEVEL",
+        "Known-working Archipelago mission content using only the Southeastern City level.",
+    )
+
+    southeastern_on_archipelago = normal.replace(
+        'level:t="levels/air_south_eastern_city.bin"',
+        'level:t="levels/air_archipelago.bin"',
+        1,
+    )
+    southeastern_on_archipelago = set_pretty_english_metadata(
+        southeastern_on_archipelago,
+        "DIAGNOSTIC · ARCHIPELAGO LEVEL",
+        "Southeastern City mission content using only the known-working Archipelago level.",
+    )
+
+    diagnostic_variants = {
+        "archipelago-content-southeastern-level.blk": archipelago_on_southeastern,
+        "southeastern-content-archipelago-level.blk": southeastern_on_archipelago,
+    }
+    for name, variant in diagnostic_variants.items():
+        assert_balanced(variant)
+        (SOUTHEASTERN_DIAGNOSTICS_DIR / name).write_text(
+            variant, encoding="utf-8"
+        )
 
 
 def write_variant(name: str, text: str) -> None:
