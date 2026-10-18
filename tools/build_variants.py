@@ -514,6 +514,12 @@ def top_level_block_span(text: str, name: str) -> tuple[int, int, int]:
     raise ValueError(f"Unterminated top-level {name} block")
 
 
+def replace_top_level_block(text: str, donor: str, name: str) -> str:
+    target_start, _, target_end = top_level_block_span(text, name)
+    donor_start, _, donor_end = top_level_block_span(donor, name)
+    return text[:target_start] + donor[donor_start:donor_end] + text[target_end:]
+
+
 def flatten_southeastern_imports(text: str) -> str:
     """Embed the two internal templates required by a standalone URL mission.
 
@@ -667,9 +673,21 @@ def build_southeastern_city_variants() -> None:
         "Southeastern City mission content using only the known-working Archipelago level.",
     )
 
+    southeastern_logic_archipelago_units = replace_top_level_block(
+        normal,
+        ARCHIPELAGO_SOURCE.read_text(encoding="utf-8"),
+        "units",
+    )
+    southeastern_logic_archipelago_units = set_pretty_english_metadata(
+        southeastern_logic_archipelago_units,
+        "DIAGNOSTIC · ARCHIPELAGO UNITS",
+        "Southeastern logic, zones, and routes with the known-working Archipelago units block.",
+    )
+
     diagnostic_variants = {
         "archipelago-content-southeastern-level.blk": archipelago_on_southeastern,
         "southeastern-content-archipelago-level.blk": southeastern_on_archipelago,
+        "southeastern-logic-archipelago-units.blk": southeastern_logic_archipelago_units,
     }
     for name, variant in diagnostic_variants.items():
         assert_balanced(variant)

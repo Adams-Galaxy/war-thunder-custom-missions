@@ -7,6 +7,10 @@ They are not intended as playable layouts.
   Archipelago mission with only its level changed to Southeastern City.
 - `southeastern-content-archipelago-level.blk` is the flattened Southeastern
   City mission with only its level changed to the known-working Archipelago.
+- `southeastern-logic-archipelago-units.blk` keeps the Southeastern level,
+  triggers, objectives, areas, and waypoints but substitutes the complete
+  known-working Archipelago `units` block. Every Southeastern target name is
+  present in that block.
 
 Interpretation:
 
