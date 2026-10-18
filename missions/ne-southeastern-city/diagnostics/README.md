@@ -21,6 +21,9 @@ They are not intended as playable layouts.
   `southeastern-objects-26-50.blk` bisect the failing first half again.
 - `southeastern-objects-01-12.blk` and
   `southeastern-objects-13-25.blk` bisect the failing first quarter.
+- `southeastern-objects-01-06.blk`, `southeastern-objects-07-12.blk`,
+  `southeastern-objects-13-18.blk`, and `southeastern-objects-19-25.blk`
+  bisect both independently failing branches.
 
 Interpretation:
 
