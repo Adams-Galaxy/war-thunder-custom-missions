@@ -17,6 +17,8 @@ They are not intended as playable layouts.
 - `southeastern-objects-01-50.blk` and
   `southeastern-objects-51-98.blk` split the Southeastern map-object
   definitions across two otherwise working units blocks.
+- `southeastern-objects-01-25.blk` and
+  `southeastern-objects-26-50.blk` bisect the failing first half again.
 
 Interpretation:
 
