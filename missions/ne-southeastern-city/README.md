@@ -39,6 +39,11 @@ https://raw.githubusercontent.com/Adams-Galaxy/war-thunder-custom-missions/main/
 ## Provenance
 
 `source.blk` was decoded in canonical compact BLK form from the locally installed
-`mis.vromfs.bin`. It points to `levels/air_south_eastern_city.bin` and matches
-the current official mission structure: eight S-300-capable strategic groups,
-eight SAMP/T-capable strategic groups, and ten 2018 airfield-AA groups.
+`mis.vromfs.bin`. It preserves Gaijin's two internal import records for
+provenance and is not itself a standalone URL mission. The three playable
+variants expand the shared 64-player template and 2018 Nuclear Escalation ship
+set, as required by the remote mission loader.
+
+The mission points to `levels/air_south_eastern_city.bin` and contains eight
+S-300-capable strategic groups, eight SAMP/T-capable strategic groups, and ten
+2018 airfield-AA groups.

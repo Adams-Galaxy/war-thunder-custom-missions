@@ -10,6 +10,7 @@ MISSION_DIR = ROOT / "missions" / "ne-archipelago-2018"
 SOURCE = MISSION_DIR / "source.blk"
 SOUTHEASTERN_CITY_DIR = ROOT / "missions" / "ne-southeastern-city"
 SOUTHEASTERN_CITY_SOURCE = SOUTHEASTERN_CITY_DIR / "source.blk"
+ARCHIPELAGO_SOURCE = MISSION_DIR / "source.blk"
 
 
 def remove_object_groups_with_templates(text: str, templates: tuple[str, ...]) -> str:
@@ -495,8 +496,65 @@ def compact_scalar_syntax(text: str) -> str:
     return re.sub(r"(:b=)false\b", r"\1no", text)
 
 
+def top_level_block_span(text: str, name: str) -> tuple[int, int, int]:
+    """Return block start, inner start, and block end for one top-level block."""
+    match = re.search(rf"(?m)^{re.escape(name)}\s*\{{\n", text)
+    if not match:
+        raise ValueError(f"Could not find top-level {name} block")
+    depth = 1
+    cursor = match.end()
+    for line in text[cursor:].splitlines(keepends=True):
+        depth += line.count("{") - line.count("}")
+        cursor += len(line)
+        if depth == 0:
+            return match.start(), match.end(), cursor
+    raise ValueError(f"Unterminated top-level {name} block")
+
+
+def flatten_southeastern_imports(text: str) -> str:
+    """Embed the two internal templates required by a standalone URL mission.
+
+    The current internal mission imports the common 64-player template and the
+    1980-2018 Nuclear Escalation ship set. The already tested standalone
+    Archipelago source contains those exact imports expanded by the CDK, so it
+    is the canonical local source for these shared unit definitions.
+    """
+    if re.search(r'(?m)^\s*name:t="t1_player01"$', text):
+        raise ValueError("Southeastern City source is already flattened")
+
+    archipelago = ARCHIPELAGO_SOURCE.read_text(encoding="utf-8")
+    _, arch_inner_start, arch_units_end = top_level_block_span(
+        archipelago, "units"
+    )
+    arch_inner = archipelago[arch_inner_start : arch_units_end - 2]
+    marker = '  squad{\n    name:t="t1_players_squad"\n'
+    imported_start = arch_inner.find(marker)
+    if imported_start < 0:
+        raise ValueError("Could not locate expanded player and ship units")
+    imported_units = arch_inner[imported_start:]
+    imported_names = re.findall(
+        r'(?m)^\s*name:t="t[12]_(?:players_squad|player\d+|aircraftcarrier_\d+|destroyer_\d+)"$',
+        imported_units,
+    )
+    if len(imported_names) != 94:
+        raise ValueError(f"Expected 94 imported unit names, got {len(imported_names)}")
+
+    units_start, units_inner_start, units_end = top_level_block_span(text, "units")
+    text = (
+        text[: units_end - 2]
+        + imported_units
+        + text[units_end - 2 :]
+    )
+
+    imports_start, _, imports_end = top_level_block_span(text, "imports")
+    text = text[:imports_start] + "imports {\n\n}\n" + text[imports_end:]
+    return text
+
+
 def build_southeastern_city_variants() -> None:
-    source = SOUTHEASTERN_CITY_SOURCE.read_text(encoding="utf-8")
+    source = flatten_southeastern_imports(
+        SOUTHEASTERN_CITY_SOURCE.read_text(encoding="utf-8")
+    )
 
     normal = compact_scalar_syntax(set_pretty_english_metadata(
         source,
