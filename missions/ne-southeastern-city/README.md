@@ -42,7 +42,9 @@ https://raw.githubusercontent.com/Adams-Galaxy/war-thunder-custom-missions/main/
 `mis.vromfs.bin`. It preserves Gaijin's two internal import records for
 provenance and is not itself a standalone URL mission. The three playable
 variants expand the shared 64-player template and 2018 Nuclear Escalation ship
-set, as required by the remote mission loader.
+set, as required by the remote mission loader. They also discard inactive
+1970/1980 `rankRange` branches, leaving the same 2018-only structure used by
+the working Archipelago custom mission.
 
 The mission points to `levels/air_south_eastern_city.bin` and contains eight
 S-300-capable strategic groups, eight SAMP/T-capable strategic groups, and ten

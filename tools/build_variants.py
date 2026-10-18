@@ -552,9 +552,58 @@ def flatten_southeastern_imports(text: str) -> str:
     return text
 
 
+def prune_ranked_blocks(text: str, mission_rank: int) -> str:
+    """Remove inactive rankRange blocks from an internal random-battle mission."""
+    lines = text.splitlines(keepends=True)
+    stack: list[dict[str, int | bool]] = []
+    excluded: list[tuple[int, int]] = []
+
+    for index, line in enumerate(lines):
+        stripped = line.strip()
+        if stripped.endswith("{"):
+            stack.append({"start": index, "excluded": False})
+
+        rank_match = re.fullmatch(r"rankRange:ip2\s*=\s*(-?\d+),\s*(-?\d+)", stripped)
+        if rank_match:
+            if not stack:
+                raise ValueError("rankRange found outside a block")
+            low, high = map(int, rank_match.groups())
+            if not low <= mission_rank <= high:
+                stack[-1]["excluded"] = True
+
+        if stripped == "}":
+            if not stack:
+                raise ValueError("Unexpected closing brace while pruning ranks")
+            frame = stack.pop()
+            if frame["excluded"]:
+                excluded.append((int(frame["start"]), index + 1))
+
+    if stack:
+        raise ValueError("Unterminated block while pruning ranks")
+
+    excluded.sort()
+    merged: list[tuple[int, int]] = []
+    for start, end in excluded:
+        if merged and start < merged[-1][1]:
+            merged[-1] = (merged[-1][0], max(merged[-1][1], end))
+        else:
+            merged.append((start, end))
+
+    output: list[str] = []
+    cursor = 0
+    for start, end in merged:
+        output.extend(lines[cursor:start])
+        cursor = end
+    output.extend(lines[cursor:])
+    return "".join(output)
+
+
 def build_southeastern_city_variants() -> None:
-    source = flatten_southeastern_imports(
-        SOUTHEASTERN_CITY_SOURCE.read_text(encoding="utf-8")
+    source = prune_ranked_blocks(
+        flatten_southeastern_imports(
+            SOUTHEASTERN_CITY_SOURCE.read_text(encoding="utf-8")
+        ),
+        mission_rank=37,
     )
 
     normal = compact_scalar_syntax(set_pretty_english_metadata(

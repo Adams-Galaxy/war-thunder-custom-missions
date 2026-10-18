@@ -1359,14 +1359,6 @@ units {
 			nuclear_escalation_airfield {
 
 			}
-			airfield_aa_1970 {
-				rankRange:ip2=0, 30
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
-			airfield_aa_1980 {
-				rankRange:ip2=31, 36
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
 			airfield_aa_2018 {
 				rankRange:ip2=37, 50
 				nuclear_escalation_target__tag:t="mlrs_tbm_target"
@@ -1385,14 +1377,6 @@ units {
 		additionalEcsTemplates {
 			nuclear_escalation_airfield {
 
-			}
-			airfield_aa_1970 {
-				rankRange:ip2=0, 30
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
-			airfield_aa_1980 {
-				rankRange:ip2=31, 36
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
 			}
 			airfield_aa_2018 {
 				rankRange:ip2=37, 50
@@ -1413,14 +1397,6 @@ units {
 			nuclear_escalation_airfield {
 
 			}
-			airfield_aa_1970 {
-				rankRange:ip2=0, 30
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
-			airfield_aa_1980 {
-				rankRange:ip2=31, 36
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
 			airfield_aa_2018 {
 				rankRange:ip2=37, 50
 				nuclear_escalation_target__tag:t="mlrs_tbm_target"
@@ -1439,14 +1415,6 @@ units {
 		additionalEcsTemplates {
 			nuclear_escalation_airfield {
 
-			}
-			airfield_aa_1970 {
-				rankRange:ip2=0, 30
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
-			airfield_aa_1980 {
-				rankRange:ip2=31, 36
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
 			}
 			airfield_aa_2018 {
 				rankRange:ip2=37, 50
@@ -1467,14 +1435,6 @@ units {
 			nuclear_escalation_airfield {
 
 			}
-			airfield_aa_1970 {
-				rankRange:ip2=0, 30
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
-			airfield_aa_1980 {
-				rankRange:ip2=31, 36
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
 			airfield_aa_2018 {
 				rankRange:ip2=37, 50
 				nuclear_escalation_target__tag:t="mlrs_tbm_target"
@@ -1494,14 +1454,6 @@ units {
 			nuclear_escalation_airfield {
 
 			}
-			airfield_aa_1970 {
-				rankRange:ip2=0, 30
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
-			airfield_aa_1980 {
-				rankRange:ip2=31, 36
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
 			airfield_aa_2018 {
 				rankRange:ip2=37, 50
 				nuclear_escalation_target__tag:t="mlrs_tbm_target"
@@ -1518,24 +1470,6 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			fortification+fuel_factory_1970_early {
-				rankRange:ip2=0, 26
-				unit__className:t="nt_fuel_factory"
-				unit__ownsUnitId:b=yes
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
-			fortification+fuel_factory_1970_late {
-				rankRange:ip2=27, 30
-				unit__className:t="nt_fuel_factory"
-				unit__ownsUnitId:b=yes
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
-			fortification+fuel_factory_1980 {
-				rankRange:ip2=31, 36
-				unit__className:t="nt_fuel_factory"
-				unit__ownsUnitId:b=yes
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
 			fortification+fuel_factory_2018 {
 				rankRange:ip2=37, 50
 				unit__className:t="nt_fuel_factory"
@@ -1554,24 +1488,6 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			fortification+fuel_factory_1970_early {
-				rankRange:ip2=0, 26
-				unit__className:t="nt_fuel_factory"
-				unit__ownsUnitId:b=yes
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
-			fortification+fuel_factory_1970_late {
-				rankRange:ip2=27, 30
-				unit__className:t="nt_fuel_factory"
-				unit__ownsUnitId:b=yes
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
-			fortification+fuel_factory_1980 {
-				rankRange:ip2=31, 36
-				unit__className:t="nt_fuel_factory"
-				unit__ownsUnitId:b=yes
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
 			fortification+fuel_factory_2018 {
 				rankRange:ip2=37, 50
 				unit__className:t="nt_fuel_factory"
@@ -1590,24 +1506,6 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			fortification+fuel_factory_1970_early {
-				rankRange:ip2=0, 26
-				unit__className:t="nt_fuel_factory"
-				unit__ownsUnitId:b=yes
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
-			fortification+fuel_factory_1970_late {
-				rankRange:ip2=27, 30
-				unit__className:t="nt_fuel_factory"
-				unit__ownsUnitId:b=yes
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
-			fortification+fuel_factory_1980 {
-				rankRange:ip2=31, 36
-				unit__className:t="nt_fuel_factory"
-				unit__ownsUnitId:b=yes
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
 			fortification+fuel_factory_2018 {
 				rankRange:ip2=37, 50
 				unit__className:t="nt_fuel_factory"
@@ -1626,24 +1524,6 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			fortification+fuel_factory_1970_early {
-				rankRange:ip2=0, 26
-				unit__className:t="nt_fuel_factory"
-				unit__ownsUnitId:b=yes
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
-			fortification+fuel_factory_1970_late {
-				rankRange:ip2=27, 30
-				unit__className:t="nt_fuel_factory"
-				unit__ownsUnitId:b=yes
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
-			fortification+fuel_factory_1980 {
-				rankRange:ip2=31, 36
-				unit__className:t="nt_fuel_factory"
-				unit__ownsUnitId:b=yes
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
 			fortification+fuel_factory_2018 {
 				rankRange:ip2=37, 50
 				unit__className:t="nt_fuel_factory"
@@ -1662,24 +1542,6 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			fortification+ammo_factory_1970_early {
-				rankRange:ip2=0, 26
-				unit__className:t="nt_ammo_factory"
-				unit__ownsUnitId:b=yes
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
-			fortification+ammo_factory_1970_late {
-				rankRange:ip2=27, 30
-				unit__className:t="nt_ammo_factory"
-				unit__ownsUnitId:b=yes
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
-			fortification+ammo_factory_1980 {
-				rankRange:ip2=31, 36
-				unit__className:t="nt_ammo_factory"
-				unit__ownsUnitId:b=yes
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
 			fortification+ammo_factory_2018 {
 				rankRange:ip2=37, 50
 				unit__className:t="nt_ammo_factory"
@@ -1698,24 +1560,6 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			fortification+ammo_factory_1970_early {
-				rankRange:ip2=0, 26
-				unit__className:t="nt_ammo_factory"
-				unit__ownsUnitId:b=yes
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
-			fortification+ammo_factory_1970_late {
-				rankRange:ip2=27, 30
-				unit__className:t="nt_ammo_factory"
-				unit__ownsUnitId:b=yes
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
-			fortification+ammo_factory_1980 {
-				rankRange:ip2=31, 36
-				unit__className:t="nt_ammo_factory"
-				unit__ownsUnitId:b=yes
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
 			fortification+ammo_factory_2018 {
 				rankRange:ip2=37, 50
 				unit__className:t="nt_ammo_factory"
@@ -1734,24 +1578,6 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			fortification+ammo_factory_1970_early {
-				rankRange:ip2=0, 26
-				unit__className:t="nt_ammo_factory"
-				unit__ownsUnitId:b=yes
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
-			fortification+ammo_factory_1970_late {
-				rankRange:ip2=27, 30
-				unit__className:t="nt_ammo_factory"
-				unit__ownsUnitId:b=yes
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
-			fortification+ammo_factory_1980 {
-				rankRange:ip2=31, 36
-				unit__className:t="nt_ammo_factory"
-				unit__ownsUnitId:b=yes
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
 			fortification+ammo_factory_2018 {
 				rankRange:ip2=37, 50
 				unit__className:t="nt_ammo_factory"
@@ -1770,24 +1596,6 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			fortification+ammo_factory_1970_early {
-				rankRange:ip2=0, 26
-				unit__className:t="nt_ammo_factory"
-				unit__ownsUnitId:b=yes
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
-			fortification+ammo_factory_1970_late {
-				rankRange:ip2=27, 30
-				unit__className:t="nt_ammo_factory"
-				unit__ownsUnitId:b=yes
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
-			fortification+ammo_factory_1980 {
-				rankRange:ip2=31, 36
-				unit__className:t="nt_ammo_factory"
-				unit__ownsUnitId:b=yes
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
 			fortification+ammo_factory_2018 {
 				rankRange:ip2=37, 50
 				unit__className:t="nt_ammo_factory"
@@ -1806,18 +1614,6 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			assembly_area_1970_early {
-				rankRange:ip2=0, 26
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
-			assembly_area_1970_late {
-				rankRange:ip2=27, 30
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
-			assembly_area_1980 {
-				rankRange:ip2=31, 36
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
 			assembly_area_2018 {
 				rankRange:ip2=37, 50
 				nuclear_escalation_target__tag:t="mlrs_tbm_target"
@@ -1834,18 +1630,6 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			assembly_area_1970_early {
-				rankRange:ip2=0, 26
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
-			assembly_area_1970_late {
-				rankRange:ip2=27, 30
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
-			assembly_area_1980 {
-				rankRange:ip2=31, 36
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
 			assembly_area_2018 {
 				rankRange:ip2=37, 50
 				nuclear_escalation_target__tag:t="mlrs_tbm_target"
@@ -1862,18 +1646,6 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			assembly_area_1970_early {
-				rankRange:ip2=0, 26
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
-			assembly_area_1970_late {
-				rankRange:ip2=27, 30
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
-			assembly_area_1980 {
-				rankRange:ip2=31, 36
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
 			assembly_area_2018 {
 				rankRange:ip2=37, 50
 				nuclear_escalation_target__tag:t="mlrs_tbm_target"
@@ -1890,18 +1662,6 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			assembly_area_1970_early {
-				rankRange:ip2=0, 26
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
-			assembly_area_1970_late {
-				rankRange:ip2=27, 30
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
-			assembly_area_1980 {
-				rankRange:ip2=31, 36
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
 			assembly_area_2018 {
 				rankRange:ip2=37, 50
 				nuclear_escalation_target__tag:t="mlrs_tbm_target"
@@ -1918,18 +1678,6 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			assembly_area_1970_early {
-				rankRange:ip2=0, 26
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
-			assembly_area_1970_late {
-				rankRange:ip2=27, 30
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
-			assembly_area_1980 {
-				rankRange:ip2=31, 36
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
 			assembly_area_2018 {
 				rankRange:ip2=37, 50
 				nuclear_escalation_target__tag:t="mlrs_tbm_target"
@@ -1946,18 +1694,6 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			assembly_area_1970_early {
-				rankRange:ip2=0, 26
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
-			assembly_area_1970_late {
-				rankRange:ip2=27, 30
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
-			assembly_area_1980 {
-				rankRange:ip2=31, 36
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
 			assembly_area_2018 {
 				rankRange:ip2=37, 50
 				nuclear_escalation_target__tag:t="mlrs_tbm_target"
@@ -1974,18 +1710,6 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			assembly_area_1970_early {
-				rankRange:ip2=0, 26
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
-			assembly_area_1970_late {
-				rankRange:ip2=27, 30
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
-			assembly_area_1980 {
-				rankRange:ip2=31, 36
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
 			assembly_area_2018 {
 				rankRange:ip2=37, 50
 				nuclear_escalation_target__tag:t="mlrs_tbm_target"
@@ -2002,18 +1726,6 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			assembly_area_1970_early {
-				rankRange:ip2=0, 26
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
-			assembly_area_1970_late {
-				rankRange:ip2=27, 30
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
-			assembly_area_1980 {
-				rankRange:ip2=31, 36
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
 			assembly_area_2018 {
 				rankRange:ip2=37, 50
 				nuclear_escalation_target__tag:t="mlrs_tbm_target"
@@ -2030,18 +1742,6 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			assembly_area_1970_early {
-				rankRange:ip2=0, 26
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
-			assembly_area_1970_late {
-				rankRange:ip2=27, 30
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
-			assembly_area_1980 {
-				rankRange:ip2=31, 36
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
 			assembly_area_2018 {
 				rankRange:ip2=37, 50
 				nuclear_escalation_target__tag:t="mlrs_tbm_target"
@@ -2058,18 +1758,6 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			assembly_area_1970_early {
-				rankRange:ip2=0, 26
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
-			assembly_area_1970_late {
-				rankRange:ip2=27, 30
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
-			assembly_area_1980 {
-				rankRange:ip2=31, 36
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
 			assembly_area_2018 {
 				rankRange:ip2=37, 50
 				nuclear_escalation_target__tag:t="mlrs_tbm_target"
@@ -2086,12 +1774,6 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			strongpoint_1970 {
-				rankRange:ip2=0, 30
-			}
-			strongpoint_1980 {
-				rankRange:ip2=31, 36
-			}
 			strongpoint_2018 {
 				rankRange:ip2=37, 50
 			}
@@ -2107,12 +1789,6 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			strongpoint_1970 {
-				rankRange:ip2=0, 30
-			}
-			strongpoint_1980 {
-				rankRange:ip2=31, 36
-			}
 			strongpoint_2018 {
 				rankRange:ip2=37, 50
 			}
@@ -2128,12 +1804,6 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			strongpoint_1970 {
-				rankRange:ip2=0, 30
-			}
-			strongpoint_1980 {
-				rankRange:ip2=31, 36
-			}
 			strongpoint_2018 {
 				rankRange:ip2=37, 50
 			}
@@ -2149,12 +1819,6 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			strongpoint_1970 {
-				rankRange:ip2=0, 30
-			}
-			strongpoint_1980 {
-				rankRange:ip2=31, 36
-			}
 			strongpoint_2018 {
 				rankRange:ip2=37, 50
 			}
@@ -2170,12 +1834,6 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			strongpoint_1970 {
-				rankRange:ip2=0, 30
-			}
-			strongpoint_1980 {
-				rankRange:ip2=31, 36
-			}
 			strongpoint_2018 {
 				rankRange:ip2=37, 50
 			}
@@ -2191,12 +1849,6 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			strongpoint_1970 {
-				rankRange:ip2=0, 30
-			}
-			strongpoint_1980 {
-				rankRange:ip2=31, 36
-			}
 			strongpoint_2018 {
 				rankRange:ip2=37, 50
 			}
@@ -2212,12 +1864,6 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			strongpoint_1970 {
-				rankRange:ip2=0, 30
-			}
-			strongpoint_1980 {
-				rankRange:ip2=31, 36
-			}
 			strongpoint_2018 {
 				rankRange:ip2=37, 50
 			}
@@ -2233,12 +1879,6 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			strongpoint_1970 {
-				rankRange:ip2=0, 30
-			}
-			strongpoint_1980 {
-				rankRange:ip2=31, 36
-			}
 			strongpoint_2018 {
 				rankRange:ip2=37, 50
 			}
@@ -2256,14 +1896,6 @@ units {
 		additionalEcsTemplates {
 			nuclear_escalation_airfield {
 
-			}
-			airfield_aa_1970 {
-				rankRange:ip2=0, 30
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
-			airfield_aa_1980 {
-				rankRange:ip2=31, 36
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
 			}
 			airfield_aa_2018 {
 				rankRange:ip2=37, 50
@@ -2284,14 +1916,6 @@ units {
 			nuclear_escalation_airfield {
 
 			}
-			airfield_aa_1970 {
-				rankRange:ip2=0, 30
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
-			airfield_aa_1980 {
-				rankRange:ip2=31, 36
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
 			airfield_aa_2018 {
 				rankRange:ip2=37, 50
 				nuclear_escalation_target__tag:t="mlrs_tbm_target"
@@ -2311,14 +1935,6 @@ units {
 			nuclear_escalation_airfield {
 
 			}
-			airfield_aa_1970 {
-				rankRange:ip2=0, 30
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
-			airfield_aa_1980 {
-				rankRange:ip2=31, 36
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
 			airfield_aa_2018 {
 				rankRange:ip2=37, 50
 				nuclear_escalation_target__tag:t="mlrs_tbm_target"
@@ -2337,14 +1953,6 @@ units {
 		additionalEcsTemplates {
 			nuclear_escalation_airfield {
 
-			}
-			airfield_aa_1970 {
-				rankRange:ip2=0, 30
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
-			airfield_aa_1980 {
-				rankRange:ip2=31, 36
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
 			}
 			airfield_aa_2018 {
 				rankRange:ip2=37, 50
@@ -3136,17 +2744,8 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			aa_cover_ussr_zsu_23_4 {
-				rankRange:ip2=0, 30
-			}
-			aa_cover_ussr_zsu_23_4m4 {
-				rankRange:ip2=31, 36
-			}
 			aa_cover_ussr_zprk_2s6 {
 				rankRange:ip2=37, 39
-			}
-			aa_cover_ussr_pantsyr_s1 {
-				rankRange:ip2=40, 50
 			}
 		}
 	}
@@ -3160,17 +2759,8 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			aa_cover_ussr_zsu_23_4 {
-				rankRange:ip2=0, 30
-			}
-			aa_cover_ussr_zsu_23_4m4 {
-				rankRange:ip2=31, 36
-			}
 			aa_cover_ussr_zprk_2s6 {
 				rankRange:ip2=37, 39
-			}
-			aa_cover_ussr_pantsyr_s1 {
-				rankRange:ip2=40, 50
 			}
 		}
 	}
@@ -3184,17 +2774,8 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			aa_cover_ussr_zsu_23_4 {
-				rankRange:ip2=0, 30
-			}
-			aa_cover_ussr_zsu_23_4m4 {
-				rankRange:ip2=31, 36
-			}
 			aa_cover_ussr_zprk_2s6 {
 				rankRange:ip2=37, 39
-			}
-			aa_cover_ussr_pantsyr_s1 {
-				rankRange:ip2=40, 50
 			}
 		}
 	}
@@ -3208,17 +2789,8 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			aa_cover_ussr_zsu_23_4 {
-				rankRange:ip2=0, 30
-			}
-			aa_cover_ussr_zsu_23_4m4 {
-				rankRange:ip2=31, 36
-			}
 			aa_cover_ussr_zprk_2s6 {
 				rankRange:ip2=37, 39
-			}
-			aa_cover_ussr_pantsyr_s1 {
-				rankRange:ip2=40, 50
 			}
 		}
 	}
@@ -3232,17 +2804,8 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			aa_cover_ussr_zsu_23_4 {
-				rankRange:ip2=0, 30
-			}
-			aa_cover_ussr_zsu_23_4m4 {
-				rankRange:ip2=31, 36
-			}
 			aa_cover_ussr_zprk_2s6 {
 				rankRange:ip2=37, 39
-			}
-			aa_cover_ussr_pantsyr_s1 {
-				rankRange:ip2=40, 50
 			}
 		}
 	}
@@ -3256,17 +2819,8 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			aa_cover_ussr_zsu_23_4 {
-				rankRange:ip2=0, 30
-			}
-			aa_cover_ussr_zsu_23_4m4 {
-				rankRange:ip2=31, 36
-			}
 			aa_cover_ussr_zprk_2s6 {
 				rankRange:ip2=37, 39
-			}
-			aa_cover_ussr_pantsyr_s1 {
-				rankRange:ip2=40, 50
 			}
 		}
 	}
@@ -3280,17 +2834,8 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			aa_cover_ussr_zsu_23_4 {
-				rankRange:ip2=0, 30
-			}
-			aa_cover_ussr_zsu_23_4m4 {
-				rankRange:ip2=31, 36
-			}
 			aa_cover_ussr_zprk_2s6 {
 				rankRange:ip2=37, 39
-			}
-			aa_cover_ussr_pantsyr_s1 {
-				rankRange:ip2=40, 50
 			}
 		}
 	}
@@ -3304,20 +2849,8 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			aa_cover_ussr_zsu_23_4 {
-				rankRange:ip2=0, 26
-			}
-			aa_cover_ussr_9a33bm3_4_missiles {
-				rankRange:ip2=27, 30
-			}
-			aa_cover_ussr_9a33bm3 {
-				rankRange:ip2=31, 36
-			}
 			aa_cover_ussr_zprk_2s6 {
 				rankRange:ip2=37, 39
-			}
-			aa_cover_ussr_pantsyr_s1 {
-				rankRange:ip2=40, 50
 			}
 		}
 	}
@@ -3331,20 +2864,8 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			aa_cover_ussr_zsu_23_4 {
-				rankRange:ip2=0, 26
-			}
-			aa_cover_ussr_9a33bm3_4_missiles {
-				rankRange:ip2=27, 30
-			}
-			aa_cover_ussr_9a33bm3 {
-				rankRange:ip2=31, 36
-			}
 			aa_cover_ussr_zprk_2s6 {
 				rankRange:ip2=37, 39
-			}
-			aa_cover_ussr_pantsyr_s1 {
-				rankRange:ip2=40, 50
 			}
 		}
 	}
@@ -3358,20 +2879,8 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			aa_cover_ussr_zsu_23_4 {
-				rankRange:ip2=0, 26
-			}
-			aa_cover_ussr_9a33bm3_4_missiles {
-				rankRange:ip2=27, 30
-			}
-			aa_cover_ussr_9a33bm3 {
-				rankRange:ip2=31, 36
-			}
 			aa_cover_ussr_zprk_2s6 {
 				rankRange:ip2=37, 39
-			}
-			aa_cover_ussr_pantsyr_s1 {
-				rankRange:ip2=40, 50
 			}
 		}
 	}
@@ -3385,20 +2894,8 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			aa_cover_ussr_zsu_23_4 {
-				rankRange:ip2=0, 26
-			}
-			aa_cover_ussr_9a33bm3_4_missiles {
-				rankRange:ip2=27, 30
-			}
-			aa_cover_ussr_9a33bm3 {
-				rankRange:ip2=31, 36
-			}
 			aa_cover_ussr_zprk_2s6 {
 				rankRange:ip2=37, 39
-			}
-			aa_cover_ussr_pantsyr_s1 {
-				rankRange:ip2=40, 50
 			}
 		}
 	}
@@ -3412,20 +2909,8 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			aa_cover_ussr_zsu_23_4 {
-				rankRange:ip2=0, 26
-			}
-			aa_cover_ussr_9a33bm3_4_missiles {
-				rankRange:ip2=27, 30
-			}
-			aa_cover_ussr_9a33bm3 {
-				rankRange:ip2=31, 36
-			}
 			aa_cover_ussr_zprk_2s6 {
 				rankRange:ip2=37, 39
-			}
-			aa_cover_ussr_pantsyr_s1 {
-				rankRange:ip2=40, 50
 			}
 		}
 	}
@@ -3439,20 +2924,8 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			aa_cover_ussr_zsu_23_4 {
-				rankRange:ip2=0, 26
-			}
-			aa_cover_ussr_9a33bm3_4_missiles {
-				rankRange:ip2=27, 30
-			}
-			aa_cover_ussr_9a33bm3 {
-				rankRange:ip2=31, 36
-			}
 			aa_cover_ussr_zprk_2s6 {
 				rankRange:ip2=37, 39
-			}
-			aa_cover_ussr_pantsyr_s1 {
-				rankRange:ip2=40, 50
 			}
 		}
 	}
@@ -3466,20 +2939,8 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			aa_cover_ussr_zsu_23_4 {
-				rankRange:ip2=0, 26
-			}
-			aa_cover_ussr_9a33bm3_4_missiles {
-				rankRange:ip2=27, 30
-			}
-			aa_cover_ussr_9a33bm3 {
-				rankRange:ip2=31, 36
-			}
 			aa_cover_ussr_zprk_2s6 {
 				rankRange:ip2=37, 39
-			}
-			aa_cover_ussr_pantsyr_s1 {
-				rankRange:ip2=40, 50
 			}
 		}
 	}
@@ -3493,15 +2954,6 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			aa_cover_us_m163_vulcan {
-				rankRange:ip2=0, 26
-			}
-			aa_cover_germ_flarakpz_1_roland_1 {
-				rankRange:ip2=27, 30
-			}
-			aa_cover_germ_flarakpz_1_roland_3 {
-				rankRange:ip2=31, 36
-			}
 			aa_cover_sw_crotale_ng {
 				rankRange:ip2=37, 50
 			}
@@ -3517,15 +2969,6 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			aa_cover_us_m163_vulcan {
-				rankRange:ip2=0, 26
-			}
-			aa_cover_germ_flarakpz_1_roland_1 {
-				rankRange:ip2=27, 30
-			}
-			aa_cover_germ_flarakpz_1_roland_3 {
-				rankRange:ip2=31, 36
-			}
 			aa_cover_sw_crotale_ng {
 				rankRange:ip2=37, 50
 			}
@@ -3541,15 +2984,6 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			aa_cover_us_m163_vulcan {
-				rankRange:ip2=0, 26
-			}
-			aa_cover_germ_flarakpz_1_roland_1 {
-				rankRange:ip2=27, 30
-			}
-			aa_cover_germ_flarakpz_1_roland_3 {
-				rankRange:ip2=31, 36
-			}
 			aa_cover_sw_crotale_ng {
 				rankRange:ip2=37, 50
 			}
@@ -3565,15 +2999,6 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			aa_cover_us_m163_vulcan {
-				rankRange:ip2=0, 26
-			}
-			aa_cover_germ_flarakpz_1_roland_1 {
-				rankRange:ip2=27, 30
-			}
-			aa_cover_germ_flarakpz_1_roland_3 {
-				rankRange:ip2=31, 36
-			}
 			aa_cover_sw_crotale_ng {
 				rankRange:ip2=37, 50
 			}
@@ -3589,15 +3014,6 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			aa_cover_us_m163_vulcan {
-				rankRange:ip2=0, 26
-			}
-			aa_cover_germ_flarakpz_1_roland_1 {
-				rankRange:ip2=27, 30
-			}
-			aa_cover_germ_flarakpz_1_roland_3 {
-				rankRange:ip2=31, 36
-			}
 			aa_cover_sw_crotale_ng {
 				rankRange:ip2=37, 50
 			}
@@ -3613,15 +3029,6 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			aa_cover_us_m163_vulcan {
-				rankRange:ip2=0, 26
-			}
-			aa_cover_germ_flarakpz_1_roland_1 {
-				rankRange:ip2=27, 30
-			}
-			aa_cover_germ_flarakpz_1_roland_3 {
-				rankRange:ip2=31, 36
-			}
 			aa_cover_sw_crotale_ng {
 				rankRange:ip2=37, 50
 			}
@@ -3637,15 +3044,6 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			aa_cover_us_m163_vulcan {
-				rankRange:ip2=0, 26
-			}
-			aa_cover_germ_flarakpz_1_roland_1 {
-				rankRange:ip2=27, 30
-			}
-			aa_cover_germ_flarakpz_1_roland_3 {
-				rankRange:ip2=31, 36
-			}
 			aa_cover_sw_crotale_ng {
 				rankRange:ip2=37, 50
 			}
@@ -3661,12 +3059,6 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			aa_cover_us_m163_vulcan {
-				rankRange:ip2=0, 30
-			}
-			aa_cover_germ_flakpz_1a2_Gepard {
-				rankRange:ip2=31, 36
-			}
 			aa_cover_sw_crotale_ng {
 				rankRange:ip2=37, 50
 			}
@@ -3682,12 +3074,6 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			aa_cover_us_m163_vulcan {
-				rankRange:ip2=0, 30
-			}
-			aa_cover_germ_flakpz_1a2_Gepard {
-				rankRange:ip2=31, 36
-			}
 			aa_cover_sw_crotale_ng {
 				rankRange:ip2=37, 50
 			}
@@ -3703,12 +3089,6 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			aa_cover_us_m163_vulcan {
-				rankRange:ip2=0, 30
-			}
-			aa_cover_germ_flakpz_1a2_Gepard {
-				rankRange:ip2=31, 36
-			}
 			aa_cover_sw_crotale_ng {
 				rankRange:ip2=37, 50
 			}
@@ -3724,12 +3104,6 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			aa_cover_us_m163_vulcan {
-				rankRange:ip2=0, 30
-			}
-			aa_cover_germ_flakpz_1a2_Gepard {
-				rankRange:ip2=31, 36
-			}
 			aa_cover_sw_crotale_ng {
 				rankRange:ip2=37, 50
 			}
@@ -3745,12 +3119,6 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			aa_cover_us_m163_vulcan {
-				rankRange:ip2=0, 30
-			}
-			aa_cover_germ_flakpz_1a2_Gepard {
-				rankRange:ip2=31, 36
-			}
 			aa_cover_sw_crotale_ng {
 				rankRange:ip2=37, 50
 			}
@@ -3766,12 +3134,6 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			aa_cover_us_m163_vulcan {
-				rankRange:ip2=0, 30
-			}
-			aa_cover_germ_flakpz_1a2_Gepard {
-				rankRange:ip2=31, 36
-			}
 			aa_cover_sw_crotale_ng {
 				rankRange:ip2=37, 50
 			}
@@ -3787,12 +3149,6 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			aa_cover_us_m163_vulcan {
-				rankRange:ip2=0, 30
-			}
-			aa_cover_germ_flakpz_1a2_Gepard {
-				rankRange:ip2=31, 36
-			}
 			aa_cover_sw_crotale_ng {
 				rankRange:ip2=37, 50
 			}
@@ -3808,12 +3164,6 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			strongpoint_1970 {
-				rankRange:ip2=0, 30
-			}
-			strongpoint_1980 {
-				rankRange:ip2=31, 36
-			}
 			strongpoint_2018 {
 				rankRange:ip2=37, 50
 			}
@@ -3829,12 +3179,6 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			strongpoint_1970 {
-				rankRange:ip2=0, 30
-			}
-			strongpoint_1980 {
-				rankRange:ip2=31, 36
-			}
 			strongpoint_2018 {
 				rankRange:ip2=37, 50
 			}
@@ -3850,12 +3194,6 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			strongpoint_1970 {
-				rankRange:ip2=0, 30
-			}
-			strongpoint_1980 {
-				rankRange:ip2=31, 36
-			}
 			strongpoint_2018 {
 				rankRange:ip2=37, 50
 			}
@@ -3871,12 +3209,6 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			strongpoint_1970 {
-				rankRange:ip2=0, 30
-			}
-			strongpoint_1980 {
-				rankRange:ip2=31, 36
-			}
 			strongpoint_2018 {
 				rankRange:ip2=37, 50
 			}
@@ -3892,17 +3224,8 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			aa_cover_ussr_zsu_23_4 {
-				rankRange:ip2=0, 30
-			}
-			aa_cover_ussr_zsu_23_4m4 {
-				rankRange:ip2=31, 36
-			}
 			aa_cover_ussr_zprk_2s6 {
 				rankRange:ip2=37, 39
-			}
-			aa_cover_ussr_pantsyr_s1 {
-				rankRange:ip2=40, 50
 			}
 		}
 	}
@@ -3916,20 +3239,8 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			aa_cover_ussr_zsu_23_4 {
-				rankRange:ip2=0, 26
-			}
-			aa_cover_ussr_9a33bm3_4_missiles {
-				rankRange:ip2=27, 30
-			}
-			aa_cover_ussr_9a33bm3 {
-				rankRange:ip2=31, 36
-			}
 			aa_cover_ussr_zprk_2s6 {
 				rankRange:ip2=37, 39
-			}
-			aa_cover_ussr_pantsyr_s1 {
-				rankRange:ip2=40, 50
 			}
 		}
 	}
@@ -3943,15 +3254,6 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			aa_cover_us_m163_vulcan {
-				rankRange:ip2=0, 26
-			}
-			aa_cover_germ_flarakpz_1_roland_1 {
-				rankRange:ip2=27, 30
-			}
-			aa_cover_germ_flarakpz_1_roland_3 {
-				rankRange:ip2=31, 36
-			}
 			aa_cover_sw_crotale_ng {
 				rankRange:ip2=37, 50
 			}
@@ -3967,12 +3269,6 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			aa_cover_us_m163_vulcan {
-				rankRange:ip2=0, 30
-			}
-			aa_cover_germ_flakpz_1a2_Gepard {
-				rankRange:ip2=31, 36
-			}
 			aa_cover_sw_crotale_ng {
 				rankRange:ip2=37, 50
 			}
@@ -3988,12 +3284,6 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			strongpoint_1970 {
-				rankRange:ip2=0, 30
-			}
-			strongpoint_1980 {
-				rankRange:ip2=31, 36
-			}
 			strongpoint_2018 {
 				rankRange:ip2=37, 50
 			}
@@ -4009,12 +3299,6 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			strongpoint_1970 {
-				rankRange:ip2=0, 30
-			}
-			strongpoint_1980 {
-				rankRange:ip2=31, 36
-			}
 			strongpoint_2018 {
 				rankRange:ip2=37, 50
 			}
@@ -4030,18 +3314,6 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			assembly_area_1970_early {
-				rankRange:ip2=0, 26
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
-			assembly_area_1970_late {
-				rankRange:ip2=27, 30
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
-			assembly_area_1980 {
-				rankRange:ip2=31, 36
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
 			assembly_area_2018 {
 				rankRange:ip2=37, 50
 				nuclear_escalation_target__tag:t="mlrs_tbm_target"
@@ -4058,18 +3330,6 @@ units {
 			active:b=yes
 		}
 		additionalEcsTemplates {
-			assembly_area_1970_early {
-				rankRange:ip2=0, 26
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
-			assembly_area_1970_late {
-				rankRange:ip2=27, 30
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
-			assembly_area_1980 {
-				rankRange:ip2=31, 36
-				nuclear_escalation_target__tag:t="mlrs_tbm_target"
-			}
 			assembly_area_2018 {
 				rankRange:ip2=37, 50
 				nuclear_escalation_target__tag:t="mlrs_tbm_target"
