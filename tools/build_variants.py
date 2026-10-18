@@ -8,6 +8,8 @@ import re
 ROOT = Path(__file__).resolve().parents[1]
 MISSION_DIR = ROOT / "missions" / "ne-archipelago-2018"
 SOURCE = MISSION_DIR / "source.blk"
+SOUTHEASTERN_CITY_DIR = ROOT / "missions" / "ne-southeastern-city"
+SOUTHEASTERN_CITY_SOURCE = SOUTHEASTERN_CITY_DIR / "source.blk"
 
 
 def remove_object_groups_with_templates(text: str, templates: tuple[str, ...]) -> str:
@@ -301,6 +303,227 @@ def assert_balanced(text: str) -> None:
         raise ValueError("Generated BLK has unbalanced braces")
 
 
+def pretty_object_group_spans(text: str) -> list[tuple[int, int]]:
+    """Return spans for objectGroups blocks in wt_ext_cli's BlkText format."""
+    spans: list[tuple[int, int]] = []
+    offset = 0
+    start: int | None = None
+    depth = 0
+    for line in text.splitlines(keepends=True):
+        if start is None and line == "\tobjectGroups {\n":
+            start = offset
+            depth = 0
+        if start is not None:
+            depth += line.count("{") - line.count("}")
+            if depth == 0:
+                spans.append((start, offset + len(line)))
+                start = None
+        offset += len(line)
+    if start is not None:
+        raise ValueError("Unterminated objectGroups block")
+    return spans
+
+
+def remove_pretty_object_groups_with_templates(
+    text: str, templates: tuple[str, ...]
+) -> str:
+    spans = pretty_object_group_spans(text)
+    output: list[str] = []
+    cursor = 0
+    removed = 0
+    for start, end in spans:
+        block = text[start:end]
+        output.append(text[cursor:start])
+        if any(re.search(rf"^\s*{re.escape(template)}\s*\{{", block, re.MULTILINE)
+               for template in templates):
+            removed += 1
+        else:
+            output.append(block)
+        cursor = end
+    output.append(text[cursor:])
+    if removed != 16:
+        raise ValueError(f"Expected to remove 16 strategic sites, removed {removed}")
+    return "".join(output)
+
+
+def disable_pretty_sam_channels(text: str) -> str:
+    pattern = re.compile(r"(?m)^(\s*)(sam_site_(?:s300|sampt)\s*\{\n)")
+    matches = pattern.findall(text)
+    if len(matches) != 16:
+        raise ValueError(f"Expected 16 strategic SAM sites, got {len(matches)}")
+    return pattern.sub(
+        lambda match: (
+            match.group(1)
+            + match.group(2)
+            + match.group(1)
+            + "\tsam_site__missile_channels_max:i = 0\n"
+            + match.group(1)
+            + "\tsam_site__target_channels_max:i = 0\n"
+        ),
+        text,
+    )
+
+
+def set_pretty_english_metadata(text: str, tag: str, detail: str) -> str:
+    title = f"Nuclear Escalation · Southeastern City [{tag}]"
+    description = (
+        "Custom version of the official Nuclear Escalation mission. "
+        "Stars mark Soviet-aligned air defenses; crosses mark NATO. "
+        f"{detail}"
+    )
+    text, title_count = re.subn(
+        r'(?m)^(\s*)locName:t\s*=\s*"[^"]*"$',
+        rf'\1locName:t = "{title}"',
+        text,
+        count=1,
+    )
+    text, description_count = re.subn(
+        r'(?m)^(\s*)locDesc:t\s*=\s*"[^"]*"$',
+        rf'\1locDesc:t = "{description}"',
+        text,
+        count=1,
+    )
+    if (title_count, description_count) != (1, 1):
+        raise ValueError("Could not replace Southeastern City metadata")
+    return text
+
+
+def pretty_team1_airfield_roster(hq11_threat_radius: float) -> str:
+    return f'''\t\t\t\t"units_spawn_on_init__unitSettings:array" {{
+\t\t\t\t\t"unit:object" {{
+\t\t\t\t\t\tname:t = "ussr_pantsyr_s1"
+\t\t\t\t\t\ttemplateName:t = "tank+nuclear_escalation_spaa_radar_on"
+\t\t\t\t\t\tdeath_substract_tickets:i = 20
+\t\t\t\t\t\tcount:i = 1
+\t\t\t\t\t\tthreatSearchRad:r = 23000.0
+\t\t\t\t\t\tdontCreateChar:b = true
+\t\t\t\t\t\t"mods:list<t>" {{
+\t\t\t\t\t\t\tm:t = "tank_tool_kit"
+\t\t\t\t\t\t\tm:t = "manual_extinguisher"
+\t\t\t\t\t\t}}
+\t\t\t\t\t\t"bulletNames:list<t>" {{
+\t\t\t\t\t\t\tname:t = "30mm_2a38_HE"
+\t\t\t\t\t\t\tname:t = ""
+\t\t\t\t\t\t}}
+\t\t\t\t\t\t"bulletsCount:list<i>" {{
+\t\t\t\t\t\t\tc:i = 0
+\t\t\t\t\t\t\tc:i = 12
+\t\t\t\t\t\t}}
+\t\t\t\t\t}}
+\t\t\t\t\t"unit:object" {{
+\t\t\t\t\t\tname:t = "ussr_zprk_2s6"
+\t\t\t\t\t\ttemplateName:t = "tank+nuclear_escalation_spaa_radar_on"
+\t\t\t\t\t\tdeath_substract_tickets:i = 20
+\t\t\t\t\t\tcount:i = 2
+\t\t\t\t\t\tthreatSearchRad:r = 12000.0
+\t\t\t\t\t\tdontCreateChar:b = true
+\t\t\t\t\t\t"mods:list<t>" {{
+\t\t\t\t\t\t\tm:t = "tank_tool_kit"
+\t\t\t\t\t\t\tm:t = "manual_extinguisher"
+\t\t\t\t\t\t\tm:t = "2s6_upgrade_modification"
+\t\t\t\t\t\t}}
+\t\t\t\t\t\t"bulletNames:list<t>" {{
+\t\t\t\t\t\t\tname:t = "30mm_2a38_HE"
+\t\t\t\t\t\t\tname:t = ""
+\t\t\t\t\t\t}}
+\t\t\t\t\t\t"bulletsCount:list<i>" {{
+\t\t\t\t\t\t\tc:i = 0
+\t\t\t\t\t\t\tc:i = 8
+\t\t\t\t\t\t}}
+\t\t\t\t\t}}
+\t\t\t\t\t"unit:object" {{
+\t\t\t\t\t\tname:t = "ussr_2s38"
+\t\t\t\t\t\ttemplateName:t = "tank+nuclear_escalation_spaa_radar_off"
+\t\t\t\t\t\tdeath_substract_tickets:i = 20
+\t\t\t\t\t\tcount:i = 2
+\t\t\t\t\t\tdontCreateChar:b = true
+\t\t\t\t\t\t"mods:list<t>" {{
+\t\t\t\t\t\t\tm:t = "tank_tool_kit"
+\t\t\t\t\t\t\tm:t = "manual_extinguisher"
+\t\t\t\t\t\t}}
+\t\t\t\t\t\t"bulletNames:list<t>" {{
+\t\t\t\t\t\t\tname:t = "57mm_HE_VT"
+\t\t\t\t\t\t}}
+\t\t\t\t\t}}
+\t\t\t\t\t"unit:object" {{
+\t\t\t\t\t\tname:t = "cn_hq_11"
+\t\t\t\t\t\ttemplateName:t = "tank+nuclear_escalation_spaa_radar_on"
+\t\t\t\t\t\tdeath_substract_tickets:i = 30
+\t\t\t\t\t\tthreatSearchRad:r = {hq11_threat_radius:.1f}
+\t\t\t\t\t\t"mods:list<t>" {{
+\t\t\t\t\t\t\tm:t = "tank_tool_kit"
+\t\t\t\t\t\t\tm:t = "manual_extinguisher"
+\t\t\t\t\t\t}}
+\t\t\t\t\t\t"bulletNames:list<t>" {{
+\t\t\t\t\t\t}}
+\t\t\t\t\t\t"bulletsCount:list<i>" {{
+\t\t\t\t\t\t\tc:i = 8
+\t\t\t\t\t\t}}
+\t\t\t\t\t}}
+\t\t\t\t}}
+'''
+
+
+def override_pretty_team1_airfields(text: str, hq11_threat_radius: float) -> str:
+    output: list[str] = []
+    cursor = 0
+    modified = 0
+    insertion = pretty_team1_airfield_roster(hq11_threat_radius)
+    for start, end in pretty_object_group_spans(text):
+        block = text[start:end]
+        output.append(text[cursor:start])
+        if ("\t\t\tairfield_aa_2018 {\n" in block
+                and "\t\t\tarmy:i = 1\n" in block):
+            block = block.replace(
+                "\t\t\tairfield_aa_2018 {\n",
+                "\t\t\tairfield_aa_2018 {\n" + insertion,
+                1,
+            )
+            modified += 1
+        output.append(block)
+        cursor = end
+    output.append(text[cursor:])
+    if modified != 5:
+        raise ValueError(f"Expected 5 team-1 airfields, modified {modified}")
+    return "".join(output)
+
+
+def build_southeastern_city_variants() -> None:
+    source = SOUTHEASTERN_CITY_SOURCE.read_text(encoding="utf-8")
+
+    normal = set_pretty_english_metadata(
+        source,
+        "NORMAL",
+        "All strategic and airfield defenses retain their stock behavior.",
+    )
+
+    silent = disable_pretty_sam_channels(source)
+    silent_hq11_18km = override_pretty_team1_airfields(silent, 18000.0)
+    silent_hq11_18km = set_pretty_english_metadata(
+        silent_hq11_18km,
+        "SEAD TRAINING · HQ-11 18 KM",
+        "Strategic S-300 and SAMP/T sites remain targetable but cannot engage; HQ-11 sensors activate only within 18 km.",
+    )
+
+    no_long_range = remove_pretty_object_groups_with_templates(
+        source, ("sam_site_s300", "sam_site_sampt")
+    )
+    no_long_range = set_pretty_english_metadata(
+        no_long_range,
+        "NO LONG-RANGE SAMS",
+        "All 16 strategic SAM groups are removed; stock airfield defenses remain enabled.",
+    )
+
+    variants = {
+        "normal.blk": normal,
+        "sead-training-hq11-18km.blk": silent_hq11_18km,
+        "no-long-range-sams.blk": no_long_range,
+    }
+    for name, variant in variants.items():
+        assert_balanced(variant)
+        (SOUTHEASTERN_CITY_DIR / name).write_text(variant, encoding="utf-8")
+
+
 def write_variant(name: str, text: str) -> None:
     assert_balanced(text)
     (MISSION_DIR / name).write_text(text, encoding="utf-8")
@@ -390,6 +613,8 @@ def main() -> None:
             "Strategic sites cannot engage; HQ-11 sensors and initial missile load are disabled.",
         ),
     )
+
+    build_southeastern_city_variants()
 
 
 if __name__ == "__main__":
