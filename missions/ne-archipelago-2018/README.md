@@ -16,6 +16,11 @@
 `silent-lrsam-zero-channels-experimental.blk` remains available as a
 compatibility alias for the previously published stable URL.
 
+The quick-start airspawn experiment places fields 1–3 at 1.5 km and 6 km
+behind their runways, fields 4–5 at 3.5 km and 2.5 km behind their runways,
+and the 7 km main spawn halfway between the main base and the midpoint of
+fields 4–5.
+
 ### Direct URLs
 
 Paste one of these into **Custom battles → Missions by URL**. If necessary,

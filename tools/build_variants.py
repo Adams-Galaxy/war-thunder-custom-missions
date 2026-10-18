@@ -617,7 +617,10 @@ def limit_missile_ship_engagements(text: str, distance: float) -> str:
 
 
 def add_airfield_air_spawns(
-    text: str, altitude_by_suffix: dict[str, float], rear_offset: float = 500.0
+    text: str,
+    placement_by_suffix: dict[str, tuple[float, float]],
+    main_forward_suffixes: tuple[str, ...] = (),
+    main_forward_fraction: float = 0.5,
 ) -> str:
     """Add one rear-offset airborne respawn point for each listed airfield."""
     groups = {name: block for _, _, name, block in named_object_group_blocks(text)}
@@ -637,9 +640,24 @@ def add_airfield_air_spawns(
     respawn_actions: list[str] = []
     for team_number, team_letter, opponent_number in ((1, "A", 2), (2, "B", 1)):
         enemy_x, _, enemy_z = position(f"t{opponent_number}_airfield_main")
-        for suffix, altitude in altitude_by_suffix.items():
+        main_x, _, main_z = position(f"t{team_number}_airfield_main")
+        if main_forward_suffixes:
+            forward_positions = [
+                position(f"t{team_number}_airfield_{suffix}")
+                for suffix in main_forward_suffixes
+            ]
+            forward_mid_x = sum(pos[0] for pos in forward_positions) / len(
+                forward_positions
+            )
+            forward_mid_z = sum(pos[2] for pos in forward_positions) / len(
+                forward_positions
+            )
+        for suffix, (altitude, rear_offset) in placement_by_suffix.items():
             field_name = f"t{team_number}_airfield_{suffix}"
             field_x, _, field_z = position(field_name)
+            if suffix == "main" and main_forward_suffixes:
+                field_x = main_x + (forward_mid_x - main_x) * main_forward_fraction
+                field_z = main_z + (forward_mid_z - main_z) * main_forward_fraction
             dx = enemy_x - field_x
             dz = enemy_z - field_z
             length = math.hypot(dx, dz)
@@ -1118,13 +1136,14 @@ def main() -> None:
     quick_start_experiment = add_airfield_air_spawns(
         quick_start_experiment,
         {
-            "01": 1500.0,
-            "02": 1500.0,
-            "03": 1500.0,
-            "04": 3500.0,
-            "05": 3500.0,
-            "main": 6000.0,
+            "01": (1500.0, 6000.0),
+            "02": (1500.0, 6000.0),
+            "03": (1500.0, 6000.0),
+            "04": (3500.0, 2500.0),
+            "05": (3500.0, 2500.0),
+            "main": (7000.0, 0.0),
         },
+        main_forward_suffixes=("04", "05"),
     )
     quick_start_experiment = set_english_metadata(
         quick_start_experiment,
