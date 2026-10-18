@@ -755,6 +755,21 @@ def build_southeastern_city_variants() -> None:
         "Southeastern mission with only its two no-mesh assembly-area classes replaced.",
     )
 
+    southeastern_quoted_storage_templates, quoted_storage_count = re.subn(
+        r'(?m)^(\s*)(fortification\+(?:fuel|ammo)_factory_2018)\{$',
+        r'\1"\2"{',
+        normal,
+    )
+    if quoted_storage_count != 8:
+        raise ValueError(
+            f"Expected to quote 8 storage templates, got {quoted_storage_count}"
+        )
+    southeastern_quoted_storage_templates = set_pretty_english_metadata(
+        southeastern_quoted_storage_templates,
+        "DIAGNOSTIC · QUOTED STORAGE TEMPLATES",
+        "Complete Southeastern mission with its eight plus-sign storage template names quoted.",
+    )
+
     southeastern_object_names = [
         name for _, _, name, _ in named_object_group_blocks(normal)
     ]
@@ -853,6 +868,7 @@ def build_southeastern_city_variants() -> None:
         "southeastern-content-archipelago-level.blk": southeastern_on_archipelago,
         "southeastern-logic-archipelago-units.blk": southeastern_logic_archipelago_units,
         "southeastern-nomesh-replaced.blk": southeastern_nomesh_replaced,
+        "southeastern-quoted-storage-templates.blk": southeastern_quoted_storage_templates,
         "southeastern-objects-01-50.blk": objects_first_half,
         "southeastern-objects-51-98.blk": objects_second_half,
         "southeastern-objects-01-25.blk": objects_first_quarter,
