@@ -684,10 +684,25 @@ def build_southeastern_city_variants() -> None:
         "Southeastern logic, zones, and routes with the known-working Archipelago units block.",
     )
 
+    southeastern_nomesh_replaced = normal.replace(
+        'unit_class:t="nt_assembly_area_nomesh"',
+        'unit_class:t="nt_assembly_area_foundation"',
+    )
+    if southeastern_nomesh_replaced == normal or normal.count(
+        'unit_class:t="nt_assembly_area_nomesh"'
+    ) != 2:
+        raise ValueError("Expected exactly two no-mesh assembly areas")
+    southeastern_nomesh_replaced = set_pretty_english_metadata(
+        southeastern_nomesh_replaced,
+        "DIAGNOSTIC · STANDARD ASSEMBLY FOUNDATIONS",
+        "Southeastern mission with only its two no-mesh assembly-area classes replaced.",
+    )
+
     diagnostic_variants = {
         "archipelago-content-southeastern-level.blk": archipelago_on_southeastern,
         "southeastern-content-archipelago-level.blk": southeastern_on_archipelago,
         "southeastern-logic-archipelago-units.blk": southeastern_logic_archipelago_units,
+        "southeastern-nomesh-replaced.blk": southeastern_nomesh_replaced,
     }
     for name, variant in diagnostic_variants.items():
         assert_balanced(variant)

@@ -11,6 +11,9 @@ They are not intended as playable layouts.
   triggers, objectives, areas, and waypoints but substitutes the complete
   known-working Archipelago `units` block. Every Southeastern target name is
   present in that block.
+- `southeastern-nomesh-replaced.blk` is the complete Southeastern mission with
+  only the two `nt_assembly_area_nomesh` unit classes replaced by the standard
+  `nt_assembly_area_foundation` class used by the working mission.
 
 Interpretation:
 
