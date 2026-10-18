@@ -38,7 +38,7 @@ https://raw.githubusercontent.com/Adams-Galaxy/war-thunder-custom-missions/main/
 
 ## Provenance
 
-`source.blk` was decoded as text from the locally installed
+`source.blk` was decoded in canonical compact BLK form from the locally installed
 `mis.vromfs.bin`. It points to `levels/air_south_eastern_city.bin` and matches
 the current official mission structure: eight S-300-capable strategic groups,
 eight SAMP/T-capable strategic groups, and ten 2018 airfield-AA groups.

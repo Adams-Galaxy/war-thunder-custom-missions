@@ -356,9 +356,9 @@ def disable_pretty_sam_channels(text: str) -> str:
             match.group(1)
             + match.group(2)
             + match.group(1)
-            + "\tsam_site__missile_channels_max:i = 0\n"
+            + "\tsam_site__missile_channels_max:i=0\n"
             + match.group(1)
-            + "\tsam_site__target_channels_max:i = 0\n"
+            + "\tsam_site__target_channels_max:i=0\n"
         ),
         text,
     )
@@ -373,13 +373,13 @@ def set_pretty_english_metadata(text: str, tag: str, detail: str) -> str:
     )
     text, title_count = re.subn(
         r'(?m)^(\s*)locName:t\s*=\s*"[^"]*"$',
-        rf'\1locName:t = "{title}"',
+        rf'\1locName:t="{title}"',
         text,
         count=1,
     )
     text, description_count = re.subn(
         r'(?m)^(\s*)locDesc:t\s*=\s*"[^"]*"$',
-        rf'\1locDesc:t = "{description}"',
+        rf'\1locDesc:t="{description}"',
         text,
         count=1,
     )
@@ -473,7 +473,7 @@ def override_pretty_team1_airfields(text: str, hq11_threat_radius: float) -> str
         block = text[start:end]
         output.append(text[cursor:start])
         if ("\t\t\tairfield_aa_2018 {\n" in block
-                and "\t\t\tarmy:i = 1\n" in block):
+                and re.search(r"^\s*army:i\s*=\s*1$", block, re.MULTILINE)):
             block = block.replace(
                 "\t\t\tairfield_aa_2018 {\n",
                 "\t\t\tairfield_aa_2018 {\n" + insertion,
@@ -488,31 +488,38 @@ def override_pretty_team1_airfields(text: str, hq11_threat_radius: float) -> str
     return "".join(output)
 
 
+def compact_scalar_syntax(text: str) -> str:
+    """Use the canonical scalar syntax accepted by the game's URL loader."""
+    text = re.sub(r"(:[A-Za-z0-9<>]+)\s*=\s*", r"\1=", text)
+    text = re.sub(r"(:b=)true\b", r"\1yes", text)
+    return re.sub(r"(:b=)false\b", r"\1no", text)
+
+
 def build_southeastern_city_variants() -> None:
     source = SOUTHEASTERN_CITY_SOURCE.read_text(encoding="utf-8")
 
-    normal = set_pretty_english_metadata(
+    normal = compact_scalar_syntax(set_pretty_english_metadata(
         source,
         "NORMAL",
         "All strategic and airfield defenses retain their stock behavior.",
-    )
+    ))
 
     silent = disable_pretty_sam_channels(source)
     silent_hq11_18km = override_pretty_team1_airfields(silent, 18000.0)
-    silent_hq11_18km = set_pretty_english_metadata(
+    silent_hq11_18km = compact_scalar_syntax(set_pretty_english_metadata(
         silent_hq11_18km,
         "SEAD TRAINING · HQ-11 18 KM",
         "Strategic S-300 and SAMP/T sites remain targetable but cannot engage; HQ-11 sensors activate only within 18 km.",
-    )
+    ))
 
     no_long_range = remove_pretty_object_groups_with_templates(
         source, ("sam_site_s300", "sam_site_sampt")
     )
-    no_long_range = set_pretty_english_metadata(
+    no_long_range = compact_scalar_syntax(set_pretty_english_metadata(
         no_long_range,
         "NO LONG-RANGE SAMS",
         "All 16 strategic SAM groups are removed; stock airfield defenses remain enabled.",
-    )
+    ))
 
     variants = {
         "normal.blk": normal,
