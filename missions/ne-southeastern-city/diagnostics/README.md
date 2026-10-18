@@ -19,6 +19,8 @@ They are not intended as playable layouts.
   definitions across two otherwise working units blocks.
 - `southeastern-objects-01-25.blk` and
   `southeastern-objects-26-50.blk` bisect the failing first half again.
+- `southeastern-objects-01-12.blk` and
+  `southeastern-objects-13-25.blk` bisect the failing first quarter.
 
 Interpretation:
 

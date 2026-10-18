@@ -798,6 +798,24 @@ def build_southeastern_city_variants() -> None:
         "DIAGNOSTIC · OBJECTS 26-50",
         "Known-working units block with Southeastern object groups 26 through 50.",
     )
+    first_object_eighth = set(southeastern_object_names[:12])
+    second_object_eighth = set(southeastern_object_names[12:25])
+    objects_first_eighth = replace_named_object_groups(
+        southeastern_logic_archipelago_units, normal, first_object_eighth
+    )
+    objects_first_eighth = set_pretty_english_metadata(
+        objects_first_eighth,
+        "DIAGNOSTIC · OBJECTS 1-12",
+        "Known-working units block with Southeastern object groups 1 through 12.",
+    )
+    objects_second_eighth = replace_named_object_groups(
+        southeastern_logic_archipelago_units, normal, second_object_eighth
+    )
+    objects_second_eighth = set_pretty_english_metadata(
+        objects_second_eighth,
+        "DIAGNOSTIC · OBJECTS 13-25",
+        "Known-working units block with Southeastern object groups 13 through 25.",
+    )
 
     diagnostic_variants = {
         "archipelago-content-southeastern-level.blk": archipelago_on_southeastern,
@@ -808,6 +826,8 @@ def build_southeastern_city_variants() -> None:
         "southeastern-objects-51-98.blk": objects_second_half,
         "southeastern-objects-01-25.blk": objects_first_quarter,
         "southeastern-objects-26-50.blk": objects_second_quarter,
+        "southeastern-objects-01-12.blk": objects_first_eighth,
+        "southeastern-objects-13-25.blk": objects_second_eighth,
     }
     for name, variant in diagnostic_variants.items():
         assert_balanced(variant)
