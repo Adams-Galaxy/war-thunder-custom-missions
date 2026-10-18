@@ -58,14 +58,30 @@ def remove_nested_blocks(text: str, block_name: str, indent: str = "      ") -> 
     return "".join(output)
 
 
-def tag_title(text: str, tag: str) -> str:
-    return re.sub(
-        r'^(\s*locName:t="[^"]*)"$',
-        lambda match: f'{match.group(1)} [{tag}]"',
+def set_english_metadata(text: str, tag: str, detail: str) -> str:
+    title = f'Nuclear Escalation · Archipelago · Training (2018) [{tag}]'
+    description = (
+        "Custom version of the event mission with 2018-era air defenses. "
+        "Stars mark Soviet-aligned air defenses; crosses mark NATO. "
+        f"{detail}"
+    )
+    text, title_count = re.subn(
+        r'^\s*locName:t="[^"]*"$',
+        f'    locName:t="{title}"',
         text,
         count=1,
         flags=re.MULTILINE,
     )
+    text, description_count = re.subn(
+        r'^\s*locDesc:t="[^"]*"$',
+        f'    locDesc:t="{description}"',
+        text,
+        count=1,
+        flags=re.MULTILINE,
+    )
+    if (title_count, description_count) != (1, 1):
+        raise ValueError("Could not replace mission title and description")
+    return text
 
 
 S300_ZERO_AMMO_SETTINGS = '''      sam_site_s300{
@@ -153,6 +169,133 @@ def disable_sam_channels(text: str) -> str:
     )
 
 
+def team1_airfield_roster(
+    hq11_threat_radius: float, hq11_ammo: int = 8, hq11_radar_managed: bool = True
+) -> str:
+    hq11_template = (
+        "tank+nuclear_escalation_spaa_radar_on"
+        if hq11_radar_managed
+        else "tank+nuclear_escalation_spaa_radar_off"
+    )
+    return f'''        "units_spawn_on_init__unitSettings:array"{{
+          "unit:object"{{
+            name:t="ussr_pantsyr_s1"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=20
+            count:i=1
+            threatSearchRad:r=23000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }}
+            "bulletNames:list<t>"{{
+              name:t="30mm_2a38_HE"
+              name:t=""
+            }}
+            "bulletsCount:list<i>"{{
+              c:i=0
+              c:i=12
+            }}
+          }}
+          "unit:object"{{
+            name:t="ussr_zprk_2s6"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=20
+            count:i=2
+            threatSearchRad:r=12000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+              m:t="2s6_upgrade_modification"
+            }}
+            "bulletNames:list<t>"{{
+              name:t="30mm_2a38_HE"
+              name:t=""
+            }}
+            "bulletsCount:list<i>"{{
+              c:i=0
+              c:i=8
+            }}
+          }}
+          "unit:object"{{
+            name:t="ussr_2s38"
+            templateName:t="tank+nuclear_escalation_spaa_radar_off"
+            death_substract_tickets:i=20
+            count:i=2
+            dontCreateChar:b=yes
+            "mods:list<t>"{{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }}
+            "bulletNames:list<t>"{{
+              name:t="57mm_HE_VT"
+            }}
+          }}
+          "unit:object"{{
+            name:t="cn_hq_11"
+            templateName:t="{hq11_template}"
+            death_substract_tickets:i=30
+            threatSearchRad:r={hq11_threat_radius:.1f}
+            "mods:list<t>"{{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }}
+            "bulletNames:list<t>"{{
+            }}
+            "bulletsCount:list<i>"{{
+              c:i={hq11_ammo}
+            }}
+          }}
+        }}
+'''
+
+
+def override_team1_airfield_roster(
+    text: str,
+    hq11_threat_radius: float,
+    hq11_ammo: int = 8,
+    hq11_radar_managed: bool = True,
+) -> str:
+    lines = text.splitlines(keepends=True)
+    output: list[str] = []
+    index = 0
+    modified = 0
+    insertion = team1_airfield_roster(
+        hq11_threat_radius, hq11_ammo, hq11_radar_managed
+    )
+
+    while index < len(lines):
+        if lines[index] != "  objectGroups{\n":
+            output.append(lines[index])
+            index += 1
+            continue
+
+        block = [lines[index]]
+        index += 1
+        depth = 1
+        while index < len(lines) and depth:
+            line = lines[index]
+            block.append(line)
+            depth += line.count("{") - line.count("}")
+            index += 1
+
+        block_text = "".join(block)
+        if "      airfield_aa_2018{\n" in block_text and "      army:i=1\n" in block_text:
+            block_text = block_text.replace(
+                "      airfield_aa_2018{\n",
+                "      airfield_aa_2018{\n" + insertion,
+                1,
+            )
+            modified += 1
+        output.append(block_text)
+
+    if modified != 6:
+        raise ValueError(f"Expected 6 team-1 airfields, modified {modified}")
+    return "".join(output)
+
+
 def assert_balanced(text: str) -> None:
     if text.count("{") != text.count("}"):
         raise ValueError("Generated BLK has unbalanced braces")
@@ -172,14 +315,25 @@ def main() -> None:
     )
     if no_lrsam.count("sam_site_s300{") or no_lrsam.count("sam_site_sampt{"):
         raise ValueError("Long-range SAM templates remain in no-lrsam variant")
-    write_variant("no-lrsam.blk", tag_title(no_lrsam, "NO LRSAM"))
+    write_variant(
+        "no-lrsam.blk",
+        set_english_metadata(
+            no_lrsam,
+            "NO STRATEGIC SAMS",
+            "The eight S-300 and eight SAMP/T strategic sites are removed.",
+        ),
+    )
 
     no_lrsam_no_airfield_aa = remove_nested_blocks(no_lrsam, "airfield_aa_2018")
     if no_lrsam_no_airfield_aa.count("airfield_aa_2018{"):
         raise ValueError("Airfield AA templates remain in no-airfield-AA variant")
     write_variant(
         "no-lrsam-no-airfield-aa.blk",
-        tag_title(no_lrsam_no_airfield_aa, "NO LRSAM / NO AIRFIELD AA"),
+        set_english_metadata(
+            no_lrsam_no_airfield_aa,
+            "NO STRATEGIC SAMS / NO AIRFIELD AA",
+            "Strategic SAM sites and all airfield-defense groups are removed.",
+        ),
     )
 
     silent_lrsam = add_zero_ammo_sam_settings(source)
@@ -187,15 +341,54 @@ def main() -> None:
         raise ValueError("Not every strategic SAM launcher definition was overridden")
     write_variant(
         "silent-lrsam-experimental.blk",
-        tag_title(silent_lrsam, "SILENT LRSAM EXPERIMENT"),
+        set_english_metadata(
+            silent_lrsam,
+            "FAILED TEST · ZERO-AMMO OVERRIDE",
+            "Retained for research; the server ignores this nested ammo override.",
+        ),
     )
 
     zero_channel_lrsam = disable_sam_channels(source)
     if zero_channel_lrsam.count("sam_site__missile_channels_max:i=0") != 16:
         raise ValueError("Not every strategic SAM site's missile channels were disabled")
+    strategic_sams_silent = set_english_metadata(
+        zero_channel_lrsam,
+        "SEAD TRAINING · STRATEGIC SAMS SILENT",
+        "Strategic S-300 and SAMP/T sites remain present but have zero engagement channels.",
+    )
     write_variant(
-        "silent-lrsam-zero-channels-experimental.blk",
-        tag_title(zero_channel_lrsam, "SILENT LRSAM ZERO CHANNELS"),
+        "sead-training-strategic-sams-silent.blk", strategic_sams_silent
+    )
+    # Keep the previously published URL working as a stable compatibility alias.
+    write_variant(
+        "silent-lrsam-zero-channels-experimental.blk", strategic_sams_silent
+    )
+
+    hq11_18km = override_team1_airfield_roster(
+        zero_channel_lrsam, hq11_threat_radius=18000.0
+    )
+    write_variant(
+        "sead-training-hq11-18km.blk",
+        set_english_metadata(
+            hq11_18km,
+            "SEAD TRAINING · HQ-11 18 KM",
+            "Strategic sites cannot engage; HQ-11 sensors activate only within 18 km.",
+        ),
+    )
+
+    hq11_silent = override_team1_airfield_roster(
+        zero_channel_lrsam,
+        hq11_threat_radius=0.0,
+        hq11_ammo=0,
+        hq11_radar_managed=False,
+    )
+    write_variant(
+        "sead-training-hq11-silent.blk",
+        set_english_metadata(
+            hq11_silent,
+            "SEAD TRAINING · HQ-11 SILENT",
+            "Strategic sites cannot engage; HQ-11 sensors and initial missile load are disabled.",
+        ),
     )
 
 

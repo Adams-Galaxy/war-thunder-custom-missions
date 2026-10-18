@@ -43,7 +43,22 @@ and fired normally.
 `sam_site__missile_channels_max` and `sam_site__target_channels_max` to zero on
 every strategic site. These scalar components are passed directly to the
 server-side `set_sam_site` call and avoid attempting to replace the protected
-unit-settings array. The meaning of a zero channel limit needs an in-game test.
+unit-settings array. In-game testing confirmed that the sites remain present
+but do not launch.
+
+## Airfield HQ-11 controls
+
+The team-1 `airfield_aa_2018` roster gives each HQ-11 a 30 km
+`threatSearchRad`. The server uses this value as the radius within which an
+enemy aircraft causes the unit's sensors to be powered on. A mission-local
+non-empty `units_spawn_on_init__unitSettings` roster takes precedence over the
+built-in team-specific roster, providing a route to set HQ-11 to 18 km without
+manually placing any airfield units.
+
+The fully silent HQ-11 variant additionally uses the radar-off unit template
+and zero initial missile count. Because the generic roster path has not yet
+been tested in a multiplayer URL mission, both HQ-11 variants remain
+experimental.
 
 If a zero channel limit is treated as unlimited or ignored, the fallback is to
 generate named units automatically from each site's transform—not to place

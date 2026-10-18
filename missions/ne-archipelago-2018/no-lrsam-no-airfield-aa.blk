@@ -94,8 +94,8 @@ mission_settings{
     afterRespawnDelaySec:i=30
     useSpawnDelay:b=yes
     timeToLoseInstantDetection:r=10.0
-    locName:t="Ядерная эскалация · Архипелаг · тренировка (2018) [NO LRSAM / NO AIRFIELD AA]"
-    locDesc:t="Пользовательская версия миссии события: ПВО эпохи 2018 на всех позициях. Звезда — советская ПВО, крест — НАТО."
+    locName:t="Nuclear Escalation · Archipelago · Training (2018) [NO STRATEGIC SAMS / NO AIRFIELD AA]"
+    locDesc:t="Custom version of the event mission with 2018-era air defenses. Stars mark Soviet-aligned air defenses; crosses mark NATO. Strategic SAM sites and all airfield-defense groups are removed."
     scoreLimit:i=9000
     timeLimit:i=90
     deathPenaltyMul:r=0.2
