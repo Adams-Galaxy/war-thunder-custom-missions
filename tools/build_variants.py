@@ -61,7 +61,7 @@ def remove_nested_blocks(text: str, block_name: str, indent: str = "      ") -> 
 def tag_title(text: str, tag: str) -> str:
     return re.sub(
         r'^(\s*locName:t="[^"]*)"$',
-        rf"\1 [{tag}]\"",
+        lambda match: f'{match.group(1)} [{tag}]"',
         text,
         count=1,
         flags=re.MULTILINE,

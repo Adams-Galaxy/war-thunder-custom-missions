@@ -94,7 +94,7 @@ mission_settings{
     afterRespawnDelaySec:i=30
     useSpawnDelay:b=yes
     timeToLoseInstantDetection:r=10.0
-    locName:t="Ядерная эскалация · Архипелаг · тренировка (2018) [SILENT LRSAM EXPERIMENT]\"
+    locName:t="Ядерная эскалация · Архипелаг · тренировка (2018) [SILENT LRSAM EXPERIMENT]"
     locDesc:t="Пользовательская версия миссии события: ПВО эпохи 2018 на всех позициях. Звезда — советская ПВО, крест — НАТО."
     scoreLimit:i=9000
     timeLimit:i=90
