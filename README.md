@@ -46,6 +46,11 @@ Serve them publicly through the machine's Tailscale Funnel:
 ./wtmission serve --public tailscale
 ```
 
+On first activation, the launcher waits until the Tailscale hostname is visible
+through public DNS before presenting it as ready. This matters because the same
+name can start working through private MagicDNS several minutes before an
+external service such as War Thunder can resolve it.
+
 The public paths remain predictable across rebuilds:
 
 ```text

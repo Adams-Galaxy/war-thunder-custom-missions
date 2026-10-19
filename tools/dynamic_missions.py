@@ -18,6 +18,7 @@ import time
 import tomllib
 from typing import Any
 from urllib.parse import unquote, urlparse
+from urllib.request import Request, urlopen
 
 from tools import build_variants as variants
 
@@ -356,7 +357,50 @@ def tailscale_dns_name() -> str:
     return dns_name
 
 
-def start_tailscale_funnel(port: int) -> tuple[subprocess.Popen[str], str]:
+def public_dns_addresses(dns_name: str) -> list[str]:
+    """Resolve through a public recursive resolver, bypassing Tailscale MagicDNS."""
+    request = Request(
+        f"https://dns.google/resolve?name={dns_name}&type=A",
+        headers={"Accept": "application/dns-json", "User-Agent": "wtmission/1.0"},
+    )
+    try:
+        with urlopen(request, timeout=10) as response:
+            result = json.load(response)
+    except (OSError, TimeoutError, ValueError):
+        return []
+    return [
+        answer["data"]
+        for answer in result.get("Answer", [])
+        if answer.get("type") in (1, 28) and isinstance(answer.get("data"), str)
+    ]
+
+
+def wait_for_public_dns(
+    dns_name: str, process: subprocess.Popen[str], timeout: float
+) -> list[str]:
+    deadline = time.monotonic() + timeout
+    print(
+        f"Waiting for {dns_name} to appear in public DNS "
+        f"(first activation can take up to {timeout / 60:g} minutes)...",
+        flush=True,
+    )
+    while time.monotonic() < deadline:
+        if process.poll() is not None:
+            raise RuntimeError("Tailscale Funnel exited before public DNS was ready")
+        addresses = public_dns_addresses(dns_name)
+        if addresses:
+            print(f"Public DNS ready: {', '.join(addresses)}", flush=True)
+            return addresses
+        time.sleep(5)
+    raise RuntimeError(
+        f"Tailscale Funnel started, but {dns_name} did not appear in public DNS "
+        f"within {timeout:g} seconds"
+    )
+
+
+def start_tailscale_funnel(
+    port: int, dns_timeout: float
+) -> tuple[subprocess.Popen[str], str]:
     dns_name = tailscale_dns_name()
     process = subprocess.Popen(
         ["tailscale", "funnel", str(port)],
@@ -365,6 +409,12 @@ def start_tailscale_funnel(port: int) -> tuple[subprocess.Popen[str], str]:
     time.sleep(1.5)
     if process.poll() is not None:
         raise RuntimeError("Tailscale Funnel exited before the server was published")
+    try:
+        wait_for_public_dns(dns_name, process, dns_timeout)
+    except Exception:
+        if process.poll() is None:
+            process.send_signal(signal.SIGINT)
+        raise
     return process, f"https://{dns_name}"
 
 
@@ -435,7 +485,7 @@ def command_serve(args: argparse.Namespace) -> int:
     funnel: subprocess.Popen[str] | None = None
     base_url = f"http://{args.bind}:{actual_port}"
     if args.public == "tailscale":
-        funnel, base_url = start_tailscale_funnel(actual_port)
+        funnel, base_url = start_tailscale_funnel(actual_port, args.funnel_dns_timeout)
 
     print("Available missions:")
     print_built(missions, base_url)
@@ -501,6 +551,13 @@ def parser() -> argparse.ArgumentParser:
     serve.add_argument("--bind", default="127.0.0.1")
     serve.add_argument("--port", type=int, default=8765)
     serve.add_argument("--public", choices=("none", "tailscale"), default="none")
+    serve.add_argument(
+        "--funnel-dns-timeout",
+        type=float,
+        default=600.0,
+        metavar="SECONDS",
+        help="wait this long for first-time Funnel public DNS (default: 600)",
+    )
     serve.add_argument(
         "--watch",
         action=argparse.BooleanOptionalAction,
