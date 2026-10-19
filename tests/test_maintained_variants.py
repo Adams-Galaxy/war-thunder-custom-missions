@@ -49,6 +49,45 @@ class MaintainedVariantTests(unittest.TestCase):
                     "custom_gun_properties__attackMaxDist:r=18000.0", text
                 )
 
+    def test_short_range_experiment_covers_direct_defense_sources(self) -> None:
+        text = (
+            REPO_ROOT
+            / "missions/ne-archipelago-2018/experimental-short-range-air-defenses.blk"
+        ).read_text()
+
+        self.assertEqual(text.count("threatSearchRad:r=6000.0"), 84)
+        self.assertEqual(text.count("threatSearchRad:r=8000.0"), 6)
+        self.assertEqual(text.count("threatSearchRad:r=18000.0"), 12)
+        self.assertEqual(
+            text.count('"units_spawn_on_init__unitSettings:array"{'), 72
+        )
+        self.assertEqual(
+            text.count('"equip_factory__columnUnitsSettings1:array"{'), 6
+        )
+        self.assertEqual(
+            text.count('"equip_factory__columnUnitsSettings2:array"{'), 6
+        )
+        self.assertEqual(text.count("{"), text.count("}"))
+
+    def test_peaceful_exploration_protects_all_player_units(self) -> None:
+        text = (
+            REPO_ROOT
+            / "missions/ne-archipelago-2018/peaceful-exploration.blk"
+        ).read_text()
+
+        trigger_start = text.index("  debug_in_multiplayer{")
+        trigger_end = text.index("  init{", trigger_start)
+        trigger = text[trigger_start:trigger_end]
+        self.assertIn("is_enabled:b=yes", trigger)
+        self.assertIn("time:r=0.25", trigger)
+        self.assertIn('object:t="all_players_squad"', trigger)
+        self.assertIn("targetableByAi:b=no", trigger)
+        self.assertIn("isImmortal:b=yes", trigger)
+        self.assertEqual(
+            text.count("sam_site__missile_channels_max:i=0"), 16
+        )
+        self.assertEqual(text.count("{"), text.count("}"))
+
 
 if __name__ == "__main__":
     unittest.main()

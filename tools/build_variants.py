@@ -257,6 +257,379 @@ def team1_airfield_roster(
 '''
 
 
+def render_unit_settings_array(
+    component: str, units: list[dict[str, object]], indent: str = "        "
+) -> str:
+    """Render the subset of unit-setting fields used by Nuclear Escalation."""
+    scalar_fields = (
+        ("name", "t"),
+        ("templateName", "t"),
+        ("death_substract_tickets", "i"),
+        ("spawnName", "t"),
+        ("count", "i"),
+        ("threatSearchRad", "r"),
+        ("dontCreateChar", "b"),
+    )
+    lines = [f'{indent}"{component}"{{\n']
+    unit_indent = indent + "  "
+    field_indent = unit_indent + "  "
+    list_indent = field_indent + "  "
+    for unit in units:
+        lines.append(f'{unit_indent}"unit:object"{{\n')
+        for field, kind in scalar_fields:
+            if field not in unit:
+                continue
+            value = unit[field]
+            if kind == "t":
+                rendered = f'"{value}"'
+            elif kind == "b":
+                rendered = "yes" if value else "no"
+            elif kind == "r":
+                rendered = f"{float(value):.1f}"
+            else:
+                rendered = str(value)
+            lines.append(f"{field_indent}{field}:{kind}={rendered}\n")
+        for component_name, item_name, kind, field in (
+            ("mods:list<t>", "m", "t", "mods"),
+            ("bulletNames:list<t>", "name", "t", "bullet_names"),
+            ("bulletsCount:list<i>", "c", "i", "bullet_counts"),
+        ):
+            if field not in unit:
+                continue
+            values = unit[field]
+            if not isinstance(values, list):
+                values = [values]
+            lines.append(f'{field_indent}"{component_name}"{{\n')
+            for value in values:
+                rendered = f'"{value}"' if kind == "t" else str(value)
+                lines.append(f"{list_indent}{item_name}:{kind}={rendered}\n")
+            lines.append(f"{field_indent}}}\n")
+        lines.append(f"{unit_indent}}}\n")
+    lines.append(f"{indent}}}\n")
+    return "".join(lines)
+
+
+def short_range_airfield_roster(
+    army: int,
+    tunguska_radius: float,
+    crotale_radius: float,
+    pantsir_radius: float,
+    long_airfield_radius: float,
+) -> list[dict[str, object]]:
+    if army == 1:
+        return [
+            {
+                "name": "ussr_pantsyr_s1",
+                "templateName": "tank+nuclear_escalation_spaa_radar_on",
+                "death_substract_tickets": 20,
+                "count": 1,
+                "threatSearchRad": pantsir_radius,
+                "dontCreateChar": True,
+                "mods": ["tank_tool_kit", "manual_extinguisher"],
+                "bullet_names": ["30mm_2a38_HE", ""],
+                "bullet_counts": [0, 12],
+            },
+            {
+                "name": "ussr_zprk_2s6",
+                "templateName": "tank+nuclear_escalation_spaa_radar_on",
+                "death_substract_tickets": 20,
+                "count": 2,
+                "threatSearchRad": tunguska_radius,
+                "dontCreateChar": True,
+                "mods": [
+                    "tank_tool_kit",
+                    "manual_extinguisher",
+                    "2s6_upgrade_modification",
+                ],
+                "bullet_names": ["30mm_2a38_HE", ""],
+                "bullet_counts": [0, 8],
+            },
+            {
+                "name": "ussr_2s38",
+                "templateName": "tank+nuclear_escalation_spaa_radar_off",
+                "death_substract_tickets": 20,
+                "count": 2,
+                "dontCreateChar": True,
+                "mods": ["tank_tool_kit", "manual_extinguisher"],
+                "bullet_names": ["57mm_HE_VT"],
+            },
+            {
+                "name": "cn_hq_11",
+                "templateName": "tank+nuclear_escalation_spaa_radar_on",
+                "death_substract_tickets": 30,
+                "threatSearchRad": long_airfield_radius,
+                "mods": ["tank_tool_kit", "manual_extinguisher"],
+                "bullet_names": [],
+                "bullet_counts": [8],
+            },
+        ]
+    return [
+        {
+            "name": "sw_crotale_ng",
+            "templateName": "tank+nuclear_escalation_spaa_radar_on",
+            "death_substract_tickets": 20,
+            "count": 3,
+            "threatSearchRad": crotale_radius,
+            "dontCreateChar": True,
+            "mods": ["tank_tool_kit", "manual_extinguisher"],
+            "bullet_counts": [8],
+        },
+        {
+            "name": "it_otomatic",
+            "templateName": "tank+nuclear_escalation_spaa_radar_off",
+            "death_substract_tickets": 20,
+            "count": 2,
+            "dontCreateChar": True,
+            "mods": ["tank_tool_kit", "manual_extinguisher"],
+            "bullet_names": ["76mm_oto_HE_VT"],
+            "bullet_counts": [],
+        },
+        {
+            "name": "il_spyder_aio",
+            "templateName": "tank+nuclear_escalation_spaa_radar_on",
+            "death_substract_tickets": 30,
+            "threatSearchRad": long_airfield_radius,
+            "dontCreateChar": True,
+            "mods": ["tank_tool_kit", "manual_extinguisher"],
+            "bullet_names": ["160mm_derby_er_aam"],
+            "bullet_counts": [8],
+        },
+    ]
+
+
+def short_range_medium_spaa(
+    army: int,
+    radius: float,
+    *,
+    count: int = 1,
+    spawn_name: str | None = None,
+    airfield_template: bool = False,
+) -> dict[str, object]:
+    unit: dict[str, object]
+    if army == 1:
+        unit = {
+            "name": "ussr_zprk_2s6",
+            "templateName": (
+                "tank+nuclear_escalation_spaa_radar_on"
+                if airfield_template
+                else "tank+nuclear_escalation_spaa_with_threat_radar"
+            ),
+            "death_substract_tickets": 20,
+            "count": count,
+            "threatSearchRad": radius,
+            "dontCreateChar": True,
+            "mods": [
+                "tank_tool_kit",
+                "manual_extinguisher",
+                "2s6_upgrade_modification",
+            ],
+            "bullet_names": ["30mm_2a38_HE", ""],
+            "bullet_counts": [0, 8],
+        }
+    else:
+        unit = {
+            "name": "sw_crotale_ng",
+            "templateName": (
+                "tank+nuclear_escalation_spaa_radar_on"
+                if airfield_template
+                else "tank+nuclear_escalation_spaa_with_threat_radar"
+            ),
+            "death_substract_tickets": 20,
+            "count": count,
+            "threatSearchRad": radius,
+            "dontCreateChar": True,
+            "mods": ["tank_tool_kit", "manual_extinguisher"],
+            "bullet_names": [],
+            "bullet_counts": [8],
+        }
+    if spawn_name is not None:
+        unit["spawnName"] = spawn_name
+    return unit
+
+
+def short_range_strongpoint_roster(
+    army: int, tunguska_radius: float, crotale_radius: float
+) -> list[dict[str, object]]:
+    if army == 1:
+        ground_units = [
+            {
+                "name": "ussr_t_80bvm",
+                "templateName": "tank+nuclear_escalation_tank",
+                "count": 3,
+                "dontCreateChar": True,
+                "mods": ["tank_tool_kit", "manual_extinguisher"],
+                "bullet_names": ["USSR_APDS_FS"],
+            },
+            {
+                "name": "ussr_bmp_3",
+                "templateName": "tank+nuclear_escalation_tank",
+                "count": 2,
+                "dontCreateChar": True,
+                "mods": ["tank_tool_kit", "manual_extinguisher"],
+                "bullet_names": ["30mm_2a72_AP"],
+            },
+        ]
+    else:
+        ground_units = [
+            {
+                "name": "us_m1a2_sep2_abrams",
+                "templateName": "tank+nuclear_escalation_tank",
+                "count": 3,
+                "dontCreateChar": True,
+                "mods": ["tank_tool_kit", "manual_extinguisher"],
+                "bullet_names": ["NATO_APDS_FS"],
+            },
+            {
+                "name": "us_m3a3_bradley",
+                "templateName": "tank+nuclear_escalation_tank",
+                "count": 2,
+                "dontCreateChar": True,
+                "mods": ["tank_tool_kit", "manual_extinguisher"],
+            },
+        ]
+    radius = tunguska_radius if army == 1 else crotale_radius
+    return ground_units + [short_range_medium_spaa(army, radius)]
+
+
+def short_range_factory_column(
+    army: int, factory_kind: str, tunguska_radius: float, crotale_radius: float
+) -> list[dict[str, object]]:
+    radius = tunguska_radius if army == 1 else crotale_radius
+    spaa = short_range_medium_spaa(army, radius)
+    if army == 1:
+        suffix = "fuel" if factory_kind == "fuel" else "awning_ammo"
+        carrier = f"wheeled_vehicles/ussr_kamaz_4310_{suffix}_carrier"
+    else:
+        suffix = "fuel" if factory_kind == "fuel" else "awning_ammo"
+        model = "m978" if factory_kind == "fuel" else "m939"
+        carrier = f"wheeled_vehicles/us_{model}_{suffix}_carrier"
+    return [
+        spaa,
+        {
+            "name": carrier,
+            "templateName": "simple_tank+nuclear_escalation_tank",
+            "count": 4,
+        },
+    ]
+
+
+def override_all_direct_2018_air_defenses(
+    text: str,
+    *,
+    tunguska_radius: float = 6000.0,
+    crotale_radius: float = 6000.0,
+    pantsir_radius: float = 8000.0,
+    long_airfield_radius: float = 18000.0,
+) -> str:
+    """Override every directly configurable 2018 defense source.
+
+    Assembly areas create later tank-factory entities from a protected template;
+    their future moving columns cannot inherit mission-local array overrides.
+    """
+    lines = text.splitlines(keepends=True)
+    output: list[str] = []
+    index = 0
+    modified = {"airfield": 0, "strongpoint": 0, "cover": 0, "storage": 0}
+
+    while index < len(lines):
+        if lines[index] != "  objectGroups{\n":
+            output.append(lines[index])
+            index += 1
+            continue
+        block_lines = [lines[index]]
+        index += 1
+        depth = 1
+        while index < len(lines) and depth:
+            line = lines[index]
+            block_lines.append(line)
+            depth += line.count("{") - line.count("}")
+            index += 1
+        block = "".join(block_lines)
+        army_match = re.search(r"(?m)^      army:i=([12])$", block)
+        if not army_match:
+            output.append(block)
+            continue
+        army = int(army_match.group(1))
+
+        if "      airfield_aa_2018{\n" in block:
+            roster = short_range_airfield_roster(
+                army,
+                tunguska_radius,
+                crotale_radius,
+                pantsir_radius,
+                long_airfield_radius,
+            )
+            payload = render_unit_settings_array(
+                "units_spawn_on_init__unitSettings:array", roster
+            )
+            block = block.replace(
+                "      airfield_aa_2018{\n",
+                "      airfield_aa_2018{\n" + payload,
+                1,
+            )
+            modified["airfield"] += 1
+        elif "      strongpoint_2018{\n" in block:
+            roster = short_range_strongpoint_roster(
+                army, tunguska_radius, crotale_radius
+            )
+            payload = render_unit_settings_array(
+                "units_spawn_on_init__unitSettings:array", roster
+            )
+            block = block.replace(
+                "      strongpoint_2018{\n",
+                "      strongpoint_2018{\n" + payload,
+                1,
+            )
+            modified["strongpoint"] += 1
+        elif re.search(r"      aa_cover_(?:ussr_zprk_2s6|sw_crotale_ng)\{\n", block):
+            radius = tunguska_radius if army == 1 else crotale_radius
+            roster = [short_range_medium_spaa(army, radius, airfield_template=True)]
+            payload = render_unit_settings_array(
+                "units_spawn_on_init__unitSettings:array", roster
+            )
+            block = re.sub(
+                r"(      aa_cover_(?:ussr_zprk_2s6|sw_crotale_ng)\{\n)",
+                lambda match: match.group(1) + payload,
+                block,
+                count=1,
+            )
+            modified["cover"] += 1
+        else:
+            storage_match = re.search(
+                r'      "fortification\+(fuel|ammo)_factory_2018"\{\n', block
+            )
+            if storage_match:
+                kind = storage_match.group(1)
+                radius = tunguska_radius if army == 1 else crotale_radius
+                static_roster = [
+                    short_range_medium_spaa(
+                        army,
+                        radius,
+                        count=3,
+                        spawn_name="spaa",
+                        airfield_template=True,
+                    )
+                ]
+                payload = render_unit_settings_array(
+                    "units_spawn_on_init__unitSettings:array", static_roster
+                )
+                payload += render_unit_settings_array(
+                    f"equip_factory__columnUnitsSettings{army}:array",
+                    short_range_factory_column(
+                        army, kind, tunguska_radius, crotale_radius
+                    ),
+                )
+                marker = storage_match.group(0)
+                block = block.replace(marker, marker + payload, 1)
+                modified["storage"] += 1
+        output.append(block)
+
+    expected = {"airfield": 12, "strongpoint": 16, "cover": 32, "storage": 12}
+    if modified != expected:
+        raise ValueError(f"Unexpected short-range override counts: {modified}")
+    return "".join(output)
+
+
 def override_team1_airfield_roster(
     text: str,
     hq11_threat_radius: float,
@@ -585,6 +958,30 @@ def set_allowed_unit_type(text: str, setting: str, allowed: bool) -> str:
     if count != 1:
         raise ValueError(f"Could not set {setting}")
     return text
+
+
+def enable_peaceful_player_protection(text: str) -> str:
+    """Keep every player unit invisible to AI targeting and immune to damage."""
+    pattern = re.compile(
+        r"(?ms)^(  debug_in_multiplayer\{\n)(.*?)(^  \}\n)"
+    )
+    match = pattern.search(text)
+    if not match:
+        raise ValueError("Could not find debug_in_multiplayer protection trigger")
+    block = match.group(0)
+    block, enabled_count = re.subn(
+        r"(?m)^(    is_enabled:b=)no$", r"\g<1>yes", block, count=1
+    )
+    block, period_count = re.subn(
+        r"(?m)^(        time:r=)1\.0$", r"\g<1>0.25", block, count=1
+    )
+    if (enabled_count, period_count) != (1, 1):
+        raise ValueError("Could not enable recurring peaceful player protection")
+    if 'object:t="all_players_squad"' not in block:
+        raise ValueError("Peaceful trigger does not target all players")
+    if "targetableByAi:b=no" not in block or "isImmortal:b=yes" not in block:
+        raise ValueError("Peaceful trigger lacks required player protections")
+    return text[: match.start()] + block + text[match.end() :]
 
 
 def limit_missile_ship_engagements(text: str, distance: float) -> str:
@@ -1407,6 +1804,42 @@ def main() -> None:
         "Strategic sites are silent; HQ-11 and missile-ship engagement are capped at 18 km; player respawn is 30 seconds; aircraft, helicopter, and naval spawns are enabled.",
     )
     write_variant("experimental-quick-start-airspawns.blk", quick_start_experiment)
+
+    short_range_experiment = override_all_direct_2018_air_defenses(
+        zero_channel_lrsam,
+        tunguska_radius=6000.0,
+        crotale_radius=6000.0,
+        pantsir_radius=8000.0,
+        long_airfield_radius=18000.0,
+    )
+    short_range_experiment = add_quick_start_package(
+        short_range_experiment,
+        ARCHIPELAGO_AIRSPAWNS,
+        main_forward_suffixes=("04", "05"),
+        helicopter_fields=("01", "02", "03"),
+    )
+    short_range_experiment = set_english_metadata(
+        short_range_experiment,
+        "EXPERIMENT · SHORT-RANGE DEFENSES",
+        "Strategic sites are silent; HQ-11 and SPYDER sensors activate within 18 km, Pantsir within 8 km, and directly configurable 2S6 and Crotale units within 6 km. Quick-start spawns are enabled.",
+    )
+    write_variant(
+        "experimental-short-range-air-defenses.blk", short_range_experiment
+    )
+
+    peaceful_exploration = enable_peaceful_player_protection(zero_channel_lrsam)
+    peaceful_exploration = add_quick_start_package(
+        peaceful_exploration,
+        ARCHIPELAGO_AIRSPAWNS,
+        main_forward_suffixes=("04", "05"),
+        helicopter_fields=("01", "02", "03"),
+    )
+    peaceful_exploration = set_english_metadata(
+        peaceful_exploration,
+        "PEACEFUL EXPLORATION",
+        "All map units remain present, strategic sites have zero engagement channels, and every player vehicle is continuously hidden from AI targeting and made immortal. Quick-start aircraft, helicopter, and naval spawns are enabled.",
+    )
+    write_variant("peaceful-exploration.blk", peaceful_exploration)
 
     hq11_silent = override_team1_airfield_roster(
         zero_channel_lrsam,

@@ -12,6 +12,8 @@
 | [`sead-training-hq11-18km.blk`](sead-training-hq11-18km.blk) | Present, unable to engage; missile ships capped at 18 km | HQ-11 sensor activation reduced to 18 km | Quick-start aircraft, helicopter, and naval spawns; 30-second respawn |
 | [`sead-training-hq11-silent.blk`](sead-training-hq11-silent.blk) | Present, unable to engage | HQ-11 radar and initial missiles disabled | Experimental; needs in-game validation |
 | [`experimental-quick-start-airspawns.blk`](experimental-quick-start-airspawns.blk) | Present, unable to engage; missile ships capped at 18 km | HQ-11 sensor activation reduced to 18 km | Experimental; 30-second respawn with aircraft, helicopter, and naval spawns |
+| [`experimental-short-range-air-defenses.blk`](experimental-short-range-air-defenses.blk) | Present, unable to engage; missile ships capped at 18 km | HQ-11/SPYDER 18 km, Pantsir 8 km, direct 2S6/Crotale sources 6 km | Experimental; quick-start package enabled |
+| [`peaceful-exploration.blk`](peaceful-exploration.blk) | Present, zero strategic engagement channels | Stock roster | Players are continuously hidden from AI targeting and immortal; quick-start package enabled |
 
 `silent-lrsam-zero-channels-experimental.blk` remains available as a
 compatibility alias for the previously published stable URL.
@@ -24,6 +26,20 @@ the halfway point between the main base and fields 4–5, then moves another
 above and 8 km forward of fields 1–3 toward the front line, plus two naval
 spawns per team 3 km ahead of the carriers' initial positions and aligned with
 their routes. Tanks are disabled in these quick-start variants.
+
+The short-range-defense experiment applies its sensor envelopes to every
+airfield, strongpoint, standalone AA-cover group, static fuel/ammo-factory
+defense, and fuel/ammo convoy roster. Assembly areas create their later tank
+factories from a protected built-in template, so SAM escorts in those future
+tank/artillery columns retain their stock 12 km (2S6) or 15 km (Crotale)
+sensor-activation radius. This is also a sensor wake-up limit rather than a
+hard missile-flight cutoff.
+
+The peaceful exploration variant retains the complete unit population so it
+can be inspected. Every 0.25 seconds it marks all current player vehicles as
+untargetable by AI and immortal, which also covers respawns and vehicle
+changes. Strategic sites additionally retain their tested zero-channel
+override. AI units may still fight other AI units if opposing forces meet.
 
 ### Direct URLs
 
@@ -48,6 +64,10 @@ https://raw.githubusercontent.com/Adams-Galaxy/war-thunder-custom-missions/main/
 https://raw.githubusercontent.com/Adams-Galaxy/war-thunder-custom-missions/main/missions/ne-archipelago-2018/sead-training-hq11-silent.blk
 
 https://raw.githubusercontent.com/Adams-Galaxy/war-thunder-custom-missions/main/missions/ne-archipelago-2018/experimental-quick-start-airspawns.blk
+
+https://raw.githubusercontent.com/Adams-Galaxy/war-thunder-custom-missions/main/missions/ne-archipelago-2018/experimental-short-range-air-defenses.blk
+
+https://raw.githubusercontent.com/Adams-Galaxy/war-thunder-custom-missions/main/missions/ne-archipelago-2018/peaceful-exploration.blk
 ```
 
 ## Defense layers in the source mission
