@@ -95,7 +95,7 @@ mission_settings{
     useSpawnDelay:b=yes
     timeToLoseInstantDetection:r=10
     locName:t="Nuclear Escalation · Southeastern City [NO LONG-RANGE SAMS]"
-    locDesc:t="Custom version of the official Nuclear Escalation mission. Stars mark Soviet-aligned air defenses; crosses mark NATO. All 16 strategic SAM groups are removed; stock airfield defenses remain enabled. Quick-start aircraft, helicopter, and naval spawns are enabled."
+    locDesc:t="Custom version of the official Nuclear Escalation mission. Stars mark Soviet-aligned air defenses; crosses mark NATO. All 16 strategic SAM groups are removed. HQ-11 and SPYDER sensors activate within 18 km, Pantsir within 8 km, and directly configurable 2S6 and Crotale units within 6 km. Quick-start spawns are enabled."
     scoreLimit:i=9000
     timeLimit:i=90
     deathPenaltyMul:r=0.2
@@ -1686,6 +1686,78 @@ units{
 
       }
       airfield_aa_2018{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="ussr_pantsyr_s1"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=20
+            count:i=1
+            threatSearchRad:r=8000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+              name:t="30mm_2a38_HE"
+              name:t=""
+            }
+            "bulletsCount:list<i>"{
+              c:i=0
+              c:i=12
+            }
+          }
+          "unit:object"{
+            name:t="ussr_zprk_2s6"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=20
+            count:i=2
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+              m:t="2s6_upgrade_modification"
+            }
+            "bulletNames:list<t>"{
+              name:t="30mm_2a38_HE"
+              name:t=""
+            }
+            "bulletsCount:list<i>"{
+              c:i=0
+              c:i=8
+            }
+          }
+          "unit:object"{
+            name:t="ussr_2s38"
+            templateName:t="tank+nuclear_escalation_spaa_radar_off"
+            death_substract_tickets:i=20
+            count:i=2
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+              name:t="57mm_HE_VT"
+            }
+          }
+          "unit:object"{
+            name:t="cn_hq_11"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=30
+            threatSearchRad:r=18000.0
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+            }
+            "bulletsCount:list<i>"{
+              c:i=8
+            }
+          }
+        }
         rankRange:ip2=37, 50
         nuclear_escalation_target__tag:t="mlrs_tbm_target"
       }
@@ -1705,6 +1777,56 @@ units{
 
       }
       airfield_aa_2018{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="sw_crotale_ng"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=20
+            count:i=3
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletsCount:list<i>"{
+              c:i=8
+            }
+          }
+          "unit:object"{
+            name:t="it_otomatic"
+            templateName:t="tank+nuclear_escalation_spaa_radar_off"
+            death_substract_tickets:i=20
+            count:i=2
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+              name:t="76mm_oto_HE_VT"
+            }
+            "bulletsCount:list<i>"{
+            }
+          }
+          "unit:object"{
+            name:t="il_spyder_aio"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=30
+            threatSearchRad:r=18000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+              name:t="160mm_derby_er_aam"
+            }
+            "bulletsCount:list<i>"{
+              c:i=8
+            }
+          }
+        }
         rankRange:ip2=37, 50
         nuclear_escalation_target__tag:t="mlrs_tbm_target"
       }
@@ -1724,6 +1846,78 @@ units{
 
       }
       airfield_aa_2018{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="ussr_pantsyr_s1"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=20
+            count:i=1
+            threatSearchRad:r=8000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+              name:t="30mm_2a38_HE"
+              name:t=""
+            }
+            "bulletsCount:list<i>"{
+              c:i=0
+              c:i=12
+            }
+          }
+          "unit:object"{
+            name:t="ussr_zprk_2s6"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=20
+            count:i=2
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+              m:t="2s6_upgrade_modification"
+            }
+            "bulletNames:list<t>"{
+              name:t="30mm_2a38_HE"
+              name:t=""
+            }
+            "bulletsCount:list<i>"{
+              c:i=0
+              c:i=8
+            }
+          }
+          "unit:object"{
+            name:t="ussr_2s38"
+            templateName:t="tank+nuclear_escalation_spaa_radar_off"
+            death_substract_tickets:i=20
+            count:i=2
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+              name:t="57mm_HE_VT"
+            }
+          }
+          "unit:object"{
+            name:t="cn_hq_11"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=30
+            threatSearchRad:r=18000.0
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+            }
+            "bulletsCount:list<i>"{
+              c:i=8
+            }
+          }
+        }
         rankRange:ip2=37, 50
         nuclear_escalation_target__tag:t="mlrs_tbm_target"
       }
@@ -1743,6 +1937,56 @@ units{
 
       }
       airfield_aa_2018{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="sw_crotale_ng"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=20
+            count:i=3
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletsCount:list<i>"{
+              c:i=8
+            }
+          }
+          "unit:object"{
+            name:t="it_otomatic"
+            templateName:t="tank+nuclear_escalation_spaa_radar_off"
+            death_substract_tickets:i=20
+            count:i=2
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+              name:t="76mm_oto_HE_VT"
+            }
+            "bulletsCount:list<i>"{
+            }
+          }
+          "unit:object"{
+            name:t="il_spyder_aio"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=30
+            threatSearchRad:r=18000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+              name:t="160mm_derby_er_aam"
+            }
+            "bulletsCount:list<i>"{
+              c:i=8
+            }
+          }
+        }
         rankRange:ip2=37, 50
         nuclear_escalation_target__tag:t="mlrs_tbm_target"
       }
@@ -1762,6 +2006,78 @@ units{
 
       }
       airfield_aa_2018{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="ussr_pantsyr_s1"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=20
+            count:i=1
+            threatSearchRad:r=8000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+              name:t="30mm_2a38_HE"
+              name:t=""
+            }
+            "bulletsCount:list<i>"{
+              c:i=0
+              c:i=12
+            }
+          }
+          "unit:object"{
+            name:t="ussr_zprk_2s6"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=20
+            count:i=2
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+              m:t="2s6_upgrade_modification"
+            }
+            "bulletNames:list<t>"{
+              name:t="30mm_2a38_HE"
+              name:t=""
+            }
+            "bulletsCount:list<i>"{
+              c:i=0
+              c:i=8
+            }
+          }
+          "unit:object"{
+            name:t="ussr_2s38"
+            templateName:t="tank+nuclear_escalation_spaa_radar_off"
+            death_substract_tickets:i=20
+            count:i=2
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+              name:t="57mm_HE_VT"
+            }
+          }
+          "unit:object"{
+            name:t="cn_hq_11"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=30
+            threatSearchRad:r=18000.0
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+            }
+            "bulletsCount:list<i>"{
+              c:i=8
+            }
+          }
+        }
         rankRange:ip2=37, 50
         nuclear_escalation_target__tag:t="mlrs_tbm_target"
       }
@@ -1781,6 +2097,56 @@ units{
 
       }
       airfield_aa_2018{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="sw_crotale_ng"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=20
+            count:i=3
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletsCount:list<i>"{
+              c:i=8
+            }
+          }
+          "unit:object"{
+            name:t="it_otomatic"
+            templateName:t="tank+nuclear_escalation_spaa_radar_off"
+            death_substract_tickets:i=20
+            count:i=2
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+              name:t="76mm_oto_HE_VT"
+            }
+            "bulletsCount:list<i>"{
+            }
+          }
+          "unit:object"{
+            name:t="il_spyder_aio"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=30
+            threatSearchRad:r=18000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+              name:t="160mm_derby_er_aam"
+            }
+            "bulletsCount:list<i>"{
+              c:i=8
+            }
+          }
+        }
         rankRange:ip2=37, 50
         nuclear_escalation_target__tag:t="mlrs_tbm_target"
       }
@@ -1797,6 +2163,58 @@ units{
     }
     additionalEcsTemplates{
       "fortification+fuel_factory_2018"{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="ussr_zprk_2s6"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=20
+            spawnName:t="spaa"
+            count:i=3
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+              m:t="2s6_upgrade_modification"
+            }
+            "bulletNames:list<t>"{
+              name:t="30mm_2a38_HE"
+              name:t=""
+            }
+            "bulletsCount:list<i>"{
+              c:i=0
+              c:i=8
+            }
+          }
+        }
+        "equip_factory__columnUnitsSettings1:array"{
+          "unit:object"{
+            name:t="ussr_zprk_2s6"
+            templateName:t="tank+nuclear_escalation_spaa_with_threat_radar"
+            death_substract_tickets:i=20
+            count:i=1
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+              m:t="2s6_upgrade_modification"
+            }
+            "bulletNames:list<t>"{
+              name:t="30mm_2a38_HE"
+              name:t=""
+            }
+            "bulletsCount:list<i>"{
+              c:i=0
+              c:i=8
+            }
+          }
+          "unit:object"{
+            name:t="wheeled_vehicles/ussr_kamaz_4310_fuel_carrier"
+            templateName:t="simple_tank+nuclear_escalation_tank"
+            count:i=4
+          }
+        }
         rankRange:ip2=37, 50
         unit__className:t="nt_fuel_factory"
         unit__ownsUnitId:b=yes
@@ -1815,6 +2233,58 @@ units{
     }
     additionalEcsTemplates{
       "fortification+fuel_factory_2018"{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="ussr_zprk_2s6"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=20
+            spawnName:t="spaa"
+            count:i=3
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+              m:t="2s6_upgrade_modification"
+            }
+            "bulletNames:list<t>"{
+              name:t="30mm_2a38_HE"
+              name:t=""
+            }
+            "bulletsCount:list<i>"{
+              c:i=0
+              c:i=8
+            }
+          }
+        }
+        "equip_factory__columnUnitsSettings1:array"{
+          "unit:object"{
+            name:t="ussr_zprk_2s6"
+            templateName:t="tank+nuclear_escalation_spaa_with_threat_radar"
+            death_substract_tickets:i=20
+            count:i=1
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+              m:t="2s6_upgrade_modification"
+            }
+            "bulletNames:list<t>"{
+              name:t="30mm_2a38_HE"
+              name:t=""
+            }
+            "bulletsCount:list<i>"{
+              c:i=0
+              c:i=8
+            }
+          }
+          "unit:object"{
+            name:t="wheeled_vehicles/ussr_kamaz_4310_fuel_carrier"
+            templateName:t="simple_tank+nuclear_escalation_tank"
+            count:i=4
+          }
+        }
         rankRange:ip2=37, 50
         unit__className:t="nt_fuel_factory"
         unit__ownsUnitId:b=yes
@@ -1833,6 +2303,50 @@ units{
     }
     additionalEcsTemplates{
       "fortification+fuel_factory_2018"{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="sw_crotale_ng"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=20
+            spawnName:t="spaa"
+            count:i=3
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+            }
+            "bulletsCount:list<i>"{
+              c:i=8
+            }
+          }
+        }
+        "equip_factory__columnUnitsSettings2:array"{
+          "unit:object"{
+            name:t="sw_crotale_ng"
+            templateName:t="tank+nuclear_escalation_spaa_with_threat_radar"
+            death_substract_tickets:i=20
+            count:i=1
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+            }
+            "bulletsCount:list<i>"{
+              c:i=8
+            }
+          }
+          "unit:object"{
+            name:t="wheeled_vehicles/us_m978_fuel_carrier"
+            templateName:t="simple_tank+nuclear_escalation_tank"
+            count:i=4
+          }
+        }
         rankRange:ip2=37, 50
         unit__className:t="nt_fuel_factory"
         unit__ownsUnitId:b=yes
@@ -1851,6 +2365,50 @@ units{
     }
     additionalEcsTemplates{
       "fortification+fuel_factory_2018"{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="sw_crotale_ng"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=20
+            spawnName:t="spaa"
+            count:i=3
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+            }
+            "bulletsCount:list<i>"{
+              c:i=8
+            }
+          }
+        }
+        "equip_factory__columnUnitsSettings2:array"{
+          "unit:object"{
+            name:t="sw_crotale_ng"
+            templateName:t="tank+nuclear_escalation_spaa_with_threat_radar"
+            death_substract_tickets:i=20
+            count:i=1
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+            }
+            "bulletsCount:list<i>"{
+              c:i=8
+            }
+          }
+          "unit:object"{
+            name:t="wheeled_vehicles/us_m978_fuel_carrier"
+            templateName:t="simple_tank+nuclear_escalation_tank"
+            count:i=4
+          }
+        }
         rankRange:ip2=37, 50
         unit__className:t="nt_fuel_factory"
         unit__ownsUnitId:b=yes
@@ -1869,6 +2427,58 @@ units{
     }
     additionalEcsTemplates{
       "fortification+ammo_factory_2018"{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="ussr_zprk_2s6"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=20
+            spawnName:t="spaa"
+            count:i=3
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+              m:t="2s6_upgrade_modification"
+            }
+            "bulletNames:list<t>"{
+              name:t="30mm_2a38_HE"
+              name:t=""
+            }
+            "bulletsCount:list<i>"{
+              c:i=0
+              c:i=8
+            }
+          }
+        }
+        "equip_factory__columnUnitsSettings1:array"{
+          "unit:object"{
+            name:t="ussr_zprk_2s6"
+            templateName:t="tank+nuclear_escalation_spaa_with_threat_radar"
+            death_substract_tickets:i=20
+            count:i=1
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+              m:t="2s6_upgrade_modification"
+            }
+            "bulletNames:list<t>"{
+              name:t="30mm_2a38_HE"
+              name:t=""
+            }
+            "bulletsCount:list<i>"{
+              c:i=0
+              c:i=8
+            }
+          }
+          "unit:object"{
+            name:t="wheeled_vehicles/ussr_kamaz_4310_awning_ammo_carrier"
+            templateName:t="simple_tank+nuclear_escalation_tank"
+            count:i=4
+          }
+        }
         rankRange:ip2=37, 50
         unit__className:t="nt_ammo_factory"
         unit__ownsUnitId:b=yes
@@ -1887,6 +2497,58 @@ units{
     }
     additionalEcsTemplates{
       "fortification+ammo_factory_2018"{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="ussr_zprk_2s6"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=20
+            spawnName:t="spaa"
+            count:i=3
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+              m:t="2s6_upgrade_modification"
+            }
+            "bulletNames:list<t>"{
+              name:t="30mm_2a38_HE"
+              name:t=""
+            }
+            "bulletsCount:list<i>"{
+              c:i=0
+              c:i=8
+            }
+          }
+        }
+        "equip_factory__columnUnitsSettings1:array"{
+          "unit:object"{
+            name:t="ussr_zprk_2s6"
+            templateName:t="tank+nuclear_escalation_spaa_with_threat_radar"
+            death_substract_tickets:i=20
+            count:i=1
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+              m:t="2s6_upgrade_modification"
+            }
+            "bulletNames:list<t>"{
+              name:t="30mm_2a38_HE"
+              name:t=""
+            }
+            "bulletsCount:list<i>"{
+              c:i=0
+              c:i=8
+            }
+          }
+          "unit:object"{
+            name:t="wheeled_vehicles/ussr_kamaz_4310_awning_ammo_carrier"
+            templateName:t="simple_tank+nuclear_escalation_tank"
+            count:i=4
+          }
+        }
         rankRange:ip2=37, 50
         unit__className:t="nt_ammo_factory"
         unit__ownsUnitId:b=yes
@@ -1905,6 +2567,50 @@ units{
     }
     additionalEcsTemplates{
       "fortification+ammo_factory_2018"{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="sw_crotale_ng"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=20
+            spawnName:t="spaa"
+            count:i=3
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+            }
+            "bulletsCount:list<i>"{
+              c:i=8
+            }
+          }
+        }
+        "equip_factory__columnUnitsSettings2:array"{
+          "unit:object"{
+            name:t="sw_crotale_ng"
+            templateName:t="tank+nuclear_escalation_spaa_with_threat_radar"
+            death_substract_tickets:i=20
+            count:i=1
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+            }
+            "bulletsCount:list<i>"{
+              c:i=8
+            }
+          }
+          "unit:object"{
+            name:t="wheeled_vehicles/us_m939_awning_ammo_carrier"
+            templateName:t="simple_tank+nuclear_escalation_tank"
+            count:i=4
+          }
+        }
         rankRange:ip2=37, 50
         unit__className:t="nt_ammo_factory"
         unit__ownsUnitId:b=yes
@@ -1923,6 +2629,50 @@ units{
     }
     additionalEcsTemplates{
       "fortification+ammo_factory_2018"{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="sw_crotale_ng"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=20
+            spawnName:t="spaa"
+            count:i=3
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+            }
+            "bulletsCount:list<i>"{
+              c:i=8
+            }
+          }
+        }
+        "equip_factory__columnUnitsSettings2:array"{
+          "unit:object"{
+            name:t="sw_crotale_ng"
+            templateName:t="tank+nuclear_escalation_spaa_with_threat_radar"
+            death_substract_tickets:i=20
+            count:i=1
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+            }
+            "bulletsCount:list<i>"{
+              c:i=8
+            }
+          }
+          "unit:object"{
+            name:t="wheeled_vehicles/us_m939_awning_ammo_carrier"
+            templateName:t="simple_tank+nuclear_escalation_tank"
+            count:i=4
+          }
+        }
         rankRange:ip2=37, 50
         unit__className:t="nt_ammo_factory"
         unit__ownsUnitId:b=yes
@@ -2101,6 +2851,55 @@ units{
     }
     additionalEcsTemplates{
       strongpoint_2018{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="ussr_t_80bvm"
+            templateName:t="tank+nuclear_escalation_tank"
+            count:i=3
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+              name:t="USSR_APDS_FS"
+            }
+          }
+          "unit:object"{
+            name:t="ussr_bmp_3"
+            templateName:t="tank+nuclear_escalation_tank"
+            count:i=2
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+              name:t="30mm_2a72_AP"
+            }
+          }
+          "unit:object"{
+            name:t="ussr_zprk_2s6"
+            templateName:t="tank+nuclear_escalation_spaa_with_threat_radar"
+            death_substract_tickets:i=20
+            count:i=1
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+              m:t="2s6_upgrade_modification"
+            }
+            "bulletNames:list<t>"{
+              name:t="30mm_2a38_HE"
+              name:t=""
+            }
+            "bulletsCount:list<i>"{
+              c:i=0
+              c:i=8
+            }
+          }
+        }
         rankRange:ip2=37, 50
       }
     }
@@ -2116,6 +2915,55 @@ units{
     }
     additionalEcsTemplates{
       strongpoint_2018{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="ussr_t_80bvm"
+            templateName:t="tank+nuclear_escalation_tank"
+            count:i=3
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+              name:t="USSR_APDS_FS"
+            }
+          }
+          "unit:object"{
+            name:t="ussr_bmp_3"
+            templateName:t="tank+nuclear_escalation_tank"
+            count:i=2
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+              name:t="30mm_2a72_AP"
+            }
+          }
+          "unit:object"{
+            name:t="ussr_zprk_2s6"
+            templateName:t="tank+nuclear_escalation_spaa_with_threat_radar"
+            death_substract_tickets:i=20
+            count:i=1
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+              m:t="2s6_upgrade_modification"
+            }
+            "bulletNames:list<t>"{
+              name:t="30mm_2a38_HE"
+              name:t=""
+            }
+            "bulletsCount:list<i>"{
+              c:i=0
+              c:i=8
+            }
+          }
+        }
         rankRange:ip2=37, 50
       }
     }
@@ -2131,6 +2979,55 @@ units{
     }
     additionalEcsTemplates{
       strongpoint_2018{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="ussr_t_80bvm"
+            templateName:t="tank+nuclear_escalation_tank"
+            count:i=3
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+              name:t="USSR_APDS_FS"
+            }
+          }
+          "unit:object"{
+            name:t="ussr_bmp_3"
+            templateName:t="tank+nuclear_escalation_tank"
+            count:i=2
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+              name:t="30mm_2a72_AP"
+            }
+          }
+          "unit:object"{
+            name:t="ussr_zprk_2s6"
+            templateName:t="tank+nuclear_escalation_spaa_with_threat_radar"
+            death_substract_tickets:i=20
+            count:i=1
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+              m:t="2s6_upgrade_modification"
+            }
+            "bulletNames:list<t>"{
+              name:t="30mm_2a38_HE"
+              name:t=""
+            }
+            "bulletsCount:list<i>"{
+              c:i=0
+              c:i=8
+            }
+          }
+        }
         rankRange:ip2=37, 50
       }
     }
@@ -2146,6 +3043,55 @@ units{
     }
     additionalEcsTemplates{
       strongpoint_2018{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="ussr_t_80bvm"
+            templateName:t="tank+nuclear_escalation_tank"
+            count:i=3
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+              name:t="USSR_APDS_FS"
+            }
+          }
+          "unit:object"{
+            name:t="ussr_bmp_3"
+            templateName:t="tank+nuclear_escalation_tank"
+            count:i=2
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+              name:t="30mm_2a72_AP"
+            }
+          }
+          "unit:object"{
+            name:t="ussr_zprk_2s6"
+            templateName:t="tank+nuclear_escalation_spaa_with_threat_radar"
+            death_substract_tickets:i=20
+            count:i=1
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+              m:t="2s6_upgrade_modification"
+            }
+            "bulletNames:list<t>"{
+              name:t="30mm_2a38_HE"
+              name:t=""
+            }
+            "bulletsCount:list<i>"{
+              c:i=0
+              c:i=8
+            }
+          }
+        }
         rankRange:ip2=37, 50
       }
     }
@@ -2161,6 +3107,48 @@ units{
     }
     additionalEcsTemplates{
       strongpoint_2018{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="us_m1a2_sep2_abrams"
+            templateName:t="tank+nuclear_escalation_tank"
+            count:i=3
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+              name:t="NATO_APDS_FS"
+            }
+          }
+          "unit:object"{
+            name:t="us_m3a3_bradley"
+            templateName:t="tank+nuclear_escalation_tank"
+            count:i=2
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+          }
+          "unit:object"{
+            name:t="sw_crotale_ng"
+            templateName:t="tank+nuclear_escalation_spaa_with_threat_radar"
+            death_substract_tickets:i=20
+            count:i=1
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+            }
+            "bulletsCount:list<i>"{
+              c:i=8
+            }
+          }
+        }
         rankRange:ip2=37, 50
       }
     }
@@ -2176,6 +3164,48 @@ units{
     }
     additionalEcsTemplates{
       strongpoint_2018{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="us_m1a2_sep2_abrams"
+            templateName:t="tank+nuclear_escalation_tank"
+            count:i=3
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+              name:t="NATO_APDS_FS"
+            }
+          }
+          "unit:object"{
+            name:t="us_m3a3_bradley"
+            templateName:t="tank+nuclear_escalation_tank"
+            count:i=2
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+          }
+          "unit:object"{
+            name:t="sw_crotale_ng"
+            templateName:t="tank+nuclear_escalation_spaa_with_threat_radar"
+            death_substract_tickets:i=20
+            count:i=1
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+            }
+            "bulletsCount:list<i>"{
+              c:i=8
+            }
+          }
+        }
         rankRange:ip2=37, 50
       }
     }
@@ -2191,6 +3221,48 @@ units{
     }
     additionalEcsTemplates{
       strongpoint_2018{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="us_m1a2_sep2_abrams"
+            templateName:t="tank+nuclear_escalation_tank"
+            count:i=3
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+              name:t="NATO_APDS_FS"
+            }
+          }
+          "unit:object"{
+            name:t="us_m3a3_bradley"
+            templateName:t="tank+nuclear_escalation_tank"
+            count:i=2
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+          }
+          "unit:object"{
+            name:t="sw_crotale_ng"
+            templateName:t="tank+nuclear_escalation_spaa_with_threat_radar"
+            death_substract_tickets:i=20
+            count:i=1
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+            }
+            "bulletsCount:list<i>"{
+              c:i=8
+            }
+          }
+        }
         rankRange:ip2=37, 50
       }
     }
@@ -2206,6 +3278,48 @@ units{
     }
     additionalEcsTemplates{
       strongpoint_2018{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="us_m1a2_sep2_abrams"
+            templateName:t="tank+nuclear_escalation_tank"
+            count:i=3
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+              name:t="NATO_APDS_FS"
+            }
+          }
+          "unit:object"{
+            name:t="us_m3a3_bradley"
+            templateName:t="tank+nuclear_escalation_tank"
+            count:i=2
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+          }
+          "unit:object"{
+            name:t="sw_crotale_ng"
+            templateName:t="tank+nuclear_escalation_spaa_with_threat_radar"
+            death_substract_tickets:i=20
+            count:i=1
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+            }
+            "bulletsCount:list<i>"{
+              c:i=8
+            }
+          }
+        }
         rankRange:ip2=37, 50
       }
     }
@@ -2224,6 +3338,78 @@ units{
 
       }
       airfield_aa_2018{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="ussr_pantsyr_s1"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=20
+            count:i=1
+            threatSearchRad:r=8000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+              name:t="30mm_2a38_HE"
+              name:t=""
+            }
+            "bulletsCount:list<i>"{
+              c:i=0
+              c:i=12
+            }
+          }
+          "unit:object"{
+            name:t="ussr_zprk_2s6"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=20
+            count:i=2
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+              m:t="2s6_upgrade_modification"
+            }
+            "bulletNames:list<t>"{
+              name:t="30mm_2a38_HE"
+              name:t=""
+            }
+            "bulletsCount:list<i>"{
+              c:i=0
+              c:i=8
+            }
+          }
+          "unit:object"{
+            name:t="ussr_2s38"
+            templateName:t="tank+nuclear_escalation_spaa_radar_off"
+            death_substract_tickets:i=20
+            count:i=2
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+              name:t="57mm_HE_VT"
+            }
+          }
+          "unit:object"{
+            name:t="cn_hq_11"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=30
+            threatSearchRad:r=18000.0
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+            }
+            "bulletsCount:list<i>"{
+              c:i=8
+            }
+          }
+        }
         rankRange:ip2=37, 50
         nuclear_escalation_target__tag:t="mlrs_tbm_target"
       }
@@ -2243,6 +3429,78 @@ units{
 
       }
       airfield_aa_2018{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="ussr_pantsyr_s1"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=20
+            count:i=1
+            threatSearchRad:r=8000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+              name:t="30mm_2a38_HE"
+              name:t=""
+            }
+            "bulletsCount:list<i>"{
+              c:i=0
+              c:i=12
+            }
+          }
+          "unit:object"{
+            name:t="ussr_zprk_2s6"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=20
+            count:i=2
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+              m:t="2s6_upgrade_modification"
+            }
+            "bulletNames:list<t>"{
+              name:t="30mm_2a38_HE"
+              name:t=""
+            }
+            "bulletsCount:list<i>"{
+              c:i=0
+              c:i=8
+            }
+          }
+          "unit:object"{
+            name:t="ussr_2s38"
+            templateName:t="tank+nuclear_escalation_spaa_radar_off"
+            death_substract_tickets:i=20
+            count:i=2
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+              name:t="57mm_HE_VT"
+            }
+          }
+          "unit:object"{
+            name:t="cn_hq_11"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=30
+            threatSearchRad:r=18000.0
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+            }
+            "bulletsCount:list<i>"{
+              c:i=8
+            }
+          }
+        }
         rankRange:ip2=37, 50
         nuclear_escalation_target__tag:t="mlrs_tbm_target"
       }
@@ -2262,6 +3520,56 @@ units{
 
       }
       airfield_aa_2018{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="sw_crotale_ng"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=20
+            count:i=3
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletsCount:list<i>"{
+              c:i=8
+            }
+          }
+          "unit:object"{
+            name:t="it_otomatic"
+            templateName:t="tank+nuclear_escalation_spaa_radar_off"
+            death_substract_tickets:i=20
+            count:i=2
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+              name:t="76mm_oto_HE_VT"
+            }
+            "bulletsCount:list<i>"{
+            }
+          }
+          "unit:object"{
+            name:t="il_spyder_aio"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=30
+            threatSearchRad:r=18000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+              name:t="160mm_derby_er_aam"
+            }
+            "bulletsCount:list<i>"{
+              c:i=8
+            }
+          }
+        }
         rankRange:ip2=37, 50
         nuclear_escalation_target__tag:t="mlrs_tbm_target"
       }
@@ -2281,6 +3589,56 @@ units{
 
       }
       airfield_aa_2018{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="sw_crotale_ng"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=20
+            count:i=3
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletsCount:list<i>"{
+              c:i=8
+            }
+          }
+          "unit:object"{
+            name:t="it_otomatic"
+            templateName:t="tank+nuclear_escalation_spaa_radar_off"
+            death_substract_tickets:i=20
+            count:i=2
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+              name:t="76mm_oto_HE_VT"
+            }
+            "bulletsCount:list<i>"{
+            }
+          }
+          "unit:object"{
+            name:t="il_spyder_aio"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=30
+            threatSearchRad:r=18000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+              name:t="160mm_derby_er_aam"
+            }
+            "bulletsCount:list<i>"{
+              c:i=8
+            }
+          }
+        }
         rankRange:ip2=37, 50
         nuclear_escalation_target__tag:t="mlrs_tbm_target"
       }
@@ -3071,6 +4429,29 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_ussr_zprk_2s6{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="ussr_zprk_2s6"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=20
+            count:i=1
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+              m:t="2s6_upgrade_modification"
+            }
+            "bulletNames:list<t>"{
+              name:t="30mm_2a38_HE"
+              name:t=""
+            }
+            "bulletsCount:list<i>"{
+              c:i=0
+              c:i=8
+            }
+          }
+        }
         rankRange:ip2=37, 39
       }
     }
@@ -3086,6 +4467,29 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_ussr_zprk_2s6{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="ussr_zprk_2s6"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=20
+            count:i=1
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+              m:t="2s6_upgrade_modification"
+            }
+            "bulletNames:list<t>"{
+              name:t="30mm_2a38_HE"
+              name:t=""
+            }
+            "bulletsCount:list<i>"{
+              c:i=0
+              c:i=8
+            }
+          }
+        }
         rankRange:ip2=37, 39
       }
     }
@@ -3101,6 +4505,29 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_ussr_zprk_2s6{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="ussr_zprk_2s6"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=20
+            count:i=1
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+              m:t="2s6_upgrade_modification"
+            }
+            "bulletNames:list<t>"{
+              name:t="30mm_2a38_HE"
+              name:t=""
+            }
+            "bulletsCount:list<i>"{
+              c:i=0
+              c:i=8
+            }
+          }
+        }
         rankRange:ip2=37, 39
       }
     }
@@ -3116,6 +4543,29 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_ussr_zprk_2s6{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="ussr_zprk_2s6"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=20
+            count:i=1
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+              m:t="2s6_upgrade_modification"
+            }
+            "bulletNames:list<t>"{
+              name:t="30mm_2a38_HE"
+              name:t=""
+            }
+            "bulletsCount:list<i>"{
+              c:i=0
+              c:i=8
+            }
+          }
+        }
         rankRange:ip2=37, 39
       }
     }
@@ -3131,6 +4581,29 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_ussr_zprk_2s6{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="ussr_zprk_2s6"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=20
+            count:i=1
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+              m:t="2s6_upgrade_modification"
+            }
+            "bulletNames:list<t>"{
+              name:t="30mm_2a38_HE"
+              name:t=""
+            }
+            "bulletsCount:list<i>"{
+              c:i=0
+              c:i=8
+            }
+          }
+        }
         rankRange:ip2=37, 39
       }
     }
@@ -3146,6 +4619,29 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_ussr_zprk_2s6{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="ussr_zprk_2s6"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=20
+            count:i=1
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+              m:t="2s6_upgrade_modification"
+            }
+            "bulletNames:list<t>"{
+              name:t="30mm_2a38_HE"
+              name:t=""
+            }
+            "bulletsCount:list<i>"{
+              c:i=0
+              c:i=8
+            }
+          }
+        }
         rankRange:ip2=37, 39
       }
     }
@@ -3161,6 +4657,29 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_ussr_zprk_2s6{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="ussr_zprk_2s6"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=20
+            count:i=1
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+              m:t="2s6_upgrade_modification"
+            }
+            "bulletNames:list<t>"{
+              name:t="30mm_2a38_HE"
+              name:t=""
+            }
+            "bulletsCount:list<i>"{
+              c:i=0
+              c:i=8
+            }
+          }
+        }
         rankRange:ip2=37, 39
       }
     }
@@ -3176,6 +4695,29 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_ussr_zprk_2s6{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="ussr_zprk_2s6"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=20
+            count:i=1
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+              m:t="2s6_upgrade_modification"
+            }
+            "bulletNames:list<t>"{
+              name:t="30mm_2a38_HE"
+              name:t=""
+            }
+            "bulletsCount:list<i>"{
+              c:i=0
+              c:i=8
+            }
+          }
+        }
         rankRange:ip2=37, 39
       }
     }
@@ -3191,6 +4733,29 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_ussr_zprk_2s6{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="ussr_zprk_2s6"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=20
+            count:i=1
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+              m:t="2s6_upgrade_modification"
+            }
+            "bulletNames:list<t>"{
+              name:t="30mm_2a38_HE"
+              name:t=""
+            }
+            "bulletsCount:list<i>"{
+              c:i=0
+              c:i=8
+            }
+          }
+        }
         rankRange:ip2=37, 39
       }
     }
@@ -3206,6 +4771,29 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_ussr_zprk_2s6{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="ussr_zprk_2s6"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=20
+            count:i=1
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+              m:t="2s6_upgrade_modification"
+            }
+            "bulletNames:list<t>"{
+              name:t="30mm_2a38_HE"
+              name:t=""
+            }
+            "bulletsCount:list<i>"{
+              c:i=0
+              c:i=8
+            }
+          }
+        }
         rankRange:ip2=37, 39
       }
     }
@@ -3221,6 +4809,29 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_ussr_zprk_2s6{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="ussr_zprk_2s6"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=20
+            count:i=1
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+              m:t="2s6_upgrade_modification"
+            }
+            "bulletNames:list<t>"{
+              name:t="30mm_2a38_HE"
+              name:t=""
+            }
+            "bulletsCount:list<i>"{
+              c:i=0
+              c:i=8
+            }
+          }
+        }
         rankRange:ip2=37, 39
       }
     }
@@ -3236,6 +4847,29 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_ussr_zprk_2s6{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="ussr_zprk_2s6"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=20
+            count:i=1
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+              m:t="2s6_upgrade_modification"
+            }
+            "bulletNames:list<t>"{
+              name:t="30mm_2a38_HE"
+              name:t=""
+            }
+            "bulletsCount:list<i>"{
+              c:i=0
+              c:i=8
+            }
+          }
+        }
         rankRange:ip2=37, 39
       }
     }
@@ -3251,6 +4885,29 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_ussr_zprk_2s6{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="ussr_zprk_2s6"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=20
+            count:i=1
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+              m:t="2s6_upgrade_modification"
+            }
+            "bulletNames:list<t>"{
+              name:t="30mm_2a38_HE"
+              name:t=""
+            }
+            "bulletsCount:list<i>"{
+              c:i=0
+              c:i=8
+            }
+          }
+        }
         rankRange:ip2=37, 39
       }
     }
@@ -3266,6 +4923,29 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_ussr_zprk_2s6{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="ussr_zprk_2s6"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=20
+            count:i=1
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+              m:t="2s6_upgrade_modification"
+            }
+            "bulletNames:list<t>"{
+              name:t="30mm_2a38_HE"
+              name:t=""
+            }
+            "bulletsCount:list<i>"{
+              c:i=0
+              c:i=8
+            }
+          }
+        }
         rankRange:ip2=37, 39
       }
     }
@@ -3281,6 +4961,25 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_sw_crotale_ng{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="sw_crotale_ng"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=20
+            count:i=1
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+            }
+            "bulletsCount:list<i>"{
+              c:i=8
+            }
+          }
+        }
         rankRange:ip2=37, 50
       }
     }
@@ -3296,6 +4995,25 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_sw_crotale_ng{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="sw_crotale_ng"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=20
+            count:i=1
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+            }
+            "bulletsCount:list<i>"{
+              c:i=8
+            }
+          }
+        }
         rankRange:ip2=37, 50
       }
     }
@@ -3311,6 +5029,25 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_sw_crotale_ng{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="sw_crotale_ng"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=20
+            count:i=1
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+            }
+            "bulletsCount:list<i>"{
+              c:i=8
+            }
+          }
+        }
         rankRange:ip2=37, 50
       }
     }
@@ -3326,6 +5063,25 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_sw_crotale_ng{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="sw_crotale_ng"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=20
+            count:i=1
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+            }
+            "bulletsCount:list<i>"{
+              c:i=8
+            }
+          }
+        }
         rankRange:ip2=37, 50
       }
     }
@@ -3341,6 +5097,25 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_sw_crotale_ng{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="sw_crotale_ng"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=20
+            count:i=1
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+            }
+            "bulletsCount:list<i>"{
+              c:i=8
+            }
+          }
+        }
         rankRange:ip2=37, 50
       }
     }
@@ -3356,6 +5131,25 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_sw_crotale_ng{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="sw_crotale_ng"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=20
+            count:i=1
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+            }
+            "bulletsCount:list<i>"{
+              c:i=8
+            }
+          }
+        }
         rankRange:ip2=37, 50
       }
     }
@@ -3371,6 +5165,25 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_sw_crotale_ng{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="sw_crotale_ng"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=20
+            count:i=1
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+            }
+            "bulletsCount:list<i>"{
+              c:i=8
+            }
+          }
+        }
         rankRange:ip2=37, 50
       }
     }
@@ -3386,6 +5199,25 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_sw_crotale_ng{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="sw_crotale_ng"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=20
+            count:i=1
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+            }
+            "bulletsCount:list<i>"{
+              c:i=8
+            }
+          }
+        }
         rankRange:ip2=37, 50
       }
     }
@@ -3401,6 +5233,25 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_sw_crotale_ng{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="sw_crotale_ng"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=20
+            count:i=1
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+            }
+            "bulletsCount:list<i>"{
+              c:i=8
+            }
+          }
+        }
         rankRange:ip2=37, 50
       }
     }
@@ -3416,6 +5267,25 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_sw_crotale_ng{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="sw_crotale_ng"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=20
+            count:i=1
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+            }
+            "bulletsCount:list<i>"{
+              c:i=8
+            }
+          }
+        }
         rankRange:ip2=37, 50
       }
     }
@@ -3431,6 +5301,25 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_sw_crotale_ng{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="sw_crotale_ng"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=20
+            count:i=1
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+            }
+            "bulletsCount:list<i>"{
+              c:i=8
+            }
+          }
+        }
         rankRange:ip2=37, 50
       }
     }
@@ -3446,6 +5335,25 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_sw_crotale_ng{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="sw_crotale_ng"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=20
+            count:i=1
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+            }
+            "bulletsCount:list<i>"{
+              c:i=8
+            }
+          }
+        }
         rankRange:ip2=37, 50
       }
     }
@@ -3461,6 +5369,25 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_sw_crotale_ng{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="sw_crotale_ng"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=20
+            count:i=1
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+            }
+            "bulletsCount:list<i>"{
+              c:i=8
+            }
+          }
+        }
         rankRange:ip2=37, 50
       }
     }
@@ -3476,6 +5403,25 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_sw_crotale_ng{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="sw_crotale_ng"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=20
+            count:i=1
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+            }
+            "bulletsCount:list<i>"{
+              c:i=8
+            }
+          }
+        }
         rankRange:ip2=37, 50
       }
     }
@@ -3491,6 +5437,55 @@ units{
     }
     additionalEcsTemplates{
       strongpoint_2018{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="ussr_t_80bvm"
+            templateName:t="tank+nuclear_escalation_tank"
+            count:i=3
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+              name:t="USSR_APDS_FS"
+            }
+          }
+          "unit:object"{
+            name:t="ussr_bmp_3"
+            templateName:t="tank+nuclear_escalation_tank"
+            count:i=2
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+              name:t="30mm_2a72_AP"
+            }
+          }
+          "unit:object"{
+            name:t="ussr_zprk_2s6"
+            templateName:t="tank+nuclear_escalation_spaa_with_threat_radar"
+            death_substract_tickets:i=20
+            count:i=1
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+              m:t="2s6_upgrade_modification"
+            }
+            "bulletNames:list<t>"{
+              name:t="30mm_2a38_HE"
+              name:t=""
+            }
+            "bulletsCount:list<i>"{
+              c:i=0
+              c:i=8
+            }
+          }
+        }
         rankRange:ip2=37, 50
       }
     }
@@ -3506,6 +5501,55 @@ units{
     }
     additionalEcsTemplates{
       strongpoint_2018{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="ussr_t_80bvm"
+            templateName:t="tank+nuclear_escalation_tank"
+            count:i=3
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+              name:t="USSR_APDS_FS"
+            }
+          }
+          "unit:object"{
+            name:t="ussr_bmp_3"
+            templateName:t="tank+nuclear_escalation_tank"
+            count:i=2
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+              name:t="30mm_2a72_AP"
+            }
+          }
+          "unit:object"{
+            name:t="ussr_zprk_2s6"
+            templateName:t="tank+nuclear_escalation_spaa_with_threat_radar"
+            death_substract_tickets:i=20
+            count:i=1
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+              m:t="2s6_upgrade_modification"
+            }
+            "bulletNames:list<t>"{
+              name:t="30mm_2a38_HE"
+              name:t=""
+            }
+            "bulletsCount:list<i>"{
+              c:i=0
+              c:i=8
+            }
+          }
+        }
         rankRange:ip2=37, 50
       }
     }
@@ -3521,6 +5565,48 @@ units{
     }
     additionalEcsTemplates{
       strongpoint_2018{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="us_m1a2_sep2_abrams"
+            templateName:t="tank+nuclear_escalation_tank"
+            count:i=3
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+              name:t="NATO_APDS_FS"
+            }
+          }
+          "unit:object"{
+            name:t="us_m3a3_bradley"
+            templateName:t="tank+nuclear_escalation_tank"
+            count:i=2
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+          }
+          "unit:object"{
+            name:t="sw_crotale_ng"
+            templateName:t="tank+nuclear_escalation_spaa_with_threat_radar"
+            death_substract_tickets:i=20
+            count:i=1
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+            }
+            "bulletsCount:list<i>"{
+              c:i=8
+            }
+          }
+        }
         rankRange:ip2=37, 50
       }
     }
@@ -3536,6 +5622,48 @@ units{
     }
     additionalEcsTemplates{
       strongpoint_2018{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="us_m1a2_sep2_abrams"
+            templateName:t="tank+nuclear_escalation_tank"
+            count:i=3
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+              name:t="NATO_APDS_FS"
+            }
+          }
+          "unit:object"{
+            name:t="us_m3a3_bradley"
+            templateName:t="tank+nuclear_escalation_tank"
+            count:i=2
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+          }
+          "unit:object"{
+            name:t="sw_crotale_ng"
+            templateName:t="tank+nuclear_escalation_spaa_with_threat_radar"
+            death_substract_tickets:i=20
+            count:i=1
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+            }
+            "bulletsCount:list<i>"{
+              c:i=8
+            }
+          }
+        }
         rankRange:ip2=37, 50
       }
     }
@@ -3551,6 +5679,29 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_ussr_zprk_2s6{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="ussr_zprk_2s6"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=20
+            count:i=1
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+              m:t="2s6_upgrade_modification"
+            }
+            "bulletNames:list<t>"{
+              name:t="30mm_2a38_HE"
+              name:t=""
+            }
+            "bulletsCount:list<i>"{
+              c:i=0
+              c:i=8
+            }
+          }
+        }
         rankRange:ip2=37, 39
       }
     }
@@ -3566,6 +5717,29 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_ussr_zprk_2s6{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="ussr_zprk_2s6"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=20
+            count:i=1
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+              m:t="2s6_upgrade_modification"
+            }
+            "bulletNames:list<t>"{
+              name:t="30mm_2a38_HE"
+              name:t=""
+            }
+            "bulletsCount:list<i>"{
+              c:i=0
+              c:i=8
+            }
+          }
+        }
         rankRange:ip2=37, 39
       }
     }
@@ -3581,6 +5755,25 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_sw_crotale_ng{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="sw_crotale_ng"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=20
+            count:i=1
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+            }
+            "bulletsCount:list<i>"{
+              c:i=8
+            }
+          }
+        }
         rankRange:ip2=37, 50
       }
     }
@@ -3596,6 +5789,25 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_sw_crotale_ng{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="sw_crotale_ng"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=20
+            count:i=1
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+            }
+            "bulletsCount:list<i>"{
+              c:i=8
+            }
+          }
+        }
         rankRange:ip2=37, 50
       }
     }
@@ -3611,6 +5823,48 @@ units{
     }
     additionalEcsTemplates{
       strongpoint_2018{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="us_m1a2_sep2_abrams"
+            templateName:t="tank+nuclear_escalation_tank"
+            count:i=3
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+              name:t="NATO_APDS_FS"
+            }
+          }
+          "unit:object"{
+            name:t="us_m3a3_bradley"
+            templateName:t="tank+nuclear_escalation_tank"
+            count:i=2
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+          }
+          "unit:object"{
+            name:t="sw_crotale_ng"
+            templateName:t="tank+nuclear_escalation_spaa_with_threat_radar"
+            death_substract_tickets:i=20
+            count:i=1
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+            }
+            "bulletsCount:list<i>"{
+              c:i=8
+            }
+          }
+        }
         rankRange:ip2=37, 50
       }
     }
@@ -3626,6 +5880,55 @@ units{
     }
     additionalEcsTemplates{
       strongpoint_2018{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="ussr_t_80bvm"
+            templateName:t="tank+nuclear_escalation_tank"
+            count:i=3
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+              name:t="USSR_APDS_FS"
+            }
+          }
+          "unit:object"{
+            name:t="ussr_bmp_3"
+            templateName:t="tank+nuclear_escalation_tank"
+            count:i=2
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+              name:t="30mm_2a72_AP"
+            }
+          }
+          "unit:object"{
+            name:t="ussr_zprk_2s6"
+            templateName:t="tank+nuclear_escalation_spaa_with_threat_radar"
+            death_substract_tickets:i=20
+            count:i=1
+            threatSearchRad:r=6000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+              m:t="2s6_upgrade_modification"
+            }
+            "bulletNames:list<t>"{
+              name:t="30mm_2a38_HE"
+              name:t=""
+            }
+            "bulletsCount:list<i>"{
+              c:i=0
+              c:i=8
+            }
+          }
+        }
         rankRange:ip2=37, 50
       }
     }

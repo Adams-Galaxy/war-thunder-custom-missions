@@ -5,7 +5,7 @@
 | File | Long-range S-300 / SAMP/T sites | Airfield AA, including HQ-11 | Status |
 |---|---:|---:|---|
 | [`source.blk`](source.blk) | Enabled | Enabled | Original |
-| [`no-lrsam.blk`](no-lrsam.blk) | Removed; missile ships capped at 18 km | Enabled | Quick-start aircraft, helicopter, and naval spawns; 30-second respawn |
+| [`no-lrsam.blk`](no-lrsam.blk) | Removed; missile ships capped at 18 km | HQ-11/SPYDER 18 km, Pantsir 8 km, direct 2S6/Crotale sources 6 km | Easiest combat mode; quick-start spawns and 30-second respawn |
 | [`no-lrsam-no-airfield-aa.blk`](no-lrsam-no-airfield-aa.blk) | Removed | Removed | Generated; needs in-game validation |
 | [`silent-lrsam-experimental.blk`](silent-lrsam-experimental.blk) | Present, attempted zero-ammo override | Enabled | Tested: override ignored; sites still fire |
 | [`sead-training-strategic-sams-silent.blk`](sead-training-strategic-sams-silent.blk) | Present, missile/target channels set to zero | Enabled | **Tested: strategic sites do not launch** |
@@ -17,6 +17,11 @@
 
 `silent-lrsam-zero-channels-experimental.blk` remains available as a
 compatibility alias for the previously published stable URL.
+
+The maintained difficulty progression is normal, SEAD training with silent
+strategic sites and otherwise unchanged shorter-range defenses, then the
+no-strategic-SAM mode with reduced sensor envelopes. Peaceful exploration is
+a separate non-combat option.
 
 The shared quick-start package used by the two maintained non-normal variants
 and the experiment places fields 1–3 at 1.5 km and fields

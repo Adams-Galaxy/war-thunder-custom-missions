@@ -9,7 +9,8 @@ Escalation mission from the live game archive.
 |---|---|---|---|
 | [`normal.blk`](normal.blk) | Enabled | Stock 30 km activation | Stock |
 | [`sead-training-hq11-18km.blk`](sead-training-hq11-18km.blk) | Present and targetable, engagement channels disabled | 18 km sensor activation | Quick-start spawns, 18 km missile ships, 30-second respawn |
-| [`no-long-range-sams.blk`](no-long-range-sams.blk) | All 16 groups removed | Stock 30 km activation | Quick-start spawns, 18 km missile ships, 30-second respawn |
+| [`no-long-range-sams.blk`](no-long-range-sams.blk) | All 16 groups removed | HQ-11/SPYDER 18 km, Pantsir 8 km, direct 2S6/Crotale sources 6 km | Easiest combat mode; quick-start spawns and 30-second respawn |
+| [`peaceful-exploration.blk`](peaceful-exploration.blk) | Present, zero engagement channels | Stock roster | Players are continuously hidden from AI targeting and immortal; quick-start package enabled |
 | [`source.blk`](source.blk) | Enabled | Stock 30 km activation | Untouched extracted source |
 
 The SEAD-training version uses the same zero-channel technique already tested
@@ -20,10 +21,17 @@ Tunguska, 2S38, and HQ-11 roster; only the HQ-11 sensor-activation radius is
 changed from 30 km to 18 km.
 
 The no-long-range-SAM version removes the complete dynamic object groups that
-would instantiate S-300 or SAMP/T batteries in the 2018 era. Airfield and
-point-defense groups are not removed.
+would instantiate S-300 or SAMP/T batteries in the 2018 era. It also reduces
+the directly configurable shorter-range sensor envelopes: 2S6 and Crotale to
+6 km, Pantsir to 8 km, and both HQ-11 and SPYDER to 18 km. Airfield and
+point-defense groups remain present.
 
-Both non-normal variants enable aircraft, helicopters, and ships while keeping
+The maintained difficulty progression is normal, SEAD training with silent
+strategic sites and otherwise unchanged shorter-range defenses, then the
+no-long-range-SAM mode with reduced sensor envelopes. Peaceful exploration is
+a separate non-combat option.
+
+All three enhanced variants enable aircraft, helicopters, and ships while keeping
 tanks disabled. Aircraft spawns for fields 1–2 are 1.5 km high and 6 km behind
 their runways; fields 3–4 are 3.5 km high and 6 km behind. The 7 km main spawn
 starts halfway toward fields 3–4 and then moves 1.5 km back toward friendly
@@ -31,9 +39,16 @@ territory. Helicopter-only spawns are 300 m above and 8 km forward of fields
 1–2 toward the front line. Two naval spawns per team sit 3 km ahead of the
 carriers' initial positions and follow their starting headings.
 
-All three playable variants quote the eight fuel/ammo template keys containing
+All four playable variants quote the eight fuel/ammo template keys containing
 `+`. The game's local tooling accepts those keys unquoted, but its remote custom
 mission parser rejects them and reports only `Mission download failed`.
+
+The reduced-range overrides cover airfields, strongpoints, standalone AA,
+static fuel/ammo-factory defenses, and fuel/ammo convoys. SAM escorts created
+later by assembly-built tank factories retain their protected stock templates.
+The peaceful mode is not affected by that exception because it protects the
+player rather than modifying each enemy unit: every 0.25 seconds it marks all
+current player vehicles untargetable by AI and immortal.
 
 ### Direct URLs
 
@@ -46,6 +61,8 @@ https://raw.githubusercontent.com/Adams-Galaxy/war-thunder-custom-missions/main/
 https://raw.githubusercontent.com/Adams-Galaxy/war-thunder-custom-missions/main/missions/ne-southeastern-city/sead-training-hq11-18km.blk
 
 https://raw.githubusercontent.com/Adams-Galaxy/war-thunder-custom-missions/main/missions/ne-southeastern-city/no-long-range-sams.blk
+
+https://raw.githubusercontent.com/Adams-Galaxy/war-thunder-custom-missions/main/missions/ne-southeastern-city/peaceful-exploration.blk
 ```
 
 ## Provenance

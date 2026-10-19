@@ -70,23 +70,49 @@ class MaintainedVariantTests(unittest.TestCase):
         self.assertEqual(text.count("{"), text.count("}"))
 
     def test_peaceful_exploration_protects_all_player_units(self) -> None:
-        text = (
-            REPO_ROOT
-            / "missions/ne-archipelago-2018/peaceful-exploration.blk"
-        ).read_text()
+        for relative_path in (
+            "missions/ne-archipelago-2018/peaceful-exploration.blk",
+            "missions/ne-southeastern-city/peaceful-exploration.blk",
+        ):
+            with self.subTest(mission=relative_path):
+                text = (REPO_ROOT / relative_path).read_text()
+                trigger_start = text.index("  debug_in_multiplayer{")
+                trigger_end = text.index("  init{", trigger_start)
+                trigger = text[trigger_start:trigger_end]
+                self.assertIn("is_enabled:b=yes", trigger)
+                self.assertIn("time:r=0.25", trigger)
+                self.assertIn('object:t="all_players_squad"', trigger)
+                self.assertIn("targetableByAi:b=no", trigger)
+                self.assertIn("isImmortal:b=yes", trigger)
+                self.assertEqual(
+                    text.count("sam_site__missile_channels_max:i=0"), 16
+                )
+                self.assertEqual(text.count("{"), text.count("}"))
 
-        trigger_start = text.index("  debug_in_multiplayer{")
-        trigger_end = text.index("  init{", trigger_start)
-        trigger = text[trigger_start:trigger_end]
-        self.assertIn("is_enabled:b=yes", trigger)
-        self.assertIn("time:r=0.25", trigger)
-        self.assertIn('object:t="all_players_squad"', trigger)
-        self.assertIn("targetableByAi:b=no", trigger)
-        self.assertIn("isImmortal:b=yes", trigger)
-        self.assertEqual(
-            text.count("sam_site__missile_channels_max:i=0"), 16
-        )
-        self.assertEqual(text.count("{"), text.count("}"))
+    def test_easiest_modes_use_reduced_defense_envelopes(self) -> None:
+        cases = {
+            "missions/ne-archipelago-2018/no-lrsam.blk": (84, 6, 12),
+            "missions/ne-southeastern-city/no-long-range-sams.blk": (72, 5, 10),
+        }
+        for relative_path, expected in cases.items():
+            with self.subTest(mission=relative_path):
+                text = (REPO_ROOT / relative_path).read_text()
+                actual = (
+                    text.count("threatSearchRad:r=6000.0"),
+                    text.count("threatSearchRad:r=8000.0"),
+                    text.count("threatSearchRad:r=18000.0"),
+                )
+                self.assertEqual(actual, expected)
+
+    def test_mid_difficulty_keeps_shorter_range_defenses_unchanged(self) -> None:
+        for relative_path in (
+            "missions/ne-archipelago-2018/sead-training-hq11-18km.blk",
+            "missions/ne-southeastern-city/sead-training-hq11-18km.blk",
+        ):
+            with self.subTest(mission=relative_path):
+                text = (REPO_ROOT / relative_path).read_text()
+                self.assertNotIn("threatSearchRad:r=6000.0", text)
+                self.assertNotIn("threatSearchRad:r=8000.0", text)
 
 
 if __name__ == "__main__":

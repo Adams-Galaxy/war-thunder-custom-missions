@@ -520,6 +520,7 @@ def override_all_direct_2018_air_defenses(
     crotale_radius: float = 6000.0,
     pantsir_radius: float = 8000.0,
     long_airfield_radius: float = 18000.0,
+    expected_counts: dict[str, int] | None = None,
 ) -> str:
     """Override every directly configurable 2018 defense source.
 
@@ -624,7 +625,12 @@ def override_all_direct_2018_air_defenses(
                 modified["storage"] += 1
         output.append(block)
 
-    expected = {"airfield": 12, "strongpoint": 16, "cover": 32, "storage": 12}
+    expected = expected_counts or {
+        "airfield": 12,
+        "strongpoint": 16,
+        "cover": 32,
+        "storage": 12,
+    }
     if modified != expected:
         raise ValueError(f"Unexpected short-range override counts: {modified}")
     return "".join(output)
@@ -973,7 +979,7 @@ def enable_peaceful_player_protection(text: str) -> str:
         r"(?m)^(    is_enabled:b=)no$", r"\g<1>yes", block, count=1
     )
     block, period_count = re.subn(
-        r"(?m)^(        time:r=)1\.0$", r"\g<1>0.25", block, count=1
+        r"(?m)^(        time:r=)1(?:\.0)?$", r"\g<1>0.25", block, count=1
     )
     if (enabled_count, period_count) != (1, 1):
         raise ValueError("Could not enable recurring peaceful player protection")
@@ -1514,10 +1520,32 @@ def build_southeastern_city_variants() -> None:
     no_long_range = compact_scalar_syntax(set_pretty_english_metadata(
         no_long_range,
         "NO LONG-RANGE SAMS",
-        "All 16 strategic SAM groups are removed; stock airfield defenses remain enabled. Quick-start aircraft, helicopter, and naval spawns are enabled.",
+        "All 16 strategic SAM groups are removed. HQ-11 and SPYDER sensors activate within 18 km, Pantsir within 8 km, and directly configurable 2S6 and Crotale units within 6 km. Quick-start spawns are enabled.",
     ))
+    no_long_range = override_all_direct_2018_air_defenses(
+        no_long_range,
+        expected_counts={
+            "airfield": 10,
+            "strongpoint": 14,
+            "cover": 32,
+            "storage": 8,
+        },
+    )
     no_long_range = add_quick_start_package(
         no_long_range,
+        SOUTH_EASTERN_CITY_AIRSPAWNS,
+        main_forward_suffixes=("03", "04"),
+        helicopter_fields=("01", "02"),
+    )
+
+    peaceful = compact_scalar_syntax(set_pretty_english_metadata(
+        silent,
+        "PEACEFUL EXPLORATION",
+        "All map units remain present, strategic sites have zero engagement channels, and every player vehicle is continuously hidden from AI targeting and made immortal. Quick-start aircraft, helicopter, and naval spawns are enabled.",
+    ))
+    peaceful = enable_peaceful_player_protection(peaceful)
+    peaceful = add_quick_start_package(
+        peaceful,
         SOUTH_EASTERN_CITY_AIRSPAWNS,
         main_forward_suffixes=("03", "04"),
         helicopter_fields=("01", "02"),
@@ -1527,6 +1555,7 @@ def build_southeastern_city_variants() -> None:
         "normal.blk": normal,
         "sead-training-hq11-18km.blk": silent_hq11_18km,
         "no-long-range-sams.blk": no_long_range,
+        "peaceful-exploration.blk": peaceful,
     }
     for name, variant in variants.items():
         assert_balanced(variant)
@@ -1719,8 +1748,9 @@ def main() -> None:
     )
     if no_lrsam.count("sam_site_s300{") or no_lrsam.count("sam_site_sampt{"):
         raise ValueError("Long-range SAM templates remain in no-lrsam variant")
+    short_range_no_lrsam = override_all_direct_2018_air_defenses(no_lrsam)
     quick_start_no_lrsam = add_quick_start_package(
-        no_lrsam,
+        short_range_no_lrsam,
         ARCHIPELAGO_AIRSPAWNS,
         main_forward_suffixes=("04", "05"),
         helicopter_fields=("01", "02", "03"),
@@ -1730,7 +1760,7 @@ def main() -> None:
         set_english_metadata(
             quick_start_no_lrsam,
             "NO STRATEGIC SAMS",
-            "The eight S-300 and eight SAMP/T strategic sites are removed. Quick-start aircraft, helicopter, and naval spawns are enabled.",
+            "The eight S-300 and eight SAMP/T strategic sites are removed. HQ-11 and SPYDER sensors activate within 18 km, Pantsir within 8 km, and directly configurable 2S6 and Crotale units within 6 km. Quick-start spawns are enabled.",
         ),
     )
 
