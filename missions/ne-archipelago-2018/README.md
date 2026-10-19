@@ -5,13 +5,13 @@
 | File | Long-range S-300 / SAMP/T sites | Airfield AA, including HQ-11 | Status |
 |---|---:|---:|---|
 | [`source.blk`](source.blk) | Enabled | Enabled | Original |
-| [`no-lrsam.blk`](no-lrsam.blk) | Removed; missile ships capped at 18 km | HQ-11/SPYDER 18 km, Pantsir 8 km, direct 2S6/Crotale sources 6 km | Easiest combat mode; quick-start spawns and 30-second respawn |
+| [`no-lrsam.blk`](no-lrsam.blk) | Present, unable to engage; missile ships capped at 18 km | HQ-11/SPYDER 18 km, Pantsir 8 km, direct 2S6/Crotale sources 6 km | Easiest combat mode; quick-start spawns and 30-second respawn |
 | [`no-lrsam-no-airfield-aa.blk`](no-lrsam-no-airfield-aa.blk) | Removed | Removed | Generated; needs in-game validation |
 | [`silent-lrsam-experimental.blk`](silent-lrsam-experimental.blk) | Present, attempted zero-ammo override | Enabled | Tested: override ignored; sites still fire |
 | [`sead-training-strategic-sams-silent.blk`](sead-training-strategic-sams-silent.blk) | Present, missile/target channels set to zero | Enabled | **Tested: strategic sites do not launch** |
-| [`sead-training-hq11-18km.blk`](sead-training-hq11-18km.blk) | Present, unable to engage; missile ships capped at 18 km | HQ-11 sensor activation reduced to 18 km | Quick-start aircraft, helicopter, and naval spawns; 30-second respawn |
+| [`sead-training-hq11-18km.blk`](sead-training-hq11-18km.blk) | Present, unable to engage; missile ships capped at 18 km | HQ-11 and SPYDER sensor activation reduced to 18 km | Quick-start aircraft, helicopter, and naval spawns; 30-second respawn |
 | [`sead-training-hq11-silent.blk`](sead-training-hq11-silent.blk) | Present, unable to engage | HQ-11 radar and initial missiles disabled | Experimental; needs in-game validation |
-| [`experimental-quick-start-airspawns.blk`](experimental-quick-start-airspawns.blk) | Present, unable to engage; missile ships capped at 18 km | HQ-11 sensor activation reduced to 18 km | Experimental; 30-second respawn with aircraft, helicopter, and naval spawns |
+| [`experimental-quick-start-airspawns.blk`](experimental-quick-start-airspawns.blk) | Present, unable to engage; missile ships capped at 18 km | HQ-11 and SPYDER sensor activation reduced to 18 km | Experimental; 30-second respawn with aircraft, helicopter, and naval spawns |
 | [`experimental-short-range-air-defenses.blk`](experimental-short-range-air-defenses.blk) | Present, unable to engage; missile ships capped at 18 km | HQ-11/SPYDER 18 km, Pantsir 8 km, direct 2S6/Crotale sources 6 km | Experimental; quick-start package enabled |
 | [`peaceful-exploration.blk`](peaceful-exploration.blk) | Present, zero strategic engagement channels | Stock roster | Players are continuously hidden from AI targeting and immortal; quick-start package enabled |
 
@@ -19,9 +19,11 @@
 compatibility alias for the previously published stable URL.
 
 The maintained difficulty progression is normal, SEAD training with silent
-strategic sites and otherwise unchanged shorter-range defenses, then the
-no-strategic-SAM mode with reduced sensor envelopes. Peaceful exploration is
-a separate non-combat option.
+strategic sites plus 18 km HQ-11/SPYDER and missile ships, then easy mode with
+the same physical strategic sites disabled and reduced shorter-range sensor
+envelopes. Peaceful exploration is a separate non-combat option. The legacy
+`no-lrsam.blk` filename is retained so its published URL does not break; its
+strategic batteries are no longer removed.
 
 The shared quick-start package used by the two maintained non-normal variants
 and the experiment places fields 1–3 at 1.5 km and fields

@@ -8,8 +8,8 @@ Escalation mission from the live game archive.
 | File | Strategic S-300 / SAMP/T sites | Russian-airfield HQ-11 | Gameplay package |
 |---|---|---|---|
 | [`normal.blk`](normal.blk) | Enabled | Stock 30 km activation | Stock |
-| [`sead-training-hq11-18km.blk`](sead-training-hq11-18km.blk) | Present and targetable, engagement channels disabled | 18 km sensor activation | Quick-start spawns, 18 km missile ships, 30-second respawn |
-| [`no-long-range-sams.blk`](no-long-range-sams.blk) | All 16 groups removed | HQ-11/SPYDER 18 km, Pantsir 8 km, direct 2S6/Crotale sources 6 km | Easiest combat mode; quick-start spawns and 30-second respawn |
+| [`sead-training-hq11-18km.blk`](sead-training-hq11-18km.blk) | Present and targetable, engagement channels disabled | HQ-11 and SPYDER at 18 km | Quick-start spawns, 18 km missile ships, 30-second respawn |
+| [`no-long-range-sams.blk`](no-long-range-sams.blk) | Present and targetable, engagement channels disabled | HQ-11/SPYDER 18 km, Pantsir 8 km, direct 2S6/Crotale sources 6 km | Easiest combat mode; quick-start spawns and 30-second respawn |
 | [`peaceful-exploration.blk`](peaceful-exploration.blk) | Present, zero engagement channels | Stock roster | Players are continuously hidden from AI targeting and immortal; quick-start package enabled |
 | [`source.blk`](source.blk) | Enabled | Stock 30 km activation | Untouched extracted source |
 
@@ -20,16 +20,17 @@ channel limits to zero. The five Team 1 airfields retain their normal Pantsir,
 Tunguska, 2S38, and HQ-11 roster; only the HQ-11 sensor-activation radius is
 changed from 30 km to 18 km.
 
-The no-long-range-SAM version removes the complete dynamic object groups that
-would instantiate S-300 or SAMP/T batteries in the 2018 era. It also reduces
-the directly configurable shorter-range sensor envelopes: 2S6 and Crotale to
-6 km, Pantsir to 8 km, and both HQ-11 and SPYDER to 18 km. Airfield and
-point-defense groups remain present.
+The easy version keeps every S-300 and SAMP/T battery physically present and
+targetable but gives the strategic sites zero engagement channels. It also
+reduces the directly configurable shorter-range sensor envelopes: 2S6 and
+Crotale to 6 km, Pantsir to 8 km, and both HQ-11 and SPYDER to 18 km.
 
 The maintained difficulty progression is normal, SEAD training with silent
-strategic sites and otherwise unchanged shorter-range defenses, then the
-no-long-range-SAM mode with reduced sensor envelopes. Peaceful exploration is
-a separate non-combat option.
+strategic sites plus 18 km HQ-11/SPYDER and missile ships, then easy mode with
+the same physical strategic sites disabled and reduced shorter-range sensor
+envelopes. Peaceful exploration is a separate non-combat option. The legacy
+`no-long-range-sams.blk` filename is retained so its published URL does not
+break; its strategic batteries are no longer removed.
 
 All three enhanced variants enable aircraft, helicopters, and ships while keeping
 tanks disabled. Aircraft spawns for fields 1–2 are 1.5 km high and 6 km behind

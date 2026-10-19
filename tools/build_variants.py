@@ -636,6 +636,60 @@ def override_all_direct_2018_air_defenses(
     return "".join(output)
 
 
+def override_both_airfield_long_range_defenses(
+    text: str,
+    *,
+    long_airfield_radius: float = 18000.0,
+    expected_airfields: int = 12,
+) -> str:
+    """Set HQ-11 and SPYDER equally while preserving every shorter-range value."""
+    lines = text.splitlines(keepends=True)
+    output: list[str] = []
+    index = 0
+    modified = 0
+    while index < len(lines):
+        if lines[index] != "  objectGroups{\n":
+            output.append(lines[index])
+            index += 1
+            continue
+        block_lines = [lines[index]]
+        index += 1
+        depth = 1
+        while index < len(lines) and depth:
+            line = lines[index]
+            block_lines.append(line)
+            depth += line.count("{") - line.count("}")
+            index += 1
+        block = "".join(block_lines)
+        if "      airfield_aa_2018{\n" in block:
+            army_match = re.search(r"(?m)^      army:i=([12])$", block)
+            if not army_match:
+                raise ValueError("Airfield defense object has no army")
+            army = int(army_match.group(1))
+            roster = short_range_airfield_roster(
+                army,
+                tunguska_radius=12000.0,
+                crotale_radius=15000.0,
+                pantsir_radius=23000.0,
+                long_airfield_radius=long_airfield_radius,
+            )
+            payload = render_unit_settings_array(
+                "units_spawn_on_init__unitSettings:array", roster
+            )
+            block = block.replace(
+                "      airfield_aa_2018{\n",
+                "      airfield_aa_2018{\n" + payload,
+                1,
+            )
+            modified += 1
+        output.append(block)
+    if modified != expected_airfields:
+        raise ValueError(
+            f"Expected {expected_airfields} airfields, modified {modified}"
+        )
+    return "".join(output)
+
+
 def override_team1_airfield_roster(
     text: str,
     hq11_threat_radius: float,
@@ -1501,12 +1555,15 @@ def build_southeastern_city_variants() -> None:
     ))
 
     silent = disable_pretty_sam_channels(source)
-    silent_hq11_18km = override_pretty_team1_airfields(silent, 18000.0)
     silent_hq11_18km = compact_scalar_syntax(set_pretty_english_metadata(
-        silent_hq11_18km,
-        "SEAD TRAINING · HQ-11 18 KM",
-        "Strategic S-300 and SAMP/T sites remain targetable but cannot engage; HQ-11 sensors activate only within 18 km. Quick-start aircraft, helicopter, and naval spawns are enabled.",
+        silent,
+        "SEAD TRAINING · AIRFIELD SAMS 18 KM",
+        "Strategic S-300 and SAMP/T sites remain targetable but cannot engage; HQ-11 and SPYDER sensors activate only within 18 km. Quick-start aircraft, helicopter, and naval spawns are enabled.",
     ))
+    silent_hq11_18km = override_both_airfield_long_range_defenses(
+        silent_hq11_18km,
+        expected_airfields=10,
+    )
     silent_hq11_18km = add_quick_start_package(
         silent_hq11_18km,
         SOUTH_EASTERN_CITY_AIRSPAWNS,
@@ -1514,13 +1571,10 @@ def build_southeastern_city_variants() -> None:
         helicopter_fields=("01", "02"),
     )
 
-    no_long_range = remove_pretty_object_groups_with_templates(
-        source, ("sam_site_s300", "sam_site_sampt")
-    )
     no_long_range = compact_scalar_syntax(set_pretty_english_metadata(
-        no_long_range,
-        "NO LONG-RANGE SAMS",
-        "All 16 strategic SAM groups are removed. HQ-11 and SPYDER sensors activate within 18 km, Pantsir within 8 km, and directly configurable 2S6 and Crotale units within 6 km. Quick-start spawns are enabled.",
+        silent,
+        "EASY · STRATEGIC SAMS DISABLED",
+        "All strategic sites remain physically present but cannot engage. HQ-11 and SPYDER sensors activate within 18 km, Pantsir within 8 km, and directly configurable 2S6 and Crotale units within 6 km. Quick-start spawns are enabled.",
     ))
     no_long_range = override_all_direct_2018_air_defenses(
         no_long_range,
@@ -1748,7 +1802,10 @@ def main() -> None:
     )
     if no_lrsam.count("sam_site_s300{") or no_lrsam.count("sam_site_sampt{"):
         raise ValueError("Long-range SAM templates remain in no-lrsam variant")
-    short_range_no_lrsam = override_all_direct_2018_air_defenses(no_lrsam)
+    easy_sams_disabled = disable_sam_channels(source)
+    short_range_no_lrsam = override_all_direct_2018_air_defenses(
+        easy_sams_disabled
+    )
     quick_start_no_lrsam = add_quick_start_package(
         short_range_no_lrsam,
         ARCHIPELAGO_AIRSPAWNS,
@@ -1759,8 +1816,8 @@ def main() -> None:
         "no-lrsam.blk",
         set_english_metadata(
             quick_start_no_lrsam,
-            "NO STRATEGIC SAMS",
-            "The eight S-300 and eight SAMP/T strategic sites are removed. HQ-11 and SPYDER sensors activate within 18 km, Pantsir within 8 km, and directly configurable 2S6 and Crotale units within 6 km. Quick-start spawns are enabled.",
+            "EASY · STRATEGIC SAMS DISABLED",
+            "The eight S-300 and eight SAMP/T strategic sites remain physically present but cannot engage. HQ-11 and SPYDER sensors activate within 18 km, Pantsir within 8 km, and directly configurable 2S6 and Crotale units within 6 km. Quick-start spawns are enabled.",
         ),
     )
 
@@ -1804,8 +1861,9 @@ def main() -> None:
         "silent-lrsam-zero-channels-experimental.blk", strategic_sams_silent
     )
 
-    hq11_18km = override_team1_airfield_roster(
-        zero_channel_lrsam, hq11_threat_radius=18000.0
+    hq11_18km = override_both_airfield_long_range_defenses(
+        zero_channel_lrsam,
+        expected_airfields=12,
     )
     quick_start_hq11_18km = add_quick_start_package(
         hq11_18km,
@@ -1817,8 +1875,8 @@ def main() -> None:
         "sead-training-hq11-18km.blk",
         set_english_metadata(
             quick_start_hq11_18km,
-            "SEAD TRAINING · HQ-11 18 KM",
-            "Strategic sites cannot engage; HQ-11 sensors activate only within 18 km. Quick-start aircraft, helicopter, and naval spawns are enabled.",
+            "SEAD TRAINING · AIRFIELD SAMS 18 KM",
+            "Strategic sites cannot engage; HQ-11 and SPYDER sensors activate only within 18 km. Quick-start aircraft, helicopter, and naval spawns are enabled.",
         ),
     )
 
@@ -1831,7 +1889,7 @@ def main() -> None:
     quick_start_experiment = set_english_metadata(
         quick_start_experiment,
         "EXPERIMENT · AIR + HELI + NAVAL",
-        "Strategic sites are silent; HQ-11 and missile-ship engagement are capped at 18 km; player respawn is 30 seconds; aircraft, helicopter, and naval spawns are enabled.",
+        "Strategic sites are silent; HQ-11, SPYDER, and missile-ship engagement are capped at 18 km; player respawn is 30 seconds; aircraft, helicopter, and naval spawns are enabled.",
     )
     write_variant("experimental-quick-start-airspawns.blk", quick_start_experiment)
 

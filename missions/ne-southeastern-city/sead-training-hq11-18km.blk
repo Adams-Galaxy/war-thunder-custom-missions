@@ -94,8 +94,8 @@ mission_settings{
     afterRespawnDelaySec:i=30
     useSpawnDelay:b=yes
     timeToLoseInstantDetection:r=10
-    locName:t="Nuclear Escalation · Southeastern City [SEAD TRAINING · HQ-11 18 KM]"
-    locDesc:t="Custom version of the official Nuclear Escalation mission. Stars mark Soviet-aligned air defenses; crosses mark NATO. Strategic S-300 and SAMP/T sites remain targetable but cannot engage; HQ-11 sensors activate only within 18 km. Quick-start aircraft, helicopter, and naval spawns are enabled."
+    locName:t="Nuclear Escalation · Southeastern City [SEAD TRAINING · AIRFIELD SAMS 18 KM]"
+    locDesc:t="Custom version of the official Nuclear Escalation mission. Stars mark Soviet-aligned air defenses; crosses mark NATO. Strategic S-300 and SAMP/T sites remain targetable but cannot engage; HQ-11 and SPYDER sensors activate only within 18 km. Quick-start aircraft, helicopter, and naval spawns are enabled."
     scoreLimit:i=9000
     timeLimit:i=90
     deathPenaltyMul:r=0.2
@@ -1777,6 +1777,56 @@ units{
 
       }
       airfield_aa_2018{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="sw_crotale_ng"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=20
+            count:i=3
+            threatSearchRad:r=15000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletsCount:list<i>"{
+              c:i=8
+            }
+          }
+          "unit:object"{
+            name:t="it_otomatic"
+            templateName:t="tank+nuclear_escalation_spaa_radar_off"
+            death_substract_tickets:i=20
+            count:i=2
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+              name:t="76mm_oto_HE_VT"
+            }
+            "bulletsCount:list<i>"{
+            }
+          }
+          "unit:object"{
+            name:t="il_spyder_aio"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=30
+            threatSearchRad:r=18000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+              name:t="160mm_derby_er_aam"
+            }
+            "bulletsCount:list<i>"{
+              c:i=8
+            }
+          }
+        }
         rankRange:ip2=37, 50
         nuclear_escalation_target__tag:t="mlrs_tbm_target"
       }
@@ -1887,6 +1937,56 @@ units{
 
       }
       airfield_aa_2018{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="sw_crotale_ng"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=20
+            count:i=3
+            threatSearchRad:r=15000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletsCount:list<i>"{
+              c:i=8
+            }
+          }
+          "unit:object"{
+            name:t="it_otomatic"
+            templateName:t="tank+nuclear_escalation_spaa_radar_off"
+            death_substract_tickets:i=20
+            count:i=2
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+              name:t="76mm_oto_HE_VT"
+            }
+            "bulletsCount:list<i>"{
+            }
+          }
+          "unit:object"{
+            name:t="il_spyder_aio"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=30
+            threatSearchRad:r=18000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+              name:t="160mm_derby_er_aam"
+            }
+            "bulletsCount:list<i>"{
+              c:i=8
+            }
+          }
+        }
         rankRange:ip2=37, 50
         nuclear_escalation_target__tag:t="mlrs_tbm_target"
       }
@@ -1997,6 +2097,56 @@ units{
 
       }
       airfield_aa_2018{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="sw_crotale_ng"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=20
+            count:i=3
+            threatSearchRad:r=15000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletsCount:list<i>"{
+              c:i=8
+            }
+          }
+          "unit:object"{
+            name:t="it_otomatic"
+            templateName:t="tank+nuclear_escalation_spaa_radar_off"
+            death_substract_tickets:i=20
+            count:i=2
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+              name:t="76mm_oto_HE_VT"
+            }
+            "bulletsCount:list<i>"{
+            }
+          }
+          "unit:object"{
+            name:t="il_spyder_aio"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=30
+            threatSearchRad:r=18000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+              name:t="160mm_derby_er_aam"
+            }
+            "bulletsCount:list<i>"{
+              c:i=8
+            }
+          }
+        }
         rankRange:ip2=37, 50
         nuclear_escalation_target__tag:t="mlrs_tbm_target"
       }
@@ -2812,6 +2962,56 @@ units{
 
       }
       airfield_aa_2018{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="sw_crotale_ng"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=20
+            count:i=3
+            threatSearchRad:r=15000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletsCount:list<i>"{
+              c:i=8
+            }
+          }
+          "unit:object"{
+            name:t="it_otomatic"
+            templateName:t="tank+nuclear_escalation_spaa_radar_off"
+            death_substract_tickets:i=20
+            count:i=2
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+              name:t="76mm_oto_HE_VT"
+            }
+            "bulletsCount:list<i>"{
+            }
+          }
+          "unit:object"{
+            name:t="il_spyder_aio"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=30
+            threatSearchRad:r=18000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+              name:t="160mm_derby_er_aam"
+            }
+            "bulletsCount:list<i>"{
+              c:i=8
+            }
+          }
+        }
         rankRange:ip2=37, 50
         nuclear_escalation_target__tag:t="mlrs_tbm_target"
       }
@@ -2831,6 +3031,56 @@ units{
 
       }
       airfield_aa_2018{
+        "units_spawn_on_init__unitSettings:array"{
+          "unit:object"{
+            name:t="sw_crotale_ng"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=20
+            count:i=3
+            threatSearchRad:r=15000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletsCount:list<i>"{
+              c:i=8
+            }
+          }
+          "unit:object"{
+            name:t="it_otomatic"
+            templateName:t="tank+nuclear_escalation_spaa_radar_off"
+            death_substract_tickets:i=20
+            count:i=2
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+              name:t="76mm_oto_HE_VT"
+            }
+            "bulletsCount:list<i>"{
+            }
+          }
+          "unit:object"{
+            name:t="il_spyder_aio"
+            templateName:t="tank+nuclear_escalation_spaa_radar_on"
+            death_substract_tickets:i=30
+            threatSearchRad:r=18000.0
+            dontCreateChar:b=yes
+            "mods:list<t>"{
+              m:t="tank_tool_kit"
+              m:t="manual_extinguisher"
+            }
+            "bulletNames:list<t>"{
+              name:t="160mm_derby_er_aam"
+            }
+            "bulletsCount:list<i>"{
+              c:i=8
+            }
+          }
+        }
         rankRange:ip2=37, 50
         nuclear_escalation_target__tag:t="mlrs_tbm_target"
       }

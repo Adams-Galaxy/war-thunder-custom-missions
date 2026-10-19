@@ -103,16 +103,33 @@ class MaintainedVariantTests(unittest.TestCase):
                     text.count("threatSearchRad:r=18000.0"),
                 )
                 self.assertEqual(actual, expected)
+                self.assertEqual(text.count("sam_site_s300{"), 8)
+                self.assertEqual(text.count("sam_site_sampt{"), 8)
+                self.assertEqual(
+                    text.count("sam_site__missile_channels_max:i=0"), 16
+                )
+                self.assertEqual(
+                    text.count("sam_site__target_channels_max:i=0"), 16
+                )
 
     def test_mid_difficulty_keeps_shorter_range_defenses_unchanged(self) -> None:
-        for relative_path in (
-            "missions/ne-archipelago-2018/sead-training-hq11-18km.blk",
-            "missions/ne-southeastern-city/sead-training-hq11-18km.blk",
-        ):
+        cases = {
+            "missions/ne-archipelago-2018/sead-training-hq11-18km.blk": 12,
+            "missions/ne-southeastern-city/sead-training-hq11-18km.blk": 10,
+        }
+        for relative_path, airfield_count in cases.items():
             with self.subTest(mission=relative_path):
                 text = (REPO_ROOT / relative_path).read_text()
                 self.assertNotIn("threatSearchRad:r=6000.0", text)
                 self.assertNotIn("threatSearchRad:r=8000.0", text)
+                self.assertEqual(
+                    text.count("threatSearchRad:r=18000.0"), airfield_count
+                )
+                self.assertEqual(text.count("sam_site_s300{"), 8)
+                self.assertEqual(text.count("sam_site_sampt{"), 8)
+                self.assertEqual(
+                    text.count("sam_site__missile_channels_max:i=0"), 16
+                )
 
 
 if __name__ == "__main__":

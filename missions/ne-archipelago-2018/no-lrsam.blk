@@ -94,8 +94,8 @@ mission_settings{
     afterRespawnDelaySec:i=30
     useSpawnDelay:b=yes
     timeToLoseInstantDetection:r=10.0
-    locName:t="Nuclear Escalation · Archipelago · Training (2018) [NO STRATEGIC SAMS]"
-    locDesc:t="Custom version of the event mission with 2018-era air defenses. Stars mark Soviet-aligned air defenses; crosses mark NATO. The eight S-300 and eight SAMP/T strategic sites are removed. HQ-11 and SPYDER sensors activate within 18 km, Pantsir within 8 km, and directly configurable 2S6 and Crotale units within 6 km. Quick-start spawns are enabled."
+    locName:t="Nuclear Escalation · Archipelago · Training (2018) [EASY · STRATEGIC SAMS DISABLED]"
+    locDesc:t="Custom version of the event mission with 2018-era air defenses. Stars mark Soviet-aligned air defenses; crosses mark NATO. The eight S-300 and eight SAMP/T strategic sites remain physically present but cannot engage. HQ-11 and SPYDER sensors activate within 18 km, Pantsir within 8 km, and directly configurable 2S6 and Crotale units within 6 km. Quick-start spawns are enabled."
     scoreLimit:i=9000
     timeLimit:i=90
     deathPenaltyMul:r=0.2
@@ -3464,6 +3464,196 @@ units{
     }
   }
   objectGroups{
+    name:t="t1_short_sam_site_01"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-5614.52, 633.268, -23679.5]]
+    unit_class:t="dyn_sam_site_wide_arragement"
+    objLayer:i=2
+    props{
+      army:i=1
+      active:b=yes
+    }
+    additionalEcsTemplates{
+      sam_site_s300{
+        sam_site__missile_channels_max:i=0
+        sam_site__target_channels_max:i=0
+        rankRange:ip2=0, 50
+        sam_site__attackers_group_idx:i=1
+        sam_site__max_attackers_per_target:i=2
+      }
+    }
+  }
+  objectGroups{
+    name:t="t1_short_sam_site_02"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [9762.67, 375.326, -41986.5]]
+    unit_class:t="dyn_sam_site_wide_arragement"
+    objLayer:i=2
+    props{
+      army:i=1
+      active:b=yes
+    }
+    additionalEcsTemplates{
+      sam_site_s300{
+        sam_site__missile_channels_max:i=0
+        sam_site__target_channels_max:i=0
+        rankRange:ip2=0, 50
+        sam_site__attackers_group_idx:i=1
+        sam_site__max_attackers_per_target:i=2
+      }
+    }
+  }
+  objectGroups{
+    name:t="t1_short_sam_site_03"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-10268.3, 735.545, -12744.0]]
+    unit_class:t="dyn_sam_site_wide_arragement"
+    objLayer:i=2
+    props{
+      army:i=1
+      active:b=yes
+    }
+    additionalEcsTemplates{
+      sam_site_s300{
+        sam_site__missile_channels_max:i=0
+        sam_site__target_channels_max:i=0
+        rankRange:ip2=0, 50
+        sam_site__attackers_group_idx:i=1
+        sam_site__max_attackers_per_target:i=2
+      }
+    }
+  }
+  objectGroups{
+    name:t="t1_short_sam_site_04"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [24221.3, 461.723, -58855.1]]
+    unit_class:t="dyn_sam_site_wide_arragement"
+    objLayer:i=2
+    props{
+      army:i=1
+      active:b=yes
+    }
+    additionalEcsTemplates{
+      sam_site_s300{
+        sam_site__missile_channels_max:i=0
+        sam_site__target_channels_max:i=0
+        rankRange:ip2=0, 50
+        sam_site__attackers_group_idx:i=1
+        sam_site__max_attackers_per_target:i=2
+      }
+    }
+  }
+  objectGroups{
+    name:t="t1_long_sam_site_01"
+    tm:m=[[0.984881, 0.0, 0.173233] [0.0, 1.0, 0.0] [-0.173233, 0.0, 0.984881] [-11604.7, 387.18, -52618.3]]
+    unit_class:t="dyn_sam_site_wide_arragement"
+    objLayer:i=2
+    props{
+      army:i=1
+      active:b=yes
+    }
+    additionalEcsTemplates{
+      sam_site_s300{
+        sam_site__missile_channels_max:i=0
+        sam_site__target_channels_max:i=0
+        rankRange:ip2=0, 50
+        sam_site__attackers_group_idx:i=1
+        sam_site__max_attackers_per_target:i=2
+      }
+    }
+  }
+  objectGroups{
+    name:t="t2_short_sam_site_01"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [24762.6, 350.061, 6153.87]]
+    unit_class:t="dyn_sam_site_wide_arragement"
+    objLayer:i=2
+    props{
+      army:i=2
+      active:b=yes
+    }
+    additionalEcsTemplates{
+      sam_site_sampt{
+        sam_site__missile_channels_max:i=0
+        sam_site__target_channels_max:i=0
+        rankRange:ip2=0, 50
+        sam_site__attackers_group_idx:i=1
+        sam_site__max_attackers_per_target:i=2
+      }
+    }
+  }
+  objectGroups{
+    name:t="t2_short_sam_site_02"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [40837.7, 458.119, -12956.5]]
+    unit_class:t="dyn_sam_site_wide_arragement"
+    objLayer:i=2
+    props{
+      army:i=2
+      active:b=yes
+    }
+    additionalEcsTemplates{
+      sam_site_sampt{
+        sam_site__missile_channels_max:i=0
+        sam_site__target_channels_max:i=0
+        rankRange:ip2=0, 50
+        sam_site__attackers_group_idx:i=1
+        sam_site__max_attackers_per_target:i=2
+      }
+    }
+  }
+  objectGroups{
+    name:t="t2_short_sam_site_03"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [10882.8, 625.527, 14160.4]]
+    unit_class:t="dyn_sam_site_wide_arragement"
+    objLayer:i=2
+    props{
+      army:i=2
+      active:b=yes
+    }
+    additionalEcsTemplates{
+      sam_site_sampt{
+        sam_site__missile_channels_max:i=0
+        sam_site__target_channels_max:i=0
+        rankRange:ip2=0, 50
+        sam_site__attackers_group_idx:i=1
+        sam_site__max_attackers_per_target:i=2
+      }
+    }
+  }
+  objectGroups{
+    name:t="t2_short_sam_site_04"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [53403.2, 451.166, -27440.3]]
+    unit_class:t="dyn_sam_site_wide_arragement"
+    objLayer:i=2
+    props{
+      army:i=2
+      active:b=yes
+    }
+    additionalEcsTemplates{
+      sam_site_sampt{
+        sam_site__missile_channels_max:i=0
+        sam_site__target_channels_max:i=0
+        rankRange:ip2=0, 50
+        sam_site__attackers_group_idx:i=1
+        sam_site__max_attackers_per_target:i=2
+      }
+    }
+  }
+  objectGroups{
+    name:t="t2_long_sam_site_01"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [45892.4, 549.839, 11851.2]]
+    unit_class:t="dyn_sam_site_wide_arragement"
+    objLayer:i=2
+    props{
+      army:i=2
+      active:b=yes
+    }
+    additionalEcsTemplates{
+      sam_site_sampt{
+        sam_site__missile_channels_max:i=0
+        sam_site__target_channels_max:i=0
+        rankRange:ip2=0, 50
+        sam_site__attackers_group_idx:i=1
+        sam_site__max_attackers_per_target:i=2
+      }
+    }
+  }
+  objectGroups{
     name:t="t1_strongpoint_03"
     tm:m=[[-0.53281, 0.0, 0.846235] [0.0, 1.0, 0.0] [-0.846235, 0.0, -0.53281] [-2899.39, 369.612, -2753.95]]
     unit_class:t="nt_stronghold"
@@ -4502,6 +4692,82 @@ units{
         }
         rankRange:ip2=0, 50
         nuclear_escalation_target__tag:t="mlrs_tbm_target"
+      }
+    }
+  }
+  objectGroups{
+    name:t="t2_long_sam_site_02"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [39490.1, 720.43, 28785.9]]
+    unit_class:t="dyn_sam_site_wide_arragement"
+    objLayer:i=2
+    props{
+      army:i=2
+      active:b=yes
+    }
+    additionalEcsTemplates{
+      sam_site_sampt{
+        sam_site__missile_channels_max:i=0
+        sam_site__target_channels_max:i=0
+        rankRange:ip2=0, 50
+        sam_site__attackers_group_idx:i=1
+        sam_site__max_attackers_per_target:i=2
+      }
+    }
+  }
+  objectGroups{
+    name:t="t2_long_sam_site_03"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [61553.1, 471.076, 7379.44]]
+    unit_class:t="dyn_sam_site_wide_arragement"
+    objLayer:i=2
+    props{
+      army:i=2
+      active:b=yes
+    }
+    additionalEcsTemplates{
+      sam_site_sampt{
+        sam_site__missile_channels_max:i=0
+        sam_site__target_channels_max:i=0
+        rankRange:ip2=0, 50
+        sam_site__attackers_group_idx:i=1
+        sam_site__max_attackers_per_target:i=2
+      }
+    }
+  }
+  objectGroups{
+    name:t="t1_long_sam_site_02"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-1449.08, 312.324, -68741.9]]
+    unit_class:t="dyn_sam_site_wide_arragement"
+    objLayer:i=2
+    props{
+      army:i=1
+      active:b=yes
+    }
+    additionalEcsTemplates{
+      sam_site_s300{
+        sam_site__missile_channels_max:i=0
+        sam_site__target_channels_max:i=0
+        rankRange:ip2=0, 50
+        sam_site__attackers_group_idx:i=1
+        sam_site__max_attackers_per_target:i=2
+      }
+    }
+  }
+  objectGroups{
+    name:t="t1_long_sam_site_03"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-27903.8, 594.215, -40152.3]]
+    unit_class:t="dyn_sam_site_wide_arragement"
+    objLayer:i=2
+    props{
+      army:i=1
+      active:b=yes
+    }
+    additionalEcsTemplates{
+      sam_site_s300{
+        sam_site__missile_channels_max:i=0
+        sam_site__target_channels_max:i=0
+        rankRange:ip2=0, 50
+        sam_site__attackers_group_idx:i=1
+        sam_site__max_attackers_per_target:i=2
       }
     }
   }
@@ -5816,6 +6082,25 @@ units{
     }
   }
   objectGroups{
+    name:t="t1_short_sam_site_05"
+    tm:m=[[0.985339, 0.0, 0.170607] [0.0, 1.0, 0.0] [-0.170607, 0.0, 0.985339] [-22786.9, 482.924, 325.623]]
+    unit_class:t="dyn_sam_site_wide_arragement"
+    objLayer:i=2
+    props{
+      army:i=1
+      active:b=yes
+    }
+    additionalEcsTemplates{
+      sam_site_s300{
+        sam_site__missile_channels_max:i=0
+        sam_site__target_channels_max:i=0
+        rankRange:ip2=0, 50
+        sam_site__attackers_group_idx:i=1
+        sam_site__max_attackers_per_target:i=2
+      }
+    }
+  }
+  objectGroups{
     name:t="t1_spaa_cover_foundation_08"
     tm:m=[[0.524561, 0.0, 0.851373] [0.0, 1.0, 0.0] [-0.851373, 0.0, 0.524561] [-22370.2, 482.602, 353.219]]
     unit_class:t="dyn_foundation_7m"
@@ -5888,6 +6173,25 @@ units{
           }
         }
         rankRange:ip2=0, 50
+      }
+    }
+  }
+  objectGroups{
+    name:t="t2_short_sam_site_05"
+    tm:m=[[0.53957, 0.0, -0.841941] [0.0, 1.0, 0.0] [0.841941, 0.0, 0.53957] [-230.169, 604.127, 22904.9]]
+    unit_class:t="dyn_sam_site_wide_arragement"
+    objLayer:i=2
+    props{
+      army:i=2
+      active:b=yes
+    }
+    additionalEcsTemplates{
+      sam_site_sampt{
+        sam_site__missile_channels_max:i=0
+        sam_site__target_channels_max:i=0
+        rankRange:ip2=0, 50
+        sam_site__attackers_group_idx:i=1
+        sam_site__max_attackers_per_target:i=2
       }
     }
   }
