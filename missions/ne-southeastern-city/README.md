@@ -5,11 +5,11 @@ Escalation mission from the live game archive.
 
 ## Variants
 
-| File | Strategic S-300 / SAMP/T sites | Russian-airfield HQ-11 | Other airfield AA |
+| File | Strategic S-300 / SAMP/T sites | Russian-airfield HQ-11 | Gameplay package |
 |---|---|---|---|
 | [`normal.blk`](normal.blk) | Enabled | Stock 30 km activation | Stock |
-| [`sead-training-hq11-18km.blk`](sead-training-hq11-18km.blk) | Present and targetable, engagement channels disabled | 18 km sensor activation | Stock roster |
-| [`no-long-range-sams.blk`](no-long-range-sams.blk) | All 16 groups removed | Stock 30 km activation | Stock |
+| [`sead-training-hq11-18km.blk`](sead-training-hq11-18km.blk) | Present and targetable, engagement channels disabled | 18 km sensor activation | Quick-start spawns, 18 km missile ships, 30-second respawn |
+| [`no-long-range-sams.blk`](no-long-range-sams.blk) | All 16 groups removed | Stock 30 km activation | Quick-start spawns, 18 km missile ships, 30-second respawn |
 | [`source.blk`](source.blk) | Enabled | Stock 30 km activation | Untouched extracted source |
 
 The SEAD-training version uses the same zero-channel technique already tested
@@ -22,6 +22,14 @@ changed from 30 km to 18 km.
 The no-long-range-SAM version removes the complete dynamic object groups that
 would instantiate S-300 or SAMP/T batteries in the 2018 era. Airfield and
 point-defense groups are not removed.
+
+Both non-normal variants enable aircraft, helicopters, and ships while keeping
+tanks disabled. Aircraft spawns for fields 1–2 are 1.5 km high and 6 km behind
+their runways; fields 3–4 are 3.5 km high and 6 km behind. The 7 km main spawn
+starts halfway toward fields 3–4 and then moves 1.5 km back toward friendly
+territory. Helicopter-only spawns are 300 m above and 8 km forward of fields
+1–2 toward the front line. Two naval spawns per team sit 3 km ahead of the
+carriers' initial positions and follow their starting headings.
 
 All three playable variants quote the eight fuel/ammo template keys containing
 `+`. The game's local tooling accepts those keys unquoted, but its remote custom

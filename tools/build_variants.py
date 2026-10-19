@@ -921,6 +921,55 @@ def add_carrier_forward_naval_spawns(
     return text[: triggers_end - 2] + trigger + text[triggers_end - 2 :]
 
 
+def add_quick_start_package(
+    text: str,
+    aircraft_placements: dict[str, tuple[float, float]],
+    main_forward_suffixes: tuple[str, ...],
+    helicopter_fields: tuple[str, ...],
+    helicopter_forward_offset: float = 8000.0,
+    missile_ship_range: float = 18000.0,
+    respawn_seconds: int = 30,
+) -> str:
+    """Apply the shared aircraft, helicopter, naval, and pacing settings."""
+    text = limit_missile_ship_engagements(text, missile_ship_range)
+    text = set_player_respawn_delay(text, respawn_seconds)
+    text = set_allowed_unit_type(text, "isAirplanesAllowed", True)
+    text = set_allowed_unit_type(text, "isHelicoptersAllowed", True)
+    text = set_allowed_unit_type(text, "isShipsAllowed", True)
+    text = set_allowed_unit_type(text, "isTanksAllowed", False)
+    text = add_airfield_air_spawns(
+        text,
+        aircraft_placements,
+        main_forward_suffixes=main_forward_suffixes,
+    )
+    text = add_frontal_helicopter_spawns(
+        text,
+        field_suffixes=helicopter_fields,
+        height_above_field=300.0,
+        rear_offset=-helicopter_forward_offset,
+    )
+    return add_carrier_forward_naval_spawns(text, forward_offset=3000.0)
+
+
+ARCHIPELAGO_AIRSPAWNS = {
+    "01": (1500.0, 6000.0),
+    "02": (1500.0, 6000.0),
+    "03": (1500.0, 6000.0),
+    "04": (3500.0, 6000.0),
+    "05": (3500.0, 6000.0),
+    "main": (7000.0, 1500.0),
+}
+
+
+SOUTH_EASTERN_CITY_AIRSPAWNS = {
+    "01": (1500.0, 6000.0),
+    "02": (1500.0, 6000.0),
+    "03": (3500.0, 6000.0),
+    "04": (3500.0, 6000.0),
+    "main": (7000.0, 1500.0),
+}
+
+
 def replace_named_object_groups(
     base: str, donor: str, selected_names: set[str]
 ) -> str:
@@ -1053,8 +1102,14 @@ def build_southeastern_city_variants() -> None:
     silent_hq11_18km = compact_scalar_syntax(set_pretty_english_metadata(
         silent_hq11_18km,
         "SEAD TRAINING · HQ-11 18 KM",
-        "Strategic S-300 and SAMP/T sites remain targetable but cannot engage; HQ-11 sensors activate only within 18 km.",
+        "Strategic S-300 and SAMP/T sites remain targetable but cannot engage; HQ-11 sensors activate only within 18 km. Quick-start aircraft, helicopter, and naval spawns are enabled.",
     ))
+    silent_hq11_18km = add_quick_start_package(
+        silent_hq11_18km,
+        SOUTH_EASTERN_CITY_AIRSPAWNS,
+        main_forward_suffixes=("03", "04"),
+        helicopter_fields=("01", "02"),
+    )
 
     no_long_range = remove_pretty_object_groups_with_templates(
         source, ("sam_site_s300", "sam_site_sampt")
@@ -1062,8 +1117,14 @@ def build_southeastern_city_variants() -> None:
     no_long_range = compact_scalar_syntax(set_pretty_english_metadata(
         no_long_range,
         "NO LONG-RANGE SAMS",
-        "All 16 strategic SAM groups are removed; stock airfield defenses remain enabled.",
+        "All 16 strategic SAM groups are removed; stock airfield defenses remain enabled. Quick-start aircraft, helicopter, and naval spawns are enabled.",
     ))
+    no_long_range = add_quick_start_package(
+        no_long_range,
+        SOUTH_EASTERN_CITY_AIRSPAWNS,
+        main_forward_suffixes=("03", "04"),
+        helicopter_fields=("01", "02"),
+    )
 
     variants = {
         "normal.blk": normal,
@@ -1261,12 +1322,18 @@ def main() -> None:
     )
     if no_lrsam.count("sam_site_s300{") or no_lrsam.count("sam_site_sampt{"):
         raise ValueError("Long-range SAM templates remain in no-lrsam variant")
+    quick_start_no_lrsam = add_quick_start_package(
+        no_lrsam,
+        ARCHIPELAGO_AIRSPAWNS,
+        main_forward_suffixes=("04", "05"),
+        helicopter_fields=("01", "02", "03"),
+    )
     write_variant(
         "no-lrsam.blk",
         set_english_metadata(
-            no_lrsam,
+            quick_start_no_lrsam,
             "NO STRATEGIC SAMS",
-            "The eight S-300 and eight SAMP/T strategic sites are removed.",
+            "The eight S-300 and eight SAMP/T strategic sites are removed. Quick-start aircraft, helicopter, and naval spawns are enabled.",
         ),
     )
 
@@ -1313,47 +1380,26 @@ def main() -> None:
     hq11_18km = override_team1_airfield_roster(
         zero_channel_lrsam, hq11_threat_radius=18000.0
     )
+    quick_start_hq11_18km = add_quick_start_package(
+        hq11_18km,
+        ARCHIPELAGO_AIRSPAWNS,
+        main_forward_suffixes=("04", "05"),
+        helicopter_fields=("01", "02", "03"),
+    )
     write_variant(
         "sead-training-hq11-18km.blk",
         set_english_metadata(
-            hq11_18km,
+            quick_start_hq11_18km,
             "SEAD TRAINING · HQ-11 18 KM",
-            "Strategic sites cannot engage; HQ-11 sensors activate only within 18 km.",
+            "Strategic sites cannot engage; HQ-11 sensors activate only within 18 km. Quick-start aircraft, helicopter, and naval spawns are enabled.",
         ),
     )
 
-    quick_start_experiment = limit_missile_ship_engagements(
-        hq11_18km, distance=18000.0
-    )
-    quick_start_experiment = set_player_respawn_delay(
-        quick_start_experiment, seconds=30
-    )
-    quick_start_experiment = add_airfield_air_spawns(
-        quick_start_experiment,
-        {
-            "01": (1500.0, 6000.0),
-            "02": (1500.0, 6000.0),
-            "03": (1500.0, 6000.0),
-            "04": (3500.0, 6000.0),
-            "05": (3500.0, 6000.0),
-            "main": (7000.0, 1500.0),
-        },
+    quick_start_experiment = add_quick_start_package(
+        hq11_18km,
+        ARCHIPELAGO_AIRSPAWNS,
         main_forward_suffixes=("04", "05"),
-    )
-    quick_start_experiment = set_allowed_unit_type(
-        quick_start_experiment, "isHelicoptersAllowed", True
-    )
-    quick_start_experiment = set_allowed_unit_type(
-        quick_start_experiment, "isShipsAllowed", True
-    )
-    quick_start_experiment = set_allowed_unit_type(
-        quick_start_experiment, "isTanksAllowed", False
-    )
-    quick_start_experiment = add_frontal_helicopter_spawns(
-        quick_start_experiment
-    )
-    quick_start_experiment = add_carrier_forward_naval_spawns(
-        quick_start_experiment
+        helicopter_fields=("01", "02", "03"),
     )
     quick_start_experiment = set_english_metadata(
         quick_start_experiment,

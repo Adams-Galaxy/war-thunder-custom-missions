@@ -91,20 +91,20 @@ mission_settings{
     nuclearEscalationStage3:i=15000
     disableMfdForPrevgenConsoles:b=yes
     clientReplayMaxSizeMb:i=128
-    afterRespawnDelaySec:i=480
+    afterRespawnDelaySec:i=30
     useSpawnDelay:b=yes
     timeToLoseInstantDetection:r=10
     locName:t="Nuclear Escalation · Southeastern City [SEAD TRAINING · HQ-11 18 KM]"
-    locDesc:t="Custom version of the official Nuclear Escalation mission. Stars mark Soviet-aligned air defenses; crosses mark NATO. Strategic S-300 and SAMP/T sites remain targetable but cannot engage; HQ-11 sensors activate only within 18 km."
+    locDesc:t="Custom version of the official Nuclear Escalation mission. Stars mark Soviet-aligned air defenses; crosses mark NATO. Strategic S-300 and SAMP/T sites remain targetable but cannot engage; HQ-11 sensors activate only within 18 km. Quick-start aircraft, helicopter, and naval spawns are enabled."
     scoreLimit:i=9000
     timeLimit:i=90
     deathPenaltyMul:r=0.2
     showTacticalMapCellSize:b=yes
     allowedUnitTypes{
       isAirplanesAllowed:b=yes
-      isTanksAllowed:b=yes
-      isShipsAllowed:b=no
-      isHelicoptersAllowed:b=no
+      isTanksAllowed:b=no
+      isShipsAllowed:b=yes
+      isHelicoptersAllowed:b=yes
     }
   }
   briefing{
@@ -1259,6 +1259,332 @@ triggers{
       else_actions{
 
       }
+    }
+  }
+  create_airfield_air_spawns{
+    is_enabled:b=yes
+    comments:t=""
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+    events{
+      initMission{
+
+      }
+    }
+    conditions{
+
+    }
+    actions{
+      missionMarkAsRespawnPoint{
+        loc_name:t="Air Spawn · Field 1 · 1.5 km"
+        radius:r=-1.0
+        target:t="t1_airfield_01_air_spawn"
+        team:t="A"
+        isStrictPosAndDir:b=yes
+        offset:p3=0.0, 0.0, 0.0
+        tags{
+          air:b=yes
+          type_longrange_bomber:b=no
+          tank:b=no
+          ship:b=no
+        }
+      }
+      missionMarkAsRespawnPoint{
+        loc_name:t="Air Spawn · Field 2 · 1.5 km"
+        radius:r=-1.0
+        target:t="t1_airfield_02_air_spawn"
+        team:t="A"
+        isStrictPosAndDir:b=yes
+        offset:p3=0.0, 0.0, 0.0
+        tags{
+          air:b=yes
+          type_longrange_bomber:b=no
+          tank:b=no
+          ship:b=no
+        }
+      }
+      missionMarkAsRespawnPoint{
+        loc_name:t="Air Spawn · Field 3 · 3.5 km"
+        radius:r=-1.0
+        target:t="t1_airfield_03_air_spawn"
+        team:t="A"
+        isStrictPosAndDir:b=yes
+        offset:p3=0.0, 0.0, 0.0
+        tags{
+          air:b=yes
+          type_longrange_bomber:b=no
+          tank:b=no
+          ship:b=no
+        }
+      }
+      missionMarkAsRespawnPoint{
+        loc_name:t="Air Spawn · Field 4 · 3.5 km"
+        radius:r=-1.0
+        target:t="t1_airfield_04_air_spawn"
+        team:t="A"
+        isStrictPosAndDir:b=yes
+        offset:p3=0.0, 0.0, 0.0
+        tags{
+          air:b=yes
+          type_longrange_bomber:b=no
+          tank:b=no
+          ship:b=no
+        }
+      }
+      missionMarkAsRespawnPoint{
+        loc_name:t="Air Spawn · Main · 7 km"
+        radius:r=-1.0
+        target:t="t1_airfield_main_air_spawn"
+        team:t="A"
+        isStrictPosAndDir:b=yes
+        offset:p3=0.0, 0.0, 0.0
+        tags{
+          air:b=yes
+          type_longrange_bomber:b=no
+          tank:b=no
+          ship:b=no
+        }
+      }
+      missionMarkAsRespawnPoint{
+        loc_name:t="Air Spawn · Field 1 · 1.5 km"
+        radius:r=-1.0
+        target:t="t2_airfield_01_air_spawn"
+        team:t="B"
+        isStrictPosAndDir:b=yes
+        offset:p3=0.0, 0.0, 0.0
+        tags{
+          air:b=yes
+          type_longrange_bomber:b=no
+          tank:b=no
+          ship:b=no
+        }
+      }
+      missionMarkAsRespawnPoint{
+        loc_name:t="Air Spawn · Field 2 · 1.5 km"
+        radius:r=-1.0
+        target:t="t2_airfield_02_air_spawn"
+        team:t="B"
+        isStrictPosAndDir:b=yes
+        offset:p3=0.0, 0.0, 0.0
+        tags{
+          air:b=yes
+          type_longrange_bomber:b=no
+          tank:b=no
+          ship:b=no
+        }
+      }
+      missionMarkAsRespawnPoint{
+        loc_name:t="Air Spawn · Field 3 · 3.5 km"
+        radius:r=-1.0
+        target:t="t2_airfield_03_air_spawn"
+        team:t="B"
+        isStrictPosAndDir:b=yes
+        offset:p3=0.0, 0.0, 0.0
+        tags{
+          air:b=yes
+          type_longrange_bomber:b=no
+          tank:b=no
+          ship:b=no
+        }
+      }
+      missionMarkAsRespawnPoint{
+        loc_name:t="Air Spawn · Field 4 · 3.5 km"
+        radius:r=-1.0
+        target:t="t2_airfield_04_air_spawn"
+        team:t="B"
+        isStrictPosAndDir:b=yes
+        offset:p3=0.0, 0.0, 0.0
+        tags{
+          air:b=yes
+          type_longrange_bomber:b=no
+          tank:b=no
+          ship:b=no
+        }
+      }
+      missionMarkAsRespawnPoint{
+        loc_name:t="Air Spawn · Main · 7 km"
+        radius:r=-1.0
+        target:t="t2_airfield_main_air_spawn"
+        team:t="B"
+        isStrictPosAndDir:b=yes
+        offset:p3=0.0, 0.0, 0.0
+        tags{
+          air:b=yes
+          type_longrange_bomber:b=no
+          tank:b=no
+          ship:b=no
+        }
+      }
+    }
+    else_actions{
+
+    }
+  }
+  create_frontal_helicopter_spawns{
+    is_enabled:b=yes
+    comments:t=""
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+    events{
+      initMission{
+
+      }
+    }
+    conditions{
+
+    }
+    actions{
+      missionMarkAsRespawnPoint{
+        loc_name:t="Helicopter Spawn · Field 1 · 300 m AGL"
+        radius:r=-1.0
+        target:t="t1_airfield_01_helicopter_spawn"
+        team:t="A"
+        isStrictPosAndDir:b=yes
+        offset:p3=0.0, 0.0, 0.0
+        tags{
+          air:b=no
+          helicopter:b=yes
+          tank:b=no
+          ship:b=no
+          boat:b=no
+        }
+      }
+      missionMarkAsRespawnPoint{
+        loc_name:t="Helicopter Spawn · Field 2 · 300 m AGL"
+        radius:r=-1.0
+        target:t="t1_airfield_02_helicopter_spawn"
+        team:t="A"
+        isStrictPosAndDir:b=yes
+        offset:p3=0.0, 0.0, 0.0
+        tags{
+          air:b=no
+          helicopter:b=yes
+          tank:b=no
+          ship:b=no
+          boat:b=no
+        }
+      }
+      missionMarkAsRespawnPoint{
+        loc_name:t="Helicopter Spawn · Field 1 · 300 m AGL"
+        radius:r=-1.0
+        target:t="t2_airfield_01_helicopter_spawn"
+        team:t="B"
+        isStrictPosAndDir:b=yes
+        offset:p3=0.0, 0.0, 0.0
+        tags{
+          air:b=no
+          helicopter:b=yes
+          tank:b=no
+          ship:b=no
+          boat:b=no
+        }
+      }
+      missionMarkAsRespawnPoint{
+        loc_name:t="Helicopter Spawn · Field 2 · 300 m AGL"
+        radius:r=-1.0
+        target:t="t2_airfield_02_helicopter_spawn"
+        team:t="B"
+        isStrictPosAndDir:b=yes
+        offset:p3=0.0, 0.0, 0.0
+        tags{
+          air:b=no
+          helicopter:b=yes
+          tank:b=no
+          ship:b=no
+          boat:b=no
+        }
+      }
+    }
+    else_actions{
+
+    }
+  }
+  create_carrier_forward_naval_spawns{
+    is_enabled:b=yes
+    comments:t=""
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+    events{
+      initMission{
+
+      }
+    }
+    conditions{
+
+    }
+    actions{
+      missionMarkAsRespawnPoint{
+        loc_name:t="Naval Spawn · Carrier 1"
+        radius:r=-1.0
+        target:t="t1_aircraftcarrier_01_naval_spawn"
+        team:t="A"
+        isStrictPosAndDir:b=yes
+        offset:p3=0.0, 0.0, 0.0
+        tags{
+          air:b=no
+          helicopter:b=no
+          tank:b=no
+          ship:b=yes
+          boat:b=yes
+        }
+      }
+      missionMarkAsRespawnPoint{
+        loc_name:t="Naval Spawn · Carrier 2"
+        radius:r=-1.0
+        target:t="t1_aircraftcarrier_02_naval_spawn"
+        team:t="A"
+        isStrictPosAndDir:b=yes
+        offset:p3=0.0, 0.0, 0.0
+        tags{
+          air:b=no
+          helicopter:b=no
+          tank:b=no
+          ship:b=yes
+          boat:b=yes
+        }
+      }
+      missionMarkAsRespawnPoint{
+        loc_name:t="Naval Spawn · Carrier 1"
+        radius:r=-1.0
+        target:t="t2_aircraftcarrier_01_naval_spawn"
+        team:t="B"
+        isStrictPosAndDir:b=yes
+        offset:p3=0.0, 0.0, 0.0
+        tags{
+          air:b=no
+          helicopter:b=no
+          tank:b=no
+          ship:b=yes
+          boat:b=yes
+        }
+      }
+      missionMarkAsRespawnPoint{
+        loc_name:t="Naval Spawn · Carrier 2"
+        radius:r=-1.0
+        target:t="t2_aircraftcarrier_02_naval_spawn"
+        team:t="B"
+        isStrictPosAndDir:b=yes
+        offset:p3=0.0, 0.0, 0.0
+        tags{
+          air:b=no
+          helicopter:b=no
+          tank:b=no
+          ship:b=yes
+          boat:b=yes
+        }
+      }
+    }
+    else_actions{
+
     }
   }
 }
@@ -6931,6 +7257,10 @@ units{
     way{
     }
     additionalEcsTemplates{
+      custom_gun_properties{
+        custom_gun_properties__aimMaxDist:r=18000.0
+        custom_gun_properties__attackMaxDist:r=18000.0
+      }
       unit_spawn_and_route{
       }
       unit_death_substract_team_tickets{
@@ -6973,6 +7303,10 @@ units{
     way{
     }
     additionalEcsTemplates{
+      custom_gun_properties{
+        custom_gun_properties__aimMaxDist:r=18000.0
+        custom_gun_properties__attackMaxDist:r=18000.0
+      }
       unit_spawn_and_route{
       }
       unit_death_substract_team_tickets{
@@ -7015,6 +7349,10 @@ units{
     way{
     }
     additionalEcsTemplates{
+      custom_gun_properties{
+        custom_gun_properties__aimMaxDist:r=18000.0
+        custom_gun_properties__attackMaxDist:r=18000.0
+      }
       unit_spawn_and_route{
       }
       unit_death_substract_team_tickets{
@@ -7057,6 +7395,10 @@ units{
     way{
     }
     additionalEcsTemplates{
+      custom_gun_properties{
+        custom_gun_properties__aimMaxDist:r=18000.0
+        custom_gun_properties__attackMaxDist:r=18000.0
+      }
       unit_spawn_and_route{
       }
       unit_death_substract_team_tickets{
@@ -7099,6 +7441,10 @@ units{
     way{
     }
     additionalEcsTemplates{
+      custom_gun_properties{
+        custom_gun_properties__aimMaxDist:r=18000.0
+        custom_gun_properties__attackMaxDist:r=18000.0
+      }
       unit_spawn_and_route{
       }
       unit_death_substract_team_tickets{
@@ -7141,6 +7487,10 @@ units{
     way{
     }
     additionalEcsTemplates{
+      custom_gun_properties{
+        custom_gun_properties__aimMaxDist:r=18000.0
+        custom_gun_properties__attackMaxDist:r=18000.0
+      }
       unit_spawn_and_route{
       }
       unit_death_substract_team_tickets{
@@ -7183,6 +7533,10 @@ units{
     way{
     }
     additionalEcsTemplates{
+      custom_gun_properties{
+        custom_gun_properties__aimMaxDist:r=18000.0
+        custom_gun_properties__attackMaxDist:r=18000.0
+      }
       unit_spawn_and_route{
       }
       unit_death_substract_team_tickets{
@@ -7225,6 +7579,10 @@ units{
     way{
     }
     additionalEcsTemplates{
+      custom_gun_properties{
+        custom_gun_properties__aimMaxDist:r=18000.0
+        custom_gun_properties__attackMaxDist:r=18000.0
+      }
       unit_spawn_and_route{
       }
       unit_death_substract_team_tickets{
@@ -7267,6 +7625,10 @@ units{
     way{
     }
     additionalEcsTemplates{
+      custom_gun_properties{
+        custom_gun_properties__aimMaxDist:r=18000.0
+        custom_gun_properties__attackMaxDist:r=18000.0
+      }
       unit_spawn_and_route{
       }
       unit_death_substract_team_tickets{
@@ -7309,6 +7671,10 @@ units{
     way{
     }
     additionalEcsTemplates{
+      custom_gun_properties{
+        custom_gun_properties__aimMaxDist:r=18000.0
+        custom_gun_properties__attackMaxDist:r=18000.0
+      }
       unit_spawn_and_route{
       }
       unit_death_substract_team_tickets{
@@ -7351,6 +7717,10 @@ units{
     way{
     }
     additionalEcsTemplates{
+      custom_gun_properties{
+        custom_gun_properties__aimMaxDist:r=18000.0
+        custom_gun_properties__attackMaxDist:r=18000.0
+      }
       unit_spawn_and_route{
       }
       unit_death_substract_team_tickets{
@@ -7393,6 +7763,10 @@ units{
     way{
     }
     additionalEcsTemplates{
+      custom_gun_properties{
+        custom_gun_properties__aimMaxDist:r=18000.0
+        custom_gun_properties__attackMaxDist:r=18000.0
+      }
       unit_spawn_and_route{
       }
       unit_death_substract_team_tickets{
@@ -7435,6 +7809,10 @@ units{
     way{
     }
     additionalEcsTemplates{
+      custom_gun_properties{
+        custom_gun_properties__aimMaxDist:r=18000.0
+        custom_gun_properties__attackMaxDist:r=18000.0
+      }
       unit_spawn_and_route{
       }
       unit_death_substract_team_tickets{
@@ -7477,6 +7855,10 @@ units{
     way{
     }
     additionalEcsTemplates{
+      custom_gun_properties{
+        custom_gun_properties__aimMaxDist:r=18000.0
+        custom_gun_properties__attackMaxDist:r=18000.0
+      }
       unit_spawn_and_route{
       }
       unit_death_substract_team_tickets{
@@ -7519,6 +7901,10 @@ units{
     way{
     }
     additionalEcsTemplates{
+      custom_gun_properties{
+        custom_gun_properties__aimMaxDist:r=18000.0
+        custom_gun_properties__attackMaxDist:r=18000.0
+      }
       unit_spawn_and_route{
       }
       unit_death_substract_team_tickets{
@@ -7561,6 +7947,10 @@ units{
     way{
     }
     additionalEcsTemplates{
+      custom_gun_properties{
+        custom_gun_properties__aimMaxDist:r=18000.0
+        custom_gun_properties__attackMaxDist:r=18000.0
+      }
       unit_spawn_and_route{
       }
       unit_death_substract_team_tickets{
@@ -7603,6 +7993,10 @@ units{
     way{
     }
     additionalEcsTemplates{
+      custom_gun_properties{
+        custom_gun_properties__aimMaxDist:r=18000.0
+        custom_gun_properties__attackMaxDist:r=18000.0
+      }
       unit_spawn_and_route{
       }
       unit_death_substract_team_tickets{
@@ -7645,6 +8039,10 @@ units{
     way{
     }
     additionalEcsTemplates{
+      custom_gun_properties{
+        custom_gun_properties__aimMaxDist:r=18000.0
+        custom_gun_properties__attackMaxDist:r=18000.0
+      }
       unit_spawn_and_route{
       }
       unit_death_substract_team_tickets{
@@ -7687,6 +8085,10 @@ units{
     way{
     }
     additionalEcsTemplates{
+      custom_gun_properties{
+        custom_gun_properties__aimMaxDist:r=18000.0
+        custom_gun_properties__attackMaxDist:r=18000.0
+      }
       unit_spawn_and_route{
       }
       unit_death_substract_team_tickets{
@@ -7729,6 +8131,10 @@ units{
     way{
     }
     additionalEcsTemplates{
+      custom_gun_properties{
+        custom_gun_properties__aimMaxDist:r=18000.0
+        custom_gun_properties__attackMaxDist:r=18000.0
+      }
       unit_spawn_and_route{
       }
       unit_death_substract_team_tickets{
@@ -7771,6 +8177,10 @@ units{
     way{
     }
     additionalEcsTemplates{
+      custom_gun_properties{
+        custom_gun_properties__aimMaxDist:r=18000.0
+        custom_gun_properties__attackMaxDist:r=18000.0
+      }
       unit_spawn_and_route{
       }
       unit_death_substract_team_tickets{
@@ -7813,6 +8223,10 @@ units{
     way{
     }
     additionalEcsTemplates{
+      custom_gun_properties{
+        custom_gun_properties__aimMaxDist:r=18000.0
+        custom_gun_properties__attackMaxDist:r=18000.0
+      }
       unit_spawn_and_route{
       }
       unit_death_substract_team_tickets{
@@ -7855,6 +8269,10 @@ units{
     way{
     }
     additionalEcsTemplates{
+      custom_gun_properties{
+        custom_gun_properties__aimMaxDist:r=18000.0
+        custom_gun_properties__attackMaxDist:r=18000.0
+      }
       unit_spawn_and_route{
       }
       unit_death_substract_team_tickets{
@@ -7897,6 +8315,10 @@ units{
     way{
     }
     additionalEcsTemplates{
+      custom_gun_properties{
+        custom_gun_properties__aimMaxDist:r=18000.0
+        custom_gun_properties__attackMaxDist:r=18000.0
+      }
       unit_spawn_and_route{
       }
       unit_death_substract_team_tickets{
@@ -7939,6 +8361,10 @@ units{
     way{
     }
     additionalEcsTemplates{
+      custom_gun_properties{
+        custom_gun_properties__aimMaxDist:r=18000.0
+        custom_gun_properties__attackMaxDist:r=18000.0
+      }
       unit_spawn_and_route{
       }
       unit_death_substract_team_tickets{
@@ -7981,6 +8407,10 @@ units{
     way{
     }
     additionalEcsTemplates{
+      custom_gun_properties{
+        custom_gun_properties__aimMaxDist:r=18000.0
+        custom_gun_properties__attackMaxDist:r=18000.0
+      }
       unit_spawn_and_route{
       }
       unit_death_substract_team_tickets{
@@ -8023,6 +8453,10 @@ units{
     way{
     }
     additionalEcsTemplates{
+      custom_gun_properties{
+        custom_gun_properties__aimMaxDist:r=18000.0
+        custom_gun_properties__attackMaxDist:r=18000.0
+      }
       unit_spawn_and_route{
       }
       unit_death_substract_team_tickets{
@@ -8065,6 +8499,10 @@ units{
     way{
     }
     additionalEcsTemplates{
+      custom_gun_properties{
+        custom_gun_properties__aimMaxDist:r=18000.0
+        custom_gun_properties__attackMaxDist:r=18000.0
+      }
       unit_spawn_and_route{
       }
       unit_death_substract_team_tickets{
@@ -8107,6 +8545,10 @@ units{
     way{
     }
     additionalEcsTemplates{
+      custom_gun_properties{
+        custom_gun_properties__aimMaxDist:r=18000.0
+        custom_gun_properties__attackMaxDist:r=18000.0
+      }
       unit_spawn_and_route{
       }
       unit_death_substract_team_tickets{
@@ -8149,6 +8591,10 @@ units{
     way{
     }
     additionalEcsTemplates{
+      custom_gun_properties{
+        custom_gun_properties__aimMaxDist:r=18000.0
+        custom_gun_properties__attackMaxDist:r=18000.0
+      }
       unit_spawn_and_route{
       }
       unit_death_substract_team_tickets{
@@ -8191,6 +8637,10 @@ units{
     way{
     }
     additionalEcsTemplates{
+      custom_gun_properties{
+        custom_gun_properties__aimMaxDist:r=18000.0
+        custom_gun_properties__attackMaxDist:r=18000.0
+      }
       unit_spawn_and_route{
       }
       unit_death_substract_team_tickets{
@@ -8233,6 +8683,10 @@ units{
     way{
     }
     additionalEcsTemplates{
+      custom_gun_properties{
+        custom_gun_properties__aimMaxDist:r=18000.0
+        custom_gun_properties__attackMaxDist:r=18000.0
+      }
       unit_spawn_and_route{
       }
       unit_death_substract_team_tickets{
@@ -8275,6 +8729,10 @@ units{
     way{
     }
     additionalEcsTemplates{
+      custom_gun_properties{
+        custom_gun_properties__aimMaxDist:r=18000.0
+        custom_gun_properties__attackMaxDist:r=18000.0
+      }
       unit_spawn_and_route{
       }
       unit_death_substract_team_tickets{
@@ -8317,6 +8775,10 @@ units{
     way{
     }
     additionalEcsTemplates{
+      custom_gun_properties{
+        custom_gun_properties__aimMaxDist:r=18000.0
+        custom_gun_properties__attackMaxDist:r=18000.0
+      }
       unit_spawn_and_route{
       }
       unit_death_substract_team_tickets{
@@ -8359,6 +8821,10 @@ units{
     way{
     }
     additionalEcsTemplates{
+      custom_gun_properties{
+        custom_gun_properties__aimMaxDist:r=18000.0
+        custom_gun_properties__attackMaxDist:r=18000.0
+      }
       unit_spawn_and_route{
       }
       unit_death_substract_team_tickets{
@@ -8401,6 +8867,10 @@ units{
     way{
     }
     additionalEcsTemplates{
+      custom_gun_properties{
+        custom_gun_properties__aimMaxDist:r=18000.0
+        custom_gun_properties__attackMaxDist:r=18000.0
+      }
       unit_spawn_and_route{
       }
       unit_death_substract_team_tickets{
@@ -8443,6 +8913,10 @@ units{
     way{
     }
     additionalEcsTemplates{
+      custom_gun_properties{
+        custom_gun_properties__aimMaxDist:r=18000.0
+        custom_gun_properties__attackMaxDist:r=18000.0
+      }
       unit_spawn_and_route{
       }
       unit_death_substract_team_tickets{
@@ -8485,6 +8959,10 @@ units{
     way{
     }
     additionalEcsTemplates{
+      custom_gun_properties{
+        custom_gun_properties__aimMaxDist:r=18000.0
+        custom_gun_properties__attackMaxDist:r=18000.0
+      }
       unit_spawn_and_route{
       }
       unit_death_substract_team_tickets{
@@ -8527,6 +9005,10 @@ units{
     way{
     }
     additionalEcsTemplates{
+      custom_gun_properties{
+        custom_gun_properties__aimMaxDist:r=18000.0
+        custom_gun_properties__attackMaxDist:r=18000.0
+      }
       unit_spawn_and_route{
       }
       unit_death_substract_team_tickets{
@@ -8569,6 +9051,10 @@ units{
     way{
     }
     additionalEcsTemplates{
+      custom_gun_properties{
+        custom_gun_properties__aimMaxDist:r=18000.0
+        custom_gun_properties__attackMaxDist:r=18000.0
+      }
       unit_spawn_and_route{
       }
       unit_death_substract_team_tickets{
@@ -8611,6 +9097,10 @@ units{
     way{
     }
     additionalEcsTemplates{
+      custom_gun_properties{
+        custom_gun_properties__aimMaxDist:r=18000.0
+        custom_gun_properties__attackMaxDist:r=18000.0
+      }
       unit_spawn_and_route{
       }
       unit_death_substract_team_tickets{
@@ -8653,6 +9143,10 @@ units{
     way{
     }
     additionalEcsTemplates{
+      custom_gun_properties{
+        custom_gun_properties__aimMaxDist:r=18000.0
+        custom_gun_properties__attackMaxDist:r=18000.0
+      }
       unit_spawn_and_route{
       }
       unit_death_substract_team_tickets{
@@ -8695,6 +9189,10 @@ units{
     way{
     }
     additionalEcsTemplates{
+      custom_gun_properties{
+        custom_gun_properties__aimMaxDist:r=18000.0
+        custom_gun_properties__attackMaxDist:r=18000.0
+      }
       unit_spawn_and_route{
       }
       unit_death_substract_team_tickets{
@@ -8737,6 +9235,10 @@ units{
     way{
     }
     additionalEcsTemplates{
+      custom_gun_properties{
+        custom_gun_properties__aimMaxDist:r=18000.0
+        custom_gun_properties__attackMaxDist:r=18000.0
+      }
       unit_spawn_and_route{
       }
       unit_death_substract_team_tickets{
@@ -8779,6 +9281,10 @@ units{
     way{
     }
     additionalEcsTemplates{
+      custom_gun_properties{
+        custom_gun_properties__aimMaxDist:r=18000.0
+        custom_gun_properties__attackMaxDist:r=18000.0
+      }
       unit_spawn_and_route{
       }
       unit_death_substract_team_tickets{
@@ -8821,6 +9327,10 @@ units{
     way{
     }
     additionalEcsTemplates{
+      custom_gun_properties{
+        custom_gun_properties__aimMaxDist:r=18000.0
+        custom_gun_properties__attackMaxDist:r=18000.0
+      }
       unit_spawn_and_route{
       }
       unit_death_substract_team_tickets{
@@ -8863,6 +9373,10 @@ units{
     way{
     }
     additionalEcsTemplates{
+      custom_gun_properties{
+        custom_gun_properties__aimMaxDist:r=18000.0
+        custom_gun_properties__attackMaxDist:r=18000.0
+      }
       unit_spawn_and_route{
       }
       unit_death_substract_team_tickets{
@@ -8905,6 +9419,10 @@ units{
     way{
     }
     additionalEcsTemplates{
+      custom_gun_properties{
+        custom_gun_properties__aimMaxDist:r=18000.0
+        custom_gun_properties__attackMaxDist:r=18000.0
+      }
       unit_spawn_and_route{
       }
       unit_death_substract_team_tickets{
@@ -9941,6 +10459,150 @@ areas{
     type:t="Cylinder"
     tm:m=[[20000.0, 0.0, 0.0] [0.0, 500.0, 0.0] [0.0, 0.0, 20000.0] [-26062.4, 0.0, -10254.3]]
     objLayer:i=3
+    props{
+
+    }
+  }
+  t1_airfield_01_air_spawn{
+    type:t="Sphere"
+    tm:m=[[195.952684, 0.0, -40.031810] [0.0, 50.0, 0.0] [40.031810, 0.0, 195.952684] [-33619.581, 1500.0, 26594.754]]
+    objLayer:i=0
+    props{
+
+    }
+  }
+  t1_airfield_02_air_spawn{
+    type:t="Sphere"
+    tm:m=[[185.749877, 0.0, -74.141642] [0.0, 50.0, 0.0] [74.141642, 0.0, 185.749877] [-25555.296, 1500.0, 39305.049]]
+    objLayer:i=0
+    props{
+
+    }
+  }
+  t1_airfield_03_air_spawn{
+    type:t="Sphere"
+    tm:m=[[183.191997, 0.0, -80.253923] [0.0, 50.0, 0.0] [80.253923, 0.0, 183.191997] [-43521.360, 3500.0, 50044.918]]
+    objLayer:i=0
+    props{
+
+    }
+  }
+  t1_airfield_04_air_spawn{
+    type:t="Sphere"
+    tm:m=[[192.976674, 0.0, 52.535734] [0.0, 50.0, 0.0] [-52.535734, 0.0, 192.976674] [-31912.500, 3500.0, -11896.472]]
+    objLayer:i=0
+    props{
+
+    }
+  }
+  t1_airfield_main_air_spawn{
+    type:t="Sphere"
+    tm:m=[[199.239332, 0.0, 17.426663] [0.0, 50.0, 0.0] [-17.426663, 0.0, 199.239332] [-41025.195, 7000.0, 2096.025]]
+    objLayer:i=0
+    props{
+
+    }
+  }
+  t2_airfield_01_air_spawn{
+    type:t="Sphere"
+    tm:m=[[-146.631568, 0.0, -136.011703] [0.0, 50.0, 0.0] [136.011703, 0.0, -146.631568] [15589.947, 1500.0, 43840.151]]
+    objLayer:i=0
+    props{
+
+    }
+  }
+  t2_airfield_02_air_spawn{
+    type:t="Sphere"
+    tm:m=[[-146.242823, 0.0, -136.429604] [0.0, 50.0, 0.0] [136.429604, 0.0, -146.242823] [23689.785, 1500.0, 51729.588]]
+    objLayer:i=0
+    props{
+
+    }
+  }
+  t2_airfield_03_air_spawn{
+    type:t="Sphere"
+    tm:m=[[-161.816895, 0.0, -117.538472] [0.0, 50.0, 0.0] [117.538472, 0.0, -161.816895] [39319.307, 3500.0, 48485.354]]
+    objLayer:i=0
+    props{
+
+    }
+  }
+  t2_airfield_04_air_spawn{
+    type:t="Sphere"
+    tm:m=[[-190.942661, 0.0, -59.505463] [0.0, 50.0, 0.0] [59.505463, 0.0, -190.942661] [31048.880, 3500.0, 10114.264]]
+    objLayer:i=0
+    props{
+
+    }
+  }
+  t2_airfield_main_air_spawn{
+    type:t="Sphere"
+    tm:m=[[-187.104634, 0.0, -70.653068] [0.0, 50.0, 0.0] [70.653068, 0.0, -187.104634] [40414.285, 7000.0, 18798.978]]
+    objLayer:i=0
+    props{
+
+    }
+  }
+  t1_airfield_01_helicopter_spawn{
+    type:t="Sphere"
+    tm:m=[[117.571610, 0.0, -24.019086] [0.0, 35.0, 0.0] [24.019086, 0.0, 117.571610] [-19902.893, 353.2, 23792.528]]
+    objLayer:i=0
+    props{
+
+    }
+  }
+  t1_airfield_02_helicopter_spawn{
+    type:t="Sphere"
+    tm:m=[[111.449926, 0.0, -44.484985] [0.0, 35.0, 0.0] [44.484985, 0.0, 111.449926] [-12552.805, 470.6, 34115.134]]
+    objLayer:i=0
+    props{
+
+    }
+  }
+  t2_airfield_01_helicopter_spawn{
+    type:t="Sphere"
+    tm:m=[[-87.978941, 0.0, -81.607022] [0.0, 35.0, 0.0] [81.607022, 0.0, -87.978941] [5325.737, 399.3, 34319.332]]
+    objLayer:i=0
+    props{
+
+    }
+  }
+  t2_airfield_02_helicopter_spawn{
+    type:t="Sphere"
+    tm:m=[[-87.745694, 0.0, -81.857762] [0.0, 35.0, 0.0] [81.857762, 0.0, -87.745694] [13452.787, 373.0, 42179.516]]
+    objLayer:i=0
+    props{
+
+    }
+  }
+  t1_aircraftcarrier_01_naval_spawn{
+    type:t="Sphere"
+    tm:m=[[475.272203, 0.0, -443.414403] [0.0, 50.0, 0.0] [443.414403, 0.0, 475.272203] [33870.164, 0.0, -82324.428]]
+    objLayer:i=0
+    props{
+
+    }
+  }
+  t1_aircraftcarrier_02_naval_spawn{
+    type:t="Sphere"
+    tm:m=[[482.284835, 0.0, -435.776706] [0.0, 50.0, 0.0] [435.776706, 0.0, 482.284835] [29644.630, 0.0, -87088.777]]
+    objLayer:i=0
+    props{
+
+    }
+  }
+  t2_aircraftcarrier_01_naval_spawn{
+    type:t="Sphere"
+    tm:m=[[461.021587, 0.0, -458.212937] [0.0, 50.0, 0.0] [458.212937, 0.0, 461.021587] [82023.092, 0.0, -33228.529]]
+    objLayer:i=0
+    props{
+
+    }
+  }
+  t2_aircraftcarrier_02_naval_spawn{
+    type:t="Sphere"
+    tm:m=[[458.711438, 0.0, -460.525588] [0.0, 50.0, 0.0] [460.525588, 0.0, 458.711438] [86932.930, 0.0, -28521.903]]
+    objLayer:i=0
     props{
 
     }

@@ -5,24 +5,25 @@
 | File | Long-range S-300 / SAMP/T sites | Airfield AA, including HQ-11 | Status |
 |---|---:|---:|---|
 | [`source.blk`](source.blk) | Enabled | Enabled | Original |
-| [`no-lrsam.blk`](no-lrsam.blk) | Removed | Enabled | Tested: long-range sites absent |
+| [`no-lrsam.blk`](no-lrsam.blk) | Removed; missile ships capped at 18 km | Enabled | Quick-start aircraft, helicopter, and naval spawns; 30-second respawn |
 | [`no-lrsam-no-airfield-aa.blk`](no-lrsam-no-airfield-aa.blk) | Removed | Removed | Generated; needs in-game validation |
 | [`silent-lrsam-experimental.blk`](silent-lrsam-experimental.blk) | Present, attempted zero-ammo override | Enabled | Tested: override ignored; sites still fire |
 | [`sead-training-strategic-sams-silent.blk`](sead-training-strategic-sams-silent.blk) | Present, missile/target channels set to zero | Enabled | **Tested: strategic sites do not launch** |
-| [`sead-training-hq11-18km.blk`](sead-training-hq11-18km.blk) | Present, unable to engage | HQ-11 sensor activation reduced to 18 km | Experimental; needs in-game validation |
+| [`sead-training-hq11-18km.blk`](sead-training-hq11-18km.blk) | Present, unable to engage; missile ships capped at 18 km | HQ-11 sensor activation reduced to 18 km | Quick-start aircraft, helicopter, and naval spawns; 30-second respawn |
 | [`sead-training-hq11-silent.blk`](sead-training-hq11-silent.blk) | Present, unable to engage | HQ-11 radar and initial missiles disabled | Experimental; needs in-game validation |
 | [`experimental-quick-start-airspawns.blk`](experimental-quick-start-airspawns.blk) | Present, unable to engage; missile ships capped at 18 km | HQ-11 sensor activation reduced to 18 km | Experimental; 30-second respawn with aircraft, helicopter, and naval spawns |
 
 `silent-lrsam-zero-channels-experimental.blk` remains available as a
 compatibility alias for the previously published stable URL.
 
-The quick-start airspawn experiment places fields 1–3 at 1.5 km and fields
+The shared quick-start package used by the two maintained non-normal variants
+and the experiment places fields 1–3 at 1.5 km and fields
 4–5 at 3.5 km, all 6 km behind their runways. The 7 km main spawn starts from
 the halfway point between the main base and fields 4–5, then moves another
 1.5 km toward friendly territory. It also adds helicopter-only spawns 300 m
-above and 2 km behind fields 1–3, plus two naval spawns per team 3 km ahead of
-the carriers' initial positions and aligned with their routes. Tanks are
-disabled for this experimental variant.
+above and 8 km forward of fields 1–3 toward the front line, plus two naval
+spawns per team 3 km ahead of the carriers' initial positions and aligned with
+their routes. Tanks are disabled in these quick-start variants.
 
 ### Direct URLs
 
