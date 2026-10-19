@@ -425,7 +425,7 @@ def print_built(missions: dict[str, bytes], base_url: str | None = None) -> None
             target = base_url.rstrip("/") + target
         print(f"{target}  {len(payload):,} bytes  sha256:{digest(payload)}")
         if target.startswith("https://"):
-            print(f"  War Thunder: {target.removeprefix('https://')}")
+            print(f"  War Thunder (keep HTTPS): {target}")
 
 
 def watched_state(config_dir: Path) -> tuple[tuple[str, int, int], ...]:

@@ -51,6 +51,10 @@ through public DNS before presenting it as ready. This matters because the same
 name can start working through private MagicDNS several minutes before an
 external service such as War Thunder can resolve it.
 
+Keep the `https://` prefix when pasting a Tailscale Funnel mission URL into War
+Thunder. Funnel listens on HTTPS port 443 and does not provide an HTTP port-80
+redirect like GitHub does.
+
 The public paths remain predictable across rebuilds:
 
 ```text
