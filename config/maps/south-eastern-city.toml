@@ -1,0 +1,11 @@
+[mission]
+slug = "south-eastern-city"
+adapter = "south-eastern-city"
+title = "Nuclear Escalation · South-Eastern City · Dynamic"
+description = "Dynamically generated South-Eastern City configuration."
+
+[defenses]
+# This demonstrates a per-map override of the base SEAD-training defaults.
+strategic_sams = "stock"
+hq11_mode = "stock"
+missile_ship_range_km = 0.0

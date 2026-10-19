@@ -1,0 +1,49 @@
+[mission]
+slug = "archipelago-2018"
+adapter = "archipelago-2018"
+title = "Nuclear Escalation · Archipelago · Dynamic"
+description = "Dynamically generated Archipelago configuration."
+
+[rules]
+helicopters = true
+naval = true
+
+[spawns.aircraft]
+enabled = true
+main_forward_fields = ["04", "05"]
+main_forward_fraction = 0.5
+
+[spawns.aircraft.fields."01"]
+altitude_m = 1500.0
+rear_offset_m = 6000.0
+
+[spawns.aircraft.fields."02"]
+altitude_m = 1500.0
+rear_offset_m = 6000.0
+
+[spawns.aircraft.fields."03"]
+altitude_m = 1500.0
+rear_offset_m = 6000.0
+
+[spawns.aircraft.fields."04"]
+altitude_m = 3500.0
+rear_offset_m = 6000.0
+
+[spawns.aircraft.fields."05"]
+altitude_m = 3500.0
+rear_offset_m = 6000.0
+
+[spawns.aircraft.fields.main]
+altitude_m = 7000.0
+rear_offset_m = 1500.0
+
+[spawns.helicopters]
+enabled = true
+fields = ["01", "02", "03"]
+altitude_agl_m = 300.0
+# Positive values move toward the enemy/front; negative values move rearward.
+forward_from_field_m = 8000.0
+
+[spawns.naval]
+enabled = true
+forward_from_carrier_m = 3000.0

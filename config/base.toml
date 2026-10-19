@@ -1,0 +1,26 @@
+[mission]
+enabled = true
+
+[defenses]
+# Map profiles can override any of these values. Supported strategic-SAM modes
+# are "stock", "silent", and "removed".
+strategic_sams = "silent"
+hq11_mode = "range_limited"
+hq11_range_km = 18.0
+missile_ship_range_km = 18.0
+
+[rules]
+respawn_seconds = 30
+aircraft = true
+helicopters = false
+naval = false
+tanks = false
+
+[spawns.aircraft]
+enabled = false
+
+[spawns.helicopters]
+enabled = false
+
+[spawns.naval]
+enabled = false
