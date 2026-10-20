@@ -19,8 +19,12 @@ cp "$experiment_dir/content/pkg_local/gameData/flightModels/wt_custom_rafale_m_f
 cp "$experiment_dir/content/pkg_local/gameData/flightModels/weaponPresets/wt_rafale_m_spice250.blk" "$presets_dir/"
 cp "$experiment_dir/content/pkg_local/gameData/flightModels/weaponPresets/wt_rafale_m_brimstone.blk" "$presets_dir/"
 cp "$experiment_dir/content/pkg_local/gameData/flightModels/weaponPresets/wt_rafale_m_jsow.blk" "$presets_dir/"
+cp "$experiment_dir/content/pkg_local/gameData/flightModels/weaponPresets/wt_rafale_m_jsow5.blk" "$presets_dir/"
+cp "$experiment_dir/content/pkg_local/gameData/flightModels/weaponPresets/wt_rafale_m_jsow9.blk" "$presets_dir/"
 cp "$experiment_dir/UserMissions/usr_wt_rafale_spice250.mission.blk" "$missions_dir/"
 cp "$experiment_dir/UserMissions/usr_wt_rafale_brimstone.mission.blk" "$missions_dir/"
 cp "$experiment_dir/UserMissions/usr_wt_rafale_jsow.mission.blk" "$missions_dir/"
+cp "$experiment_dir/UserMissions/usr_wt_rafale_jsow5.mission.blk" "$missions_dir/"
+cp "$experiment_dir/UserMissions/usr_wt_rafale_jsow9.mission.blk" "$missions_dir/"
 
 printf 'Installed Rafale weapon experiments in:\n  %s\n  %s\n' "$flightmodels_dir" "$missions_dir"

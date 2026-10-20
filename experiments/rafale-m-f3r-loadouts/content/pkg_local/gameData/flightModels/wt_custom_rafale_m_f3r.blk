@@ -1,6 +1,7 @@
 // Local single-player experiment based on the stock Rafale M F3-R.
-// The stock aircraft is included unchanged, then three experimental stores are
-// added to its existing heavy wing stations (slots 3 and 10).
+// The stock aircraft is included unchanged, then experimental stores are added
+// to its heavy stations. JSOW variants also exercise the centerline and wet
+// inner-wing stations.
 
 include "#/develop/gameBase/gameData/flightModels/rafale_m_f3r.blk"
 
@@ -16,6 +17,14 @@ include "#/develop/gameBase/gameData/flightModels/rafale_m_f3r.blk"
   preset {
     name:t="wt_rafale_m_jsow"
     blk:t="gameData/flightModels/weaponPresets/wt_rafale_m_jsow.blk"
+  }
+  preset {
+    name:t="wt_rafale_m_jsow5"
+    blk:t="gameData/flightModels/weaponPresets/wt_rafale_m_jsow5.blk"
+  }
+  preset {
+    name:t="wt_rafale_m_jsow9"
+    blk:t="gameData/flightModels/weaponPresets/wt_rafale_m_jsow9.blk"
   }
 }
 
@@ -75,6 +84,82 @@ include "#/develop/gameBase/gameData/flightModels/rafale_m_f3r.blk"
         machLimit:r=0.95
       }
     }
+
+    WeaponPreset {
+      iconType:t="glide_bomb_default"
+      name:t="wt_jsow_x2_slot3"
+      ShowNodes {
+        node:t="pylon_pu_708_001"
+      }
+      Weapon {
+        trigger:t="guided bombs"
+        blk:t="gameData/Weapons/containers/bru_55_agm_154a1_jsow.blk"
+        emitter:t="pylon_at_730_001"
+        external:b=yes
+        separate:b=yes
+        machLimit:r=0.95
+      }
+    }
+  }
+
+  // Block 5 is aircraft slot 4 (left inner wet station).
+  "@override:WeaponSlot[5]" {
+    WeaponPreset {
+      iconType:t="glide_bomb_default"
+      name:t="wt_jsow_x2_slot4"
+      ShowNodes {
+        node:t="pylon_rafale_wing_001"
+        node:t="pylon_rafale_wing_001_nose"
+      }
+      Weapon {
+        trigger:t="guided bombs"
+        blk:t="gameData/Weapons/containers/bru_55_agm_154a1_jsow.blk"
+        emitter:t="fr_2000l_rpl_741_rafale_drop_tank_001"
+        external:b=yes
+        separate:b=yes
+        machLimit:r=0.95
+      }
+    }
+  }
+
+  // Block 8 is aircraft slot 7 (centerline heavy station).
+  "@override:WeaponSlot[8]" {
+    WeaponPreset {
+      iconType:t="glide_bomb_default"
+      name:t="wt_jsow_slot7"
+      ShowNodes {
+        node:t="pylon_rafale_central"
+      }
+      Weapon {
+        trigger:t="guided bombs"
+        blk:t="gameData/Weapons/BombGuns/us_agm_154a1_jsow.blk"
+        emitter:t="bomb_gbu_24_003"
+        bullets:i=1
+        external:b=yes
+        separate:b=yes
+        machLimit:r=0.95
+      }
+    }
+  }
+
+  // Block 10 is aircraft slot 9 (right inner wet station).
+  "@override:WeaponSlot[10]" {
+    WeaponPreset {
+      iconType:t="glide_bomb_default"
+      name:t="wt_jsow_x2_slot9"
+      ShowNodes {
+        node:t="pylon_rafale_wing_002"
+        node:t="pylon_rafale_wing_002_nose"
+      }
+      Weapon {
+        trigger:t="guided bombs"
+        blk:t="gameData/Weapons/containers/bru_55_agm_154a1_jsow.blk"
+        emitter:t="fr_2000l_rpl_741_rafale_drop_tank_003"
+        external:b=yes
+        separate:b=yes
+        machLimit:r=0.95
+      }
+    }
   }
 
   // Block 11 is aircraft slot 10 (right heavy wing station).
@@ -126,6 +211,22 @@ include "#/develop/gameBase/gameData/flightModels/rafale_m_f3r.blk"
         blk:t="gameData/Weapons/BombGuns/us_agm_154a1_jsow.blk"
         emitter:t="pylon_at_730_002"
         bullets:i=1
+        external:b=yes
+        separate:b=yes
+        machLimit:r=0.95
+      }
+    }
+
+    WeaponPreset {
+      iconType:t="glide_bomb_default"
+      name:t="wt_jsow_x2_slot10"
+      ShowNodes {
+        node:t="pylon_pu_708_002"
+      }
+      Weapon {
+        trigger:t="guided bombs"
+        blk:t="gameData/Weapons/containers/bru_55_agm_154a1_jsow.blk"
+        emitter:t="pylon_at_730_002"
         external:b=yes
         separate:b=yes
         machLimit:r=0.95
