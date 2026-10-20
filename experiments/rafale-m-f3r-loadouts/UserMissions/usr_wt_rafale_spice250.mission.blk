@@ -4,75 +4,10 @@ mission_settings{
   player{
     army:i=1
     wing:t="t1_player01"
-    wing:t="t1_player02"
-    wing:t="t1_player03"
-    wing:t="t1_player04"
-    wing:t="t1_player05"
-    wing:t="t1_player06"
-    wing:t="t1_player07"
-    wing:t="t1_player08"
-    wing:t="t1_player09"
-    wing:t="t1_player10"
-    wing:t="t1_player11"
-    wing:t="t1_player12"
-    wing:t="t1_player13"
-    wing:t="t1_player14"
-    wing:t="t1_player15"
-    wing:t="t1_player16"
-    wing:t="t1_player17"
-    wing:t="t1_player18"
-    wing:t="t1_player19"
-    wing:t="t1_player20"
-    wing:t="t1_player21"
-    wing:t="t1_player22"
-    wing:t="t1_player23"
-    wing:t="t1_player24"
-    wing:t="t1_player25"
-    wing:t="t1_player26"
-    wing:t="t1_player27"
-    wing:t="t1_player28"
-    wing:t="t1_player29"
-    wing:t="t1_player30"
-    wing:t="t1_player31"
-    wing:t="t1_player32"
-  }
-  player_teamB{
-    army:i=2
-    wing:t="t2_player01"
-    wing:t="t2_player02"
-    wing:t="t2_player03"
-    wing:t="t2_player04"
-    wing:t="t2_player05"
-    wing:t="t2_player06"
-    wing:t="t2_player07"
-    wing:t="t2_player08"
-    wing:t="t2_player09"
-    wing:t="t2_player10"
-    wing:t="t2_player11"
-    wing:t="t2_player12"
-    wing:t="t2_player13"
-    wing:t="t2_player14"
-    wing:t="t2_player15"
-    wing:t="t2_player16"
-    wing:t="t2_player17"
-    wing:t="t2_player18"
-    wing:t="t2_player19"
-    wing:t="t2_player20"
-    wing:t="t2_player21"
-    wing:t="t2_player22"
-    wing:t="t2_player23"
-    wing:t="t2_player24"
-    wing:t="t2_player25"
-    wing:t="t2_player26"
-    wing:t="t2_player27"
-    wing:t="t2_player28"
-    wing:t="t2_player29"
-    wing:t="t2_player30"
-    wing:t="t2_player31"
-    wing:t="t2_player32"
   }
   mission{
-    type:t="domination"
+    name:t="wt_rafale_spice250_southeastern_city"
+    type:t="singleMission"
     level:t="levels/air_south_eastern_city.bin"
     environment:t="Day"
     weather:t="clear"
@@ -94,8 +29,8 @@ mission_settings{
     afterRespawnDelaySec:i=30
     useSpawnDelay:b=yes
     timeToLoseInstantDetection:r=10
-    locName:t="Southeastern City · Rafale M · 6× Brimstone DM"
-    locDesc:t="Local single-player weapon experiment using the peaceful Nuclear Escalation map. The custom Rafale M F3-R carries two three-round Brimstone DM racks and TALIOS. All map units remain present but cannot attack the player."
+    locName:t="Southeastern City · Rafale M · 8× SPICE 250"
+    locDesc:t="Local single-player weapon experiment using the peaceful Nuclear Escalation map. The custom Rafale M F3-R carries two four-round SPICE 250 racks and TALIOS. All map units remain present but cannot attack the player."
     scoreLimit:i=9000
     timeLimit:i=90
     deathPenaltyMul:r=0.2
@@ -245,7 +180,7 @@ triggers{
       }
       __changeUnit{
         unit_class:t="wt_custom_rafale_m_f3r"
-        weaponPreset:t="wt_rafale_m_brimstone"
+        weaponPreset:t="wt_rafale_m_spice250"
         isIndividual:b=no
         hangarMission:b=no
         object:t="t1_player01"
@@ -253,7 +188,7 @@ triggers{
       }
       changeUnit{
         unit_class:t="wt_custom_rafale_m_f3r"
-        weaponPreset:t="wt_rafale_m_brimstone"
+        weaponPreset:t="wt_rafale_m_spice250"
         isIndividual:b=no
         hangarMission:b=no
         object:t="t1_player01"
@@ -4184,11 +4119,11 @@ units{
   armada{
     name:t="t1_player01"
     tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 1000.0, 0.0]]
-    unit_class:t="dummy_plane"
+    unit_class:t="wt_custom_rafale_m_f3r"
     closed_waypoints:b=no
     isShipSpline:b=no
     shipTurnRadius:r=100.0
-    weapons:t=""
+    weapons:t="wt_rafale_m_spice250"
     bullets0:t=""
     bullets1:t=""
     bullets2:t=""
@@ -4198,9 +4133,9 @@ units{
     bulletsCount2:i=0
     bulletsCount3:i=0
     crewSkillK:r=0.0
-    applyAllMods:b=no
+    applyAllMods:b=yes
     props{
-      army:i=2
+      army:i=1
       count:i=1
       free_distance:r=70.0
       floating_distance:r=50.0

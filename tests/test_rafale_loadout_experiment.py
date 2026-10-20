@@ -28,9 +28,9 @@ def test_custom_rafale_registers_all_experimental_stores() -> None:
 
 def test_each_mission_enables_its_single_player_loadout() -> None:
     cases = {
-        "southeastern-city-rafale-spice250.blk": "wt_rafale_m_spice250",
-        "southeastern-city-rafale-brimstone.blk": "wt_rafale_m_brimstone",
-        "southeastern-city-rafale-jsow.blk": "wt_rafale_m_jsow",
+        "usr_wt_rafale_spice250.mission.blk": "wt_rafale_m_spice250",
+        "usr_wt_rafale_brimstone.mission.blk": "wt_rafale_m_brimstone",
+        "usr_wt_rafale_jsow.mission.blk": "wt_rafale_m_jsow",
     }
 
     for filename, preset in cases.items():
@@ -38,8 +38,12 @@ def test_each_mission_enables_its_single_player_loadout() -> None:
 
         assert "debug_in_single{\n    is_enabled:b=yes" in text
         assert "debug_in_multiplayer{\n    is_enabled:b=no" in text
-        assert text.count('unit_class:t="wt_custom_rafale_m_f3r"') == 2
+        assert 'type:t="singleMission"' in text
+        assert 'wing:t="t1_player01"' in text
+        assert "player_teamB{" not in text
+        assert text.count('unit_class:t="wt_custom_rafale_m_f3r"') == 3
         assert text.count(f'weaponPreset:t="{preset}"') == 2
+        assert f'weapons:t="{preset}"' in text
         assert text.count("{") == text.count("}")
 
 

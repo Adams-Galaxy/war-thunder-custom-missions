@@ -22,8 +22,10 @@ Close War Thunder before installing, then run:
 ./experiments/rafale-m-f3r-loadouts/install.sh
 ```
 
-Open War Thunder, choose `Battles` → `User Missions`, open
-`Rafale weapon experiments`, and start one of the three missions.
+Open War Thunder, choose `Battles` → `User Missions`, and start one of the
+three Rafale missions. The files are installed at the User Missions root using
+the conventional `usr_*.mission.blk` names expected by the single-player
+mission browser.
 
 ## Remove
 
