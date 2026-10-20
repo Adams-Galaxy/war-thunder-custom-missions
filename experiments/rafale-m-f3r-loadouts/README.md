@@ -14,6 +14,10 @@ All three loadouts use the Rafale's existing heavy wing stations and carry the
 TALIOS pod. The surrounding mission retains all units from Peaceful Exploration
 while preventing them from attacking the player.
 
+The hosted mission's 2018 formations normally depend on a multiplayer balance
+rank. These local copies make the already-selected 2018 templates unconditional
+so the full vehicle population also appears in `singleMission` mode.
+
 ## Install
 
 Close War Thunder before installing, then run:

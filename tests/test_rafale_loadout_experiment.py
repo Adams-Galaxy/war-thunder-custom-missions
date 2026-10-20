@@ -38,14 +38,17 @@ def test_each_mission_enables_its_single_player_loadout() -> None:
     for filename, preset in cases.items():
         text = (EXPERIMENT / "UserMissions" / filename).read_text()
 
-        assert "debug_in_single{\n    is_enabled:b=no" in text
+        assert "peaceful_player_setup{\n    is_enabled:b=yes" in text
         assert "debug_in_multiplayer{\n    is_enabled:b=no" in text
         assert 'type:t="singleMission"' in text
         assert 'player{\n    army:i=2\n    wing:t="t2_player01"' in text
         assert "player_teamB{" not in text
-        assert text.count('unit_class:t="wt_custom_rafale_m_f3r"') == 3
-        assert text.count(f'weaponPreset:t="{preset}"') == 2
+        assert text.count('unit_class:t="wt_custom_rafale_m_f3r"') == 1
+        assert f'weaponPreset:t="{preset}"' not in text
         assert f'weapons:t="{preset}"' in text
+        assert 'unitWakeUp{\n        target:t="t2_player01"' in text
+        assert 'unitSetProperties{\n        object:t="t2_player01"\n        targetableByAi:b=no' in text
+        assert "rankRange:ip2=" not in text
         assert text.count("{") == text.count("}")
 
 

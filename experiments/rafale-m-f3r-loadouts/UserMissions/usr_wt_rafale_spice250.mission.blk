@@ -158,8 +158,8 @@ imports{
 triggers{
   isCategory:b=yes
   is_enabled:b=yes
-  debug_in_single{
-    is_enabled:b=no
+  peaceful_player_setup{
+    is_enabled:b=yes
     comments:t=""
     props{
       actionsType:t="PERFORM_ONE_BY_ONE"
@@ -176,26 +176,10 @@ triggers{
     }
     actions{
       unitWakeUp{
-        target:t="t1_player01"
-      }
-      __changeUnit{
-        unit_class:t="wt_custom_rafale_m_f3r"
-        weaponPreset:t="wt_rafale_m_spice250"
-        isIndividual:b=no
-        hangarMission:b=no
-        object:t="t1_player01"
-        type:t="plane"
-      }
-      changeUnit{
-        unit_class:t="wt_custom_rafale_m_f3r"
-        weaponPreset:t="wt_rafale_m_spice250"
-        isIndividual:b=no
-        hangarMission:b=no
-        object:t="t1_player01"
-        type:t="plane"
+        target:t="t2_player01"
       }
       unitSetProperties{
-        object:t="t1_player01"
+        object:t="t2_player01"
         targetableByAi:b=no
         isImmortal:b=yes
         speed:r=900
@@ -1621,7 +1605,6 @@ units{
 
       }
       airfield_aa_2018{
-        rankRange:ip2=37, 50
         nuclear_escalation_target__tag:t="mlrs_tbm_target"
       }
     }
@@ -1640,7 +1623,6 @@ units{
 
       }
       airfield_aa_2018{
-        rankRange:ip2=37, 50
         nuclear_escalation_target__tag:t="mlrs_tbm_target"
       }
     }
@@ -1659,7 +1641,6 @@ units{
 
       }
       airfield_aa_2018{
-        rankRange:ip2=37, 50
         nuclear_escalation_target__tag:t="mlrs_tbm_target"
       }
     }
@@ -1678,7 +1659,6 @@ units{
 
       }
       airfield_aa_2018{
-        rankRange:ip2=37, 50
         nuclear_escalation_target__tag:t="mlrs_tbm_target"
       }
     }
@@ -1697,7 +1677,6 @@ units{
 
       }
       airfield_aa_2018{
-        rankRange:ip2=37, 50
         nuclear_escalation_target__tag:t="mlrs_tbm_target"
       }
     }
@@ -1716,7 +1695,6 @@ units{
 
       }
       airfield_aa_2018{
-        rankRange:ip2=37, 50
         nuclear_escalation_target__tag:t="mlrs_tbm_target"
       }
     }
@@ -1732,7 +1710,6 @@ units{
     }
     additionalEcsTemplates{
       "fortification+fuel_factory_2018"{
-        rankRange:ip2=37, 50
         unit__className:t="nt_fuel_factory"
         unit__ownsUnitId:b=yes
         nuclear_escalation_target__tag:t="mlrs_tbm_target"
@@ -1750,7 +1727,6 @@ units{
     }
     additionalEcsTemplates{
       "fortification+fuel_factory_2018"{
-        rankRange:ip2=37, 50
         unit__className:t="nt_fuel_factory"
         unit__ownsUnitId:b=yes
         nuclear_escalation_target__tag:t="mlrs_tbm_target"
@@ -1768,7 +1744,6 @@ units{
     }
     additionalEcsTemplates{
       "fortification+fuel_factory_2018"{
-        rankRange:ip2=37, 50
         unit__className:t="nt_fuel_factory"
         unit__ownsUnitId:b=yes
         nuclear_escalation_target__tag:t="mlrs_tbm_target"
@@ -1786,7 +1761,6 @@ units{
     }
     additionalEcsTemplates{
       "fortification+fuel_factory_2018"{
-        rankRange:ip2=37, 50
         unit__className:t="nt_fuel_factory"
         unit__ownsUnitId:b=yes
         nuclear_escalation_target__tag:t="mlrs_tbm_target"
@@ -1804,7 +1778,6 @@ units{
     }
     additionalEcsTemplates{
       "fortification+ammo_factory_2018"{
-        rankRange:ip2=37, 50
         unit__className:t="nt_ammo_factory"
         unit__ownsUnitId:b=yes
         nuclear_escalation_target__tag:t="mlrs_tbm_target"
@@ -1822,7 +1795,6 @@ units{
     }
     additionalEcsTemplates{
       "fortification+ammo_factory_2018"{
-        rankRange:ip2=37, 50
         unit__className:t="nt_ammo_factory"
         unit__ownsUnitId:b=yes
         nuclear_escalation_target__tag:t="mlrs_tbm_target"
@@ -1840,7 +1812,6 @@ units{
     }
     additionalEcsTemplates{
       "fortification+ammo_factory_2018"{
-        rankRange:ip2=37, 50
         unit__className:t="nt_ammo_factory"
         unit__ownsUnitId:b=yes
         nuclear_escalation_target__tag:t="mlrs_tbm_target"
@@ -1858,7 +1829,6 @@ units{
     }
     additionalEcsTemplates{
       "fortification+ammo_factory_2018"{
-        rankRange:ip2=37, 50
         unit__className:t="nt_ammo_factory"
         unit__ownsUnitId:b=yes
         nuclear_escalation_target__tag:t="mlrs_tbm_target"
@@ -1876,7 +1846,6 @@ units{
     }
     additionalEcsTemplates{
       assembly_area_2018{
-        rankRange:ip2=37, 50
         nuclear_escalation_target__tag:t="mlrs_tbm_target"
       }
     }
@@ -1892,7 +1861,6 @@ units{
     }
     additionalEcsTemplates{
       assembly_area_2018{
-        rankRange:ip2=37, 50
         nuclear_escalation_target__tag:t="mlrs_tbm_target"
       }
     }
@@ -1908,7 +1876,6 @@ units{
     }
     additionalEcsTemplates{
       assembly_area_2018{
-        rankRange:ip2=37, 50
         nuclear_escalation_target__tag:t="mlrs_tbm_target"
       }
     }
@@ -1924,7 +1891,6 @@ units{
     }
     additionalEcsTemplates{
       assembly_area_2018{
-        rankRange:ip2=37, 50
         nuclear_escalation_target__tag:t="mlrs_tbm_target"
       }
     }
@@ -1940,7 +1906,6 @@ units{
     }
     additionalEcsTemplates{
       assembly_area_2018{
-        rankRange:ip2=37, 50
         nuclear_escalation_target__tag:t="mlrs_tbm_target"
       }
     }
@@ -1956,7 +1921,6 @@ units{
     }
     additionalEcsTemplates{
       assembly_area_2018{
-        rankRange:ip2=37, 50
         nuclear_escalation_target__tag:t="mlrs_tbm_target"
       }
     }
@@ -1972,7 +1936,6 @@ units{
     }
     additionalEcsTemplates{
       assembly_area_2018{
-        rankRange:ip2=37, 50
         nuclear_escalation_target__tag:t="mlrs_tbm_target"
       }
     }
@@ -1988,7 +1951,6 @@ units{
     }
     additionalEcsTemplates{
       assembly_area_2018{
-        rankRange:ip2=37, 50
         nuclear_escalation_target__tag:t="mlrs_tbm_target"
       }
     }
@@ -2004,7 +1966,6 @@ units{
     }
     additionalEcsTemplates{
       assembly_area_2018{
-        rankRange:ip2=37, 50
         nuclear_escalation_target__tag:t="mlrs_tbm_target"
       }
     }
@@ -2020,7 +1981,6 @@ units{
     }
     additionalEcsTemplates{
       assembly_area_2018{
-        rankRange:ip2=37, 50
         nuclear_escalation_target__tag:t="mlrs_tbm_target"
       }
     }
@@ -2038,7 +1998,6 @@ units{
       sam_site_s300{
         sam_site__missile_channels_max:i=0
         sam_site__target_channels_max:i=0
-        rankRange:ip2=37, 50
         sam_site__attackers_group_idx:i=1
         sam_site__max_attackers_per_target:i=2
       }
@@ -2057,7 +2016,6 @@ units{
       sam_site_s300{
         sam_site__missile_channels_max:i=0
         sam_site__target_channels_max:i=0
-        rankRange:ip2=37, 50
         sam_site__attackers_group_idx:i=1
         sam_site__max_attackers_per_target:i=2
       }
@@ -2076,7 +2034,6 @@ units{
       sam_site_s300{
         sam_site__missile_channels_max:i=0
         sam_site__target_channels_max:i=0
-        rankRange:ip2=37, 50
         sam_site__attackers_group_idx:i=1
         sam_site__max_attackers_per_target:i=2
       }
@@ -2095,7 +2052,6 @@ units{
       sam_site_s300{
         sam_site__missile_channels_max:i=0
         sam_site__target_channels_max:i=0
-        rankRange:ip2=37, 50
         sam_site__attackers_group_idx:i=1
         sam_site__max_attackers_per_target:i=2
       }
@@ -2114,7 +2070,6 @@ units{
       sam_site_s300{
         sam_site__missile_channels_max:i=0
         sam_site__target_channels_max:i=0
-        rankRange:ip2=31, 39
         sam_site__attackers_group_idx:i=1
         sam_site__max_attackers_per_target:i=2
       }
@@ -2133,7 +2088,6 @@ units{
       sam_site_sampt{
         sam_site__missile_channels_max:i=0
         sam_site__target_channels_max:i=0
-        rankRange:ip2=37, 50
         sam_site__attackers_group_idx:i=1
         sam_site__max_attackers_per_target:i=2
       }
@@ -2152,7 +2106,6 @@ units{
       sam_site_sampt{
         sam_site__missile_channels_max:i=0
         sam_site__target_channels_max:i=0
-        rankRange:ip2=37, 50
         sam_site__attackers_group_idx:i=1
         sam_site__max_attackers_per_target:i=2
       }
@@ -2171,7 +2124,6 @@ units{
       sam_site_sampt{
         sam_site__missile_channels_max:i=0
         sam_site__target_channels_max:i=0
-        rankRange:ip2=37, 50
         sam_site__attackers_group_idx:i=1
         sam_site__max_attackers_per_target:i=2
       }
@@ -2190,7 +2142,6 @@ units{
       sam_site_sampt{
         sam_site__missile_channels_max:i=0
         sam_site__target_channels_max:i=0
-        rankRange:ip2=37, 50
         sam_site__attackers_group_idx:i=1
         sam_site__max_attackers_per_target:i=2
       }
@@ -2209,7 +2160,6 @@ units{
       sam_site_sampt{
         sam_site__missile_channels_max:i=0
         sam_site__target_channels_max:i=0
-        rankRange:ip2=37, 39
         sam_site__attackers_group_idx:i=1
         sam_site__max_attackers_per_target:i=2
       }
@@ -2226,7 +2176,6 @@ units{
     }
     additionalEcsTemplates{
       strongpoint_2018{
-        rankRange:ip2=37, 50
       }
     }
   }
@@ -2241,7 +2190,6 @@ units{
     }
     additionalEcsTemplates{
       strongpoint_2018{
-        rankRange:ip2=37, 50
       }
     }
   }
@@ -2256,7 +2204,6 @@ units{
     }
     additionalEcsTemplates{
       strongpoint_2018{
-        rankRange:ip2=37, 50
       }
     }
   }
@@ -2271,7 +2218,6 @@ units{
     }
     additionalEcsTemplates{
       strongpoint_2018{
-        rankRange:ip2=37, 50
       }
     }
   }
@@ -2286,7 +2232,6 @@ units{
     }
     additionalEcsTemplates{
       strongpoint_2018{
-        rankRange:ip2=37, 50
       }
     }
   }
@@ -2301,7 +2246,6 @@ units{
     }
     additionalEcsTemplates{
       strongpoint_2018{
-        rankRange:ip2=37, 50
       }
     }
   }
@@ -2316,7 +2260,6 @@ units{
     }
     additionalEcsTemplates{
       strongpoint_2018{
-        rankRange:ip2=37, 50
       }
     }
   }
@@ -2331,7 +2274,6 @@ units{
     }
     additionalEcsTemplates{
       strongpoint_2018{
-        rankRange:ip2=37, 50
       }
     }
   }
@@ -2349,7 +2291,6 @@ units{
 
       }
       airfield_aa_2018{
-        rankRange:ip2=37, 50
         nuclear_escalation_target__tag:t="mlrs_tbm_target"
       }
     }
@@ -2368,7 +2309,6 @@ units{
 
       }
       airfield_aa_2018{
-        rankRange:ip2=37, 50
         nuclear_escalation_target__tag:t="mlrs_tbm_target"
       }
     }
@@ -2387,7 +2327,6 @@ units{
 
       }
       airfield_aa_2018{
-        rankRange:ip2=37, 50
         nuclear_escalation_target__tag:t="mlrs_tbm_target"
       }
     }
@@ -2406,7 +2345,6 @@ units{
 
       }
       airfield_aa_2018{
-        rankRange:ip2=37, 50
         nuclear_escalation_target__tag:t="mlrs_tbm_target"
       }
     }
@@ -2424,7 +2362,6 @@ units{
       sam_site_sampt{
         sam_site__missile_channels_max:i=0
         sam_site__target_channels_max:i=0
-        rankRange:ip2=37, 39
         sam_site__attackers_group_idx:i=1
         sam_site__max_attackers_per_target:i=2
       }
@@ -2443,7 +2380,6 @@ units{
       sam_site_sampt{
         sam_site__missile_channels_max:i=0
         sam_site__target_channels_max:i=0
-        rankRange:ip2=37, 39
         sam_site__attackers_group_idx:i=1
         sam_site__max_attackers_per_target:i=2
       }
@@ -2462,7 +2398,6 @@ units{
       sam_site_s300{
         sam_site__missile_channels_max:i=0
         sam_site__target_channels_max:i=0
-        rankRange:ip2=31, 39
         sam_site__attackers_group_idx:i=1
         sam_site__max_attackers_per_target:i=2
       }
@@ -2481,7 +2416,6 @@ units{
       sam_site_s300{
         sam_site__missile_channels_max:i=0
         sam_site__target_channels_max:i=0
-        rankRange:ip2=31, 39
         sam_site__attackers_group_idx:i=1
         sam_site__max_attackers_per_target:i=2
       }
@@ -3272,7 +3206,6 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_ussr_zprk_2s6{
-        rankRange:ip2=37, 39
       }
     }
   }
@@ -3287,7 +3220,6 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_ussr_zprk_2s6{
-        rankRange:ip2=37, 39
       }
     }
   }
@@ -3302,7 +3234,6 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_ussr_zprk_2s6{
-        rankRange:ip2=37, 39
       }
     }
   }
@@ -3317,7 +3248,6 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_ussr_zprk_2s6{
-        rankRange:ip2=37, 39
       }
     }
   }
@@ -3332,7 +3262,6 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_ussr_zprk_2s6{
-        rankRange:ip2=37, 39
       }
     }
   }
@@ -3347,7 +3276,6 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_ussr_zprk_2s6{
-        rankRange:ip2=37, 39
       }
     }
   }
@@ -3362,7 +3290,6 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_ussr_zprk_2s6{
-        rankRange:ip2=37, 39
       }
     }
   }
@@ -3377,7 +3304,6 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_ussr_zprk_2s6{
-        rankRange:ip2=37, 39
       }
     }
   }
@@ -3392,7 +3318,6 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_ussr_zprk_2s6{
-        rankRange:ip2=37, 39
       }
     }
   }
@@ -3407,7 +3332,6 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_ussr_zprk_2s6{
-        rankRange:ip2=37, 39
       }
     }
   }
@@ -3422,7 +3346,6 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_ussr_zprk_2s6{
-        rankRange:ip2=37, 39
       }
     }
   }
@@ -3437,7 +3360,6 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_ussr_zprk_2s6{
-        rankRange:ip2=37, 39
       }
     }
   }
@@ -3452,7 +3374,6 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_ussr_zprk_2s6{
-        rankRange:ip2=37, 39
       }
     }
   }
@@ -3467,7 +3388,6 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_ussr_zprk_2s6{
-        rankRange:ip2=37, 39
       }
     }
   }
@@ -3482,7 +3402,6 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_sw_crotale_ng{
-        rankRange:ip2=37, 50
       }
     }
   }
@@ -3497,7 +3416,6 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_sw_crotale_ng{
-        rankRange:ip2=37, 50
       }
     }
   }
@@ -3512,7 +3430,6 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_sw_crotale_ng{
-        rankRange:ip2=37, 50
       }
     }
   }
@@ -3527,7 +3444,6 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_sw_crotale_ng{
-        rankRange:ip2=37, 50
       }
     }
   }
@@ -3542,7 +3458,6 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_sw_crotale_ng{
-        rankRange:ip2=37, 50
       }
     }
   }
@@ -3557,7 +3472,6 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_sw_crotale_ng{
-        rankRange:ip2=37, 50
       }
     }
   }
@@ -3572,7 +3486,6 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_sw_crotale_ng{
-        rankRange:ip2=37, 50
       }
     }
   }
@@ -3587,7 +3500,6 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_sw_crotale_ng{
-        rankRange:ip2=37, 50
       }
     }
   }
@@ -3602,7 +3514,6 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_sw_crotale_ng{
-        rankRange:ip2=37, 50
       }
     }
   }
@@ -3617,7 +3528,6 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_sw_crotale_ng{
-        rankRange:ip2=37, 50
       }
     }
   }
@@ -3632,7 +3542,6 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_sw_crotale_ng{
-        rankRange:ip2=37, 50
       }
     }
   }
@@ -3647,7 +3556,6 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_sw_crotale_ng{
-        rankRange:ip2=37, 50
       }
     }
   }
@@ -3662,7 +3570,6 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_sw_crotale_ng{
-        rankRange:ip2=37, 50
       }
     }
   }
@@ -3677,7 +3584,6 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_sw_crotale_ng{
-        rankRange:ip2=37, 50
       }
     }
   }
@@ -3692,7 +3598,6 @@ units{
     }
     additionalEcsTemplates{
       strongpoint_2018{
-        rankRange:ip2=37, 50
       }
     }
   }
@@ -3707,7 +3612,6 @@ units{
     }
     additionalEcsTemplates{
       strongpoint_2018{
-        rankRange:ip2=37, 50
       }
     }
   }
@@ -3722,7 +3626,6 @@ units{
     }
     additionalEcsTemplates{
       strongpoint_2018{
-        rankRange:ip2=37, 50
       }
     }
   }
@@ -3737,7 +3640,6 @@ units{
     }
     additionalEcsTemplates{
       strongpoint_2018{
-        rankRange:ip2=37, 50
       }
     }
   }
@@ -3754,7 +3656,6 @@ units{
       sam_site_s300{
         sam_site__missile_channels_max:i=0
         sam_site__target_channels_max:i=0
-        rankRange:ip2=37, 50
         sam_site__attackers_group_idx:i=1
         sam_site__max_attackers_per_target:i=2
       }
@@ -3771,7 +3672,6 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_ussr_zprk_2s6{
-        rankRange:ip2=37, 39
       }
     }
   }
@@ -3786,7 +3686,6 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_ussr_zprk_2s6{
-        rankRange:ip2=37, 39
       }
     }
   }
@@ -3803,7 +3702,6 @@ units{
       sam_site_sampt{
         sam_site__missile_channels_max:i=0
         sam_site__target_channels_max:i=0
-        rankRange:ip2=37, 50
         sam_site__attackers_group_idx:i=1
         sam_site__max_attackers_per_target:i=2
       }
@@ -3820,7 +3718,6 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_sw_crotale_ng{
-        rankRange:ip2=37, 50
       }
     }
   }
@@ -3835,7 +3732,6 @@ units{
     }
     additionalEcsTemplates{
       aa_cover_sw_crotale_ng{
-        rankRange:ip2=37, 50
       }
     }
   }
@@ -3850,7 +3746,6 @@ units{
     }
     additionalEcsTemplates{
       strongpoint_2018{
-        rankRange:ip2=37, 50
       }
     }
   }
@@ -3865,7 +3760,6 @@ units{
     }
     additionalEcsTemplates{
       strongpoint_2018{
-        rankRange:ip2=37, 50
       }
     }
   }
@@ -3880,7 +3774,6 @@ units{
     }
     additionalEcsTemplates{
       assembly_area_2018{
-        rankRange:ip2=37, 50
         nuclear_escalation_target__tag:t="mlrs_tbm_target"
       }
     }
@@ -3896,7 +3789,6 @@ units{
     }
     additionalEcsTemplates{
       assembly_area_2018{
-        rankRange:ip2=37, 50
         nuclear_escalation_target__tag:t="mlrs_tbm_target"
       }
     }
