@@ -1,0 +1,137 @@
+// Local single-player experiment based on the stock Rafale M F3-R.
+// The stock aircraft is included unchanged, then three experimental stores are
+// added to its existing heavy wing stations (slots 3 and 10).
+
+include "#/develop/gameBase/gameData/flightModels/rafale_m_f3r.blk"
+
+"@override:weapon_presets" {
+  preset {
+    name:t="wt_rafale_m_spice250"
+    blk:t="gameData/FlightModels/weaponPresets/wt_rafale_m_spice250.blk"
+  }
+  preset {
+    name:t="wt_rafale_m_brimstone"
+    blk:t="gameData/FlightModels/weaponPresets/wt_rafale_m_brimstone.blk"
+  }
+  preset {
+    name:t="wt_rafale_m_jsow"
+    blk:t="gameData/FlightModels/weaponPresets/wt_rafale_m_jsow.blk"
+  }
+}
+
+"@override:WeaponSlots" {
+  // WeaponSlot blocks are numbered from 1 by the BLK override parser.
+  // Block 4 is aircraft slot 3 (left heavy wing station).
+  "@override:WeaponSlot[4]" {
+    WeaponPreset {
+      iconType:t="glide_guided_bomb_small_spice_group_x4"
+      name:t="wt_spice250_slot3"
+      ShowNodes {
+        node:t="pylon_pu_708_001"
+      }
+      Weapon {
+        trigger:t="guided bombs"
+        blk:t="gameData/Weapons/containers/is_spice_250_sqr_rack.blk"
+        emitter:t="pylon_at_730_001"
+        external:b=yes
+        separate:b=yes
+        machLimit:r=1.01
+      }
+    }
+
+    WeaponPreset {
+      iconType:t="missile_air_to_uni_middle_x3"
+      name:t="wt_brimstone_slot3"
+      ShowNodes {
+        node:t="pylon_pu_708_001"
+      }
+      Weapon {
+        trigger:t="atgm"
+        blk:t="gameData/Weapons/containers/brimstone_dm_x3.blk"
+        emitter:t="pylon_at_730_001"
+        external:b=yes
+        separate:b=yes
+        machLimit:r=1.4
+      }
+      DependentWeaponPreset {
+        slot:i=6
+        preset:t="damocles"
+      }
+    }
+
+    WeaponPreset {
+      iconType:t="glide_bomb_default"
+      name:t="wt_jsow_slot3"
+      ShowNodes {
+        node:t="pylon_pu_708_001"
+      }
+      Weapon {
+        trigger:t="guided bombs"
+        blk:t="gameData/Weapons/BombGuns/us_agm_154a1_jsow.blk"
+        emitter:t="pylon_at_730_001"
+        bullets:i=1
+        external:b=yes
+        separate:b=yes
+        machLimit:r=0.95
+      }
+    }
+  }
+
+  // Block 11 is aircraft slot 10 (right heavy wing station).
+  "@override:WeaponSlot[11]" {
+    WeaponPreset {
+      iconType:t="glide_guided_bomb_small_spice_group_x4"
+      name:t="wt_spice250_slot10"
+      ShowNodes {
+        node:t="pylon_pu_708_002"
+      }
+      Weapon {
+        trigger:t="guided bombs"
+        blk:t="gameData/Weapons/containers/is_spice_250_sqr_rack.blk"
+        emitter:t="pylon_at_730_002"
+        external:b=yes
+        separate:b=yes
+        machLimit:r=1.01
+      }
+    }
+
+    WeaponPreset {
+      iconType:t="missile_air_to_uni_middle_x3"
+      name:t="wt_brimstone_slot10"
+      ShowNodes {
+        node:t="pylon_pu_708_002"
+      }
+      Weapon {
+        trigger:t="atgm"
+        blk:t="gameData/Weapons/containers/brimstone_dm_x3.blk"
+        emitter:t="pylon_at_730_002"
+        external:b=yes
+        separate:b=yes
+        machLimit:r=1.4
+      }
+      DependentWeaponPreset {
+        slot:i=6
+        preset:t="damocles"
+      }
+    }
+
+    WeaponPreset {
+      iconType:t="glide_bomb_default"
+      name:t="wt_jsow_slot10"
+      ShowNodes {
+        node:t="pylon_pu_708_002"
+      }
+      Weapon {
+        trigger:t="guided bombs"
+        blk:t="gameData/Weapons/BombGuns/us_agm_154a1_jsow.blk"
+        emitter:t="pylon_at_730_002"
+        bullets:i=1
+        external:b=yes
+        separate:b=yes
+        machLimit:r=0.95
+      }
+    }
+  }
+}
+
+expClass:t="exp_fighter"
