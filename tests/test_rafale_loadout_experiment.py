@@ -23,6 +23,8 @@ def test_custom_rafale_registers_all_experimental_stores() -> None:
     assert text.count("brimstone_dm_x3.blk") == 2
     assert text.count("us_agm_154a1_jsow.blk") == 2
     assert text.count('preset:t="damocles"') == 2
+    assert text.count('blk:t="gameData/flightModels/weaponPresets/') == 3
+    assert "gameData/FlightModels/weaponPresets/" not in text
     assert text.count("{") == text.count("}")
 
 
@@ -36,10 +38,10 @@ def test_each_mission_enables_its_single_player_loadout() -> None:
     for filename, preset in cases.items():
         text = (EXPERIMENT / "UserMissions" / filename).read_text()
 
-        assert "debug_in_single{\n    is_enabled:b=yes" in text
+        assert "debug_in_single{\n    is_enabled:b=no" in text
         assert "debug_in_multiplayer{\n    is_enabled:b=no" in text
         assert 'type:t="singleMission"' in text
-        assert 'wing:t="t1_player01"' in text
+        assert 'player{\n    army:i=2\n    wing:t="t2_player01"' in text
         assert "player_teamB{" not in text
         assert text.count('unit_class:t="wt_custom_rafale_m_f3r"') == 3
         assert text.count(f'weaponPreset:t="{preset}"') == 2

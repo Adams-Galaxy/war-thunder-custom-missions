@@ -7,15 +7,15 @@ include "#/develop/gameBase/gameData/flightModels/rafale_m_f3r.blk"
 "@override:weapon_presets" {
   preset {
     name:t="wt_rafale_m_spice250"
-    blk:t="gameData/FlightModels/weaponPresets/wt_rafale_m_spice250.blk"
+    blk:t="gameData/flightModels/weaponPresets/wt_rafale_m_spice250.blk"
   }
   preset {
     name:t="wt_rafale_m_brimstone"
-    blk:t="gameData/FlightModels/weaponPresets/wt_rafale_m_brimstone.blk"
+    blk:t="gameData/flightModels/weaponPresets/wt_rafale_m_brimstone.blk"
   }
   preset {
     name:t="wt_rafale_m_jsow"
-    blk:t="gameData/FlightModels/weaponPresets/wt_rafale_m_jsow.blk"
+    blk:t="gameData/flightModels/weaponPresets/wt_rafale_m_jsow.blk"
   }
 }
 

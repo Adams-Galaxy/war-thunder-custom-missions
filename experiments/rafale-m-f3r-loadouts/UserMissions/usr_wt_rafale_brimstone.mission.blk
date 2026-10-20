@@ -2,8 +2,8 @@ selected_tag:t=""
 bin_dump_file:t=""
 mission_settings{
   player{
-    army:i=1
-    wing:t="t1_player01"
+    army:i=2
+    wing:t="t2_player01"
   }
   mission{
     name:t="wt_rafale_brimstone_southeastern_city"
@@ -159,7 +159,7 @@ triggers{
   isCategory:b=yes
   is_enabled:b=yes
   debug_in_single{
-    is_enabled:b=yes
+    is_enabled:b=no
     comments:t=""
     props{
       actionsType:t="PERFORM_ONE_BY_ONE"
@@ -4119,11 +4119,11 @@ units{
   armada{
     name:t="t1_player01"
     tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 1000.0, 0.0]]
-    unit_class:t="wt_custom_rafale_m_f3r"
+    unit_class:t="dummy_plane"
     closed_waypoints:b=no
     isShipSpline:b=no
     shipTurnRadius:r=100.0
-    weapons:t="wt_rafale_m_brimstone"
+    weapons:t=""
     bullets0:t=""
     bullets1:t=""
     bullets2:t=""
@@ -4133,9 +4133,9 @@ units{
     bulletsCount2:i=0
     bulletsCount3:i=0
     crewSkillK:r=0.0
-    applyAllMods:b=yes
+    applyAllMods:b=no
     props{
-      army:i=1
+      army:i=2
       count:i=1
       free_distance:r=70.0
       floating_distance:r=50.0
@@ -5463,11 +5463,11 @@ units{
   armada{
     name:t="t2_player01"
     tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 1000.0, 1.0]]
-    unit_class:t="dummy_plane"
+    unit_class:t="wt_custom_rafale_m_f3r"
     closed_waypoints:b=no
     isShipSpline:b=no
     shipTurnRadius:r=100.0
-    weapons:t=""
+    weapons:t="wt_rafale_m_brimstone"
     bullets0:t=""
     bullets1:t=""
     bullets2:t=""
@@ -5477,7 +5477,7 @@ units{
     bulletsCount2:i=0
     bulletsCount3:i=0
     crewSkillK:r=0.0
-    applyAllMods:b=no
+    applyAllMods:b=yes
     props{
       army:i=2
       count:i=1
