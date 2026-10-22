@@ -1,5 +1,8 @@
 # Nuclear Escalation — Archipelago (2018)
 
+The matching 1970 Early, 1970 Late, and 1980 variants are in the
+[lower-era family](../ne-archipelago-all-eras/README.md).
+
 ## Variants
 
 | File | Long-range S-300 / SAMP/T sites | Airfield AA, including HQ-11 | Status |

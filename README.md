@@ -6,6 +6,8 @@ Version-controlled custom missions and variants for War Thunder.
 
 - [Nuclear Escalation — Archipelago (2018)](missions/ne-archipelago-2018/README.md)
 - [Nuclear Escalation — Southeastern City](missions/ne-southeastern-city/README.md)
+- [Nuclear Escalation — Archipelago (1970 Early, 1970 Late, and 1980)](missions/ne-archipelago-all-eras/README.md)
+- [Nuclear Escalation — Southeastern City (1970 Early, 1970 Late, and 1980)](missions/ne-southeastern-city-all-eras/README.md)
 
 Local single-player experiments:
 

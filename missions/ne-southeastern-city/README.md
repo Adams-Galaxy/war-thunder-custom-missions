@@ -1,5 +1,8 @@
 # Nuclear Escalation — Southeastern City
 
+The matching 1970 Early, 1970 Late, and 1980 variants are in the
+[lower-era family](../ne-southeastern-city-all-eras/README.md).
+
 These variants use Gaijin's official non-mirrored Southeastern City Nuclear
 Escalation mission from the live game archive.
 

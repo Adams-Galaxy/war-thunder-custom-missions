@@ -1,0 +1,2498 @@
+selected_tag:t=""
+bin_dump_file:t=""
+mission_settings {
+	player {
+		army:i=1
+	}
+	player_teamB {
+		army:i=2
+	}
+	mission {
+		type:t="singleMission"
+		level:t="levels/water.bin"
+		environment:t="Day"
+		weather:t="hazy"
+		restoreType:t="attempts"
+		optionalTakeOff:b=no
+	}
+	spectator_points {
+
+	}
+}
+imports {
+
+}
+triggers {
+	isCategory:b=yes
+	is_enabled:b=yes
+}
+mission_objectives {
+	isCategory:b=yes
+	is_enabled:b=yes
+}
+variables {
+
+}
+dialogs {
+
+}
+airfields {
+
+}
+effects {
+
+}
+units {
+	ships {
+		name:t="t1_aircraftcarrier_01"
+		tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 0.0, 0.0]]
+		unit_class:t="ussr_aircraftcarrier_baku_ai"
+		objLayer:i=1
+		weapons:t=""
+		bullets0:t=""
+		bullets1:t=""
+		bullets2:t=""
+		bullets3:t=""
+		bulletsCount0:i=0
+		bulletsCount1:i=0
+		bulletsCount2:i=0
+		bulletsCount3:i=0
+		crewSkillK:r=0
+		applyAllMods:b=no
+		props {
+			army:i=1
+			count:i=1
+			formation_type:t="rows"
+			formation_div:i=3
+			formation_step:p2=2.5, 2
+			formation_noise:p2=0.1, 0.1
+			isDelayed:b=yes
+		}
+		way {
+
+		}
+		additionalEcsTemplates {
+			unit_spawn_and_route {
+
+			}
+			unit_death_substract_team_tickets {
+				on_death_substract_team_tickets_num:i=500
+			}
+			unit_init_params {
+				unit_params__rearmTimeOnField:r=60
+			}
+		}
+	}
+	ships {
+		name:t="t1_aircraftcarrier_02"
+		tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 0.0, 0.0]]
+		unit_class:t="ussr_aircraftcarrier_baku_ai"
+		objLayer:i=1
+		weapons:t=""
+		bullets0:t=""
+		bullets1:t=""
+		bullets2:t=""
+		bullets3:t=""
+		bulletsCount0:i=0
+		bulletsCount1:i=0
+		bulletsCount2:i=0
+		bulletsCount3:i=0
+		crewSkillK:r=0
+		applyAllMods:b=no
+		props {
+			army:i=1
+			count:i=1
+			formation_type:t="rows"
+			formation_div:i=3
+			formation_step:p2=2.5, 2
+			formation_noise:p2=0.1, 0.1
+			isDelayed:b=yes
+		}
+		way {
+
+		}
+		additionalEcsTemplates {
+			unit_spawn_and_route {
+
+			}
+			unit_death_substract_team_tickets {
+				on_death_substract_team_tickets_num:i=500
+			}
+			unit_init_params {
+				unit_params__rearmTimeOnField:r=60
+			}
+		}
+	}
+	ships {
+		name:t="t1_aircraftcarrier_03"
+		tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 0.0, 0.0]]
+		unit_class:t="ussr_aircraftcarrier_baku_ai"
+		objLayer:i=1
+		weapons:t=""
+		bullets0:t=""
+		bullets1:t=""
+		bullets2:t=""
+		bullets3:t=""
+		bulletsCount0:i=0
+		bulletsCount1:i=0
+		bulletsCount2:i=0
+		bulletsCount3:i=0
+		crewSkillK:r=0
+		applyAllMods:b=no
+		props {
+			army:i=1
+			count:i=1
+			formation_type:t="rows"
+			formation_div:i=3
+			formation_step:p2=2.5, 2
+			formation_noise:p2=0.1, 0.1
+			isDelayed:b=yes
+		}
+		way {
+
+		}
+		additionalEcsTemplates {
+			unit_spawn_and_route {
+
+			}
+			unit_death_substract_team_tickets {
+				on_death_substract_team_tickets_num:i=500
+			}
+			unit_init_params {
+				unit_params__rearmTimeOnField:r=60
+			}
+		}
+	}
+	ships {
+		name:t="t1_aircraftcarrier_04"
+		tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 0.0, 0.0]]
+		unit_class:t="ussr_aircraftcarrier_baku_ai"
+		objLayer:i=1
+		weapons:t=""
+		bullets0:t=""
+		bullets1:t=""
+		bullets2:t=""
+		bullets3:t=""
+		bulletsCount0:i=0
+		bulletsCount1:i=0
+		bulletsCount2:i=0
+		bulletsCount3:i=0
+		crewSkillK:r=0
+		applyAllMods:b=no
+		props {
+			army:i=1
+			count:i=1
+			formation_type:t="rows"
+			formation_div:i=3
+			formation_step:p2=2.5, 2
+			formation_noise:p2=0.1, 0.1
+			isDelayed:b=yes
+		}
+		way {
+
+		}
+		additionalEcsTemplates {
+			unit_spawn_and_route {
+
+			}
+			unit_death_substract_team_tickets {
+				on_death_substract_team_tickets_num:i=500
+			}
+			unit_init_params {
+				unit_params__rearmTimeOnField:r=60
+			}
+		}
+	}
+	ships {
+		name:t="t2_aircraftcarrier_01"
+		tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 0.0, 0.0]]
+		unit_class:t="us_aircraftcarrier_forrestal_ai"
+		objLayer:i=1
+		weapons:t=""
+		bullets0:t=""
+		bullets1:t=""
+		bullets2:t=""
+		bullets3:t=""
+		bulletsCount0:i=0
+		bulletsCount1:i=0
+		bulletsCount2:i=0
+		bulletsCount3:i=0
+		crewSkillK:r=0
+		applyAllMods:b=no
+		props {
+			army:i=2
+			count:i=1
+			formation_type:t="rows"
+			formation_div:i=3
+			formation_step:p2=2.5, 2
+			formation_noise:p2=0.1, 0.1
+			isDelayed:b=yes
+		}
+		way {
+
+		}
+		additionalEcsTemplates {
+			unit_spawn_and_route {
+
+			}
+			unit_death_substract_team_tickets {
+				on_death_substract_team_tickets_num:i=500
+			}
+			unit_init_params {
+				unit_params__rearmTimeOnField:r=60
+			}
+		}
+	}
+	ships {
+		name:t="t2_aircraftcarrier_02"
+		tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 0.0, 0.0]]
+		unit_class:t="us_aircraftcarrier_forrestal_ai"
+		objLayer:i=1
+		weapons:t=""
+		bullets0:t=""
+		bullets1:t=""
+		bullets2:t=""
+		bullets3:t=""
+		bulletsCount0:i=0
+		bulletsCount1:i=0
+		bulletsCount2:i=0
+		bulletsCount3:i=0
+		crewSkillK:r=0
+		applyAllMods:b=no
+		props {
+			army:i=2
+			count:i=1
+			formation_type:t="rows"
+			formation_div:i=3
+			formation_step:p2=2.5, 2
+			formation_noise:p2=0.1, 0.1
+			isDelayed:b=yes
+		}
+		way {
+
+		}
+		additionalEcsTemplates {
+			unit_spawn_and_route {
+
+			}
+			unit_death_substract_team_tickets {
+				on_death_substract_team_tickets_num:i=500
+			}
+			unit_init_params {
+				unit_params__rearmTimeOnField:r=60
+			}
+		}
+	}
+	ships {
+		name:t="t2_aircraftcarrier_03"
+		tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 0.0, 0.0]]
+		unit_class:t="us_aircraftcarrier_forrestal_ai"
+		objLayer:i=1
+		weapons:t=""
+		bullets0:t=""
+		bullets1:t=""
+		bullets2:t=""
+		bullets3:t=""
+		bulletsCount0:i=0
+		bulletsCount1:i=0
+		bulletsCount2:i=0
+		bulletsCount3:i=0
+		crewSkillK:r=0
+		applyAllMods:b=no
+		props {
+			army:i=2
+			count:i=1
+			formation_type:t="rows"
+			formation_div:i=3
+			formation_step:p2=2.5, 2
+			formation_noise:p2=0.1, 0.1
+			isDelayed:b=yes
+		}
+		way {
+
+		}
+		additionalEcsTemplates {
+			unit_spawn_and_route {
+
+			}
+			unit_death_substract_team_tickets {
+				on_death_substract_team_tickets_num:i=500
+			}
+			unit_init_params {
+				unit_params__rearmTimeOnField:r=60
+			}
+		}
+	}
+	ships {
+		name:t="t2_aircraftcarrier_04"
+		tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 0.0, 0.0]]
+		unit_class:t="us_aircraftcarrier_forrestal_ai"
+		objLayer:i=1
+		weapons:t=""
+		bullets0:t=""
+		bullets1:t=""
+		bullets2:t=""
+		bullets3:t=""
+		bulletsCount0:i=0
+		bulletsCount1:i=0
+		bulletsCount2:i=0
+		bulletsCount3:i=0
+		crewSkillK:r=0
+		applyAllMods:b=no
+		props {
+			army:i=2
+			count:i=1
+			formation_type:t="rows"
+			formation_div:i=3
+			formation_step:p2=2.5, 2
+			formation_noise:p2=0.1, 0.1
+			isDelayed:b=yes
+		}
+		way {
+
+		}
+		additionalEcsTemplates {
+			unit_spawn_and_route {
+
+			}
+			unit_death_substract_team_tickets {
+				on_death_substract_team_tickets_num:i=500
+			}
+			unit_init_params {
+				unit_params__rearmTimeOnField:r=60
+			}
+		}
+	}
+	ships {
+		name:t="t1_destroyer_01"
+		tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 0.0, 0.0]]
+		unit_class:t="ussr_destroyer_pr56_bravy_ec"
+		objLayer:i=1
+		weapons:t=""
+		bullets0:t="130mm_ussr_sm2_1_zs42r_navy_radio_aa"
+		bullets1:t="379mm_ussr_v600p_rocket_naval"
+		bullets2:t=""
+		bullets3:t=""
+		bulletsCount0:i=0
+		bulletsCount1:i=18
+		bulletsCount2:i=0
+		bulletsCount3:i=0
+		crewSkillK:r=0
+		applyAllMods:b=no
+		props {
+			army:i=1
+			count:i=1
+			formation_type:t="rows"
+			formation_div:i=3
+			formation_step:p2=2.5, 2
+			formation_noise:p2=0.1, 0.1
+			isDelayed:b=yes
+		}
+		way {
+
+		}
+		additionalEcsTemplates {
+			unit_spawn_and_route {
+
+			}
+			unit_death_substract_team_tickets {
+				on_death_substract_team_tickets_num:i=60
+			}
+			unit_init_params {
+				unit_params__rearmTimeOnField:r=60
+			}
+			aimer_custom_setting {
+				aimer_custom_setting__maxNumAttackersPerTargetGroupIdx:i=10
+				aimer_custom_setting__maxNumAttackersPerTarget:i=1
+			}
+		}
+	}
+	ships {
+		name:t="t1_destroyer_02"
+		tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 0.0, 0.0]]
+		unit_class:t="ussr_destroyer_pr56_bravy_ec"
+		objLayer:i=1
+		weapons:t=""
+		bullets0:t="130mm_ussr_sm2_1_zs42r_navy_radio_aa"
+		bullets1:t="379mm_ussr_v600p_rocket_naval"
+		bullets2:t=""
+		bullets3:t=""
+		bulletsCount0:i=0
+		bulletsCount1:i=18
+		bulletsCount2:i=0
+		bulletsCount3:i=0
+		crewSkillK:r=0
+		applyAllMods:b=no
+		props {
+			army:i=1
+			count:i=1
+			formation_type:t="rows"
+			formation_div:i=3
+			formation_step:p2=2.5, 2
+			formation_noise:p2=0.1, 0.1
+			isDelayed:b=yes
+		}
+		way {
+
+		}
+		additionalEcsTemplates {
+			unit_spawn_and_route {
+
+			}
+			unit_death_substract_team_tickets {
+				on_death_substract_team_tickets_num:i=60
+			}
+			unit_init_params {
+				unit_params__rearmTimeOnField:r=60
+			}
+			aimer_custom_setting {
+				aimer_custom_setting__maxNumAttackersPerTargetGroupIdx:i=11
+				aimer_custom_setting__maxNumAttackersPerTarget:i=1
+			}
+		}
+	}
+	ships {
+		name:t="t1_destroyer_03"
+		tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 0.0, 0.0]]
+		unit_class:t="ussr_destroyer_pr56_bravy_ec"
+		objLayer:i=1
+		weapons:t=""
+		bullets0:t="130mm_ussr_sm2_1_zs42r_navy_radio_aa"
+		bullets1:t="379mm_ussr_v600p_rocket_naval"
+		bullets2:t=""
+		bullets3:t=""
+		bulletsCount0:i=0
+		bulletsCount1:i=18
+		bulletsCount2:i=0
+		bulletsCount3:i=0
+		crewSkillK:r=0
+		applyAllMods:b=no
+		props {
+			army:i=1
+			count:i=1
+			formation_type:t="rows"
+			formation_div:i=3
+			formation_step:p2=2.5, 2
+			formation_noise:p2=0.1, 0.1
+			isDelayed:b=yes
+		}
+		way {
+
+		}
+		additionalEcsTemplates {
+			unit_spawn_and_route {
+
+			}
+			unit_death_substract_team_tickets {
+				on_death_substract_team_tickets_num:i=60
+			}
+			unit_init_params {
+				unit_params__rearmTimeOnField:r=60
+			}
+			aimer_custom_setting {
+				aimer_custom_setting__maxNumAttackersPerTargetGroupIdx:i=12
+				aimer_custom_setting__maxNumAttackersPerTarget:i=1
+			}
+		}
+	}
+	ships {
+		name:t="t1_destroyer_04"
+		tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 0.0, 0.0]]
+		unit_class:t="ussr_destroyer_pr56_bravy_ec"
+		objLayer:i=1
+		weapons:t=""
+		bullets0:t="130mm_ussr_sm2_1_zs42r_navy_radio_aa"
+		bullets1:t="379mm_ussr_v600p_rocket_naval"
+		bullets2:t=""
+		bullets3:t=""
+		bulletsCount0:i=0
+		bulletsCount1:i=18
+		bulletsCount2:i=0
+		bulletsCount3:i=0
+		crewSkillK:r=0
+		applyAllMods:b=no
+		props {
+			army:i=1
+			count:i=1
+			formation_type:t="rows"
+			formation_div:i=3
+			formation_step:p2=2.5, 2
+			formation_noise:p2=0.1, 0.1
+			isDelayed:b=yes
+		}
+		way {
+
+		}
+		additionalEcsTemplates {
+			unit_spawn_and_route {
+
+			}
+			unit_death_substract_team_tickets {
+				on_death_substract_team_tickets_num:i=60
+			}
+			unit_init_params {
+				unit_params__rearmTimeOnField:r=60
+			}
+			aimer_custom_setting {
+				aimer_custom_setting__maxNumAttackersPerTargetGroupIdx:i=13
+				aimer_custom_setting__maxNumAttackersPerTarget:i=1
+			}
+		}
+	}
+	ships {
+		name:t="t1_destroyer_05"
+		tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 0.0, 0.0]]
+		unit_class:t="ussr_destroyer_pr56_bravy_ec"
+		objLayer:i=1
+		weapons:t=""
+		bullets0:t="130mm_ussr_sm2_1_zs42r_navy_radio_aa"
+		bullets1:t="379mm_ussr_v600p_rocket_naval"
+		bullets2:t=""
+		bullets3:t=""
+		bulletsCount0:i=0
+		bulletsCount1:i=18
+		bulletsCount2:i=0
+		bulletsCount3:i=0
+		crewSkillK:r=0
+		applyAllMods:b=no
+		props {
+			army:i=1
+			count:i=1
+			formation_type:t="rows"
+			formation_div:i=3
+			formation_step:p2=2.5, 2
+			formation_noise:p2=0.1, 0.1
+			isDelayed:b=yes
+		}
+		way {
+
+		}
+		additionalEcsTemplates {
+			unit_spawn_and_route {
+
+			}
+			unit_death_substract_team_tickets {
+				on_death_substract_team_tickets_num:i=60
+			}
+			unit_init_params {
+				unit_params__rearmTimeOnField:r=60
+			}
+			aimer_custom_setting {
+				aimer_custom_setting__maxNumAttackersPerTargetGroupIdx:i=14
+				aimer_custom_setting__maxNumAttackersPerTarget:i=1
+			}
+		}
+	}
+	ships {
+		name:t="t1_destroyer_06"
+		tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 0.0, 0.0]]
+		unit_class:t="ussr_destroyer_pr56_bravy_ec"
+		objLayer:i=1
+		weapons:t=""
+		bullets0:t="130mm_ussr_sm2_1_zs42r_navy_radio_aa"
+		bullets1:t="379mm_ussr_v600p_rocket_naval"
+		bullets2:t=""
+		bullets3:t=""
+		bulletsCount0:i=0
+		bulletsCount1:i=18
+		bulletsCount2:i=0
+		bulletsCount3:i=0
+		crewSkillK:r=0
+		applyAllMods:b=no
+		props {
+			army:i=1
+			count:i=1
+			formation_type:t="rows"
+			formation_div:i=3
+			formation_step:p2=2.5, 2
+			formation_noise:p2=0.1, 0.1
+			isDelayed:b=yes
+		}
+		way {
+
+		}
+		additionalEcsTemplates {
+			unit_spawn_and_route {
+
+			}
+			unit_death_substract_team_tickets {
+				on_death_substract_team_tickets_num:i=60
+			}
+			unit_init_params {
+				unit_params__rearmTimeOnField:r=60
+			}
+			aimer_custom_setting {
+				aimer_custom_setting__maxNumAttackersPerTargetGroupIdx:i=15
+				aimer_custom_setting__maxNumAttackersPerTarget:i=1
+			}
+		}
+	}
+	ships {
+		name:t="t1_destroyer_07"
+		tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 0.0, 0.0]]
+		unit_class:t="ussr_destroyer_pr56_bravy_ec"
+		objLayer:i=1
+		weapons:t=""
+		bullets0:t="130mm_ussr_sm2_1_zs42r_navy_radio_aa"
+		bullets1:t="379mm_ussr_v600p_rocket_naval"
+		bullets2:t=""
+		bullets3:t=""
+		bulletsCount0:i=0
+		bulletsCount1:i=18
+		bulletsCount2:i=0
+		bulletsCount3:i=0
+		crewSkillK:r=0
+		applyAllMods:b=no
+		props {
+			army:i=1
+			count:i=1
+			formation_type:t="rows"
+			formation_div:i=3
+			formation_step:p2=2.5, 2
+			formation_noise:p2=0.1, 0.1
+			isDelayed:b=yes
+		}
+		way {
+
+		}
+		additionalEcsTemplates {
+			unit_spawn_and_route {
+
+			}
+			unit_death_substract_team_tickets {
+				on_death_substract_team_tickets_num:i=60
+			}
+			unit_init_params {
+				unit_params__rearmTimeOnField:r=60
+			}
+			aimer_custom_setting {
+				aimer_custom_setting__maxNumAttackersPerTargetGroupIdx:i=16
+				aimer_custom_setting__maxNumAttackersPerTarget:i=1
+			}
+		}
+	}
+	ships {
+		name:t="t1_destroyer_08"
+		tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 0.0, 0.0]]
+		unit_class:t="ussr_destroyer_pr56_bravy_ec"
+		objLayer:i=1
+		weapons:t=""
+		bullets0:t="130mm_ussr_sm2_1_zs42r_navy_radio_aa"
+		bullets1:t="379mm_ussr_v600p_rocket_naval"
+		bullets2:t=""
+		bullets3:t=""
+		bulletsCount0:i=0
+		bulletsCount1:i=18
+		bulletsCount2:i=0
+		bulletsCount3:i=0
+		crewSkillK:r=0
+		applyAllMods:b=no
+		props {
+			army:i=1
+			count:i=1
+			formation_type:t="rows"
+			formation_div:i=3
+			formation_step:p2=2.5, 2
+			formation_noise:p2=0.1, 0.1
+			isDelayed:b=yes
+		}
+		way {
+
+		}
+		additionalEcsTemplates {
+			unit_spawn_and_route {
+
+			}
+			unit_death_substract_team_tickets {
+				on_death_substract_team_tickets_num:i=60
+			}
+			unit_init_params {
+				unit_params__rearmTimeOnField:r=60
+			}
+			aimer_custom_setting {
+				aimer_custom_setting__maxNumAttackersPerTargetGroupIdx:i=17
+				aimer_custom_setting__maxNumAttackersPerTarget:i=1
+			}
+		}
+	}
+	ships {
+		name:t="t1_destroyer_09"
+		tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 0.0, 0.0]]
+		unit_class:t="ussr_destroyer_pr56_bravy_ec"
+		objLayer:i=1
+		weapons:t=""
+		bullets0:t="130mm_ussr_sm2_1_zs42r_navy_radio_aa"
+		bullets1:t="379mm_ussr_v600p_rocket_naval"
+		bullets2:t=""
+		bullets3:t=""
+		bulletsCount0:i=0
+		bulletsCount1:i=18
+		bulletsCount2:i=0
+		bulletsCount3:i=0
+		crewSkillK:r=0
+		applyAllMods:b=no
+		props {
+			army:i=1
+			count:i=1
+			formation_type:t="rows"
+			formation_div:i=3
+			formation_step:p2=2.5, 2
+			formation_noise:p2=0.1, 0.1
+			isDelayed:b=yes
+		}
+		way {
+
+		}
+		additionalEcsTemplates {
+			unit_spawn_and_route {
+
+			}
+			unit_death_substract_team_tickets {
+				on_death_substract_team_tickets_num:i=60
+			}
+			unit_init_params {
+				unit_params__rearmTimeOnField:r=60
+			}
+			aimer_custom_setting {
+				aimer_custom_setting__maxNumAttackersPerTargetGroupIdx:i=18
+				aimer_custom_setting__maxNumAttackersPerTarget:i=1
+			}
+		}
+	}
+	ships {
+		name:t="t1_destroyer_10"
+		tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 0.0, 0.0]]
+		unit_class:t="ussr_destroyer_pr56_bravy_ec"
+		objLayer:i=1
+		weapons:t=""
+		bullets0:t="130mm_ussr_sm2_1_zs42r_navy_radio_aa"
+		bullets1:t="379mm_ussr_v600p_rocket_naval"
+		bullets2:t=""
+		bullets3:t=""
+		bulletsCount0:i=0
+		bulletsCount1:i=18
+		bulletsCount2:i=0
+		bulletsCount3:i=0
+		crewSkillK:r=0
+		applyAllMods:b=no
+		props {
+			army:i=1
+			count:i=1
+			formation_type:t="rows"
+			formation_div:i=3
+			formation_step:p2=2.5, 2
+			formation_noise:p2=0.1, 0.1
+			isDelayed:b=yes
+		}
+		way {
+
+		}
+		additionalEcsTemplates {
+			unit_spawn_and_route {
+
+			}
+			unit_death_substract_team_tickets {
+				on_death_substract_team_tickets_num:i=60
+			}
+			unit_init_params {
+				unit_params__rearmTimeOnField:r=60
+			}
+			aimer_custom_setting {
+				aimer_custom_setting__maxNumAttackersPerTargetGroupIdx:i=19
+				aimer_custom_setting__maxNumAttackersPerTarget:i=1
+			}
+		}
+	}
+	ships {
+		name:t="t1_destroyer_11"
+		tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 0.0, 0.0]]
+		unit_class:t="ussr_destroyer_pr56_bravy_ec"
+		objLayer:i=1
+		weapons:t=""
+		bullets0:t="130mm_ussr_sm2_1_zs42r_navy_radio_aa"
+		bullets1:t="379mm_ussr_v600p_rocket_naval"
+		bullets2:t=""
+		bullets3:t=""
+		bulletsCount0:i=0
+		bulletsCount1:i=18
+		bulletsCount2:i=0
+		bulletsCount3:i=0
+		crewSkillK:r=0
+		applyAllMods:b=no
+		props {
+			army:i=1
+			count:i=1
+			formation_type:t="rows"
+			formation_div:i=3
+			formation_step:p2=2.5, 2
+			formation_noise:p2=0.1, 0.1
+			isDelayed:b=yes
+		}
+		way {
+
+		}
+		additionalEcsTemplates {
+			unit_spawn_and_route {
+
+			}
+			unit_death_substract_team_tickets {
+				on_death_substract_team_tickets_num:i=60
+			}
+			unit_init_params {
+				unit_params__rearmTimeOnField:r=60
+			}
+			aimer_custom_setting {
+				aimer_custom_setting__maxNumAttackersPerTargetGroupIdx:i=20
+				aimer_custom_setting__maxNumAttackersPerTarget:i=1
+			}
+		}
+	}
+	ships {
+		name:t="t1_destroyer_12"
+		tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 0.0, 0.0]]
+		unit_class:t="ussr_destroyer_pr56_bravy_ec"
+		objLayer:i=1
+		weapons:t=""
+		bullets0:t="130mm_ussr_sm2_1_zs42r_navy_radio_aa"
+		bullets1:t="379mm_ussr_v600p_rocket_naval"
+		bullets2:t=""
+		bullets3:t=""
+		bulletsCount0:i=0
+		bulletsCount1:i=18
+		bulletsCount2:i=0
+		bulletsCount3:i=0
+		crewSkillK:r=0
+		applyAllMods:b=no
+		props {
+			army:i=1
+			count:i=1
+			formation_type:t="rows"
+			formation_div:i=3
+			formation_step:p2=2.5, 2
+			formation_noise:p2=0.1, 0.1
+			isDelayed:b=yes
+		}
+		way {
+
+		}
+		additionalEcsTemplates {
+			unit_spawn_and_route {
+
+			}
+			unit_death_substract_team_tickets {
+				on_death_substract_team_tickets_num:i=60
+			}
+			unit_init_params {
+				unit_params__rearmTimeOnField:r=60
+			}
+			aimer_custom_setting {
+				aimer_custom_setting__maxNumAttackersPerTargetGroupIdx:i=21
+				aimer_custom_setting__maxNumAttackersPerTarget:i=1
+			}
+		}
+	}
+	ships {
+		name:t="t2_destroyer_01"
+		tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 0.0, 0.0]]
+		unit_class:t="us_destroyer_cf_adams_class_cf_adams_ec"
+		objLayer:i=1
+		weapons:t=""
+		bullets0:t=""
+		bullets1:t="343mm_usa_rim24a_rocket_naval"
+		bullets2:t=""
+		bullets3:t=""
+		bulletsCount0:i=0
+		bulletsCount1:i=42
+		bulletsCount2:i=0
+		bulletsCount3:i=0
+		crewSkillK:r=0
+		applyAllMods:b=no
+		props {
+			army:i=2
+			count:i=1
+			formation_type:t="rows"
+			formation_div:i=3
+			formation_step:p2=2.5, 2
+			formation_noise:p2=0.1, 0.1
+			isDelayed:b=yes
+		}
+		way {
+
+		}
+		additionalEcsTemplates {
+			unit_spawn_and_route {
+
+			}
+			unit_death_substract_team_tickets {
+				on_death_substract_team_tickets_num:i=60
+			}
+			unit_init_params {
+				unit_params__rearmTimeOnField:r=60
+			}
+			aimer_custom_setting {
+				aimer_custom_setting__maxNumAttackersPerTargetGroupIdx:i=10
+				aimer_custom_setting__maxNumAttackersPerTarget:i=1
+			}
+		}
+	}
+	ships {
+		name:t="t2_destroyer_02"
+		tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 0.0, 0.0]]
+		unit_class:t="us_destroyer_cf_adams_class_cf_adams_ec"
+		objLayer:i=1
+		weapons:t=""
+		bullets0:t=""
+		bullets1:t="343mm_usa_rim24a_rocket_naval"
+		bullets2:t=""
+		bullets3:t=""
+		bulletsCount0:i=0
+		bulletsCount1:i=42
+		bulletsCount2:i=0
+		bulletsCount3:i=0
+		crewSkillK:r=0
+		applyAllMods:b=no
+		props {
+			army:i=2
+			count:i=1
+			formation_type:t="rows"
+			formation_div:i=3
+			formation_step:p2=2.5, 2
+			formation_noise:p2=0.1, 0.1
+			isDelayed:b=yes
+		}
+		way {
+
+		}
+		additionalEcsTemplates {
+			unit_spawn_and_route {
+
+			}
+			unit_death_substract_team_tickets {
+				on_death_substract_team_tickets_num:i=60
+			}
+			unit_init_params {
+				unit_params__rearmTimeOnField:r=60
+			}
+			aimer_custom_setting {
+				aimer_custom_setting__maxNumAttackersPerTargetGroupIdx:i=11
+				aimer_custom_setting__maxNumAttackersPerTarget:i=1
+			}
+		}
+	}
+	ships {
+		name:t="t2_destroyer_03"
+		tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 0.0, 0.0]]
+		unit_class:t="us_destroyer_cf_adams_class_cf_adams_ec"
+		objLayer:i=1
+		weapons:t=""
+		bullets0:t=""
+		bullets1:t="343mm_usa_rim24a_rocket_naval"
+		bullets2:t=""
+		bullets3:t=""
+		bulletsCount0:i=0
+		bulletsCount1:i=42
+		bulletsCount2:i=0
+		bulletsCount3:i=0
+		crewSkillK:r=0
+		applyAllMods:b=no
+		props {
+			army:i=2
+			count:i=1
+			formation_type:t="rows"
+			formation_div:i=3
+			formation_step:p2=2.5, 2
+			formation_noise:p2=0.1, 0.1
+			isDelayed:b=yes
+		}
+		way {
+
+		}
+		additionalEcsTemplates {
+			unit_spawn_and_route {
+
+			}
+			unit_death_substract_team_tickets {
+				on_death_substract_team_tickets_num:i=60
+			}
+			unit_init_params {
+				unit_params__rearmTimeOnField:r=60
+			}
+			aimer_custom_setting {
+				aimer_custom_setting__maxNumAttackersPerTargetGroupIdx:i=12
+				aimer_custom_setting__maxNumAttackersPerTarget:i=1
+			}
+		}
+	}
+	ships {
+		name:t="t2_destroyer_04"
+		tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 0.0, 0.0]]
+		unit_class:t="us_destroyer_cf_adams_class_cf_adams_ec"
+		objLayer:i=1
+		weapons:t=""
+		bullets0:t=""
+		bullets1:t="343mm_usa_rim24a_rocket_naval"
+		bullets2:t=""
+		bullets3:t=""
+		bulletsCount0:i=0
+		bulletsCount1:i=42
+		bulletsCount2:i=0
+		bulletsCount3:i=0
+		crewSkillK:r=0
+		applyAllMods:b=no
+		props {
+			army:i=2
+			count:i=1
+			formation_type:t="rows"
+			formation_div:i=3
+			formation_step:p2=2.5, 2
+			formation_noise:p2=0.1, 0.1
+			isDelayed:b=yes
+		}
+		way {
+
+		}
+		additionalEcsTemplates {
+			unit_spawn_and_route {
+
+			}
+			unit_death_substract_team_tickets {
+				on_death_substract_team_tickets_num:i=60
+			}
+			unit_init_params {
+				unit_params__rearmTimeOnField:r=60
+			}
+			aimer_custom_setting {
+				aimer_custom_setting__maxNumAttackersPerTargetGroupIdx:i=13
+				aimer_custom_setting__maxNumAttackersPerTarget:i=1
+			}
+		}
+	}
+	ships {
+		name:t="t2_destroyer_05"
+		tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 0.0, 0.0]]
+		unit_class:t="us_destroyer_cf_adams_class_cf_adams_ec"
+		objLayer:i=1
+		weapons:t=""
+		bullets0:t=""
+		bullets1:t="343mm_usa_rim24a_rocket_naval"
+		bullets2:t=""
+		bullets3:t=""
+		bulletsCount0:i=0
+		bulletsCount1:i=42
+		bulletsCount2:i=0
+		bulletsCount3:i=0
+		crewSkillK:r=0
+		applyAllMods:b=no
+		props {
+			army:i=2
+			count:i=1
+			formation_type:t="rows"
+			formation_div:i=3
+			formation_step:p2=2.5, 2
+			formation_noise:p2=0.1, 0.1
+			isDelayed:b=yes
+		}
+		way {
+
+		}
+		additionalEcsTemplates {
+			unit_spawn_and_route {
+
+			}
+			unit_death_substract_team_tickets {
+				on_death_substract_team_tickets_num:i=60
+			}
+			unit_init_params {
+				unit_params__rearmTimeOnField:r=60
+			}
+			aimer_custom_setting {
+				aimer_custom_setting__maxNumAttackersPerTargetGroupIdx:i=14
+				aimer_custom_setting__maxNumAttackersPerTarget:i=1
+			}
+		}
+	}
+	ships {
+		name:t="t2_destroyer_06"
+		tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 0.0, 0.0]]
+		unit_class:t="us_destroyer_cf_adams_class_cf_adams_ec"
+		objLayer:i=1
+		weapons:t=""
+		bullets0:t=""
+		bullets1:t="343mm_usa_rim24a_rocket_naval"
+		bullets2:t=""
+		bullets3:t=""
+		bulletsCount0:i=0
+		bulletsCount1:i=42
+		bulletsCount2:i=0
+		bulletsCount3:i=0
+		crewSkillK:r=0
+		applyAllMods:b=no
+		props {
+			army:i=2
+			count:i=1
+			formation_type:t="rows"
+			formation_div:i=3
+			formation_step:p2=2.5, 2
+			formation_noise:p2=0.1, 0.1
+			isDelayed:b=yes
+		}
+		way {
+
+		}
+		additionalEcsTemplates {
+			unit_spawn_and_route {
+
+			}
+			unit_death_substract_team_tickets {
+				on_death_substract_team_tickets_num:i=60
+			}
+			unit_init_params {
+				unit_params__rearmTimeOnField:r=60
+			}
+			aimer_custom_setting {
+				aimer_custom_setting__maxNumAttackersPerTargetGroupIdx:i=15
+				aimer_custom_setting__maxNumAttackersPerTarget:i=1
+			}
+		}
+	}
+	ships {
+		name:t="t2_destroyer_07"
+		tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 0.0, 0.0]]
+		unit_class:t="us_destroyer_cf_adams_class_cf_adams_ec"
+		objLayer:i=1
+		weapons:t=""
+		bullets0:t=""
+		bullets1:t="343mm_usa_rim24a_rocket_naval"
+		bullets2:t=""
+		bullets3:t=""
+		bulletsCount0:i=0
+		bulletsCount1:i=42
+		bulletsCount2:i=0
+		bulletsCount3:i=0
+		crewSkillK:r=0
+		applyAllMods:b=no
+		props {
+			army:i=2
+			count:i=1
+			formation_type:t="rows"
+			formation_div:i=3
+			formation_step:p2=2.5, 2
+			formation_noise:p2=0.1, 0.1
+			isDelayed:b=yes
+		}
+		way {
+
+		}
+		additionalEcsTemplates {
+			unit_spawn_and_route {
+
+			}
+			unit_death_substract_team_tickets {
+				on_death_substract_team_tickets_num:i=60
+			}
+			unit_init_params {
+				unit_params__rearmTimeOnField:r=60
+			}
+			aimer_custom_setting {
+				aimer_custom_setting__maxNumAttackersPerTargetGroupIdx:i=16
+				aimer_custom_setting__maxNumAttackersPerTarget:i=1
+			}
+		}
+	}
+	ships {
+		name:t="t2_destroyer_08"
+		tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 0.0, 0.0]]
+		unit_class:t="us_destroyer_cf_adams_class_cf_adams_ec"
+		objLayer:i=1
+		weapons:t=""
+		bullets0:t=""
+		bullets1:t="343mm_usa_rim24a_rocket_naval"
+		bullets2:t=""
+		bullets3:t=""
+		bulletsCount0:i=0
+		bulletsCount1:i=42
+		bulletsCount2:i=0
+		bulletsCount3:i=0
+		crewSkillK:r=0
+		applyAllMods:b=no
+		props {
+			army:i=2
+			count:i=1
+			formation_type:t="rows"
+			formation_div:i=3
+			formation_step:p2=2.5, 2
+			formation_noise:p2=0.1, 0.1
+			isDelayed:b=yes
+		}
+		way {
+
+		}
+		additionalEcsTemplates {
+			unit_spawn_and_route {
+
+			}
+			unit_death_substract_team_tickets {
+				on_death_substract_team_tickets_num:i=60
+			}
+			unit_init_params {
+				unit_params__rearmTimeOnField:r=60
+			}
+			aimer_custom_setting {
+				aimer_custom_setting__maxNumAttackersPerTargetGroupIdx:i=17
+				aimer_custom_setting__maxNumAttackersPerTarget:i=1
+			}
+		}
+	}
+	ships {
+		name:t="t2_destroyer_09"
+		tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 0.0, 0.0]]
+		unit_class:t="us_destroyer_cf_adams_class_cf_adams_ec"
+		objLayer:i=1
+		weapons:t=""
+		bullets0:t=""
+		bullets1:t="343mm_usa_rim24a_rocket_naval"
+		bullets2:t=""
+		bullets3:t=""
+		bulletsCount0:i=0
+		bulletsCount1:i=42
+		bulletsCount2:i=0
+		bulletsCount3:i=0
+		crewSkillK:r=0
+		applyAllMods:b=no
+		props {
+			army:i=2
+			count:i=1
+			formation_type:t="rows"
+			formation_div:i=3
+			formation_step:p2=2.5, 2
+			formation_noise:p2=0.1, 0.1
+			isDelayed:b=yes
+		}
+		way {
+
+		}
+		additionalEcsTemplates {
+			unit_spawn_and_route {
+
+			}
+			unit_death_substract_team_tickets {
+				on_death_substract_team_tickets_num:i=60
+			}
+			unit_init_params {
+				unit_params__rearmTimeOnField:r=60
+			}
+			aimer_custom_setting {
+				aimer_custom_setting__maxNumAttackersPerTargetGroupIdx:i=18
+				aimer_custom_setting__maxNumAttackersPerTarget:i=1
+			}
+		}
+	}
+	ships {
+		name:t="t2_destroyer_10"
+		tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 0.0, 0.0]]
+		unit_class:t="us_destroyer_cf_adams_class_cf_adams_ec"
+		objLayer:i=1
+		weapons:t=""
+		bullets0:t=""
+		bullets1:t="343mm_usa_rim24a_rocket_naval"
+		bullets2:t=""
+		bullets3:t=""
+		bulletsCount0:i=0
+		bulletsCount1:i=42
+		bulletsCount2:i=0
+		bulletsCount3:i=0
+		crewSkillK:r=0
+		applyAllMods:b=no
+		props {
+			army:i=2
+			count:i=1
+			formation_type:t="rows"
+			formation_div:i=3
+			formation_step:p2=2.5, 2
+			formation_noise:p2=0.1, 0.1
+			isDelayed:b=yes
+		}
+		way {
+
+		}
+		additionalEcsTemplates {
+			unit_spawn_and_route {
+
+			}
+			unit_death_substract_team_tickets {
+				on_death_substract_team_tickets_num:i=60
+			}
+			unit_init_params {
+				unit_params__rearmTimeOnField:r=60
+			}
+			aimer_custom_setting {
+				aimer_custom_setting__maxNumAttackersPerTargetGroupIdx:i=19
+				aimer_custom_setting__maxNumAttackersPerTarget:i=1
+			}
+		}
+	}
+	ships {
+		name:t="t2_destroyer_11"
+		tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 0.0, 0.0]]
+		unit_class:t="us_destroyer_cf_adams_class_cf_adams_ec"
+		objLayer:i=1
+		weapons:t=""
+		bullets0:t=""
+		bullets1:t="343mm_usa_rim24a_rocket_naval"
+		bullets2:t=""
+		bullets3:t=""
+		bulletsCount0:i=0
+		bulletsCount1:i=42
+		bulletsCount2:i=0
+		bulletsCount3:i=0
+		crewSkillK:r=0
+		applyAllMods:b=no
+		props {
+			army:i=2
+			count:i=1
+			formation_type:t="rows"
+			formation_div:i=3
+			formation_step:p2=2.5, 2
+			formation_noise:p2=0.1, 0.1
+			isDelayed:b=yes
+		}
+		way {
+
+		}
+		additionalEcsTemplates {
+			unit_spawn_and_route {
+
+			}
+			unit_death_substract_team_tickets {
+				on_death_substract_team_tickets_num:i=60
+			}
+			unit_init_params {
+				unit_params__rearmTimeOnField:r=60
+			}
+			aimer_custom_setting {
+				aimer_custom_setting__maxNumAttackersPerTargetGroupIdx:i=20
+				aimer_custom_setting__maxNumAttackersPerTarget:i=1
+			}
+		}
+	}
+	ships {
+		name:t="t2_destroyer_12"
+		tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 0.0, 0.0]]
+		unit_class:t="us_destroyer_cf_adams_class_cf_adams_ec"
+		objLayer:i=1
+		weapons:t=""
+		bullets0:t=""
+		bullets1:t="343mm_usa_rim24a_rocket_naval"
+		bullets2:t=""
+		bullets3:t=""
+		bulletsCount0:i=0
+		bulletsCount1:i=42
+		bulletsCount2:i=0
+		bulletsCount3:i=0
+		crewSkillK:r=0
+		applyAllMods:b=no
+		props {
+			army:i=2
+			count:i=1
+			formation_type:t="rows"
+			formation_div:i=3
+			formation_step:p2=2.5, 2
+			formation_noise:p2=0.1, 0.1
+			isDelayed:b=yes
+		}
+		way {
+
+		}
+		additionalEcsTemplates {
+			unit_spawn_and_route {
+
+			}
+			unit_death_substract_team_tickets {
+				on_death_substract_team_tickets_num:i=60
+			}
+			unit_init_params {
+				unit_params__rearmTimeOnField:r=60
+			}
+			aimer_custom_setting {
+				aimer_custom_setting__maxNumAttackersPerTargetGroupIdx:i=21
+				aimer_custom_setting__maxNumAttackersPerTarget:i=1
+			}
+		}
+	}
+	ships {
+		name:t="t1_frigate_01"
+		tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 0.0, 0.0]]
+		unit_class:t="ussr_mpk_pr_1124_ec"
+		objLayer:i=1
+		weapons:t=""
+		bullets0:t="57mm_ussr_HE"
+		bullets1:t="209mm_ussr_9m33_rocket_naval"
+		bullets2:t=""
+		bullets3:t=""
+		bulletsCount0:i=0
+		bulletsCount1:i=22
+		bulletsCount2:i=0
+		bulletsCount3:i=0
+		crewSkillK:r=0
+		applyAllMods:b=no
+		props {
+			army:i=1
+			count:i=1
+			formation_type:t="rows"
+			formation_div:i=3
+			formation_step:p2=2.5, 2
+			formation_noise:p2=0.1, 0.1
+			isDelayed:b=yes
+		}
+		way {
+
+		}
+		additionalEcsTemplates {
+			unit_spawn_and_route {
+
+			}
+			unit_death_substract_team_tickets {
+				on_death_substract_team_tickets_num:i=30
+			}
+			unit_init_params {
+				unit_params__rearmTimeOnField:r=60
+			}
+			aimer_custom_setting {
+				aimer_custom_setting__maxNumAttackersPerTargetGroupIdx:i=22
+				aimer_custom_setting__maxNumAttackersPerTarget:i=1
+			}
+		}
+	}
+	ships {
+		name:t="t1_frigate_02"
+		tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 0.0, 0.0]]
+		unit_class:t="ussr_mpk_pr_1124_ec"
+		objLayer:i=1
+		weapons:t=""
+		bullets0:t="57mm_ussr_HE"
+		bullets1:t="209mm_ussr_9m33_rocket_naval"
+		bullets2:t=""
+		bullets3:t=""
+		bulletsCount0:i=0
+		bulletsCount1:i=22
+		bulletsCount2:i=0
+		bulletsCount3:i=0
+		crewSkillK:r=0
+		applyAllMods:b=no
+		props {
+			army:i=1
+			count:i=1
+			formation_type:t="rows"
+			formation_div:i=3
+			formation_step:p2=2.5, 2
+			formation_noise:p2=0.1, 0.1
+			isDelayed:b=yes
+		}
+		way {
+
+		}
+		additionalEcsTemplates {
+			unit_spawn_and_route {
+
+			}
+			unit_death_substract_team_tickets {
+				on_death_substract_team_tickets_num:i=30
+			}
+			unit_init_params {
+				unit_params__rearmTimeOnField:r=60
+			}
+			aimer_custom_setting {
+				aimer_custom_setting__maxNumAttackersPerTargetGroupIdx:i=23
+				aimer_custom_setting__maxNumAttackersPerTarget:i=1
+			}
+		}
+	}
+	ships {
+		name:t="t1_frigate_03"
+		tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 0.0, 0.0]]
+		unit_class:t="ussr_mpk_pr_1124_ec"
+		objLayer:i=1
+		weapons:t=""
+		bullets0:t="57mm_ussr_HE"
+		bullets1:t="209mm_ussr_9m33_rocket_naval"
+		bullets2:t=""
+		bullets3:t=""
+		bulletsCount0:i=0
+		bulletsCount1:i=22
+		bulletsCount2:i=0
+		bulletsCount3:i=0
+		crewSkillK:r=0
+		applyAllMods:b=no
+		props {
+			army:i=1
+			count:i=1
+			formation_type:t="rows"
+			formation_div:i=3
+			formation_step:p2=2.5, 2
+			formation_noise:p2=0.1, 0.1
+			isDelayed:b=yes
+		}
+		way {
+
+		}
+		additionalEcsTemplates {
+			unit_spawn_and_route {
+
+			}
+			unit_death_substract_team_tickets {
+				on_death_substract_team_tickets_num:i=30
+			}
+			unit_init_params {
+				unit_params__rearmTimeOnField:r=60
+			}
+			aimer_custom_setting {
+				aimer_custom_setting__maxNumAttackersPerTargetGroupIdx:i=24
+				aimer_custom_setting__maxNumAttackersPerTarget:i=1
+			}
+		}
+	}
+	ships {
+		name:t="t1_frigate_04"
+		tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 0.0, 0.0]]
+		unit_class:t="ussr_mpk_pr_1124_ec"
+		objLayer:i=1
+		weapons:t=""
+		bullets0:t="57mm_ussr_HE"
+		bullets1:t="209mm_ussr_9m33_rocket_naval"
+		bullets2:t=""
+		bullets3:t=""
+		bulletsCount0:i=0
+		bulletsCount1:i=22
+		bulletsCount2:i=0
+		bulletsCount3:i=0
+		crewSkillK:r=0
+		applyAllMods:b=no
+		props {
+			army:i=1
+			count:i=1
+			formation_type:t="rows"
+			formation_div:i=3
+			formation_step:p2=2.5, 2
+			formation_noise:p2=0.1, 0.1
+			isDelayed:b=yes
+		}
+		way {
+
+		}
+		additionalEcsTemplates {
+			unit_spawn_and_route {
+
+			}
+			unit_death_substract_team_tickets {
+				on_death_substract_team_tickets_num:i=30
+			}
+			unit_init_params {
+				unit_params__rearmTimeOnField:r=60
+			}
+			aimer_custom_setting {
+				aimer_custom_setting__maxNumAttackersPerTargetGroupIdx:i=25
+				aimer_custom_setting__maxNumAttackersPerTarget:i=1
+			}
+		}
+	}
+	ships {
+		name:t="t1_frigate_05"
+		tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 0.0, 0.0]]
+		unit_class:t="ussr_mpk_pr_1124_ec"
+		objLayer:i=1
+		weapons:t=""
+		bullets0:t="57mm_ussr_HE"
+		bullets1:t="209mm_ussr_9m33_rocket_naval"
+		bullets2:t=""
+		bullets3:t=""
+		bulletsCount0:i=0
+		bulletsCount1:i=22
+		bulletsCount2:i=0
+		bulletsCount3:i=0
+		crewSkillK:r=0
+		applyAllMods:b=no
+		props {
+			army:i=1
+			count:i=1
+			formation_type:t="rows"
+			formation_div:i=3
+			formation_step:p2=2.5, 2
+			formation_noise:p2=0.1, 0.1
+			isDelayed:b=yes
+		}
+		way {
+
+		}
+		additionalEcsTemplates {
+			unit_spawn_and_route {
+
+			}
+			unit_death_substract_team_tickets {
+				on_death_substract_team_tickets_num:i=30
+			}
+			unit_init_params {
+				unit_params__rearmTimeOnField:r=60
+			}
+			aimer_custom_setting {
+				aimer_custom_setting__maxNumAttackersPerTargetGroupIdx:i=26
+				aimer_custom_setting__maxNumAttackersPerTarget:i=1
+			}
+		}
+	}
+	ships {
+		name:t="t1_frigate_06"
+		tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 0.0, 0.0]]
+		unit_class:t="ussr_mpk_pr_1124_ec"
+		objLayer:i=1
+		weapons:t=""
+		bullets0:t="57mm_ussr_HE"
+		bullets1:t="209mm_ussr_9m33_rocket_naval"
+		bullets2:t=""
+		bullets3:t=""
+		bulletsCount0:i=0
+		bulletsCount1:i=22
+		bulletsCount2:i=0
+		bulletsCount3:i=0
+		crewSkillK:r=0
+		applyAllMods:b=no
+		props {
+			army:i=1
+			count:i=1
+			formation_type:t="rows"
+			formation_div:i=3
+			formation_step:p2=2.5, 2
+			formation_noise:p2=0.1, 0.1
+			isDelayed:b=yes
+		}
+		way {
+
+		}
+		additionalEcsTemplates {
+			unit_spawn_and_route {
+
+			}
+			unit_death_substract_team_tickets {
+				on_death_substract_team_tickets_num:i=30
+			}
+			unit_init_params {
+				unit_params__rearmTimeOnField:r=60
+			}
+			aimer_custom_setting {
+				aimer_custom_setting__maxNumAttackersPerTargetGroupIdx:i=27
+				aimer_custom_setting__maxNumAttackersPerTarget:i=1
+			}
+		}
+	}
+	ships {
+		name:t="t1_frigate_07"
+		tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 0.0, 0.0]]
+		unit_class:t="ussr_mpk_pr_1124_ec"
+		objLayer:i=1
+		weapons:t=""
+		bullets0:t="57mm_ussr_HE"
+		bullets1:t="209mm_ussr_9m33_rocket_naval"
+		bullets2:t=""
+		bullets3:t=""
+		bulletsCount0:i=0
+		bulletsCount1:i=22
+		bulletsCount2:i=0
+		bulletsCount3:i=0
+		crewSkillK:r=0
+		applyAllMods:b=no
+		props {
+			army:i=1
+			count:i=1
+			formation_type:t="rows"
+			formation_div:i=3
+			formation_step:p2=2.5, 2
+			formation_noise:p2=0.1, 0.1
+			isDelayed:b=yes
+		}
+		way {
+
+		}
+		additionalEcsTemplates {
+			unit_spawn_and_route {
+
+			}
+			unit_death_substract_team_tickets {
+				on_death_substract_team_tickets_num:i=30
+			}
+			unit_init_params {
+				unit_params__rearmTimeOnField:r=60
+			}
+			aimer_custom_setting {
+				aimer_custom_setting__maxNumAttackersPerTargetGroupIdx:i=28
+				aimer_custom_setting__maxNumAttackersPerTarget:i=1
+			}
+		}
+	}
+	ships {
+		name:t="t1_frigate_08"
+		tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 0.0, 0.0]]
+		unit_class:t="ussr_mpk_pr_1124_ec"
+		objLayer:i=1
+		weapons:t=""
+		bullets0:t="57mm_ussr_HE"
+		bullets1:t="209mm_ussr_9m33_rocket_naval"
+		bullets2:t=""
+		bullets3:t=""
+		bulletsCount0:i=0
+		bulletsCount1:i=22
+		bulletsCount2:i=0
+		bulletsCount3:i=0
+		crewSkillK:r=0
+		applyAllMods:b=no
+		props {
+			army:i=1
+			count:i=1
+			formation_type:t="rows"
+			formation_div:i=3
+			formation_step:p2=2.5, 2
+			formation_noise:p2=0.1, 0.1
+			isDelayed:b=yes
+		}
+		way {
+
+		}
+		additionalEcsTemplates {
+			unit_spawn_and_route {
+
+			}
+			unit_death_substract_team_tickets {
+				on_death_substract_team_tickets_num:i=30
+			}
+			unit_init_params {
+				unit_params__rearmTimeOnField:r=60
+			}
+			aimer_custom_setting {
+				aimer_custom_setting__maxNumAttackersPerTargetGroupIdx:i=29
+				aimer_custom_setting__maxNumAttackersPerTarget:i=1
+			}
+		}
+	}
+	ships {
+		name:t="t1_frigate_09"
+		tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 0.0, 0.0]]
+		unit_class:t="ussr_mpk_pr_1124_ec"
+		objLayer:i=1
+		weapons:t=""
+		bullets0:t="57mm_ussr_HE"
+		bullets1:t="209mm_ussr_9m33_rocket_naval"
+		bullets2:t=""
+		bullets3:t=""
+		bulletsCount0:i=0
+		bulletsCount1:i=22
+		bulletsCount2:i=0
+		bulletsCount3:i=0
+		crewSkillK:r=0
+		applyAllMods:b=no
+		props {
+			army:i=1
+			count:i=1
+			formation_type:t="rows"
+			formation_div:i=3
+			formation_step:p2=2.5, 2
+			formation_noise:p2=0.1, 0.1
+			isDelayed:b=yes
+		}
+		way {
+
+		}
+		additionalEcsTemplates {
+			unit_spawn_and_route {
+
+			}
+			unit_death_substract_team_tickets {
+				on_death_substract_team_tickets_num:i=30
+			}
+			unit_init_params {
+				unit_params__rearmTimeOnField:r=60
+			}
+			aimer_custom_setting {
+				aimer_custom_setting__maxNumAttackersPerTargetGroupIdx:i=30
+				aimer_custom_setting__maxNumAttackersPerTarget:i=1
+			}
+		}
+	}
+	ships {
+		name:t="t1_frigate_10"
+		tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 0.0, 0.0]]
+		unit_class:t="ussr_mpk_pr_1124_ec"
+		objLayer:i=1
+		weapons:t=""
+		bullets0:t="57mm_ussr_HE"
+		bullets1:t="209mm_ussr_9m33_rocket_naval"
+		bullets2:t=""
+		bullets3:t=""
+		bulletsCount0:i=0
+		bulletsCount1:i=22
+		bulletsCount2:i=0
+		bulletsCount3:i=0
+		crewSkillK:r=0
+		applyAllMods:b=no
+		props {
+			army:i=1
+			count:i=1
+			formation_type:t="rows"
+			formation_div:i=3
+			formation_step:p2=2.5, 2
+			formation_noise:p2=0.1, 0.1
+			isDelayed:b=yes
+		}
+		way {
+
+		}
+		additionalEcsTemplates {
+			unit_spawn_and_route {
+
+			}
+			unit_death_substract_team_tickets {
+				on_death_substract_team_tickets_num:i=30
+			}
+			unit_init_params {
+				unit_params__rearmTimeOnField:r=60
+			}
+			aimer_custom_setting {
+				aimer_custom_setting__maxNumAttackersPerTargetGroupIdx:i=31
+				aimer_custom_setting__maxNumAttackersPerTarget:i=1
+			}
+		}
+	}
+	ships {
+		name:t="t1_frigate_11"
+		tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 0.0, 0.0]]
+		unit_class:t="ussr_mpk_pr_1124_ec"
+		objLayer:i=1
+		weapons:t=""
+		bullets0:t="57mm_ussr_HE"
+		bullets1:t="209mm_ussr_9m33_rocket_naval"
+		bullets2:t=""
+		bullets3:t=""
+		bulletsCount0:i=0
+		bulletsCount1:i=22
+		bulletsCount2:i=0
+		bulletsCount3:i=0
+		crewSkillK:r=0
+		applyAllMods:b=no
+		props {
+			army:i=1
+			count:i=1
+			formation_type:t="rows"
+			formation_div:i=3
+			formation_step:p2=2.5, 2
+			formation_noise:p2=0.1, 0.1
+			isDelayed:b=yes
+		}
+		way {
+
+		}
+		additionalEcsTemplates {
+			unit_spawn_and_route {
+
+			}
+			unit_death_substract_team_tickets {
+				on_death_substract_team_tickets_num:i=30
+			}
+			unit_init_params {
+				unit_params__rearmTimeOnField:r=60
+			}
+			aimer_custom_setting {
+				aimer_custom_setting__maxNumAttackersPerTargetGroupIdx:i=32
+				aimer_custom_setting__maxNumAttackersPerTarget:i=1
+			}
+		}
+	}
+	ships {
+		name:t="t1_frigate_12"
+		tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 0.0, 0.0]]
+		unit_class:t="ussr_mpk_pr_1124_ec"
+		objLayer:i=1
+		weapons:t=""
+		bullets0:t="57mm_ussr_HE"
+		bullets1:t="209mm_ussr_9m33_rocket_naval"
+		bullets2:t=""
+		bullets3:t=""
+		bulletsCount0:i=0
+		bulletsCount1:i=22
+		bulletsCount2:i=0
+		bulletsCount3:i=0
+		crewSkillK:r=0
+		applyAllMods:b=no
+		props {
+			army:i=1
+			count:i=1
+			formation_type:t="rows"
+			formation_div:i=3
+			formation_step:p2=2.5, 2
+			formation_noise:p2=0.1, 0.1
+			isDelayed:b=yes
+		}
+		way {
+
+		}
+		additionalEcsTemplates {
+			unit_spawn_and_route {
+
+			}
+			unit_death_substract_team_tickets {
+				on_death_substract_team_tickets_num:i=30
+			}
+			unit_init_params {
+				unit_params__rearmTimeOnField:r=60
+			}
+			aimer_custom_setting {
+				aimer_custom_setting__maxNumAttackersPerTargetGroupIdx:i=33
+				aimer_custom_setting__maxNumAttackersPerTarget:i=1
+			}
+		}
+	}
+	ships {
+		name:t="t2_frigate_01"
+		tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 0.0, 0.0]]
+		unit_class:t="us_ashville_class_douglas"
+		objLayer:i=1
+		weapons:t=""
+		bullets0:t="76mm_usa_AA_radio_fuze"
+		bullets1:t="343mm_usa_rim24a_rocket_naval"
+		bullets2:t=""
+		bullets3:t=""
+		bulletsCount0:i=0
+		bulletsCount1:i=4
+		bulletsCount2:i=0
+		bulletsCount3:i=0
+		crewSkillK:r=0
+		applyAllMods:b=no
+		props {
+			army:i=2
+			count:i=1
+			formation_type:t="rows"
+			formation_div:i=3
+			formation_step:p2=2.5, 2
+			formation_noise:p2=0.1, 0.1
+			isDelayed:b=yes
+		}
+		way {
+
+		}
+		additionalEcsTemplates {
+			unit_spawn_and_route {
+
+			}
+			unit_death_substract_team_tickets {
+				on_death_substract_team_tickets_num:i=30
+			}
+			unit_init_params {
+				unit_params__rearmTimeOnField:r=60
+			}
+			aimer_custom_setting {
+				aimer_custom_setting__maxNumAttackersPerTargetGroupIdx:i=22
+				aimer_custom_setting__maxNumAttackersPerTarget:i=1
+			}
+		}
+	}
+	ships {
+		name:t="t2_frigate_02"
+		tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 0.0, 0.0]]
+		unit_class:t="us_ashville_class_douglas"
+		objLayer:i=1
+		weapons:t=""
+		bullets0:t="76mm_usa_AA_radio_fuze"
+		bullets1:t="343mm_usa_rim24a_rocket_naval"
+		bullets2:t=""
+		bullets3:t=""
+		bulletsCount0:i=0
+		bulletsCount1:i=4
+		bulletsCount2:i=0
+		bulletsCount3:i=0
+		crewSkillK:r=0
+		applyAllMods:b=no
+		props {
+			army:i=2
+			count:i=1
+			formation_type:t="rows"
+			formation_div:i=3
+			formation_step:p2=2.5, 2
+			formation_noise:p2=0.1, 0.1
+			isDelayed:b=yes
+		}
+		way {
+
+		}
+		additionalEcsTemplates {
+			unit_spawn_and_route {
+
+			}
+			unit_death_substract_team_tickets {
+				on_death_substract_team_tickets_num:i=30
+			}
+			unit_init_params {
+				unit_params__rearmTimeOnField:r=60
+			}
+			aimer_custom_setting {
+				aimer_custom_setting__maxNumAttackersPerTargetGroupIdx:i=23
+				aimer_custom_setting__maxNumAttackersPerTarget:i=1
+			}
+		}
+	}
+	ships {
+		name:t="t2_frigate_03"
+		tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 0.0, 0.0]]
+		unit_class:t="us_ashville_class_douglas"
+		objLayer:i=1
+		weapons:t=""
+		bullets0:t="76mm_usa_AA_radio_fuze"
+		bullets1:t="343mm_usa_rim24a_rocket_naval"
+		bullets2:t=""
+		bullets3:t=""
+		bulletsCount0:i=0
+		bulletsCount1:i=4
+		bulletsCount2:i=0
+		bulletsCount3:i=0
+		crewSkillK:r=0
+		applyAllMods:b=no
+		props {
+			army:i=2
+			count:i=1
+			formation_type:t="rows"
+			formation_div:i=3
+			formation_step:p2=2.5, 2
+			formation_noise:p2=0.1, 0.1
+			isDelayed:b=yes
+		}
+		way {
+
+		}
+		additionalEcsTemplates {
+			unit_spawn_and_route {
+
+			}
+			unit_death_substract_team_tickets {
+				on_death_substract_team_tickets_num:i=30
+			}
+			unit_init_params {
+				unit_params__rearmTimeOnField:r=60
+			}
+			aimer_custom_setting {
+				aimer_custom_setting__maxNumAttackersPerTargetGroupIdx:i=24
+				aimer_custom_setting__maxNumAttackersPerTarget:i=1
+			}
+		}
+	}
+	ships {
+		name:t="t2_frigate_04"
+		tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 0.0, 0.0]]
+		unit_class:t="us_ashville_class_douglas"
+		objLayer:i=1
+		weapons:t=""
+		bullets0:t="76mm_usa_AA_radio_fuze"
+		bullets1:t="343mm_usa_rim24a_rocket_naval"
+		bullets2:t=""
+		bullets3:t=""
+		bulletsCount0:i=0
+		bulletsCount1:i=4
+		bulletsCount2:i=0
+		bulletsCount3:i=0
+		crewSkillK:r=0
+		applyAllMods:b=no
+		props {
+			army:i=2
+			count:i=1
+			formation_type:t="rows"
+			formation_div:i=3
+			formation_step:p2=2.5, 2
+			formation_noise:p2=0.1, 0.1
+			isDelayed:b=yes
+		}
+		way {
+
+		}
+		additionalEcsTemplates {
+			unit_spawn_and_route {
+
+			}
+			unit_death_substract_team_tickets {
+				on_death_substract_team_tickets_num:i=30
+			}
+			unit_init_params {
+				unit_params__rearmTimeOnField:r=60
+			}
+			aimer_custom_setting {
+				aimer_custom_setting__maxNumAttackersPerTargetGroupIdx:i=25
+				aimer_custom_setting__maxNumAttackersPerTarget:i=1
+			}
+		}
+	}
+	ships {
+		name:t="t2_frigate_05"
+		tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 0.0, 0.0]]
+		unit_class:t="us_ashville_class_douglas"
+		objLayer:i=1
+		weapons:t=""
+		bullets0:t="76mm_usa_AA_radio_fuze"
+		bullets1:t="343mm_usa_rim24a_rocket_naval"
+		bullets2:t=""
+		bullets3:t=""
+		bulletsCount0:i=0
+		bulletsCount1:i=4
+		bulletsCount2:i=0
+		bulletsCount3:i=0
+		crewSkillK:r=0
+		applyAllMods:b=no
+		props {
+			army:i=2
+			count:i=1
+			formation_type:t="rows"
+			formation_div:i=3
+			formation_step:p2=2.5, 2
+			formation_noise:p2=0.1, 0.1
+			isDelayed:b=yes
+		}
+		way {
+
+		}
+		additionalEcsTemplates {
+			unit_spawn_and_route {
+
+			}
+			unit_death_substract_team_tickets {
+				on_death_substract_team_tickets_num:i=30
+			}
+			unit_init_params {
+				unit_params__rearmTimeOnField:r=60
+			}
+			aimer_custom_setting {
+				aimer_custom_setting__maxNumAttackersPerTargetGroupIdx:i=26
+				aimer_custom_setting__maxNumAttackersPerTarget:i=1
+			}
+		}
+	}
+	ships {
+		name:t="t2_frigate_06"
+		tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 0.0, 0.0]]
+		unit_class:t="us_ashville_class_douglas"
+		objLayer:i=1
+		weapons:t=""
+		bullets0:t="76mm_usa_AA_radio_fuze"
+		bullets1:t="343mm_usa_rim24a_rocket_naval"
+		bullets2:t=""
+		bullets3:t=""
+		bulletsCount0:i=0
+		bulletsCount1:i=4
+		bulletsCount2:i=0
+		bulletsCount3:i=0
+		crewSkillK:r=0
+		applyAllMods:b=no
+		props {
+			army:i=2
+			count:i=1
+			formation_type:t="rows"
+			formation_div:i=3
+			formation_step:p2=2.5, 2
+			formation_noise:p2=0.1, 0.1
+			isDelayed:b=yes
+		}
+		way {
+
+		}
+		additionalEcsTemplates {
+			unit_spawn_and_route {
+
+			}
+			unit_death_substract_team_tickets {
+				on_death_substract_team_tickets_num:i=30
+			}
+			unit_init_params {
+				unit_params__rearmTimeOnField:r=60
+			}
+			aimer_custom_setting {
+				aimer_custom_setting__maxNumAttackersPerTargetGroupIdx:i=27
+				aimer_custom_setting__maxNumAttackersPerTarget:i=1
+			}
+		}
+	}
+	ships {
+		name:t="t2_frigate_07"
+		tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 0.0, 0.0]]
+		unit_class:t="us_ashville_class_douglas"
+		objLayer:i=1
+		weapons:t=""
+		bullets0:t="76mm_usa_AA_radio_fuze"
+		bullets1:t="343mm_usa_rim24a_rocket_naval"
+		bullets2:t=""
+		bullets3:t=""
+		bulletsCount0:i=0
+		bulletsCount1:i=4
+		bulletsCount2:i=0
+		bulletsCount3:i=0
+		crewSkillK:r=0
+		applyAllMods:b=no
+		props {
+			army:i=2
+			count:i=1
+			formation_type:t="rows"
+			formation_div:i=3
+			formation_step:p2=2.5, 2
+			formation_noise:p2=0.1, 0.1
+			isDelayed:b=yes
+		}
+		way {
+
+		}
+		additionalEcsTemplates {
+			unit_spawn_and_route {
+
+			}
+			unit_death_substract_team_tickets {
+				on_death_substract_team_tickets_num:i=30
+			}
+			unit_init_params {
+				unit_params__rearmTimeOnField:r=60
+			}
+			aimer_custom_setting {
+				aimer_custom_setting__maxNumAttackersPerTargetGroupIdx:i=28
+				aimer_custom_setting__maxNumAttackersPerTarget:i=1
+			}
+		}
+	}
+	ships {
+		name:t="t2_frigate_08"
+		tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 0.0, 0.0]]
+		unit_class:t="us_ashville_class_douglas"
+		objLayer:i=1
+		weapons:t=""
+		bullets0:t="76mm_usa_AA_radio_fuze"
+		bullets1:t="343mm_usa_rim24a_rocket_naval"
+		bullets2:t=""
+		bullets3:t=""
+		bulletsCount0:i=0
+		bulletsCount1:i=4
+		bulletsCount2:i=0
+		bulletsCount3:i=0
+		crewSkillK:r=0
+		applyAllMods:b=no
+		props {
+			army:i=2
+			count:i=1
+			formation_type:t="rows"
+			formation_div:i=3
+			formation_step:p2=2.5, 2
+			formation_noise:p2=0.1, 0.1
+			isDelayed:b=yes
+		}
+		way {
+
+		}
+		additionalEcsTemplates {
+			unit_spawn_and_route {
+
+			}
+			unit_death_substract_team_tickets {
+				on_death_substract_team_tickets_num:i=30
+			}
+			unit_init_params {
+				unit_params__rearmTimeOnField:r=60
+			}
+			aimer_custom_setting {
+				aimer_custom_setting__maxNumAttackersPerTargetGroupIdx:i=29
+				aimer_custom_setting__maxNumAttackersPerTarget:i=1
+			}
+		}
+	}
+	ships {
+		name:t="t2_frigate_09"
+		tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 0.0, 0.0]]
+		unit_class:t="us_ashville_class_douglas"
+		objLayer:i=1
+		weapons:t=""
+		bullets0:t="76mm_usa_AA_radio_fuze"
+		bullets1:t="343mm_usa_rim24a_rocket_naval"
+		bullets2:t=""
+		bullets3:t=""
+		bulletsCount0:i=0
+		bulletsCount1:i=4
+		bulletsCount2:i=0
+		bulletsCount3:i=0
+		crewSkillK:r=0
+		applyAllMods:b=no
+		props {
+			army:i=2
+			count:i=1
+			formation_type:t="rows"
+			formation_div:i=3
+			formation_step:p2=2.5, 2
+			formation_noise:p2=0.1, 0.1
+			isDelayed:b=yes
+		}
+		way {
+
+		}
+		additionalEcsTemplates {
+			unit_spawn_and_route {
+
+			}
+			unit_death_substract_team_tickets {
+				on_death_substract_team_tickets_num:i=30
+			}
+			unit_init_params {
+				unit_params__rearmTimeOnField:r=60
+			}
+			aimer_custom_setting {
+				aimer_custom_setting__maxNumAttackersPerTargetGroupIdx:i=30
+				aimer_custom_setting__maxNumAttackersPerTarget:i=1
+			}
+		}
+	}
+	ships {
+		name:t="t2_frigate_10"
+		tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 0.0, 0.0]]
+		unit_class:t="us_ashville_class_douglas"
+		objLayer:i=1
+		weapons:t=""
+		bullets0:t="76mm_usa_AA_radio_fuze"
+		bullets1:t="343mm_usa_rim24a_rocket_naval"
+		bullets2:t=""
+		bullets3:t=""
+		bulletsCount0:i=0
+		bulletsCount1:i=4
+		bulletsCount2:i=0
+		bulletsCount3:i=0
+		crewSkillK:r=0
+		applyAllMods:b=no
+		props {
+			army:i=2
+			count:i=1
+			formation_type:t="rows"
+			formation_div:i=3
+			formation_step:p2=2.5, 2
+			formation_noise:p2=0.1, 0.1
+			isDelayed:b=yes
+		}
+		way {
+
+		}
+		additionalEcsTemplates {
+			unit_spawn_and_route {
+
+			}
+			unit_death_substract_team_tickets {
+				on_death_substract_team_tickets_num:i=30
+			}
+			unit_init_params {
+				unit_params__rearmTimeOnField:r=60
+			}
+			aimer_custom_setting {
+				aimer_custom_setting__maxNumAttackersPerTargetGroupIdx:i=31
+				aimer_custom_setting__maxNumAttackersPerTarget:i=1
+			}
+		}
+	}
+	ships {
+		name:t="t2_frigate_11"
+		tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 0.0, 0.0]]
+		unit_class:t="us_ashville_class_douglas"
+		objLayer:i=1
+		weapons:t=""
+		bullets0:t="76mm_usa_AA_radio_fuze"
+		bullets1:t="343mm_usa_rim24a_rocket_naval"
+		bullets2:t=""
+		bullets3:t=""
+		bulletsCount0:i=0
+		bulletsCount1:i=4
+		bulletsCount2:i=0
+		bulletsCount3:i=0
+		crewSkillK:r=0
+		applyAllMods:b=no
+		props {
+			army:i=2
+			count:i=1
+			formation_type:t="rows"
+			formation_div:i=3
+			formation_step:p2=2.5, 2
+			formation_noise:p2=0.1, 0.1
+			isDelayed:b=yes
+		}
+		way {
+
+		}
+		additionalEcsTemplates {
+			unit_spawn_and_route {
+
+			}
+			unit_death_substract_team_tickets {
+				on_death_substract_team_tickets_num:i=30
+			}
+			unit_init_params {
+				unit_params__rearmTimeOnField:r=60
+			}
+			aimer_custom_setting {
+				aimer_custom_setting__maxNumAttackersPerTargetGroupIdx:i=32
+				aimer_custom_setting__maxNumAttackersPerTarget:i=1
+			}
+		}
+	}
+	ships {
+		name:t="t2_frigate_12"
+		tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 0.0, 0.0]]
+		unit_class:t="us_ashville_class_douglas"
+		objLayer:i=1
+		weapons:t=""
+		bullets0:t="76mm_usa_AA_radio_fuze"
+		bullets1:t="343mm_usa_rim24a_rocket_naval"
+		bullets2:t=""
+		bullets3:t=""
+		bulletsCount0:i=0
+		bulletsCount1:i=4
+		bulletsCount2:i=0
+		bulletsCount3:i=0
+		crewSkillK:r=0
+		applyAllMods:b=no
+		props {
+			army:i=2
+			count:i=1
+			formation_type:t="rows"
+			formation_div:i=3
+			formation_step:p2=2.5, 2
+			formation_noise:p2=0.1, 0.1
+			isDelayed:b=yes
+		}
+		way {
+
+		}
+		additionalEcsTemplates {
+			unit_spawn_and_route {
+
+			}
+			unit_death_substract_team_tickets {
+				on_death_substract_team_tickets_num:i=30
+			}
+			unit_init_params {
+				unit_params__rearmTimeOnField:r=60
+			}
+			aimer_custom_setting {
+				aimer_custom_setting__maxNumAttackersPerTargetGroupIdx:i=33
+				aimer_custom_setting__maxNumAttackersPerTarget:i=1
+			}
+		}
+	}
+}
+areas {
+
+}
+objLayers {
+	layer {
+		enabled:b=yes
+	}
+	layer {
+		enabled:b=yes
+	}
+	layer {
+		enabled:b=yes
+	}
+	layer {
+		enabled:b=yes
+	}
+}
+wayPoints {
+
+}

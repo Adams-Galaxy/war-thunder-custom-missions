@@ -1946,6 +1946,11 @@ def main() -> None:
 
     build_southeastern_city_variants()
 
+    # Keep the lower-era families on the same one-command regeneration path.
+    from build_all_eras import build_all_era_variants
+
+    build_all_era_variants()
+
 
 if __name__ == "__main__":
     main()
