@@ -30,8 +30,11 @@ def test_custom_rafale_registers_all_experimental_stores() -> None:
     assert text.count("containers/lau_88a_agm_65g_x_3.blk") == 4
     assert text.count("rocketGuns/us_agm_84h_slam_er.blk") == 3
     assert text.count("rocketGuns/us_agm_84k_slam_er.blk") == 5
+    assert text.count("rocketGuns/su_kh_38mt.blk") == 4
+    assert text.count("rocketGuns/su_kh_58ushk.blk") == 4
+    assert text.count("containers/lmur_x2.blk") == 4
     assert text.count('preset:t="damocles"') == 2
-    assert text.count('blk:t="gameData/flightModels/weaponPresets/') == 10
+    assert text.count('blk:t="gameData/flightModels/weaponPresets/') == 13
     assert "gameData/FlightModels/weaponPresets/" not in text
     assert text.count("{") == text.count("}")
 
@@ -48,6 +51,9 @@ def test_each_mission_enables_its_single_player_loadout() -> None:
         "usr_wt_rafale_agm65g12.mission.blk": "wt_rafale_m_agm65g12",
         "usr_wt_rafale_agm84h3.mission.blk": "wt_rafale_m_agm84h3",
         "usr_wt_rafale_agm84k5.mission.blk": "wt_rafale_m_agm84k5",
+        "usr_wt_rafale_kh38mt4.mission.blk": "wt_rafale_m_kh38mt4",
+        "usr_wt_rafale_kh58ushk4.mission.blk": "wt_rafale_m_kh58ushk4",
+        "usr_wt_rafale_lmur8.mission.blk": "wt_rafale_m_lmur8",
     }
 
     for filename, preset in cases.items():
@@ -67,6 +73,9 @@ def test_each_mission_enables_its_single_player_loadout() -> None:
             "wt_rafale_m_agm65g12",
             "wt_rafale_m_agm84h3",
             "wt_rafale_m_agm84k5",
+            "wt_rafale_m_kh38mt4",
+            "wt_rafale_m_kh58ushk4",
+            "wt_rafale_m_lmur8",
         }:
             assert "fuel:r=15.0" in text
         assert 'unitWakeUp{\n        target:t="t2_player01"' in text
@@ -115,3 +124,17 @@ def test_maverick_and_slam_er_presets_have_expected_layouts() -> None:
     assert agm65g12.count('preset:t="wt_agm65g_x3_') == 4
     assert agm84h3.count('preset:t="wt_agm84h_') == 3
     assert agm84k5.count('preset:t="wt_agm84k_') == 5
+
+
+def test_russian_missile_presets_have_expected_layouts() -> None:
+    presets = EXPERIMENT / "content" / "pkg_local" / "gameData" / "flightModels" / "weaponPresets"
+    kh38mt4 = (presets / "wt_rafale_m_kh38mt4.blk").read_text()
+    kh58ushk4 = (presets / "wt_rafale_m_kh58ushk4.blk").read_text()
+    lmur8 = (presets / "wt_rafale_m_lmur8.blk").read_text()
+
+    assert kh38mt4.count('preset:t="wt_kh38mt_') == 4
+    assert kh58ushk4.count('preset:t="wt_kh58ushk_') == 4
+    assert lmur8.count('preset:t="wt_lmur_x2_') == 4
+    for text in (kh38mt4, kh58ushk4, lmur8):
+        assert 'slot:i=6\n  preset:t="damocles"' in text
+        assert text.count("{") == text.count("}")

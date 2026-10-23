@@ -4,7 +4,7 @@ This is an intentionally local, single-player-only experiment built on the
 peaceful South-Eastern City mission. It does not alter the stock Rafale or any
 hosted multiplayer mission.
 
-The package adds one custom unit based on `rafale_m_f3r` and ten missions:
+The package adds one custom unit based on `rafale_m_f3r` and thirteen missions:
 
 - `Southeastern City · Rafale M · 8× SPICE 250`
 - `Southeastern City · Rafale M · 6× Brimstone DM`
@@ -16,8 +16,11 @@ The package adds one custom unit based on `rafale_m_f3r` and ten missions:
 - `Southeastern City · Rafale M · 12× AGM-65G Maverick`
 - `Southeastern City · Rafale M · 3× AGM-84H SLAM-ER`
 - `Southeastern City · Rafale M · 5× AGM-84K SLAM-ER`
+- `Southeastern City · Rafale M · 4× Kh-38MT`
+- `Southeastern City · Rafale M · 4× Kh-58UShK`
+- `Southeastern City · Rafale M · 8× LMUR`
 
-All ten loadouts carry the TALIOS pod. The five-JSOW variant uses twin racks
+All thirteen loadouts carry the TALIOS pod. The five-JSOW variant uses twin racks
 on the established multistore wing stations plus one centerline weapon. The
 nine-JSOW variant additionally repurposes both inner wet stations for twin
 racks; it is intentionally a fictional maximum-fit experiment. The surrounding
@@ -25,7 +28,10 @@ mission retains all units from Peaceful Exploration while preventing them from
 attacking the player. The larger Maverick and SLAM-ER variants similarly reuse
 the inner wet stations as fictional weapon stations. All five Maverick and
 SLAM-ER missions start the player Rafale at 15% internal fuel, matching its
-minimum-fuel load rather than the CDK's default full tanks.
+minimum-fuel load rather than the CDK's default full tanks. The three Russian
+experiments also start at minimum fuel. Kh-38MT uses its infrared seeker,
+Kh-58UShK is a dedicated anti-radiation experiment, and LMUR uses four twin
+launchers on the same fictional wing and wet-station arrangement.
 
 The hosted mission's 2018 formations normally depend on a multiplayer balance
 rank. These local copies make the already-selected 2018 templates unconditional

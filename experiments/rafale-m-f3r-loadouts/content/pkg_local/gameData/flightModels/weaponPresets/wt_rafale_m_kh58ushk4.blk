@@ -1,0 +1,20 @@
+Weapon {
+  slot:i=3
+  preset:t="wt_kh58ushk_slot3"
+}
+Weapon {
+  slot:i=4
+  preset:t="wt_kh58ushk_slot4"
+}
+Weapon {
+  slot:i=6
+  preset:t="damocles"
+}
+Weapon {
+  slot:i=9
+  preset:t="wt_kh58ushk_slot9"
+}
+Weapon {
+  slot:i=10
+  preset:t="wt_kh58ushk_slot10"
+}
