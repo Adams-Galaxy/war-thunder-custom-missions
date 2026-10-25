@@ -40,16 +40,18 @@ The installed physical loadout is unchanged:
 ## Variants
 
 The manifest records the two known-working optical/IR versions, three earlier
-coordinate-guided terminal tests, and six controlled terminal-turn profiles.
+coordinate-guided terminal tests, and nine controlled terminal-turn profiles.
 All INS versions use a seekerless SNS base,
 the normal missile/ATGM release channel, and the proven medium damping. One is
 the known-good ultra-late reference; the other two use five altitude keyframes
 to hold a 35–40 m terminal approach until five seconds from impact before
 distinct 600 m and deliberately exaggerated 1,000 m pop-ups. All three use an
-equilateral flat-water test range with two stationary 12 km targets. The six-profile
+equilateral flat-water test range with two stationary 12 km targets. The nine-profile
 matrix holds the commanded apex at 600 m while independently varying descent
-lead, climb-angle cap, and one softened climb gain. These terminal-profile tests
-are intended for low-altitude release because the global descent-angle limiter
+lead, climb-angle cap, and climb gain. Four profiles share the softened 0.0125
+gain and 45-degree cap while tightening descent timing from 2.5 to 1.5 seconds.
+These terminal-profile tests spawn at 100 m facing the midpoint between the
+ships because the global descent-angle limiter needed for a safe high release
 would also constrain the terminal dive. Their inherited Grom rocket flame and
 smoke are replaced by the AGM-84K turbojet-style effects. All variants share
 the same physical approximation and 250 kg PBXN-110 gameplay fill. See

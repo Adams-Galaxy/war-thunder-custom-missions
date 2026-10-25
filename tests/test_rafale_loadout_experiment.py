@@ -32,6 +32,9 @@ SCALP_TURN_MATRIX = {
     "lead25_cap45": (2.50, 2.75, 45.0, 0.016),
     "lead25_cap35": (2.50, 2.75, 35.0, 0.016),
     "lead25_cap45_gain0125": (2.50, 2.75, 45.0, 0.0125),
+    "lead20_cap45_gain0125": (2.00, 2.25, 45.0, 0.0125),
+    "lead175_cap45_gain0125": (1.75, 2.00, 45.0, 0.0125),
+    "lead15_cap45_gain0125": (1.50, 1.75, 45.0, 0.0125),
 }
 
 
@@ -62,7 +65,7 @@ def test_custom_rafale_registers_all_experimental_stores() -> None:
     assert text.count("rocketGuns/wt_agm_84k_scalp_ins_ultralate_medium_lo.blk") == 3
     for slug in SCALP_TURN_MATRIX:
         assert text.count(f"rocketGuns/wt_agm_84k_scalp_turn_{slug}_lo.blk") == 3
-    assert text.count('presetType:t="AIR_TO_GROUND"') == 11
+    assert text.count('presetType:t="AIR_TO_GROUND"') == 14
     assert text.count('iconType:t="missile_air_to_uni_large"') >= 7
     for station_name in (
         "wt_agm84k_lo_slot3",
@@ -79,10 +82,10 @@ def test_custom_rafale_registers_all_experimental_stores() -> None:
     ):
         station = text.split(f'name:t="{station_name}"', 1)[0].rsplit("WeaponPreset {", 1)[1]
         assert 'iconType:t="glide_bomb_default"' in station
-    assert text.count('tier { idx:i=10 }') == 11
-    assert text.count('tier { idx:i=2 }') == 11
+    assert text.count('tier { idx:i=10 }') == 14
+    assert text.count('tier { idx:i=2 }') == 14
     assert text.count('preset:t="damocles"') == 2
-    assert text.count('blk:t="gameData/flightModels/weaponPresets/') == 24
+    assert text.count('blk:t="gameData/flightModels/weaponPresets/') == 27
     assert "gameData/FlightModels/weaponPresets/" not in text
     assert text.count("{") == text.count("}")
 
@@ -149,7 +152,18 @@ def test_each_mission_enables_its_single_player_loadout() -> None:
         )[0]
         assert "crewSkillK:r=1.0" in player_unit
         assert "crewSkillK:r=0.0" not in player_unit
-        if "scalp_ins_" in preset or "scalp_turn_" in preset:
+        if "scalp_turn_" in preset:
+            assert (
+                'name:t="t2_player01"\n'
+                '    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] '
+                '[0.0, 0.0, 1.0] [40000.0, 100.0, -52000.0]]'
+            ) in text
+            assert text.count('name:t="scalp_water_target_left"') == 1
+            assert text.count('name:t="scalp_water_target_right"') == 1
+            assert '[34000.0, 0.0, -41607.695]' in text
+            assert '[46000.0, 0.0, -41607.695]' in text
+            assert text.count('attack_type:t="hold_fire"') == 2
+        elif "scalp_ins_" in preset:
             assert (
                 'name:t="t2_player01"\n'
                 '    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] '
@@ -406,6 +420,9 @@ def test_scalp_asset_manifest_indexes_reusable_sources() -> None:
         "terminal-turn-lead25-cap45-lo-010",
         "terminal-turn-lead25-cap35-lo-010",
         "terminal-turn-lead25-cap45-soft-lo-010",
+        "terminal-turn-lead20-cap45-soft-lo-010",
+        "terminal-turn-lead175-cap45-soft-lo-010",
+        "terminal-turn-lead15-cap45-soft-lo-010",
     }
     for variant in manifest["variants"]:
         for key in ("weapon", "preset", "mission"):
@@ -464,5 +481,6 @@ def test_scalp_terminal_turn_matrix_is_controlled_and_complete() -> None:
 
         assert preset.count(f'preset:t="wt_scalp_turn_{slug}_lo_slot') == 2
         assert f'weapons:t="wt_rafale_m_scalp_turn_{slug}_lo2"' in mission
-        assert "[40000.0, 1500.0, -52000.0]" in mission
+        assert "[40000.0, 100.0, -52000.0]" in mission
+        assert "tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [40000.0, 100.0, -52000.0]]" in mission
         assert mission.count("{") == mission.count("}")

@@ -35,7 +35,7 @@ rm -f "$presets_dir/wt_rafale_m_scalp_ins_terminal_40_1000_lo2.blk"
 rm -f "$presets_dir/wt_rafale_m_scalp_ins_aggressive_lo2.blk"
 rm -f "$presets_dir/wt_rafale_m_scalp_ins_ultralate_lo2.blk"
 rm -f "$presets_dir/wt_rafale_m_agm84k_vlo2.blk"
-for profile in lead20_cap55 lead25_cap55 lead30_cap55 lead25_cap45 lead25_cap35 lead25_cap45_gain0125; do
+for profile in lead20_cap55 lead25_cap55 lead30_cap55 lead25_cap45 lead25_cap35 lead25_cap45_gain0125 lead20_cap45_gain0125 lead175_cap45_gain0125 lead15_cap45_gain0125; do
   rm -f "$presets_dir/wt_rafale_m_scalp_turn_${profile}_lo2.blk"
 done
 rm -f "$rocketguns_dir/wt_agm_84k_slam_er_lo.blk"
@@ -49,7 +49,7 @@ rm -f "$rocketguns_dir/wt_agm_84k_scalp_ins_terminal_35_600_lo.blk"
 rm -f "$rocketguns_dir/wt_agm_84k_scalp_ins_terminal_40_1000_lo.blk"
 rm -f "$rocketguns_dir/wt_agm_84k_scalp_ins_aggressive_lo.blk"
 rm -f "$rocketguns_dir/wt_agm_84k_scalp_ins_ultralate_lo.blk"
-for profile in lead20_cap55 lead25_cap55 lead30_cap55 lead25_cap45 lead25_cap35 lead25_cap45_gain0125; do
+for profile in lead20_cap55 lead25_cap55 lead30_cap55 lead25_cap45 lead25_cap35 lead25_cap45_gain0125 lead20_cap45_gain0125 lead175_cap45_gain0125 lead15_cap45_gain0125; do
   rm -f "$rocketguns_dir/wt_agm_84k_scalp_turn_${profile}_lo.blk"
 done
 rm -f "$missions_dir/usr_wt_rafale_spice250.mission.blk"
@@ -78,7 +78,7 @@ rm -f "$missions_dir/usr_wt_rafale_scalp_ins_terminal_40_1000_lo2.mission.blk"
 rm -f "$missions_dir/usr_wt_rafale_scalp_ins_aggressive_lo2.mission.blk"
 rm -f "$missions_dir/usr_wt_rafale_scalp_ins_ultralate_lo2.mission.blk"
 rm -f "$missions_dir/usr_wt_rafale_agm84k_vlo2.mission.blk"
-for profile in lead20_cap55 lead25_cap55 lead30_cap55 lead25_cap45 lead25_cap35 lead25_cap45_gain0125; do
+for profile in lead20_cap55 lead25_cap55 lead30_cap55 lead25_cap45 lead25_cap35 lead25_cap45_gain0125 lead20_cap45_gain0125 lead175_cap45_gain0125 lead15_cap45_gain0125; do
   rm -f "$missions_dir/usr_wt_rafale_scalp_turn_${profile}_lo2.mission.blk"
 done
 rm -f "$old_missions_dir/southeastern-city-rafale-spice250.blk"

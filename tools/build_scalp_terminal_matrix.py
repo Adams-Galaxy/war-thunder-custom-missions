@@ -29,6 +29,12 @@ class Variant:
         return self.turnover_s + 0.25
 
     @property
+    def timing_label(self) -> str:
+        if (self.turnover_s * 10).is_integer():
+            return f"{self.turnover_s:.1f}"
+        return f"{self.turnover_s:.2f}"
+
+    @property
     def weapon_stem(self) -> str:
         return f"wt_agm_84k_scalp_turn_{self.slug}_lo"
 
@@ -46,7 +52,7 @@ class Variant:
 
     @property
     def display_suffix(self) -> str:
-        suffix = f"Turn {self.turnover_s:.1f}s · {self.climb_cap_deg:.0f}°"
+        suffix = f"Turn {self.timing_label}s · {self.climb_cap_deg:.0f}°"
         if self.climb_gain != 0.016:
             suffix += " · Soft Gain"
         return suffix
@@ -59,6 +65,9 @@ VARIANTS = (
     Variant("lead25_cap45", 2.5, 45.0),
     Variant("lead25_cap35", 2.5, 35.0),
     Variant("lead25_cap45_gain0125", 2.5, 45.0, 0.0125),
+    Variant("lead20_cap45_gain0125", 2.0, 45.0, 0.0125),
+    Variant("lead175_cap45_gain0125", 1.75, 45.0, 0.0125),
+    Variant("lead15_cap45_gain0125", 1.5, 45.0, 0.0125),
 )
 
 
@@ -73,7 +82,7 @@ def weapon_text(variant: Variant) -> str:
     first_line, rest = text.split("\n", 1)
     text = (
         f"// SCALP terminal matrix: 600 m command, descent led by "
-        f"{variant.turnover_s:.1f} s, climb capped at {variant.climb_cap_deg:.0f} degrees.\n"
+        f"{variant.timing_label} s, climb capped at {variant.climb_cap_deg:.0f} degrees.\n"
         + rest
     )
     text = replace_once(text, "timeToHitToAltitude0:p2=0.95, 5.0", f"timeToHitToAltitude0:p2={variant.turnover_s:.2f}, 5.0")
@@ -104,6 +113,11 @@ def mission_text(variant: Variant) -> str:
     text = MISSION_TEMPLATE.read_text().replace(
         "wt_rafale_m_scalp_ins_terminal_35_600_lo2", variant.loadout
     )
+    text = replace_once(
+        text,
+        "[40000.0, 1500.0, -52000.0]",
+        "[40000.0, 100.0, -52000.0]",
+    )
     text = re.sub(
         r'^    locName:t=".*"$',
         f'    locName:t="Southeastern City · Rafale M · SCALP {variant.display_suffix}"',
@@ -113,10 +127,10 @@ def mission_text(variant: Variant) -> str:
     )
     description = (
         "Flat-water terminal-turn matrix. Medium damping, 35 m low approach, "
-        f"600 m apex command, descent commanded {variant.turnover_s:.1f} seconds before impact, "
+        f"600 m apex command, descent commanded {variant.timing_label} seconds before impact, "
         f"and climb angle capped at {variant.climb_cap_deg:.0f} degrees. "
-        f"Climb gain is {variant.climb_gain:g}. This terminal-profile test is intended for "
-        "low-altitude release. Two stationary targets are exactly 12 km away."
+        f"Climb gain is {variant.climb_gain:g}. The player spawns at 100 m facing between "
+        "two stationary targets exactly 12 km away."
     )
     text = re.sub(
         r'^    locDesc:t=".*"$',

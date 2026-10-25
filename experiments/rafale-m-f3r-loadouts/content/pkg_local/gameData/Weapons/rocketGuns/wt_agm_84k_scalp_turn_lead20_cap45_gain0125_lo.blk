@@ -1,0 +1,110 @@
+// SCALP terminal matrix: 600 m command, descent led by 2.0 s, climb capped at 45 degrees.
+// directly from the apex command into the terminal dive.
+// The seekerless Grom-1 base supplies a genuine SNS rocket guidance path rather
+// than leaving the included AGM-84K optical seeker active.  The AGM-84K visual,
+// aerodynamics and damped controller are restored explicitly below.
+include "#/develop/gameBase/gameData/Weapons/rocketGuns/su_grom_1.blk"
+
+"@override:mesh":t="us_agm_84hk_slam_er_missile_na"
+"@override:mesh_deployed":t="us_agm_84hk_slam_er_missile"
+"@override:shellAnimChar":t="us_agm_84hk_slam_er_missile_char"
+bombCart:t="bomb_cart_kh59"
+
+"@override:rocket" {
+  "@override:bulletName":t="SCALP-EG"
+  "@override:gunnerOpticsName":t="SCALP-EG"
+  "@override:iconType":t="guided_bomb_middle_jdam"
+  "@override:caliber":r=0.343
+  "@override:mass":r=1300.0
+  "@override:length":r=5.10
+  "@override:WdK":p3=0.1, 0.1, 0.1
+  "@override:CxK":r=1.95
+  "@override:wingAreaMult":r=8.0
+  "@override:finsAoaHor":r=0.15
+  "@override:finsAoaVer":r=0.15
+  "@override:brakeTime":p2=5.0, 5.05
+  "@override:brakeCxK":r=0.0
+  brakeArm:r=0.0
+  "@override:distFromCmToStab":r=0.25
+  "@override:machMax":r=0.95
+  "@override:loadFactorMax":r=5.0
+  "@override:rollStabilizationDelay":r=0.5
+  "@override:timeLife":r=900.0
+  "@override:maxDistance":r=250000.0
+  "@override:rangeMax":r=250000.0
+  "@override:guidanceType":t="sns"
+  "@override:warheadMass":r=450.0
+  "@override:explosiveType":t="pbxn_110"
+  "@override:explosiveMass":r=250.0
+  gunnerFilterMaxDistMult:r=0.1
+
+  // Restore the AGM-84K turbojet-style exhaust presentation.  The seekerless
+  // Grom guidance base otherwise leaves a large solid-rocket flame and trail.
+  "@override:fireEffect":t=""
+  "@override:smokeEffect":t="smoke_exhaust_air"
+  "@override:smokeEffect2":t=""
+  "@override:hazeEffect":t=""
+  "@override:endSmokeViscosity":r=0.05
+  "@override:effectOffset":p3=-2.0, -0.225, 0.0
+
+  "@override:propulsion0" {
+    "@override:fireDelay":r=0.6
+    "@override:impulse0" {
+      "@override:time":r=850.0
+      "@override:force":r=5400.0
+      "@override:massLost":r=200.0
+    }
+  }
+
+  // Neutralize the Grom boost stage; SCALP uses the single turbojet stage above.
+  "@override:propulsion1" {
+    "@override:impulse0" {
+      "@override:time":r=0.0
+      "@override:force":r=0.0
+      "@override:massLost":r=0.0
+    }
+  }
+
+  "@override:guidance" {
+    "@override:angleMax":r=180.0
+    "@override:permanentlyActivated":b=yes
+    "@override:warmUpTime":r=0.3
+    "@override:acquisitionTime":r=0.1
+    "@override:workTime":r=3600.0
+    inertialNavigation:b=yes
+    inertialNavigationMandatory:b=yes
+    "@override:designationSourceType":t="camera"
+    "@override:constantDesignationSourceType":t="camera"
+    "@override:positionError":r=3.0
+
+    "@override:guidanceAutopilot" {
+      "@override:loftEnabled":b=no
+      "@override:timeToGain0":p2=0.0, 1.0
+      "@override:timeToGain1":p2=1.0, 1.0
+      "@override:timeToGain2":p2=899.0, 1.0
+      "@override:timeToGain3":p2=900.0, 1.0
+      altitudeHoldEnabled:b=yes
+      timeToHitToAltitude0:p2=2.00, 5.0
+      timeToHitToAltitude1:p2=2.25, 600.0
+      timeToHitToAltitude2:p2=6.0, 35.0
+      timeToHitToAltitude3:p2=8.0, 35.0
+      timeToHitToAltitude4:p2=8.5, 80.0
+      altitudeHoldTargetElevation:r=-75.0
+      altitudeHoldTargetOmegaMax:r=1.05
+      altitudeDiffToClimb:r=0.2
+      altitudeRateRateToClimb:r=0.15
+      climbDiffToAccelMult:r=0.0125
+      altitudeHoldAngleLimith:p2=-82.0, 45.0
+      "@override:courseErrorAngleToAccelMult":r=1.5
+      "@override:courseErrorFinalAngleCorrection":r=1.25
+      "@override:timeOut":r=0.5
+      "@override:propNavMult":r=4.0
+      "@override:reqAccelMax":r=10.0
+      "@override:baseIndSpeed":r=1800.0
+      "@override:accelControlProp":r=0.0101
+      "@override:accelControlIntg":r=0.006
+      "@override:accelControlDiff":r=0.0006
+      "@override:accelControlIntgLim":r=1.0
+    }
+  }
+}

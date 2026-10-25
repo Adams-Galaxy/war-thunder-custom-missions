@@ -30,7 +30,7 @@ mission_settings{
     useSpawnDelay:b=yes
     timeToLoseInstantDetection:r=10
     locName:t="Southeastern City · Rafale M · SCALP Turn 2.5s · 45°"
-    locDesc:t="Flat-water terminal-turn matrix. Medium damping, 35 m low approach, 600 m apex command, descent commanded 2.5 seconds before impact, and climb angle capped at 45 degrees. Climb gain is 0.016. This terminal-profile test is intended for low-altitude release. Two stationary targets are exactly 12 km away."
+    locDesc:t="Flat-water terminal-turn matrix. Medium damping, 35 m low approach, 600 m apex command, descent commanded 2.5 seconds before impact, and climb angle capped at 45 degrees. Climb gain is 0.016. The player spawns at 100 m facing between two stationary targets exactly 12 km away."
     scoreLimit:i=9000
     timeLimit:i=90
     deathPenaltyMul:r=0.2
@@ -5418,7 +5418,7 @@ units{
   }
   armada{
     name:t="t2_player01"
-    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [40000.0, 1500.0, -52000.0]]
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [40000.0, 100.0, -52000.0]]
     unit_class:t="wt_custom_rafale_m_f3r"
     closed_waypoints:b=no
     isShipSpline:b=no

@@ -63,7 +63,7 @@ cp "$experiment_dir/content/pkg_local/gameData/flightModels/weaponPresets/wt_raf
 cp "$experiment_dir/content/pkg_local/gameData/flightModels/weaponPresets/wt_rafale_m_scalp_ins_terminal_40_1000_lo2.blk" "$presets_dir/"
 cp "$experiment_dir/content/pkg_local/gameData/flightModels/weaponPresets/wt_rafale_m_scalp_ins_ultralate_medium_lo2.blk" "$presets_dir/"
 cp "$experiment_dir/content/pkg_local/gameData/flightModels/weaponPresets/wt_rafale_m_agm84k_vlo2.blk" "$presets_dir/"
-for profile in lead20_cap55 lead25_cap55 lead30_cap55 lead25_cap45 lead25_cap35 lead25_cap45_gain0125; do
+for profile in lead20_cap55 lead25_cap55 lead30_cap55 lead25_cap45 lead25_cap35 lead25_cap45_gain0125 lead20_cap45_gain0125 lead175_cap45_gain0125 lead15_cap45_gain0125; do
   cp "$experiment_dir/content/pkg_local/gameData/flightModels/weaponPresets/wt_rafale_m_scalp_turn_${profile}_lo2.blk" "$presets_dir/"
 done
 cp "$experiment_dir/content/pkg_local/gameData/Weapons/rocketGuns/wt_agm_84k_slam_er_lo.blk" "$rocketguns_dir/"
@@ -71,7 +71,7 @@ cp "$experiment_dir/content/pkg_local/gameData/Weapons/rocketGuns/wt_agm_84k_sla
 cp "$experiment_dir/content/pkg_local/gameData/Weapons/rocketGuns/wt_agm_84k_scalp_ins_terminal_35_600_lo.blk" "$rocketguns_dir/"
 cp "$experiment_dir/content/pkg_local/gameData/Weapons/rocketGuns/wt_agm_84k_scalp_ins_terminal_40_1000_lo.blk" "$rocketguns_dir/"
 cp "$experiment_dir/content/pkg_local/gameData/Weapons/rocketGuns/wt_agm_84k_scalp_ins_ultralate_medium_lo.blk" "$rocketguns_dir/"
-for profile in lead20_cap55 lead25_cap55 lead30_cap55 lead25_cap45 lead25_cap35 lead25_cap45_gain0125; do
+for profile in lead20_cap55 lead25_cap55 lead30_cap55 lead25_cap45 lead25_cap35 lead25_cap45_gain0125 lead20_cap45_gain0125 lead175_cap45_gain0125 lead15_cap45_gain0125; do
   cp "$experiment_dir/content/pkg_local/gameData/Weapons/rocketGuns/wt_agm_84k_scalp_turn_${profile}_lo.blk" "$rocketguns_dir/"
 done
 cp "$experiment_dir/UserMissions/usr_wt_rafale_spice250.mission.blk" "$missions_dir/"
@@ -92,7 +92,7 @@ cp "$experiment_dir/UserMissions/usr_wt_rafale_scalp_ins_terminal_35_600_lo2.mis
 cp "$experiment_dir/UserMissions/usr_wt_rafale_scalp_ins_terminal_40_1000_lo2.mission.blk" "$missions_dir/"
 cp "$experiment_dir/UserMissions/usr_wt_rafale_scalp_ins_ultralate_medium_lo2.mission.blk" "$missions_dir/"
 cp "$experiment_dir/UserMissions/usr_wt_rafale_agm84k_vlo2.mission.blk" "$missions_dir/"
-for profile in lead20_cap55 lead25_cap55 lead30_cap55 lead25_cap45 lead25_cap35 lead25_cap45_gain0125; do
+for profile in lead20_cap55 lead25_cap55 lead30_cap55 lead25_cap45 lead25_cap35 lead25_cap45_gain0125 lead20_cap45_gain0125 lead175_cap45_gain0125 lead15_cap45_gain0125; do
   cp "$experiment_dir/UserMissions/usr_wt_rafale_scalp_turn_${profile}_lo2.mission.blk" "$missions_dir/"
 done
 python3 "$experiment_dir/configure_localization.py" "$game_dir"
