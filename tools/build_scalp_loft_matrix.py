@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build geometry-driven SCALP loft and hybrid-autopilot experiments."""
+"""Build the SCALP range-loft and altitude-hold comparison matrix."""
 
 from dataclasses import dataclass
 from pathlib import Path
@@ -22,10 +22,11 @@ GROUND_MISSION_TEMPLATE = MISSIONS / "usr_wt_rafale_agm84k_lo2.mission.blk"
 class Variant:
     slug: str
     label: str
-    loft_elevation_deg: float
-    loft_target_elevation_deg: float
-    loft_angle_gain: float
-    hybrid_altitude_hold: bool = False
+    mode: str
+    range_map: tuple[float, float, float, float] | None = None
+    loft_target_elevation_deg: float = -65.0
+    loft_angle_gain: float = 0.75
+    altitude_points: tuple[tuple[float, float], ...] = ()
 
     @property
     def weapon_stem(self) -> str:
@@ -49,9 +50,34 @@ class Variant:
 
 
 VARIANTS = (
-    Variant("native12_45", "Native 12° / −45°", 12.0, -45.0, 0.5),
-    Variant("native18_65", "Native 18° / −65°", 18.0, -65.0, 1.0),
-    Variant("hybrid18_65", "Hybrid 35 m + 18° / −65°", 18.0, -65.0, 1.0, True),
+    Variant(
+        "range45",
+        "Range Loft 4→2.5 km · 2→45°",
+        "range_loft",
+        range_map=(2500.0, 45.0, 4000.0, 2.0),
+        loft_target_elevation_deg=-55.0,
+        loft_angle_gain=0.5,
+    ),
+    Variant(
+        "range70",
+        "Range Loft 4→2 km · 2→70°",
+        "range_loft",
+        range_map=(2000.0, 70.0, 4000.0, 2.0),
+        loft_target_elevation_deg=-70.0,
+        loft_angle_gain=1.0,
+    ),
+    Variant(
+        "hold80_35",
+        "Altitude Hold 80→35 m Control",
+        "altitude_hold",
+        altitude_points=((0.0, 35.0), (8.0, 35.0), (8.5, 80.0)),
+    ),
+    Variant(
+        "hold200_075",
+        "Altitude Hold 200 m at 0.75 s · No Return Point",
+        "altitude_hold",
+        altitude_points=((0.75, 200.0), (1.0, 35.0), (8.0, 35.0), (8.5, 80.0)),
+    ),
 )
 
 
@@ -64,25 +90,24 @@ def replace_once(text: str, old: str, new: str) -> str:
 def weapon_text(variant: Variant) -> str:
     text = WEAPON_TEMPLATE.read_text()
     _, rest = text.split("\n", 1)
-    mode = "hybrid altitude-hold plus native loft" if variant.hybrid_altitude_hold else "native loft only"
-    text = f"// SCALP geometry experiment: {mode}; {variant.label}.\n" + rest
-    text = replace_once(text, '"@override:loftEnabled":b=no', '"@override:loftEnabled":b=yes')
-    loft = (
-        f"      loftElevation:r={variant.loft_elevation_deg:g}\n"
-        f"      loftTargetElevation:r={variant.loft_target_elevation_deg:g}\n"
-        f"      loftAngleToAccelMult:r={variant.loft_angle_gain:g}\n"
-        "      loftTargetOmegaMax:r=0.95"
-    )
-    text = replace_once(text, "      altitudeHoldEnabled:b=yes", loft + "\n      altitudeHoldEnabled:b=" + ("yes" if variant.hybrid_altitude_hold else "no"))
+    text = f"// SCALP comparison experiment: {variant.label}.\n" + rest
 
-    if variant.hybrid_altitude_hold:
-        text = replace_once(text, "timeToHitToAltitude0:p2=0.95, 5.0", "timeToHitToAltitude0:p2=0.0, 35.0")
-        text = re.sub(r"^\s*timeToHitToAltitude[1-4]:p2=.*\n", "", text, flags=re.MULTILINE)
-        text = replace_once(text, "altitudeHoldTargetOmegaMax:r=1.05", "altitudeHoldTargetOmegaMax:r=0.95")
-        text = replace_once(text, "altitudeRateRateToClimb:r=0.15", "altitudeRateRateToClimb:r=0.135")
-        text = replace_once(text, "climbDiffToAccelMult:r=0.016", "climbDiffToAccelMult:r=0.0125")
-        text = replace_once(text, "altitudeHoldAngleLimith:p2=-82.0, 78.0", "altitudeHoldAngleLimith:p2=-82.0, 45.0")
-    else:
+    # Every altitude-hold comparison uses the same damping that behaved well in game.
+    text = replace_once(text, "altitudeHoldTargetOmegaMax:r=1.05", "altitudeHoldTargetOmegaMax:r=0.95")
+    text = replace_once(text, "altitudeRateRateToClimb:r=0.15", "altitudeRateRateToClimb:r=0.135")
+    text = replace_once(text, "climbDiffToAccelMult:r=0.016", "climbDiffToAccelMult:r=0.0125")
+
+    if variant.mode == "range_loft":
+        assert variant.range_map is not None
+        near_range, near_angle, far_range, far_angle = variant.range_map
+        text = replace_once(text, '"@override:loftEnabled":b=no', '"@override:loftEnabled":b=yes')
+        loft = (
+            f"      rangeToLoftElevation:p4={near_range:g}, {near_angle:g}, {far_range:g}, {far_angle:g}\n"
+            f"      loftTargetElevation:r={variant.loft_target_elevation_deg:g}\n"
+            f"      loftAngleToAccelMult:r={variant.loft_angle_gain:g}\n"
+            "      loftTargetOmegaMax:r=0.95"
+        )
+        text = replace_once(text, "      altitudeHoldEnabled:b=yes", loft + "\n      altitudeHoldEnabled:b=no")
         text = re.sub(r"^\s*timeToHitToAltitude[0-4]:p2=.*\n", "", text, flags=re.MULTILINE)
         text = re.sub(
             r"^\s*(?:altitudeHoldTargetElevation|altitudeHoldTargetOmegaMax|altitudeDiffToClimb|altitudeRateRateToClimb|climbDiffToAccelMult):r=.*\n",
@@ -91,6 +116,14 @@ def weapon_text(variant: Variant) -> str:
             flags=re.MULTILINE,
         )
         text = re.sub(r"^\s*altitudeHoldAngleLimith:p2=.*\n", "", text, flags=re.MULTILINE)
+    else:
+        text = re.sub(r"^\s*timeToHitToAltitude[0-4]:p2=.*\n", "", text, flags=re.MULTILINE)
+        point_lines = "\n".join(
+            f"      timeToHitToAltitude{idx}:p2={time_s:g}, {altitude_m:g}"
+            for idx, (time_s, altitude_m) in enumerate(variant.altitude_points)
+        )
+        text = replace_once(text, "      altitudeHoldEnabled:b=yes", "      altitudeHoldEnabled:b=yes\n" + point_lines)
+        text = replace_once(text, "altitudeHoldAngleLimith:p2=-82.0, 78.0", "altitudeHoldAngleLimith:p2=-82.0, 55.0")
     return text
 
 
@@ -119,18 +152,31 @@ def mission_text(template: Path, variant: Variant, ground: bool) -> str:
     range_label = "Ground" if ground else "Water"
     text = re.sub(
         r'^    locName:t=".*"$',
-        f'    locName:t="Southeastern City · SCALP Loft · {variant.label} · {range_label}"',
+        f'    locName:t="Southeastern City · SCALP Test · {variant.label} · {range_label}"',
         text,
         count=1,
         flags=re.MULTILINE,
     )
-    hold = " with simultaneous 35 m altitude hold" if variant.hybrid_altitude_hold else " without altitude hold"
     location = "NATO Air Spawn 1 at 1.5 km" if ground else "100 m over the flat-water range"
-    description = (
-        f"Geometry-driven loft experiment{hold}. Starts {location}. "
-        f"Loft elevation {variant.loft_elevation_deg:g} degrees; transition target elevation "
-        f"{variant.loft_target_elevation_deg:g} degrees. No terminal time-to-altitude schedule."
-    )
+    if variant.mode == "range_loft":
+        assert variant.range_map is not None
+        near_range, near_angle, far_range, far_angle = variant.range_map
+        description = (
+            f"Native loft-only range-map test, starting {location}. The map requests {far_angle:g} degrees "
+            f"at {far_range / 1000:g} km and {near_angle:g} degrees at {near_range / 1000:g} km. "
+            "This tests whether War Thunder recalculates the loft angle during flight or samples launch range once."
+        )
+    elif variant.slug == "hold200_075":
+        description = (
+            f"Altitude-hold terminal test, starting {location}. It cruises at 80 m, descends to 35 m, "
+            "then commands 200 m at 0.75 seconds to impact. There is deliberately no later return-to-target "
+            "altitude point; terminal target-elevation guidance must complete the dive automatically."
+        )
+    else:
+        description = (
+            f"Altitude-hold control, starting {location}. It cruises at 80 m and descends to a constant "
+            "35 m near the target, with no loft controller and no pop-up command."
+        )
     return re.sub(
         r'^    locDesc:t=".*"$',
         f'    locDesc:t="{description}"',

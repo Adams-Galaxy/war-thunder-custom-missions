@@ -40,9 +40,10 @@ SCALP_TURN_MATRIX = {
     "lead075_cap45_gain0125_damped": (0.75, 1.00, 45.0, 0.0125),
 }
 SCALP_LOFT_MATRIX = {
-    "native12_45": (False, 12.0, -45.0, 0.5),
-    "native18_65": (False, 18.0, -65.0, 1.0),
-    "hybrid18_65": (True, 18.0, -65.0, 1.0),
+    "range45": ("range", (2500.0, 45.0, 4000.0, 2.0)),
+    "range70": ("range", (2000.0, 70.0, 4000.0, 2.0)),
+    "hold80_35": ("hold", ((0.0, 35.0), (8.0, 35.0), (8.5, 80.0))),
+    "hold200_075": ("hold", ((0.75, 200.0), (1.0, 35.0), (8.0, 35.0), (8.5, 80.0))),
 }
 
 
@@ -75,7 +76,7 @@ def test_custom_rafale_registers_all_experimental_stores() -> None:
         assert text.count(f"rocketGuns/wt_agm_84k_scalp_turn_{slug}_lo.blk") == 3
     for slug in SCALP_LOFT_MATRIX:
         assert text.count(f"rocketGuns/wt_agm_84k_scalp_loft_{slug}_lo.blk") == 3
-    assert text.count('presetType:t="AIR_TO_GROUND"') == 20
+    assert text.count('presetType:t="AIR_TO_GROUND"') == 21
     assert text.count('iconType:t="missile_air_to_uni_large"') >= 7
     for station_name in (
         "wt_agm84k_lo_slot3",
@@ -93,10 +94,10 @@ def test_custom_rafale_registers_all_experimental_stores() -> None:
     ):
         station = text.split(f'name:t="{station_name}"', 1)[0].rsplit("WeaponPreset {", 1)[1]
         assert 'iconType:t="glide_bomb_default"' in station
-    assert text.count('tier { idx:i=10 }') == 20
-    assert text.count('tier { idx:i=2 }') == 20
+    assert text.count('tier { idx:i=10 }') == 21
+    assert text.count('tier { idx:i=2 }') == 21
     assert text.count('preset:t="damocles"') == 2
-    assert text.count('blk:t="gameData/flightModels/weaponPresets/') == 33
+    assert text.count('blk:t="gameData/flightModels/weaponPresets/') == 34
     assert "gameData/FlightModels/weaponPresets/" not in text
     assert text.count("{") == text.count("}")
 
@@ -454,6 +455,10 @@ def test_scalp_asset_manifest_indexes_reusable_sources() -> None:
         "geometry-loft-native-12-45-lo-010",
         "geometry-loft-native-18-65-lo-010",
         "geometry-loft-hybrid-18-65-lo-010",
+        "geometry-loft-range-45-lo-010",
+        "geometry-loft-range-70-lo-010",
+        "altitude-hold-80-35-control-lo-010",
+        "altitude-hold-200-at-075-no-return-lo-010",
     }
     for variant in manifest["variants"]:
         for key in ("weapon", "preset", "mission"):
@@ -525,24 +530,38 @@ def test_scalp_terminal_turn_matrix_is_controlled_and_complete() -> None:
 
 
 def test_scalp_geometry_loft_matrix_is_controlled_and_complete() -> None:
-    for slug, (hybrid, elevation, target_elevation, gain) in SCALP_LOFT_MATRIX.items():
+    for slug, (mode, parameters) in SCALP_LOFT_MATRIX.items():
         weapon = (SCALP_PROXY.parent / f"wt_agm_84k_scalp_loft_{slug}_lo.blk").read_text()
         preset = (
             EXPERIMENT
             / "content/pkg_local/gameData/flightModels/weaponPresets"
             / f"wt_rafale_m_scalp_loft_{slug}_lo2.blk"
         ).read_text()
-        assert '"@override:loftEnabled":b=yes' in weapon
-        assert f"loftElevation:r={elevation:g}" in weapon
-        assert f"loftTargetElevation:r={target_elevation:g}" in weapon
-        assert f"loftAngleToAccelMult:r={gain:g}" in weapon
-        assert "loftTargetOmegaMax:r=0.95" in weapon
-        if hybrid:
-            assert "altitudeHoldEnabled:b=yes" in weapon
-            assert "timeToHitToAltitude0:p2=0.0, 35.0" in weapon
-        else:
+        if mode == "range":
+            near_range, near_angle, far_range, far_angle = parameters
+            assert '"@override:loftEnabled":b=yes' in weapon
+            assert (
+                f"rangeToLoftElevation:p4={near_range:g}, {near_angle:g}, "
+                f"{far_range:g}, {far_angle:g}"
+            ) in weapon
+            assert "loftTargetOmegaMax:r=0.95" in weapon
             assert "altitudeHoldEnabled:b=no" in weapon
             assert "timeToHitToAltitude" not in weapon
+        else:
+            assert '"@override:loftEnabled":b=no' in weapon
+            assert "altitudeHoldEnabled:b=yes" in weapon
+            for idx, (time_s, altitude_m) in enumerate(parameters):
+                assert f"timeToHitToAltitude{idx}:p2={time_s:g}, {altitude_m:g}" in weapon
+            assert f"timeToHitToAltitude{len(parameters)}" not in weapon
+            assert "altitudeHoldTargetOmegaMax:r=0.95" in weapon
+            assert "altitudeRateRateToClimb:r=0.135" in weapon
+            assert "climbDiffToAccelMult:r=0.0125" in weapon
+        if slug == "hold200_075":
+            assert "timeToHitToAltitude0:p2=0.75, 200" in weapon
+            assert "timeToHitToAltitude" in weapon
+            assert ", 5" not in "\n".join(
+                line for line in weapon.splitlines() if "timeToHitToAltitude" in line
+            )
         assert preset.count(f'preset:t="wt_scalp_loft_{slug}_lo_slot') == 2
         for test_range, altitude in (("water", 100.0), ("ground", 1500.0)):
             mission = (
@@ -552,5 +571,10 @@ def test_scalp_geometry_loft_matrix_is_controlled_and_complete() -> None:
             ).read_text()
             assert f'weapons:t="wt_rafale_m_scalp_loft_{slug}_lo2"' in mission
             assert f", {altitude:.1f}," in mission
-            assert "No terminal time-to-altitude schedule." in mission
+            if mode == "range":
+                assert "recalculates the loft angle during flight" in mission
+            elif slug == "hold200_075":
+                assert "no later return-to-target altitude point" in mission
+            else:
+                assert "no pop-up command" in mission
             assert mission.count("{") == mission.count("}")

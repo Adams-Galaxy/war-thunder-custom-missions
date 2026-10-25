@@ -357,6 +357,69 @@ mission = "experiments/rafale-m-f3r-loadouts/UserMissions/usr_wt_rafale_scalp_lo
 ground_mission = "experiments/rafale-m-f3r-loadouts/UserMissions/usr_wt_rafale_scalp_loft_hybrid18_65_ground_lo2.mission.blk"
 
 [[variants]]
+id = "geometry-loft-range-45-lo-010"
+display_name = "SCALP-EG range-mapped loft 4 to 2.5 km, 2 to 45 degrees (LO 0.10)"
+guidance = "seekerless SNS coordinate guidance with native range-mapped loft"
+interception_multiplier = 0.10
+release_channel = "atgm"
+altitude_hold = false
+range_to_loft_elevation = [2500.0, 45.0, 4000.0, 2.0]
+loft_target_elevation_deg = -55.0
+loft_angle_to_acceleration = 0.5
+loft_target_omega_max = 0.95
+weapon = "experiments/rafale-m-f3r-loadouts/content/pkg_local/gameData/Weapons/rocketGuns/wt_agm_84k_scalp_loft_range45_lo.blk"
+preset = "experiments/rafale-m-f3r-loadouts/content/pkg_local/gameData/flightModels/weaponPresets/wt_rafale_m_scalp_loft_range45_lo2.blk"
+mission = "experiments/rafale-m-f3r-loadouts/UserMissions/usr_wt_rafale_scalp_loft_range45_water_lo2.mission.blk"
+ground_mission = "experiments/rafale-m-f3r-loadouts/UserMissions/usr_wt_rafale_scalp_loft_range45_ground_lo2.mission.blk"
+
+[[variants]]
+id = "geometry-loft-range-70-lo-010"
+display_name = "SCALP-EG range-mapped loft 4 to 2 km, 2 to 70 degrees (LO 0.10)"
+guidance = "seekerless SNS coordinate guidance with native range-mapped loft"
+interception_multiplier = 0.10
+release_channel = "atgm"
+altitude_hold = false
+range_to_loft_elevation = [2000.0, 70.0, 4000.0, 2.0]
+loft_target_elevation_deg = -70.0
+loft_angle_to_acceleration = 1.0
+loft_target_omega_max = 0.95
+weapon = "experiments/rafale-m-f3r-loadouts/content/pkg_local/gameData/Weapons/rocketGuns/wt_agm_84k_scalp_loft_range70_lo.blk"
+preset = "experiments/rafale-m-f3r-loadouts/content/pkg_local/gameData/flightModels/weaponPresets/wt_rafale_m_scalp_loft_range70_lo2.blk"
+mission = "experiments/rafale-m-f3r-loadouts/UserMissions/usr_wt_rafale_scalp_loft_range70_water_lo2.mission.blk"
+ground_mission = "experiments/rafale-m-f3r-loadouts/UserMissions/usr_wt_rafale_scalp_loft_range70_ground_lo2.mission.blk"
+
+[[variants]]
+id = "altitude-hold-80-35-control-lo-010"
+display_name = "SCALP-EG altitude hold 80 to 35 m control (LO 0.10)"
+guidance = "seekerless SNS coordinate guidance with altitude hold"
+interception_multiplier = 0.10
+release_channel = "atgm"
+altitude_hold = true
+loft_enabled = false
+terminal_profile_time_to_hit_s = [8.5, 8.0, 0.0]
+terminal_profile_altitude_m = [80.0, 35.0, 35.0]
+weapon = "experiments/rafale-m-f3r-loadouts/content/pkg_local/gameData/Weapons/rocketGuns/wt_agm_84k_scalp_loft_hold80_35_lo.blk"
+preset = "experiments/rafale-m-f3r-loadouts/content/pkg_local/gameData/flightModels/weaponPresets/wt_rafale_m_scalp_loft_hold80_35_lo2.blk"
+mission = "experiments/rafale-m-f3r-loadouts/UserMissions/usr_wt_rafale_scalp_loft_hold80_35_water_lo2.mission.blk"
+ground_mission = "experiments/rafale-m-f3r-loadouts/UserMissions/usr_wt_rafale_scalp_loft_hold80_35_ground_lo2.mission.blk"
+
+[[variants]]
+id = "altitude-hold-200-at-075-no-return-lo-010"
+display_name = "SCALP-EG altitude hold 200 m at 0.75 s without return point (LO 0.10)"
+guidance = "seekerless SNS coordinate guidance with altitude hold"
+interception_multiplier = 0.10
+release_channel = "atgm"
+altitude_hold = true
+loft_enabled = false
+terminal_profile_time_to_hit_s = [8.5, 8.0, 1.0, 0.75]
+terminal_profile_altitude_m = [80.0, 35.0, 35.0, 200.0]
+automatic_terminal_dive_test = true
+weapon = "experiments/rafale-m-f3r-loadouts/content/pkg_local/gameData/Weapons/rocketGuns/wt_agm_84k_scalp_loft_hold200_075_lo.blk"
+preset = "experiments/rafale-m-f3r-loadouts/content/pkg_local/gameData/flightModels/weaponPresets/wt_rafale_m_scalp_loft_hold200_075_lo2.blk"
+mission = "experiments/rafale-m-f3r-loadouts/UserMissions/usr_wt_rafale_scalp_loft_hold200_075_water_lo2.mission.blk"
+ground_mission = "experiments/rafale-m-f3r-loadouts/UserMissions/usr_wt_rafale_scalp_loft_hold200_075_ground_lo2.mission.blk"
+
+[[variants]]
 id = "ins-ultralate-medium-lo-010"
 display_name = "SCALP-EG INS Ultra-Late Medium (LO 0.10)"
 guidance = "seekerless SNS coordinate guidance"

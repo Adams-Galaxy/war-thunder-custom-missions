@@ -124,14 +124,19 @@ gain from 0.15 to 0.135. The 1.0-second ground mission starts at NATO Air Spawn
 1 at 1.5 km, using the established west-facing transform. Regenerate this matrix with
 `python tools/build_scalp_terminal_matrix.py` after changing its variant table.
 
-Three geometry-driven loft experiments replace the self-referential terminal
-time-to-altitude schedule with the game's native loft controller. Native 12/-45
-is the moderate loft-only case; Native 18/-65 is a steeper and later loft-only
-case. Hybrid 35 m + 18/-65 deliberately enables constant 35 m altitude hold and
-the steep native loft controller simultaneously, even though no stock weapon in
-the inspected game data combines those systems. Each has a 100 m flat-water
-mission and a 1.5 km NATO Air Spawn 1 ground mission. Regenerate them with
-`python tools/build_scalp_loft_matrix.py`.
+Four comparison profiles test the remaining terminal-guidance options. Two use
+the native loft controller's `rangeToLoftElevation` table in reverse: both ask
+for only 2 degrees beyond 4 km, then ramp to either 45 degrees at 2.5 km or 70
+degrees at 2 km. This deliberately tests whether the table is recalculated from
+live range or sampled only once at launch. The other two use altitude hold only.
+The control cruises at 80 m and changes to 35 m inside roughly eight seconds to
+impact. The experimental profile follows the same route, then commands 200 m at
+0.75 seconds without adding a subsequent low-altitude keyframe. Its terminal
+target-elevation logic must therefore initiate the final dive automatically.
+Each profile has a 100 m flat-water mission and a 1.5 km NATO Air Spawn 1 ground
+mission. The prior native and hybrid loft tests remain in Git as test history,
+but are no longer installed into the active mission menu. Regenerate the current
+matrix with `python tools/build_scalp_loft_matrix.py`.
 
 Because the INS version inherits Grom-1 only to obtain its seekerless SNS
 guidance path, it explicitly replaces Grom's solid-rocket flame, smoke, and
@@ -151,7 +156,7 @@ Close War Thunder before installing, then run:
 ```
 
 Open War Thunder, choose `Battles` → `User Missions`, and start one of the
-eighteen Rafale missions. The files are installed at the User Missions root using
+Rafale missions. The files are installed at the User Missions root using
 the conventional `usr_*.mission.blk` names expected by the single-player
 mission browser.
 
