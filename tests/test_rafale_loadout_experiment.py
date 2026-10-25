@@ -1,4 +1,5 @@
 from pathlib import Path
+import tomllib
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -44,9 +45,13 @@ def test_custom_rafale_registers_all_experimental_stores() -> None:
     assert text.count("rocketGuns/su_kh_38mt.blk") == 4
     assert text.count("rocketGuns/su_kh_58ushk.blk") == 4
     assert text.count("containers/lmur_x2.blk") == 4
-    assert text.count("rocketGuns/wt_agm_84k_slam_er_lo.blk") == 2
-    assert text.count("rocketGuns/wt_agm_84k_slam_er_vlo.blk") == 2
-    assert text.count("rocketGuns/wt_agm_84k_scalp_ins_lo.blk") == 2
+    assert text.count("rocketGuns/wt_agm_84k_slam_er_lo.blk") == 3
+    assert text.count("rocketGuns/wt_agm_84k_slam_er_vlo.blk") == 3
+    assert text.count("rocketGuns/wt_agm_84k_scalp_ins_lo.blk") == 3
+    assert text.count('presetType:t="AIR_TO_GROUND"') == 3
+    assert text.count('iconType:t="missile_air_to_uni_large"') >= 7
+    assert text.count('tier { idx:i=10 }') == 3
+    assert text.count('tier { idx:i=2 }') == 3
     assert text.count('preset:t="damocles"') == 2
     assert text.count('blk:t="gameData/flightModels/weaponPresets/') == 16
     assert "gameData/FlightModels/weaponPresets/" not in text
@@ -179,6 +184,8 @@ def test_scalp_proxies_share_physical_approximation_but_differ_in_stealth() -> N
         assert '"@override:warheadMass":r=450.0' in text
         assert '"@override:explosiveType":t="pbxn_110"' in text
         assert '"@override:explosiveMass":r=250.0' in text
+        assert '"@override:bulletName":t="SCALP-EG"' in text
+        assert '"@override:gunnerOpticsName":t="SCALP-EG"' in text
         assert '"@override:force":r=5400.0' in text
         assert text.count("{") == text.count("}")
     assert "gunnerFilterMaxDistMult:r=0.1" in lo
@@ -240,6 +247,8 @@ def test_scalp_ins_proxy_uses_coordinate_guidance_and_low_altitude_schedule() ->
     assert '"@override:altitudeHoldAngleLimith":p2=-35.0, 25.0' in text
     assert '"@override:explosiveMass":r=250.0' in text
     assert 'gunnerFilterMaxDistMult:r=0.1' in text
+    assert '"@override:bulletName":t="SCALP-EG"' in text
+    assert '"@override:gunnerOpticsName":t="SCALP-EG"' in text
     assert text.count("{") == text.count("}")
 
     preset = (
@@ -255,3 +264,22 @@ def test_scalp_ins_proxy_uses_coordinate_guidance_and_low_altitude_schedule() ->
     assert 'slot:i=3' in preset
     assert 'slot:i=10' in preset
     assert 'slot:i=6\n  preset:t="damocles"' in preset
+
+
+def test_scalp_asset_manifest_indexes_reusable_sources() -> None:
+    manifest_path = ROOT / "assets" / "weapons" / "scalp-eg" / "asset.toml"
+    manifest = tomllib.loads(manifest_path.read_text())
+
+    assert manifest["schema_version"] == 1
+    assert manifest["id"] == "scalp-eg"
+    assert manifest["display_name"] == "SCALP-EG"
+    assert manifest["integration"]["stations"] == [3, 10]
+    assert manifest["integration"]["station_tiers"] == [10, 2]
+    assert {variant["id"] for variant in manifest["variants"]} == {
+        "ir-lo-010",
+        "ir-vlo-005",
+        "ins-lo-010",
+    }
+    for variant in manifest["variants"]:
+        for key in ("weapon", "preset", "mission"):
+            assert (ROOT / variant[key]).is_file()

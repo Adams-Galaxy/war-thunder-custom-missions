@@ -29,7 +29,7 @@ mission_settings{
     afterRespawnDelaySec:i=30
     useSpawnDelay:b=yes
     timeToLoseInstantDetection:r=10
-    locName:t="Southeastern City · Rafale M · 2× SCALP-EG Proxy (LO 0.1)"
+    locName:t="Southeastern City · Rafale M · 2× SCALP-EG (IR · LO 0.1)"
     locDesc:t="Local single-player SCALP-EG gameplay experiment using the peaceful Nuclear Escalation map. The proxy uses public SCALP mass, length, subsonic speed, range and approximate BROACH warhead mass while retaining the AGM-84K model and guidance. This LO variant uses the AGM-154 JSOW's 0.1 SAM-AI interception-distance multiplier. All map units remain present but cannot attack the player."
     scoreLimit:i=9000
     timeLimit:i=90

@@ -19,9 +19,9 @@ The package adds one custom unit based on `rafale_m_f3r` and sixteen missions:
 - `Southeastern City · Rafale M · 4× Kh-38MT`
 - `Southeastern City · Rafale M · 4× Kh-58UShK`
 - `Southeastern City · Rafale M · 8× LMUR`
-- `Southeastern City · Rafale M · 2× SCALP-EG Proxy (LO 0.1)`
-- `Southeastern City · Rafale M · 2× SCALP-EG INS Test (LO 0.1)`
-- `Southeastern City · Rafale M · 2× SCALP-EG Proxy (VLO 0.05)`
+- `Southeastern City · Rafale M · 2× SCALP-EG (IR · LO 0.1)`
+- `Southeastern City · Rafale M · 2× SCALP-EG (INS · LO 0.1)`
+- `Southeastern City · Rafale M · 2× SCALP-EG (IR · VLO 0.05)`
 
 All sixteen loadouts carry the TALIOS pod. The five-JSOW variant uses twin racks
 on the established multistore wing stations plus one centerline weapon. The
@@ -46,6 +46,11 @@ punchy gameplay approximation, not a claimed real SCALP figure; the published
 450 kg figure describes the complete tandem warhead assembly. The extra blast
 stands in for some BROACH precursor and penetrator damage that War Thunder's
 single-stage proxy cannot reproduce.
+
+Their reusable source index and machine-readable tuning data live in
+[`assets/weapons/scalp-eg`](../../assets/weapons/scalp-eg/README.md). The
+installable BLK files in this experiment remain canonical, so there is only one
+copy of each definition to keep synchronized.
 
 All three SCALP missions carry one proxy on each mirrored heavy wing station
 (aircraft slots 3 and 10), matching the normal two-missile Rafale arrangement.

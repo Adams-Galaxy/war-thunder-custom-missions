@@ -5,6 +5,8 @@
 include "#/develop/gameBase/gameData/Weapons/rocketGuns/us_agm_84k_slam_er.blk"
 
 "@override:rocket" {
+  "@override:bulletName":t="SCALP-EG"
+  "@override:gunnerOpticsName":t="SCALP-EG"
   "@override:mass":r=1300.0
   "@override:length":r=5.10
   "@override:machMax":r=0.95
