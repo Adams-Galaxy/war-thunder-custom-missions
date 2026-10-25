@@ -30,9 +30,9 @@ loadout_category = "AIR_TO_GROUND"
 [test_range]
 layout = "equilateral triangle over open water"
 side_length_m = 12000.0
-player_position_m = [0.0, 1500.0, -100000.0]
-target_left_position_m = [-6000.0, 0.0, -89607.695]
-target_right_position_m = [6000.0, 0.0, -89607.695]
+player_position_m = [40000.0, 1500.0, -52000.0]
+target_left_position_m = [34000.0, 0.0, -41607.695]
+target_right_position_m = [46000.0, 0.0, -41607.695]
 targets = "unarmed stationary destroyers"
 
 [[variants]]
@@ -59,7 +59,7 @@ display_name = "SCALP-EG 5s Terminal 35 to 600 (LO 0.10)"
 guidance = "seekerless SNS coordinate guidance"
 interception_multiplier = 0.10
 release_channel = "atgm"
-terminal_profile_time_to_hit_s = [8.5, 8.0, 5.0, 1.20, 0.20]
+terminal_profile_time_to_hit_s = [8.5, 8.0, 5.0, 1.20, 0.95]
 terminal_profile_altitude_m = [80.0, 35.0, 35.0, 600.0, 5.0]
 terminal_elevation_deg = -75.0
 climb_limit_deg = 78.0
@@ -79,7 +79,7 @@ guidance = "seekerless SNS coordinate guidance"
 interception_multiplier = 0.10
 release_channel = "atgm"
 standalone_definition = true
-terminal_profile_time_to_hit_s = [8.5, 8.0, 5.0, 1.0, 0.15]
+terminal_profile_time_to_hit_s = [8.5, 8.0, 5.0, 1.0, 0.75]
 terminal_profile_altitude_m = [80.0, 40.0, 40.0, 1000.0, 5.0]
 terminal_elevation_deg = -80.0
 climb_limit_deg = 82.0

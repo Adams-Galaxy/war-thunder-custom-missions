@@ -30,7 +30,7 @@ mission_settings{
     useSpawnDelay:b=yes
     timeToLoseInstantDetection:r=10
     locName:t="Southeastern City · Rafale M · SCALP 5s 40→1000"
-    locDesc:t="Flat-water terminal-profile test C. Uses the proven medium damping but deliberately commands an exaggerated climb from 40 m to 1,000 m beginning five seconds before impact. This tests whether a large altitude error can overcome damping. Two stationary targets are exactly 12 km away, 30 degrees left and right of the initial heading."
+    locDesc:t="Flat-water terminal-profile test C. Uses the proven medium damping and commands an exaggerated climb from 40 m to 1,000 m beginning five seconds before impact, then compresses the apex-to-dive command into 0.25 seconds to remove the level terminal shelf. Two stationary targets are exactly 12 km away, 30 degrees left and right of the initial heading."
     scoreLimit:i=9000
     timeLimit:i=90
     deathPenaltyMul:r=0.2

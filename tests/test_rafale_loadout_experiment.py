@@ -286,7 +286,7 @@ def test_scalp_ins_proxy_uses_coordinate_guidance_and_staged_terminal_profiles()
     assert 'inertialNavigationMandatory:b=yes' in text
     assert '"@override:designationSourceType":t="camera"' in text
     assert '"@override:constantDesignationSourceType":t="camera"' in text
-    assert 'timeToHitToAltitude0:p2=0.20, 5.0' in text
+    assert 'timeToHitToAltitude0:p2=0.95, 5.0' in text
     assert 'timeToHitToAltitude1:p2=1.20, 600.0' in text
     assert 'timeToHitToAltitude2:p2=5.0, 35.0' in text
     assert 'timeToHitToAltitude3:p2=8.0, 35.0' in text
@@ -338,7 +338,7 @@ def test_scalp_ins_proxy_uses_coordinate_guidance_and_staged_terminal_profiles()
     terminal_40_1000 = SCALP_INS_TERMINAL_40_1000.read_text()
     assert 'include "#/develop/gameBase/gameData/Weapons/rocketGuns/su_grom_1.blk"' in terminal_40_1000
     assert 'wt_agm_84k_scalp_ins_terminal_35_600_lo.blk' not in terminal_40_1000
-    assert 'timeToHitToAltitude0:p2=0.15, 5.0' in terminal_40_1000
+    assert 'timeToHitToAltitude0:p2=0.75, 5.0' in terminal_40_1000
     assert 'timeToHitToAltitude1:p2=1.0, 1000.0' in terminal_40_1000
     assert 'timeToHitToAltitude2:p2=5.0, 40.0' in terminal_40_1000
     assert 'timeToHitToAltitude3:p2=8.0, 40.0' in terminal_40_1000
@@ -375,7 +375,7 @@ def test_scalp_asset_manifest_indexes_reusable_sources() -> None:
     assert manifest["integration"]["projectile_icon"] == "guided_bomb_middle_jdam"
     assert manifest["integration"]["loadout_icon"] == "glide_bomb_default"
     assert manifest["test_range"]["side_length_m"] == 12000.0
-    assert manifest["test_range"]["player_position_m"] == [0.0, 1500.0, -100000.0]
+    assert manifest["test_range"]["player_position_m"] == [40000.0, 1500.0, -52000.0]
     assert {variant["id"] for variant in manifest["variants"]} == {
         "ir-lo-010",
         "ir-vlo-005",
@@ -389,7 +389,7 @@ def test_scalp_asset_manifest_indexes_reusable_sources() -> None:
 
     ins = next(variant for variant in manifest["variants"] if variant["id"] == "terminal-35-600-lo-010")
     assert ins["release_channel"] == "atgm"
-    assert ins["terminal_profile_time_to_hit_s"] == [8.5, 8.0, 5.0, 1.20, 0.20]
+    assert ins["terminal_profile_time_to_hit_s"] == [8.5, 8.0, 5.0, 1.20, 0.95]
     assert ins["terminal_profile_altitude_m"] == [80.0, 35.0, 35.0, 600.0, 5.0]
 
 

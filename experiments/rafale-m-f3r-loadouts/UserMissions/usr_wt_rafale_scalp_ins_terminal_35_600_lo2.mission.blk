@@ -30,7 +30,7 @@ mission_settings{
     useSpawnDelay:b=yes
     timeToLoseInstantDetection:r=10
     locName:t="Southeastern City · Rafale M · SCALP 5s 35→600"
-    locDesc:t="Flat-water terminal-profile test B. Uses the proven medium damping. It holds 35 m, begins its pop five seconds before impact, targets a 600 m apex around 1.2 seconds out, then commands a 75-degree terminal dive. Two stationary targets are exactly 12 km away, 30 degrees left and right of the initial heading."
+    locDesc:t="Flat-water terminal-profile test B. Uses the proven medium damping. It holds 35 m, begins its pop five seconds before impact, then compresses the 600 m apex-to-dive command into 0.25 seconds to remove the level terminal shelf. Two stationary targets are exactly 12 km away, 30 degrees left and right of the initial heading."
     scoreLimit:i=9000
     timeLimit:i=90
     deathPenaltyMul:r=0.2

@@ -80,6 +80,9 @@ ultra-late 25-to-260 m reference. Test B holds a 35 m terminal approach until
 five seconds to impact, then gives the controller time to climb toward 600 m.
 Test C uses the same five-second start but deliberately commands a 1,000 m
 apex from 40 m, testing whether a large altitude error overcomes the damping.
+Both profiles now compress the apex-to-near-ground command into 0.25 seconds,
+so the controller should reverse directly from its climb into the dive instead
+of spending roughly a second in a shallow, nearly level transition.
 The extra
 altitude keyframe is supported by stock War Thunder missile definitions and
 prevents the pop-up from being smeared into one long shallow climb. The listed distances are rough
@@ -94,7 +97,7 @@ caused repeatable fatal game crashes, so the variants are intentionally
 standalone despite the duplicated base tuning.
 
 All three terminal-profile missions use the same flat-water test range. The
-Rafale starts at `(0, 1500, -100000)` and two unarmed stationary destroyers sit
+Rafale starts at `(40000, 1500, -52000)` and two unarmed stationary destroyers sit
 exactly 12 km away at the other corners of an equilateral triangle. This removes
 terrain-height ambiguity and gives one target per missile.
 

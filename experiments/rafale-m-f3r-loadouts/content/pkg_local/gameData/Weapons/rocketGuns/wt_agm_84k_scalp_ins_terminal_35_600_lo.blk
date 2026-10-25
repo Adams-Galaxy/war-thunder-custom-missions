@@ -1,4 +1,5 @@
-// Medium-damped SCALP test: begin a longer 600 m pop five seconds out.
+// Medium-damped SCALP test: begin a 600 m pop five seconds out, then snap
+// directly from the apex command into the terminal dive.
 // The seekerless Grom-1 base supplies a genuine SNS rocket guidance path rather
 // than leaving the included AGM-84K optical seeker active.  The AGM-84K visual,
 // aerodynamics and damped controller are restored explicitly below.
@@ -83,7 +84,7 @@ bombCart:t="bomb_cart_kh59"
       "@override:timeToGain2":p2=899.0, 1.0
       "@override:timeToGain3":p2=900.0, 1.0
       altitudeHoldEnabled:b=yes
-      timeToHitToAltitude0:p2=0.20, 5.0
+      timeToHitToAltitude0:p2=0.95, 5.0
       timeToHitToAltitude1:p2=1.20, 600.0
       timeToHitToAltitude2:p2=5.0, 35.0
       timeToHitToAltitude3:p2=8.0, 35.0
