@@ -124,19 +124,19 @@ gain from 0.15 to 0.135. The 1.0-second ground mission starts at NATO Air Spawn
 1 at 1.5 km, using the established west-facing transform. Regenerate this matrix with
 `python tools/build_scalp_terminal_matrix.py` after changing its variant table.
 
-Four comparison profiles test the remaining terminal-guidance options. Two use
-the native loft controller's `rangeToLoftElevation` table in reverse: both ask
-for only 2 degrees beyond 4 km, then ramp to either 45 degrees at 2.5 km or 70
-degrees at 2 km. This deliberately tests whether the table is recalculated from
-live range or sampled only once at launch. The other two use altitude hold only.
-The control cruises at 80 m and changes to 35 m inside roughly eight seconds to
-impact. The experimental profile follows the same route, then commands 200 m at
-0.75 seconds without adding a subsequent low-altitude keyframe. Its terminal
-target-elevation logic must therefore initiate the final dive automatically.
-Each profile has a 100 m flat-water mission and a 1.5 km NATO Air Spawn 1 ground
-mission. The prior native and hybrid loft tests remain in Git as test history,
-but are no longer installed into the active mission menu. Regenerate the current
-matrix with `python tools/build_scalp_loft_matrix.py`.
+Six manual-loft profiles use altitude hold both for terrain following and for a
+late pop-up. The missile cruises at 80 m, descends to 35 m inside roughly eight
+seconds to impact, and then ramps over 0.25 seconds to either a 600 m or 1000 m
+altitude command. Each altitude is tested at 2.0, 1.5, and 1.0 seconds to impact.
+There is deliberately no low-altitude keyframe after the pop-up: the preceding
+200 m experiment proved that terminal target-elevation guidance can complete the
+final dive automatically, while an explicit downward keyframe creates the
+unwanted feedback shelf. All six profiles share the same medium damping and a
+70-degree climb allowance, so only demanded altitude and timing vary. Each has a
+100 m flat-water mission and a 1.5 km NATO Air Spawn 1 ground mission. Prior
+native, range-mapped, and altitude-hold controls remain in Git as test history,
+but are moved out of the active mission menu. Regenerate the current matrix with
+`python tools/build_scalp_loft_matrix.py`.
 
 Because the INS version inherits Grom-1 only to obtain its seekerless SNS
 guidance path, it explicitly replaces Grom's solid-rocket flame, smoke, and

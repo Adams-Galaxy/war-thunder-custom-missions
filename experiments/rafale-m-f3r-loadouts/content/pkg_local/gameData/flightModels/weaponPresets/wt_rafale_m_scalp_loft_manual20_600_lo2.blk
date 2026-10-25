@@ -1,0 +1,12 @@
+Weapon {
+  slot:i=3
+  preset:t="wt_scalp_loft_manual20_600_lo_slot3"
+}
+Weapon {
+  slot:i=6
+  preset:t="damocles"
+}
+Weapon {
+  slot:i=10
+  preset:t="wt_scalp_loft_manual20_600_lo_slot10"
+}

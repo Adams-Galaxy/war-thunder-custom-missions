@@ -14,7 +14,7 @@ mkdir -p "$presets_dir" "$rocketguns_dir" "$missions_dir" "$superseded_scalp_dir
 
 # Keep the active mission menu focused on the current comparison matrix while
 # preserving the preceding native/hybrid geometry tests for later reference.
-for profile in native12_45 native18_65 hybrid18_65; do
+for profile in native12_45 native18_65 hybrid18_65 range45 range70 hold80_35 hold200_075; do
   for test_range in water ground; do
     old_test="$missions_dir/usr_wt_rafale_scalp_loft_${profile}_${test_range}_lo2.mission.blk"
     if [ -f "$old_test" ]; then
@@ -78,7 +78,7 @@ cp "$experiment_dir/content/pkg_local/gameData/flightModels/weaponPresets/wt_raf
 for profile in lead20_cap55 lead25_cap55 lead30_cap55 lead25_cap45 lead25_cap35 lead25_cap45_gain0125 lead20_cap45_gain0125 lead175_cap45_gain0125 lead15_cap45_gain0125 lead125_cap45_gain0125_damped lead10_cap45_gain0125_damped lead075_cap45_gain0125_damped; do
   cp "$experiment_dir/content/pkg_local/gameData/flightModels/weaponPresets/wt_rafale_m_scalp_turn_${profile}_lo2.blk" "$presets_dir/"
 done
-for profile in range45 range70 hold80_35 hold200_075; do
+for profile in manual20_600 manual20_1000 manual15_600 manual15_1000 manual10_600 manual10_1000; do
   cp "$experiment_dir/content/pkg_local/gameData/flightModels/weaponPresets/wt_rafale_m_scalp_loft_${profile}_lo2.blk" "$presets_dir/"
 done
 cp "$experiment_dir/content/pkg_local/gameData/Weapons/rocketGuns/wt_agm_84k_slam_er_lo.blk" "$rocketguns_dir/"
@@ -89,7 +89,7 @@ cp "$experiment_dir/content/pkg_local/gameData/Weapons/rocketGuns/wt_agm_84k_sca
 for profile in lead20_cap55 lead25_cap55 lead30_cap55 lead25_cap45 lead25_cap35 lead25_cap45_gain0125 lead20_cap45_gain0125 lead175_cap45_gain0125 lead15_cap45_gain0125 lead125_cap45_gain0125_damped lead10_cap45_gain0125_damped lead075_cap45_gain0125_damped; do
   cp "$experiment_dir/content/pkg_local/gameData/Weapons/rocketGuns/wt_agm_84k_scalp_turn_${profile}_lo.blk" "$rocketguns_dir/"
 done
-for profile in range45 range70 hold80_35 hold200_075; do
+for profile in manual20_600 manual20_1000 manual15_600 manual15_1000 manual10_600 manual10_1000; do
   cp "$experiment_dir/content/pkg_local/gameData/Weapons/rocketGuns/wt_agm_84k_scalp_loft_${profile}_lo.blk" "$rocketguns_dir/"
 done
 cp "$experiment_dir/UserMissions/usr_wt_rafale_spice250.mission.blk" "$missions_dir/"
@@ -107,7 +107,7 @@ cp "$experiment_dir/UserMissions/usr_wt_rafale_kh58ushk4.mission.blk" "$missions
 cp "$experiment_dir/UserMissions/usr_wt_rafale_lmur8.mission.blk" "$missions_dir/"
 cp "$experiment_dir/UserMissions/usr_wt_rafale_agm84k_lo2.mission.blk" "$missions_dir/"
 cp "$experiment_dir/UserMissions/usr_wt_rafale_agm84k_vlo2.mission.blk" "$missions_dir/"
-for profile in range45 range70 hold80_35 hold200_075; do
+for profile in manual20_600 manual20_1000 manual15_600 manual15_1000 manual10_600 manual10_1000; do
   cp "$experiment_dir/UserMissions/usr_wt_rafale_scalp_loft_${profile}_water_lo2.mission.blk" "$missions_dir/"
   cp "$experiment_dir/UserMissions/usr_wt_rafale_scalp_loft_${profile}_ground_lo2.mission.blk" "$missions_dir/"
 done

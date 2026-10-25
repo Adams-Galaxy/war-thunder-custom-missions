@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the SCALP range-loft and altitude-hold comparison matrix."""
+"""Build the SCALP manual terminal-loft comparison matrix."""
 
 from dataclasses import dataclass
 from pathlib import Path
@@ -49,35 +49,25 @@ class Variant:
         return MISSIONS / f"usr_wt_rafale_scalp_loft_{self.slug}_ground_lo2.mission.blk"
 
 
-VARIANTS = (
-    Variant(
-        "range45",
-        "Range Loft 4→2.5 km · 2→45°",
-        "range_loft",
-        range_map=(2500.0, 45.0, 4000.0, 2.0),
-        loft_target_elevation_deg=-55.0,
-        loft_angle_gain=0.5,
-    ),
-    Variant(
-        "range70",
-        "Range Loft 4→2 km · 2→70°",
-        "range_loft",
-        range_map=(2000.0, 70.0, 4000.0, 2.0),
-        loft_target_elevation_deg=-70.0,
-        loft_angle_gain=1.0,
-    ),
-    Variant(
-        "hold80_35",
-        "Altitude Hold 80→35 m Control",
+def manual_variant(lead_s: float, altitude_m: float) -> Variant:
+    lead_slug = f"{lead_s:.1f}".replace(".", "")
+    return Variant(
+        f"manual{lead_slug}_{altitude_m:.0f}",
+        f"Manual Loft {lead_s:.1f} s · {altitude_m:.0f} m",
         "altitude_hold",
-        altitude_points=((0.0, 35.0), (8.0, 35.0), (8.5, 80.0)),
-    ),
-    Variant(
-        "hold200_075",
-        "Altitude Hold 200 m at 0.75 s · No Return Point",
-        "altitude_hold",
-        altitude_points=((0.75, 200.0), (1.0, 35.0), (8.0, 35.0), (8.5, 80.0)),
-    ),
+        altitude_points=(
+            (lead_s, altitude_m),
+            (lead_s + 0.25, 35.0),
+            (8.0, 35.0),
+            (8.5, 80.0),
+        ),
+    )
+
+
+VARIANTS = tuple(
+    manual_variant(lead_s, altitude_m)
+    for lead_s in (2.0, 1.5, 1.0)
+    for altitude_m in (600.0, 1000.0)
 )
 
 
@@ -123,7 +113,7 @@ def weapon_text(variant: Variant) -> str:
             for idx, (time_s, altitude_m) in enumerate(variant.altitude_points)
         )
         text = replace_once(text, "      altitudeHoldEnabled:b=yes", "      altitudeHoldEnabled:b=yes\n" + point_lines)
-        text = replace_once(text, "altitudeHoldAngleLimith:p2=-82.0, 78.0", "altitudeHoldAngleLimith:p2=-82.0, 55.0")
+        text = replace_once(text, "altitudeHoldAngleLimith:p2=-82.0, 78.0", "altitudeHoldAngleLimith:p2=-82.0, 70.0")
     return text
 
 
@@ -166,16 +156,13 @@ def mission_text(template: Path, variant: Variant, ground: bool) -> str:
             f"at {far_range / 1000:g} km and {near_angle:g} degrees at {near_range / 1000:g} km. "
             "This tests whether War Thunder recalculates the loft angle during flight or samples launch range once."
         )
-    elif variant.slug == "hold200_075":
-        description = (
-            f"Altitude-hold terminal test, starting {location}. It cruises at 80 m, descends to 35 m, "
-            "then commands 200 m at 0.75 seconds to impact. There is deliberately no later return-to-target "
-            "altitude point; terminal target-elevation guidance must complete the dive automatically."
-        )
     else:
+        lead_s, demanded_altitude = variant.altitude_points[0]
         description = (
-            f"Altitude-hold control, starting {location}. It cruises at 80 m and descends to a constant "
-            "35 m near the target, with no loft controller and no pop-up command."
+            f"Manual altitude-hold loft test, starting {location}. It cruises at 80 m, descends to 35 m, "
+            f"then reaches a {demanded_altitude:g} m command at {lead_s:g} seconds to impact through a "
+            "0.25-second transition. There is deliberately no return-to-target altitude keyframe; "
+            "terminal target-elevation guidance must complete the dive automatically."
         )
     return re.sub(
         r'^    locDesc:t=".*"$',
