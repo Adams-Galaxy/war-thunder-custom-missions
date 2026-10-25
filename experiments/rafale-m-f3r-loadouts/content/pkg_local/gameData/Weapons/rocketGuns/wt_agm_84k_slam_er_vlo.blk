@@ -1,0 +1,23 @@
+// SCALP-EG gameplay proxy built on the AGM-84K guidance and visual model.
+include "#/develop/gameBase/gameData/Weapons/rocketGuns/us_agm_84k_slam_er.blk"
+
+"@override:rocket" {
+  "@override:mass":r=1300.0
+  "@override:length":r=5.10
+  "@override:machMax":r=0.95
+  "@override:timeLife":r=900.0
+  "@override:maxDistance":r=250000.0
+  "@override:rangeMax":r=250000.0
+  "@override:warheadMass":r=450.0
+  "@override:explosiveType":t="pbxn_110"
+  "@override:explosiveMass":r=200.0
+  gunnerFilterMaxDistMult:r=0.05
+
+  "@override:propulsion0" {
+    "@override:impulse0" {
+      "@override:time":r=850.0
+      "@override:force":r=5400.0
+      "@override:massLost":r=200.0
+    }
+  }
+}

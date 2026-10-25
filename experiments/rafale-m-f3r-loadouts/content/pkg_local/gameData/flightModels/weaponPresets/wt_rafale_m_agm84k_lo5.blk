@@ -1,0 +1,24 @@
+Weapon {
+  slot:i=3
+  preset:t="wt_agm84k_lo_slot3"
+}
+Weapon {
+  slot:i=4
+  preset:t="wt_agm84k_lo_slot4"
+}
+Weapon {
+  slot:i=6
+  preset:t="damocles"
+}
+Weapon {
+  slot:i=7
+  preset:t="wt_agm84k_lo_slot7"
+}
+Weapon {
+  slot:i=9
+  preset:t="wt_agm84k_lo_slot9"
+}
+Weapon {
+  slot:i=10
+  preset:t="wt_agm84k_lo_slot10"
+}

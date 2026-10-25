@@ -11,6 +11,16 @@ UNIT = (
     / "flightModels"
     / "wt_custom_rafale_m_f3r.blk"
 )
+SCALP_PROXY = (
+    EXPERIMENT
+    / "content"
+    / "pkg_local"
+    / "gameData"
+    / "Weapons"
+    / "rocketGuns"
+    / "wt_agm_84k_slam_er_lo.blk"
+)
+SCALP_PROXY_VLO = SCALP_PROXY.with_name("wt_agm_84k_slam_er_vlo.blk")
 
 
 def test_custom_rafale_registers_all_experimental_stores() -> None:
@@ -33,8 +43,10 @@ def test_custom_rafale_registers_all_experimental_stores() -> None:
     assert text.count("rocketGuns/su_kh_38mt.blk") == 4
     assert text.count("rocketGuns/su_kh_58ushk.blk") == 4
     assert text.count("containers/lmur_x2.blk") == 4
+    assert text.count("rocketGuns/wt_agm_84k_slam_er_lo.blk") == 5
+    assert text.count("rocketGuns/wt_agm_84k_slam_er_vlo.blk") == 5
     assert text.count('preset:t="damocles"') == 2
-    assert text.count('blk:t="gameData/flightModels/weaponPresets/') == 13
+    assert text.count('blk:t="gameData/flightModels/weaponPresets/') == 15
     assert "gameData/FlightModels/weaponPresets/" not in text
     assert text.count("{") == text.count("}")
 
@@ -54,6 +66,8 @@ def test_each_mission_enables_its_single_player_loadout() -> None:
         "usr_wt_rafale_kh38mt4.mission.blk": "wt_rafale_m_kh38mt4",
         "usr_wt_rafale_kh58ushk4.mission.blk": "wt_rafale_m_kh58ushk4",
         "usr_wt_rafale_lmur8.mission.blk": "wt_rafale_m_lmur8",
+        "usr_wt_rafale_agm84k_lo5.mission.blk": "wt_rafale_m_agm84k_lo5",
+        "usr_wt_rafale_agm84k_vlo5.mission.blk": "wt_rafale_m_agm84k_vlo5",
     }
 
     for filename, preset in cases.items():
@@ -76,6 +90,8 @@ def test_each_mission_enables_its_single_player_loadout() -> None:
             "wt_rafale_m_kh38mt4",
             "wt_rafale_m_kh58ushk4",
             "wt_rafale_m_lmur8",
+            "wt_rafale_m_agm84k_lo5",
+            "wt_rafale_m_agm84k_vlo5",
         }:
             assert "fuel:r=15.0" in text
         assert 'unitWakeUp{\n        target:t="t2_player01"' in text
@@ -138,3 +154,47 @@ def test_russian_missile_presets_have_expected_layouts() -> None:
     for text in (kh38mt4, kh58ushk4, lmur8):
         assert 'slot:i=6\n  preset:t="damocles"' in text
         assert text.count("{") == text.count("}")
+
+
+def test_scalp_proxies_share_physical_approximation_but_differ_in_stealth() -> None:
+    lo = SCALP_PROXY.read_text()
+    vlo = SCALP_PROXY_VLO.read_text()
+    for text in (lo, vlo):
+        assert 'include "#/develop/gameBase/gameData/Weapons/rocketGuns/us_agm_84k_slam_er.blk"' in text
+        assert '"@override:rocket"' in text
+        assert '"@override:mass":r=1300.0' in text
+        assert '"@override:length":r=5.10' in text
+        assert '"@override:machMax":r=0.95' in text
+        assert '"@override:maxDistance":r=250000.0' in text
+        assert '"@override:rangeMax":r=250000.0' in text
+        assert '"@override:warheadMass":r=450.0' in text
+        assert '"@override:explosiveType":t="pbxn_110"' in text
+        assert '"@override:explosiveMass":r=200.0' in text
+        assert '"@override:force":r=5400.0' in text
+        assert text.count("{") == text.count("}")
+    assert "gunnerFilterMaxDistMult:r=0.1" in lo
+    assert "gunnerFilterMaxDistMult:r=0.05" in vlo
+
+    preset = (
+        EXPERIMENT
+        / "content"
+        / "pkg_local"
+        / "gameData"
+        / "flightModels"
+        / "weaponPresets"
+        / "wt_rafale_m_agm84k_lo5.blk"
+    ).read_text()
+    assert preset.count('preset:t="wt_agm84k_lo_slot') == 5
+    assert 'slot:i=6\n  preset:t="damocles"' in preset
+
+    vlo_preset = (
+        EXPERIMENT
+        / "content"
+        / "pkg_local"
+        / "gameData"
+        / "flightModels"
+        / "weaponPresets"
+        / "wt_rafale_m_agm84k_vlo5.blk"
+    ).read_text()
+    assert vlo_preset.count('preset:t="wt_agm84k_vlo_slot') == 5
+    assert 'slot:i=6\n  preset:t="damocles"' in vlo_preset

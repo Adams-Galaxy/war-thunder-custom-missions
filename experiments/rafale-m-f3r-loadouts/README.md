@@ -4,7 +4,7 @@ This is an intentionally local, single-player-only experiment built on the
 peaceful South-Eastern City mission. It does not alter the stock Rafale or any
 hosted multiplayer mission.
 
-The package adds one custom unit based on `rafale_m_f3r` and thirteen missions:
+The package adds one custom unit based on `rafale_m_f3r` and fifteen missions:
 
 - `Southeastern City · Rafale M · 8× SPICE 250`
 - `Southeastern City · Rafale M · 6× Brimstone DM`
@@ -19,8 +19,10 @@ The package adds one custom unit based on `rafale_m_f3r` and thirteen missions:
 - `Southeastern City · Rafale M · 4× Kh-38MT`
 - `Southeastern City · Rafale M · 4× Kh-58UShK`
 - `Southeastern City · Rafale M · 8× LMUR`
+- `Southeastern City · Rafale M · 5× AGM-84K LO (SCALP Proxy)`
+- `Southeastern City · Rafale M · 5× AGM-84K VLO (SCALP Proxy 0.05)`
 
-All thirteen loadouts carry the TALIOS pod. The five-JSOW variant uses twin racks
+All fifteen loadouts carry the TALIOS pod. The five-JSOW variant uses twin racks
 on the established multistore wing stations plus one centerline weapon. The
 nine-JSOW variant additionally repurposes both inner wet stations for twin
 racks; it is intentionally a fictional maximum-fit experiment. The surrounding
@@ -32,6 +34,21 @@ minimum-fuel load rather than the CDK's default full tanks. The three Russian
 experiments also start at minimum fuel. Kh-38MT uses its infrared seeker,
 Kh-58UShK is a dedicated anti-radiation experiment, and LMUR uses four twin
 launchers on the same fictional wing and wet-station arrangement.
+
+The two SCALP proxies share a public-data-based approximation: 1,300 kg total
+mass, 5.10 m length, subsonic turbojet performance, at least 250 km nominal
+range, and a roughly 450 kg two-stage BROACH penetrator warhead. The stock
+AGM-84K model and guidance remain because the game does not expose a SCALP
+model, TERPROM route planning, terminal scene matching, or tandem-warhead
+simulation to this local mission. The 200 kg explosive fill is a deliberately
+punchy gameplay approximation, not a claimed real SCALP figure; the published
+450 kg figure describes the complete tandem warhead assembly.
+
+The LO mission sets `gunnerFilterMaxDistMult` to `0.1`, matching the AGM-154A1
+JSOW's current temporary SAM-AI pseudo-RCS treatment. The VLO mission sets it
+to `0.05`, an intentionally fictional half-JSOW interception-distance test.
+These values affect AI air-defense interception priority/range; they are not
+physical radar-cross-section measurements or player-radar detection values.
 
 The hosted mission's 2018 formations normally depend on a multiplayer balance
 rank. These local copies make the already-selected 2018 templates unconditional
@@ -46,7 +63,7 @@ Close War Thunder before installing, then run:
 ```
 
 Open War Thunder, choose `Battles` → `User Missions`, and start one of the
-ten Rafale missions. The files are installed at the User Missions root using
+fifteen Rafale missions. The files are installed at the User Missions root using
 the conventional `usr_*.mission.blk` names expected by the single-player
 mission browser.
 

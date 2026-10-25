@@ -58,6 +58,14 @@ include "#/develop/gameBase/gameData/flightModels/rafale_m_f3r.blk"
     name:t="wt_rafale_m_lmur8"
     blk:t="gameData/flightModels/weaponPresets/wt_rafale_m_lmur8.blk"
   }
+  preset {
+    name:t="wt_rafale_m_agm84k_lo5"
+    blk:t="gameData/flightModels/weaponPresets/wt_rafale_m_agm84k_lo5.blk"
+  }
+  preset {
+    name:t="wt_rafale_m_agm84k_vlo5"
+    blk:t="gameData/flightModels/weaponPresets/wt_rafale_m_agm84k_vlo5.blk"
+  }
 }
 
 "@override:WeaponSlots" {
@@ -200,6 +208,40 @@ include "#/develop/gameBase/gameData/flightModels/rafale_m_f3r.blk"
     }
 
     WeaponPreset {
+      iconType:t="missile_air_to_uni_large"
+      name:t="wt_agm84k_lo_slot3"
+      ShowNodes {
+        node:t="pylon_pu_708_001"
+      }
+      Weapon {
+        trigger:t="atgm"
+        blk:t="gameData/Weapons/rocketGuns/wt_agm_84k_slam_er_lo.blk"
+        emitter:t="pylon_at_730_001"
+        bullets:i=1
+        external:b=yes
+        separate:b=yes
+        machLimit:r=1.4
+      }
+    }
+
+    WeaponPreset {
+      iconType:t="missile_air_to_uni_large"
+      name:t="wt_agm84k_vlo_slot3"
+      ShowNodes {
+        node:t="pylon_pu_708_001"
+      }
+      Weapon {
+        trigger:t="atgm"
+        blk:t="gameData/Weapons/rocketGuns/wt_agm_84k_slam_er_vlo.blk"
+        emitter:t="pylon_at_730_001"
+        bullets:i=1
+        external:b=yes
+        separate:b=yes
+        machLimit:r=1.4
+      }
+    }
+
+    WeaponPreset {
       iconType:t="guided_bomb_grey"
       name:t="wt_kh38mt_slot3"
       ShowNodes {
@@ -296,6 +338,42 @@ include "#/develop/gameBase/gameData/flightModels/rafale_m_f3r.blk"
       Weapon {
         trigger:t="atgm"
         blk:t="gameData/Weapons/rocketGuns/us_agm_84k_slam_er.blk"
+        emitter:t="fr_2000l_rpl_741_rafale_drop_tank_001"
+        bullets:i=1
+        external:b=yes
+        separate:b=yes
+        machLimit:r=1.4
+      }
+    }
+
+    WeaponPreset {
+      iconType:t="missile_air_to_uni_large"
+      name:t="wt_agm84k_lo_slot4"
+      ShowNodes {
+        node:t="pylon_rafale_wing_001"
+        node:t="pylon_rafale_wing_001_nose"
+      }
+      Weapon {
+        trigger:t="atgm"
+        blk:t="gameData/Weapons/rocketGuns/wt_agm_84k_slam_er_lo.blk"
+        emitter:t="fr_2000l_rpl_741_rafale_drop_tank_001"
+        bullets:i=1
+        external:b=yes
+        separate:b=yes
+        machLimit:r=1.4
+      }
+    }
+
+    WeaponPreset {
+      iconType:t="missile_air_to_uni_large"
+      name:t="wt_agm84k_vlo_slot4"
+      ShowNodes {
+        node:t="pylon_rafale_wing_001"
+        node:t="pylon_rafale_wing_001_nose"
+      }
+      Weapon {
+        trigger:t="atgm"
+        blk:t="gameData/Weapons/rocketGuns/wt_agm_84k_slam_er_vlo.blk"
         emitter:t="fr_2000l_rpl_741_rafale_drop_tank_001"
         bullets:i=1
         external:b=yes
@@ -410,6 +488,40 @@ include "#/develop/gameBase/gameData/flightModels/rafale_m_f3r.blk"
         machLimit:r=1.4
       }
     }
+
+    WeaponPreset {
+      iconType:t="missile_air_to_uni_large"
+      name:t="wt_agm84k_lo_slot7"
+      ShowNodes {
+        node:t="pylon_rafale_central"
+      }
+      Weapon {
+        trigger:t="atgm"
+        blk:t="gameData/Weapons/rocketGuns/wt_agm_84k_slam_er_lo.blk"
+        emitter:t="bomb_gbu_24_003"
+        bullets:i=1
+        external:b=yes
+        separate:b=yes
+        machLimit:r=1.4
+      }
+    }
+
+    WeaponPreset {
+      iconType:t="missile_air_to_uni_large"
+      name:t="wt_agm84k_vlo_slot7"
+      ShowNodes {
+        node:t="pylon_rafale_central"
+      }
+      Weapon {
+        trigger:t="atgm"
+        blk:t="gameData/Weapons/rocketGuns/wt_agm_84k_slam_er_vlo.blk"
+        emitter:t="bomb_gbu_24_003"
+        bullets:i=1
+        external:b=yes
+        separate:b=yes
+        machLimit:r=1.4
+      }
+    }
   }
 
   // Block 10 is aircraft slot 9 (right inner wet station).
@@ -458,6 +570,42 @@ include "#/develop/gameBase/gameData/flightModels/rafale_m_f3r.blk"
       Weapon {
         trigger:t="atgm"
         blk:t="gameData/Weapons/rocketGuns/us_agm_84k_slam_er.blk"
+        emitter:t="fr_2000l_rpl_741_rafale_drop_tank_003"
+        bullets:i=1
+        external:b=yes
+        separate:b=yes
+        machLimit:r=1.4
+      }
+    }
+
+    WeaponPreset {
+      iconType:t="missile_air_to_uni_large"
+      name:t="wt_agm84k_lo_slot9"
+      ShowNodes {
+        node:t="pylon_rafale_wing_002"
+        node:t="pylon_rafale_wing_002_nose"
+      }
+      Weapon {
+        trigger:t="atgm"
+        blk:t="gameData/Weapons/rocketGuns/wt_agm_84k_slam_er_lo.blk"
+        emitter:t="fr_2000l_rpl_741_rafale_drop_tank_003"
+        bullets:i=1
+        external:b=yes
+        separate:b=yes
+        machLimit:r=1.4
+      }
+    }
+
+    WeaponPreset {
+      iconType:t="missile_air_to_uni_large"
+      name:t="wt_agm84k_vlo_slot9"
+      ShowNodes {
+        node:t="pylon_rafale_wing_002"
+        node:t="pylon_rafale_wing_002_nose"
+      }
+      Weapon {
+        trigger:t="atgm"
+        blk:t="gameData/Weapons/rocketGuns/wt_agm_84k_slam_er_vlo.blk"
         emitter:t="fr_2000l_rpl_741_rafale_drop_tank_003"
         bullets:i=1
         external:b=yes
@@ -649,6 +797,40 @@ include "#/develop/gameBase/gameData/flightModels/rafale_m_f3r.blk"
       Weapon {
         trigger:t="atgm"
         blk:t="gameData/Weapons/rocketGuns/us_agm_84k_slam_er.blk"
+        emitter:t="pylon_at_730_002"
+        bullets:i=1
+        external:b=yes
+        separate:b=yes
+        machLimit:r=1.4
+      }
+    }
+
+    WeaponPreset {
+      iconType:t="missile_air_to_uni_large"
+      name:t="wt_agm84k_lo_slot10"
+      ShowNodes {
+        node:t="pylon_pu_708_002"
+      }
+      Weapon {
+        trigger:t="atgm"
+        blk:t="gameData/Weapons/rocketGuns/wt_agm_84k_slam_er_lo.blk"
+        emitter:t="pylon_at_730_002"
+        bullets:i=1
+        external:b=yes
+        separate:b=yes
+        machLimit:r=1.4
+      }
+    }
+
+    WeaponPreset {
+      iconType:t="missile_air_to_uni_large"
+      name:t="wt_agm84k_vlo_slot10"
+      ShowNodes {
+        node:t="pylon_pu_708_002"
+      }
+      Weapon {
+        trigger:t="atgm"
+        blk:t="gameData/Weapons/rocketGuns/wt_agm_84k_slam_er_vlo.blk"
         emitter:t="pylon_at_730_002"
         bullets:i=1
         external:b=yes

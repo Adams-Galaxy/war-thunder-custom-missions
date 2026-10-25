@@ -5,10 +5,11 @@ experiment_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 game_dir=${1:-/games/SteamLibrary/steamapps/common/War Thunder}
 flightmodels_dir="$game_dir/content/pkg_local/gameData/flightModels"
 presets_dir="$flightmodels_dir/weaponPresets"
+rocketguns_dir="$game_dir/content/pkg_local/gameData/Weapons/rocketGuns"
 missions_dir="$game_dir/UserMissions"
 old_missions_dir="$missions_dir/Rafale weapon experiments"
 
-mkdir -p "$presets_dir" "$missions_dir"
+mkdir -p "$presets_dir" "$rocketguns_dir" "$missions_dir"
 
 rm -f "$old_missions_dir/southeastern-city-rafale-spice250.blk"
 rm -f "$old_missions_dir/southeastern-city-rafale-brimstone.blk"
@@ -29,6 +30,10 @@ cp "$experiment_dir/content/pkg_local/gameData/flightModels/weaponPresets/wt_raf
 cp "$experiment_dir/content/pkg_local/gameData/flightModels/weaponPresets/wt_rafale_m_kh38mt4.blk" "$presets_dir/"
 cp "$experiment_dir/content/pkg_local/gameData/flightModels/weaponPresets/wt_rafale_m_kh58ushk4.blk" "$presets_dir/"
 cp "$experiment_dir/content/pkg_local/gameData/flightModels/weaponPresets/wt_rafale_m_lmur8.blk" "$presets_dir/"
+cp "$experiment_dir/content/pkg_local/gameData/flightModels/weaponPresets/wt_rafale_m_agm84k_lo5.blk" "$presets_dir/"
+cp "$experiment_dir/content/pkg_local/gameData/flightModels/weaponPresets/wt_rafale_m_agm84k_vlo5.blk" "$presets_dir/"
+cp "$experiment_dir/content/pkg_local/gameData/Weapons/rocketGuns/wt_agm_84k_slam_er_lo.blk" "$rocketguns_dir/"
+cp "$experiment_dir/content/pkg_local/gameData/Weapons/rocketGuns/wt_agm_84k_slam_er_vlo.blk" "$rocketguns_dir/"
 cp "$experiment_dir/UserMissions/usr_wt_rafale_spice250.mission.blk" "$missions_dir/"
 cp "$experiment_dir/UserMissions/usr_wt_rafale_brimstone.mission.blk" "$missions_dir/"
 cp "$experiment_dir/UserMissions/usr_wt_rafale_jsow.mission.blk" "$missions_dir/"
@@ -42,5 +47,7 @@ cp "$experiment_dir/UserMissions/usr_wt_rafale_agm84k5.mission.blk" "$missions_d
 cp "$experiment_dir/UserMissions/usr_wt_rafale_kh38mt4.mission.blk" "$missions_dir/"
 cp "$experiment_dir/UserMissions/usr_wt_rafale_kh58ushk4.mission.blk" "$missions_dir/"
 cp "$experiment_dir/UserMissions/usr_wt_rafale_lmur8.mission.blk" "$missions_dir/"
+cp "$experiment_dir/UserMissions/usr_wt_rafale_agm84k_lo5.mission.blk" "$missions_dir/"
+cp "$experiment_dir/UserMissions/usr_wt_rafale_agm84k_vlo5.mission.blk" "$missions_dir/"
 
 printf 'Installed Rafale weapon experiments in:\n  %s\n  %s\n' "$flightmodels_dir" "$missions_dir"
