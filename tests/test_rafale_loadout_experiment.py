@@ -229,10 +229,15 @@ def test_scalp_ins_proxy_uses_coordinate_guidance_and_low_altitude_schedule() ->
     assert 'inertialNavigationMandatory:b=yes' in text
     assert 'designationSourceType:t="camera"' in text
     assert 'constantDesignationSourceType:t="camera"' in text
-    assert '"@override:timeToHitToAltitude0":p2=2.0, 8.0' in text
-    assert 'timeToHitToAltitude1:p2=8.0, 25.0' in text
-    assert 'timeToHitToAltitude2:p2=45.0, 45.0' in text
-    assert 'timeToHitToAltitude3:p2=180.0, 60.0' in text
+    assert '"@override:timeToHitToAltitude0":p2=2.0, 5.0' in text
+    assert 'timeToHitToAltitude1:p2=10.0, 80.0' in text
+    assert 'timeToHitToAltitude2:p2=45.0, 120.0' in text
+    assert 'timeToHitToAltitude3:p2=180.0, 150.0' in text
+    assert '"@override:altitudeHoldTargetElevation":r=-30.0' in text
+    assert '"@override:altitudeHoldTargetOmegaMax":r=2.5' in text
+    assert '"@override:altitudeRateRateToClimb":r=0.35' in text
+    assert '"@override:climbDiffToAccelMult":r=0.04' in text
+    assert '"@override:altitudeHoldAngleLimith":p2=-35.0, 25.0' in text
     assert '"@override:explosiveMass":r=250.0' in text
     assert 'gunnerFilterMaxDistMult:r=0.1' in text
     assert text.count("{") == text.count("}")

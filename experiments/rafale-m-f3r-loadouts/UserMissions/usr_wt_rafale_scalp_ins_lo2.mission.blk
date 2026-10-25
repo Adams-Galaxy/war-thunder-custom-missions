@@ -30,7 +30,7 @@ mission_settings{
     useSpawnDelay:b=yes
     timeToLoseInstantDetection:r=10
     locName:t="Southeastern City · Rafale M · 2× SCALP-EG INS Test (LO 0.1)"
-    locDesc:t="Experimental coordinate-guided SCALP-EG proxy. Select or save a ground aiming point, then launch without an IR vehicle lock. It uses a low 60-to-25 m cruise schedule, a terminal descent, a 250 kg PBXN-110 gameplay fill, and the proven 0.1 SAM-AI interception-distance multiplier. The original IR-guided SCALP missions remain available for comparison."
+    locDesc:t="Experimental coordinate-guided SCALP-EG proxy. Select or save a ground aiming point, then launch without an IR vehicle lock. It uses a 150-to-80 m terrain-clearance schedule, a steeper -30 degree terminal descent, a 250 kg PBXN-110 gameplay fill, and the proven 0.1 SAM-AI interception-distance multiplier. The original IR-guided SCALP missions remain available for comparison."
     scoreLimit:i=9000
     timeLimit:i=90
     deathPenaltyMul:r=0.2

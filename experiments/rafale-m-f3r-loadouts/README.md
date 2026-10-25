@@ -63,11 +63,15 @@ physical radar-cross-section measurements or player-radar detection values.
 The additional `INS Test` preserves the working 0.1 interception treatment but
 switches the proxy to War Thunder's `sns` point-guidance path. It is an A/B test
 for selecting a saved or map-designated aiming point and launching from behind
-cover without an IR vehicle lock. Its altitude schedule is 60 m while distant,
-45 m on approach, 25 m near the target, and 8 m at impact. Those values follow
-the structure used by the game's sea-skimming missile autopilots, but terrain
-clearance and map-point launch still require in-game validation. The original
-LO and VLO missions remain available as known-working IR-guided baselines.
+cover without an IR vehicle lock. Its revised altitude schedule is 150 m while
+distant, 120 m on approach, 80 m during the terminal setup, and 5 m at impact.
+The climb controller may command up to 25 degrees and the terminal descent up
+to 35 degrees, with a -30 degree terminal target-elevation command. The greater
+clearance compensates for the stock AGM-84K autopilot's observed vertical
+oscillation over land. These values follow the structure used by the game's
+sea-skimming missile autopilots, but this remains an approximation rather than
+real TERPROM route planning. The original LO and VLO missions remain available
+as known-working IR-guided baselines.
 
 The hosted mission's 2018 formations normally depend on a multiplayer balance
 rank. These local copies make the already-selected 2018 templates unconditional
