@@ -18,7 +18,7 @@ loadout generator.
 `bulletName` and `gunnerOpticsName` are overridden to `SCALP-EG`. The in-flight
 selected-weapon HUD additionally derives a `/short` localization key from the
 custom BLK filename, so the experiment ships an isolated English localization
-table for all five proxy filenames. The installer registers that table and
+table for every proxy filename. The installer registers that table and
 enables War Thunder's `testLocalization` mode while preserving the user's
 existing localization files.
 
@@ -39,13 +39,16 @@ The installed physical loadout is unchanged:
 
 ## Variants
 
-The manifest records the two known-working optical/IR versions and three
-coordinate-guided terminal tests. All INS versions use a seekerless SNS base,
+The manifest records the two known-working optical/IR versions, three earlier
+coordinate-guided terminal tests, and six controlled terminal-turn profiles.
+All INS versions use a seekerless SNS base,
 the normal missile/ATGM release channel, and the proven medium damping. One is
 the known-good ultra-late reference; the other two use five altitude keyframes
 to hold a 35–40 m terminal approach until five seconds from impact before
 distinct 600 m and deliberately exaggerated 1,000 m pop-ups. All three use an
-equilateral flat-water test range with two stationary 12 km targets. Their inherited Grom rocket flame and
+equilateral flat-water test range with two stationary 12 km targets. The six-profile
+matrix holds the commanded apex at 600 m while independently varying descent
+lead, climb-angle cap, and one softened climb gain. Their inherited Grom rocket flame and
 smoke are replaced by the AGM-84K turbojet-style effects. All variants share
 the same physical approximation and 250 kg PBXN-110 gameplay fill. See
 `asset.toml` for exact paths and tuning values.

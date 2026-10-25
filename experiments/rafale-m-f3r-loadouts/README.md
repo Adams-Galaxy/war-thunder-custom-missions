@@ -4,7 +4,7 @@ This is an intentionally local, single-player-only experiment built on the
 peaceful South-Eastern City mission. It does not alter the stock Rafale or any
 hosted multiplayer mission.
 
-The package adds one custom unit based on `rafale_m_f3r` and eighteen missions:
+The package adds one custom unit based on `rafale_m_f3r` and twenty-four missions:
 
 - `Southeastern City · Rafale M · 8× SPICE 250`
 - `Southeastern City · Rafale M · 6× Brimstone DM`
@@ -23,9 +23,15 @@ The package adds one custom unit based on `rafale_m_f3r` and eighteen missions:
 - `Southeastern City · Rafale M · SCALP 5s 35→600`
 - `Southeastern City · Rafale M · SCALP 5s 40→1000`
 - `Southeastern City · Rafale M · SCALP Water Reference`
+- `Southeastern City · Rafale M · SCALP Turn 2.0s · 55°`
+- `Southeastern City · Rafale M · SCALP Turn 2.5s · 55°`
+- `Southeastern City · Rafale M · SCALP Turn 3.0s · 55°`
+- `Southeastern City · Rafale M · SCALP Turn 2.5s · 45°`
+- `Southeastern City · Rafale M · SCALP Turn 2.5s · 35°`
+- `Southeastern City · Rafale M · SCALP Turn 2.5s · 45° · Soft Gain`
 - `Southeastern City · Rafale M · 2× SCALP-EG (IR · VLO 0.05)`
 
-All eighteen loadouts carry the TALIOS pod. The five-JSOW variant uses twin racks
+All twenty-four loadouts carry the TALIOS pod. The five-JSOW variant uses twin racks
 on the established multistore wing stations plus one centerline weapon. The
 nine-JSOW variant additionally repurposes both inner wet stations for twin
 racks; it is intentionally a fictional maximum-fit experiment. The surrounding
@@ -100,6 +106,14 @@ All three terminal-profile missions use the same flat-water test range. The
 Rafale starts at `(40000, 1500, -52000)` and two unarmed stationary destroyers sit
 exactly 12 km away at the other corners of an equilateral triangle. This removes
 terrain-height ambiguity and gives one target per missile.
+
+Six additional terminal-turn missions form a controlled tuning matrix. All use
+the same 35 m low approach, 600 m apex command, medium damping, and 0.25-second
+apex-to-descent command transition. Three command the descent 2.0, 2.5, or 3.0
+seconds before impact with a 55-degree climb cap. Two hold the 2.5-second timing
+while lowering the cap to 45 or 35 degrees. The final test changes only the
+45-degree profile's climb gain from 0.016 to 0.0125. Regenerate this matrix with
+`python tools/build_scalp_terminal_matrix.py` after changing its variant table.
 
 Because the INS version inherits Grom-1 only to obtain its seekerless SNS
 guidance path, it explicitly replaces Grom's solid-rocket flame, smoke, and
