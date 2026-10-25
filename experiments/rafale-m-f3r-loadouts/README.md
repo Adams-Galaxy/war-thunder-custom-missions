@@ -21,8 +21,8 @@ The package adds one custom unit based on `rafale_m_f3r` and eighteen missions:
 - `Southeastern City · Rafale M · 8× LMUR`
 - `Southeastern City · Rafale M · 2× SCALP-EG (IR · LO 0.1)`
 - `Southeastern City · Rafale M · SCALP Late-70 Damped`
-- `Southeastern City · Rafale M · SCALP Late-70 Responsive`
-- `Southeastern City · Rafale M · SCALP Ultra-Late 70`
+- `Southeastern City · Rafale M · SCALP Ultra-Late Damped`
+- `Southeastern City · Rafale M · SCALP Ultra-Late Medium`
 - `Southeastern City · Rafale M · 2× SCALP-EG (IR · VLO 0.05)`
 
 All eighteen loadouts carry the TALIOS pod. The five-JSOW variant uses twin racks
@@ -77,12 +77,14 @@ use War Thunder's seekerless Grom-1 `sns` point-guidance path. They return to
 the missile/ATGM release channel so the unwanted guided-bomb CCRP symbology is
 not shown. They cruise near 80 m, descend toward 25 m, and command a late pop-up
 followed by a roughly 70-degree terminal dive. Test A retains the proven damped
-controller, test B uses the same timing with stronger response, and test C moves
-the maneuver later again while applying maximum practical response and pitch
-authority. The listed distances are rough time-to-impact estimates, not fixed
-map distances. War Thunder exposes no explicit low-pass-filter setting, so this
-remains an approximation rather than real TERPROM route planning. The original
-LO and VLO missions remain available as known-working IR-guided baselines.
+controller with the earlier late-loft timing. Test B applies that identical
+damping to the preferred ultra-late timing. Test C repeats B's timing with only
+moderately lighter damping. A-versus-B therefore isolates loft timing, while
+B-versus-C isolates damping strength. The listed distances are rough
+time-to-impact estimates, not fixed map distances. War Thunder exposes no
+explicit low-pass-filter setting, so this remains an approximation rather than
+real TERPROM route planning. The original LO and VLO missions remain available
+as known-working IR-guided baselines.
 
 All three INS weapon files directly include the stock Grom-1 definition. An
 earlier attempt to make tests B and C include test A's custom `pkg_local` BLK
