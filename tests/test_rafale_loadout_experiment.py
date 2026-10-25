@@ -40,16 +40,16 @@ SCALP_TURN_MATRIX = {
     "lead075_cap45_gain0125_damped": (0.75, 1.00, 45.0, 0.0125),
 }
 SCALP_LOFT_MATRIX = {
-    "baseline40": ("hold", ((1.0, 600.0), (4.0, 600.0), (4.5, 40.0), (8.5, 40.0), (11.0, 80.0))),
-    "smooth075": ("hold", ((1.0, 600.0), (4.0, 600.0), (4.75, 40.0), (8.5, 40.0), (11.0, 80.0))),
-    "smooth100": ("hold", ((1.0, 600.0), (4.0, 600.0), (5.0, 40.0), (8.5, 40.0), (11.0, 80.0))),
-    "smooth075_damped": ("hold", ((1.0, 600.0), (4.0, 600.0), (4.75, 40.0), (8.5, 40.0), (11.0, 80.0))),
+    "response095": ("hold", ((1.5, 600.0), (4.0, 600.0), (4.5, 40.0), (8.5, 40.0), (11.0, 80.0))),
+    "response100": ("hold", ((1.5, 600.0), (4.0, 600.0), (4.5, 40.0), (8.5, 40.0), (11.0, 80.0))),
+    "response105": ("hold", ((1.5, 600.0), (4.0, 600.0), (4.5, 40.0), (8.5, 40.0), (11.0, 80.0))),
+    "response110": ("hold", ((1.5, 600.0), (4.0, 600.0), (4.5, 40.0), (8.5, 40.0), (11.0, 80.0))),
 }
 SCALP_LOFT_DAMPING = {
-    "baseline40": (0.95, 0.135, 0.0125),
-    "smooth075": (0.95, 0.135, 0.0125),
-    "smooth100": (0.95, 0.135, 0.0125),
-    "smooth075_damped": (0.85, 0.12, 0.0105),
+    "response095": (0.95, 0.135, 0.0125),
+    "response100": (1.0, 0.145, 0.0135),
+    "response105": (1.05, 0.155, 0.0145),
+    "response110": (1.10, 0.165, 0.0155),
 }
 
 
@@ -479,6 +479,10 @@ def test_scalp_asset_manifest_indexes_reusable_sources() -> None:
         "manual-loft-smooth-075-lo-010",
         "manual-loft-smooth-100-lo-010",
         "manual-loft-smooth-075-damped-lo-010",
+        "manual-loft-response-095-lo-010",
+        "manual-loft-response-100-lo-010",
+        "manual-loft-response-105-lo-010",
+        "manual-loft-response-110-lo-010",
     }
     for variant in manifest["variants"]:
         for key in ("weapon", "preset", "mission"):

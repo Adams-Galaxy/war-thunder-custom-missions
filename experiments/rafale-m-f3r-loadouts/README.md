@@ -124,20 +124,19 @@ gain from 0.15 to 0.135. The 1.0-second ground mission starts at NATO Air Spawn
 1 at 1.5 km, using the established west-facing transform. Regenerate this matrix with
 `python tools/build_scalp_terminal_matrix.py` after changing its variant table.
 
-The established 600 m / 1.0-second handoff is now the baseline. Four profiles
-raise terrain following from 35 to 40 m and slow the initial descent: the command
-transitions from 80 m at eleven seconds to 40 m at 8.5 seconds, reducing the
-requested descent rate and the risk of overshooting into trees or terrain. The
-baseline retains the working 0.5-second loft ramp. Two variants stretch only
-that ramp to 0.75 or 1.0 seconds. A fourth combines the 0.75-second ramp with
-slightly lower target omega, vertical-rate gain, and climb gain to test whether
-additional controller damping improves the curve without suppressing the loft.
-All command 600 m at four seconds and release altitude hold at one second, with
-no interpolated downward keyframe. Each has a 100 m flat-water mission and a
-1.5 km NATO Air Spawn 1 ground mission. Prior native, range-mapped, and manual
-timing matrices remain in Git as test history but are moved out of the active
-mission menu. Regenerate the current matrix with
-`python tools/build_scalp_loft_matrix.py`.
+The functional 600 m loft is now fixed while four profiles vary only coordinated
+altitude-controller responsiveness. All transition from 80 m at eleven seconds
+to a 40 m terrain-following command at 8.5 seconds, begin the established
+0.5-second loft ramp at 4.5 seconds, reach 600 m at four seconds, and release
+altitude hold at 1.5 seconds so terminal guidance has more time to acquire the
+final approach. Response 0.95 retains the previous medium-damped gains. Response
+1.00, 1.05, and 1.10 progressively raise target omega, vertical-rate gain, and
+climb-error gain together. This can reduce reaction lag over changing terrain,
+but cannot provide true look-ahead terrain following because the game controller
+uses current radar altitude rather than terrain ahead. Each profile has a 100 m
+flat-water mission and a 1.5 km NATO Air Spawn 1 ground mission. Prior tuning
+matrices remain in Git as test history but are moved out of the active mission
+menu. Regenerate the current matrix with `python tools/build_scalp_loft_matrix.py`.
 
 Because the INS version inherits Grom-1 only to obtain its seekerless SNS
 guidance path, it explicitly replaces Grom's solid-rocket flame, smoke, and

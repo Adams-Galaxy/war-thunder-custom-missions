@@ -68,7 +68,7 @@ def manual_variant(
         label,
         "altitude_hold",
         altitude_points=(
-            (1.0, 600.0),
+            (1.5, 600.0),
             (loft_reach_s, 600.0),
             (loft_begin_s, 40.0),
             (8.5, 40.0),
@@ -81,16 +81,30 @@ def manual_variant(
 
 
 VARIANTS = (
-    manual_variant("baseline40", "Baseline 40 m · Loft Ramp 0.50 s", 0.50),
-    manual_variant("smooth075", "40 m · Loft Ramp 0.75 s", 0.75),
-    manual_variant("smooth100", "40 m · Loft Ramp 1.00 s", 1.00),
+    manual_variant("response095", "Response 0.95 · Baseline", 0.50),
     manual_variant(
-        "smooth075_damped",
-        "40 m · Loft Ramp 0.75 s · More Damped",
-        0.75,
-        target_omega_max=0.85,
-        altitude_rate_gain=0.12,
-        climb_gain=0.0105,
+        "response100",
+        "Response 1.00 · Mild",
+        0.50,
+        target_omega_max=1.0,
+        altitude_rate_gain=0.145,
+        climb_gain=0.0135,
+    ),
+    manual_variant(
+        "response105",
+        "Response 1.05 · Medium",
+        0.50,
+        target_omega_max=1.05,
+        altitude_rate_gain=0.155,
+        climb_gain=0.0145,
+    ),
+    manual_variant(
+        "response110",
+        "Response 1.10 · High",
+        0.50,
+        target_omega_max=1.10,
+        altitude_rate_gain=0.165,
+        climb_gain=0.0155,
     ),
 )
 
