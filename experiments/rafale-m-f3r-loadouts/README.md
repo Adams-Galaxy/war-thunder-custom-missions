@@ -73,7 +73,7 @@ These values affect AI air-defense interception priority/range; they are not
 physical radar-cross-section measurements or player-radar detection values.
 
 The three `INS` terminal tests preserve the working 0.1 interception treatment but
-uses War Thunder's seekerless Grom-1 `sns` point-guidance path. It returns to
+use War Thunder's seekerless Grom-1 `sns` point-guidance path. They return to
 the missile/ATGM release channel so the unwanted guided-bomb CCRP symbology is
 not shown. They cruise near 80 m, descend toward 25 m, and command a late pop-up
 followed by a roughly 70-degree terminal dive. Test A retains the proven damped
@@ -83,6 +83,11 @@ authority. The listed distances are rough time-to-impact estimates, not fixed
 map distances. War Thunder exposes no explicit low-pass-filter setting, so this
 remains an approximation rather than real TERPROM route planning. The original
 LO and VLO missions remain available as known-working IR-guided baselines.
+
+All three INS weapon files directly include the stock Grom-1 definition. An
+earlier attempt to make tests B and C include test A's custom `pkg_local` BLK
+caused repeatable fatal game crashes, so the variants are intentionally
+standalone despite the duplicated base tuning.
 
 Because the INS version inherits Grom-1 only to obtain its seekerless SNS
 guidance path, it explicitly replaces Grom's solid-rocket flame, smoke, and

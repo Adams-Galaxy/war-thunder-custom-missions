@@ -268,7 +268,7 @@ def test_scalp_ins_proxy_uses_coordinate_guidance_and_damped_altitude_schedule()
     assert '"@override:constantDesignationSourceType":t="camera"' in text
     assert 'timeToHitToAltitude0:p2=0.35, 5.0' in text
     assert 'timeToHitToAltitude1:p2=1.4, 240.0' in text
-    assert 'timeToHitToAltitude2:p2=2.8, 25.0' in text
+    assert 'timeToHitToAltitude2:p2=4.0, 25.0' in text
     assert 'timeToHitToAltitude3:p2=4.5, 80.0' in text
     assert 'altitudeHoldTargetElevation:r=-70.0' in text
     assert 'altitudeHoldTargetOmegaMax:r=0.8' in text
@@ -315,18 +315,21 @@ def test_scalp_ins_proxy_uses_coordinate_guidance_and_damped_altitude_schedule()
         assert 'trigger:t="guided bombs"' not in station
 
     responsive = SCALP_INS_RESPONSIVE.read_text()
-    assert 'include "#/develop/gameBase/gameData/Weapons/rocketGuns/wt_agm_84k_scalp_ins_lo.blk"' in responsive
-    assert '"@override:altitudeHoldTargetOmegaMax":r=1.6' in responsive
-    assert '"@override:altitudeRateRateToClimb":r=0.20' in responsive
-    assert '"@override:climbDiffToAccelMult":r=0.0225' in responsive
+    assert 'include "#/develop/gameBase/gameData/Weapons/rocketGuns/su_grom_1.blk"' in responsive
+    assert 'wt_agm_84k_scalp_ins_lo.blk' not in responsive
+    assert 'altitudeHoldTargetOmegaMax:r=1.6' in responsive
+    assert 'altitudeRateRateToClimb:r=0.20' in responsive
+    assert 'climbDiffToAccelMult:r=0.0225' in responsive
 
     ultralate = SCALP_INS_ULTRALATE.read_text()
-    assert 'timeToHitToAltitude0":p2=0.25, 5.0' in ultralate
-    assert 'timeToHitToAltitude1":p2=1.1, 260.0' in ultralate
-    assert 'timeToHitToAltitude2":p2=2.2, 25.0' in ultralate
-    assert 'timeToHitToAltitude3":p2=3.5, 80.0' in ultralate
-    assert 'altitudeHoldTargetOmegaMax":r=2.0' in ultralate
-    assert 'altitudeHoldAngleLimith":p2=-80.0, 75.0' in ultralate
+    assert 'include "#/develop/gameBase/gameData/Weapons/rocketGuns/su_grom_1.blk"' in ultralate
+    assert 'wt_agm_84k_scalp_ins_lo.blk' not in ultralate
+    assert 'timeToHitToAltitude0:p2=0.25, 5.0' in ultralate
+    assert 'timeToHitToAltitude1:p2=1.1, 260.0' in ultralate
+    assert 'timeToHitToAltitude2:p2=4.0, 25.0' in ultralate
+    assert 'timeToHitToAltitude3:p2=4.5, 80.0' in ultralate
+    assert 'altitudeHoldTargetOmegaMax:r=2.0' in ultralate
+    assert 'altitudeHoldAngleLimith:p2=-80.0, 75.0' in ultralate
 
 
 def test_scalp_asset_manifest_indexes_reusable_sources() -> None:
@@ -354,7 +357,7 @@ def test_scalp_asset_manifest_indexes_reusable_sources() -> None:
 
     ins = next(variant for variant in manifest["variants"] if variant["id"] == "ins-lo-010")
     assert ins["release_channel"] == "atgm"
-    assert ins["terminal_profile_time_to_hit_s"] == [4.5, 2.8, 1.4, 0.35]
+    assert ins["terminal_profile_time_to_hit_s"] == [4.5, 4.0, 1.4, 0.35]
     assert ins["terminal_profile_altitude_m"] == [80.0, 25.0, 240.0, 5.0]
 
 

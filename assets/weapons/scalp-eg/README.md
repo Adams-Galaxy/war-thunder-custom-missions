@@ -48,6 +48,11 @@ smoke are replaced by the AGM-84K turbojet-style effects. All variants share
 the same physical approximation and 250 kg PBXN-110 gameplay fill. See
 `asset.toml` for exact paths and tuning values.
 
+Each INS test is a complete standalone BLK that directly includes the stock
+Grom-1 definition. War Thunder fatally crashed when the responsive variants
+were implemented by including the first custom INS BLK, so custom-on-custom
+weapon inheritance is deliberately avoided even though it duplicates tuning.
+
 The asset is local and single-player-only. It does not add a genuine SCALP 3D
 model, TERPROM, terminal scene matching, tandem BROACH damage, or a multiplayer
 vehicle modification.
