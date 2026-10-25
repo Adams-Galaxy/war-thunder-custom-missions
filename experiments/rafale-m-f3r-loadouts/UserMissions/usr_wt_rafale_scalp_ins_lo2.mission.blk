@@ -30,7 +30,7 @@ mission_settings{
     useSpawnDelay:b=yes
     timeToLoseInstantDetection:r=10
     locName:t="Southeastern City · Rafale M · 2× SCALP-EG (INS · LO 0.1)"
-    locDesc:t="Experimental coordinate-guided SCALP-EG proxy with no inherited optical seeker. It uses the clean missile release channel, a damped 150 m cruise, and an experimental terminal profile: descend to 30 m near the target, pop up to 120 m, then dive at up to -35 degrees. It retains the 250 kg PBXN-110 gameplay fill and proven 0.1 SAM-AI interception-distance multiplier."
+    locDesc:t="Experimental coordinate-guided SCALP-EG proxy with no inherited optical seeker. It uses the clean missile release channel, a damped 150 m cruise, and an experimental terminal profile: descend to 30 m near the target, pop up toward 250 m, then dive at roughly 55 degrees. It restores the AGM-84K turbojet-style exhaust, retains the 250 kg PBXN-110 gameplay fill, and uses the proven 0.1 SAM-AI interception-distance multiplier."
     scoreLimit:i=9000
     timeLimit:i=90
     deathPenaltyMul:r=0.2

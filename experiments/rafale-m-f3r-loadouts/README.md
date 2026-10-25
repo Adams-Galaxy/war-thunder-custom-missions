@@ -77,14 +77,19 @@ not shown. This is an A/B test for assigning an aiming point and launching from
 behind cover without an IR vehicle lock or the targeting-optics view; whether
 the Rafale avionics permit that workflow still requires an in-game test. Its
 terminal schedule holds 150 m until roughly 1.5 km from impact, descends toward
-30 m around 1 km out, pops up to 120 m around 600 m out, then commands 5 m with
-a 35-degree terminal dive for the final approach. These distances are only
+30 m around 1 km out, pops up toward 250 m around 650 m out, then commands 5 m
+with a 55-degree terminal dive for the final approach. These distances are only
 rough estimates derived from time-to-hit at cruise speed. The height
 controller's response rate, acceleration gain, and maximum turn rate remain
 deliberately reduced to suppress vertical oscillation. War Thunder exposes no
 explicit low-pass-filter setting, so this remains an approximation rather than
 real TERPROM route planning. The original LO and VLO missions remain available
 as known-working IR-guided baselines.
+
+Because the INS version inherits Grom-1 only to obtain its seekerless SNS
+guidance path, it explicitly replaces Grom's solid-rocket flame, smoke, and
+haze with the AGM-84K's long-burn turbojet-style exhaust presentation. The
+thrust schedule remains the existing mass-scaled SCALP approximation.
 
 The hosted mission's 2018 formations normally depend on a multiplayer balance
 rank. These local copies make the already-selected 2018 templates unconditional

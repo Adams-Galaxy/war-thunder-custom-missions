@@ -65,7 +65,7 @@ include "#/develop/gameBase/gameData/flightModels/rafale_m_f3r.blk"
       presetType:t="AIR_TO_GROUND"
       Weapon {
         blk:t="gameData/Weapons/rocketGuns/wt_agm_84k_slam_er_lo.blk"
-        iconType:t="guided_bomb_middle_jdam"
+        iconType:t="glide_bomb_default"
         amountPerTier:r=1.0
         tier { idx:i=10 }
         tier { idx:i=2 }
@@ -79,7 +79,7 @@ include "#/develop/gameBase/gameData/flightModels/rafale_m_f3r.blk"
       presetType:t="AIR_TO_GROUND"
       Weapon {
         blk:t="gameData/Weapons/rocketGuns/wt_agm_84k_scalp_ins_lo.blk"
-        iconType:t="guided_bomb_middle_jdam"
+        iconType:t="glide_bomb_default"
         amountPerTier:r=1.0
         tier { idx:i=10 }
         tier { idx:i=2 }
@@ -93,7 +93,7 @@ include "#/develop/gameBase/gameData/flightModels/rafale_m_f3r.blk"
       presetType:t="AIR_TO_GROUND"
       Weapon {
         blk:t="gameData/Weapons/rocketGuns/wt_agm_84k_slam_er_vlo.blk"
-        iconType:t="guided_bomb_middle_jdam"
+        iconType:t="glide_bomb_default"
         amountPerTier:r=1.0
         tier { idx:i=10 }
         tier { idx:i=2 }
@@ -242,7 +242,7 @@ include "#/develop/gameBase/gameData/flightModels/rafale_m_f3r.blk"
     }
 
     WeaponPreset {
-      iconType:t="guided_bomb_middle_jdam"
+      iconType:t="glide_bomb_default"
       name:t="wt_agm84k_lo_slot3"
       ShowNodes {
         node:t="pylon_pu_708_001"
@@ -259,7 +259,7 @@ include "#/develop/gameBase/gameData/flightModels/rafale_m_f3r.blk"
     }
 
     WeaponPreset {
-      iconType:t="guided_bomb_middle_jdam"
+      iconType:t="glide_bomb_default"
       name:t="wt_scalp_ins_lo_slot3"
       ShowNodes {
         node:t="pylon_pu_708_001"
@@ -276,7 +276,7 @@ include "#/develop/gameBase/gameData/flightModels/rafale_m_f3r.blk"
     }
 
     WeaponPreset {
-      iconType:t="guided_bomb_middle_jdam"
+      iconType:t="glide_bomb_default"
       name:t="wt_agm84k_vlo_slot3"
       ShowNodes {
         node:t="pylon_pu_708_001"
@@ -752,7 +752,7 @@ include "#/develop/gameBase/gameData/flightModels/rafale_m_f3r.blk"
     }
 
     WeaponPreset {
-      iconType:t="guided_bomb_middle_jdam"
+      iconType:t="glide_bomb_default"
       name:t="wt_agm84k_lo_slot10"
       ShowNodes {
         node:t="pylon_pu_708_002"
@@ -769,7 +769,7 @@ include "#/develop/gameBase/gameData/flightModels/rafale_m_f3r.blk"
     }
 
     WeaponPreset {
-      iconType:t="guided_bomb_middle_jdam"
+      iconType:t="glide_bomb_default"
       name:t="wt_scalp_ins_lo_slot10"
       ShowNodes {
         node:t="pylon_pu_708_002"
@@ -786,7 +786,7 @@ include "#/develop/gameBase/gameData/flightModels/rafale_m_f3r.blk"
     }
 
     WeaponPreset {
-      iconType:t="guided_bomb_middle_jdam"
+      iconType:t="glide_bomb_default"
       name:t="wt_agm84k_vlo_slot10"
       ShowNodes {
         node:t="pylon_pu_708_002"

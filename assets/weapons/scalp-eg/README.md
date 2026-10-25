@@ -26,8 +26,10 @@ existing localization files.
 
 Each Rafale SCALP preset has an explicit `weaponConfig` containing exactly two
 JSOW-style guided-weapon icons at the Rafale's heavy-station display tiers 10
-and 2. The custom weapon and both station presets use the same icon type so the
-in-battle action bar does not have to guess from the inherited Rafale catalog.
+and 2. The projectile retains the JSOW/JDAM icon identifier while the aircraft
+configuration and station presets now use the same `glide_bomb_default` value
+as the working JSOW loadouts. This is the closest available match for the
+in-battle action bar, although the UI can still ignore custom-weapon icons.
 
 The installed physical loadout is unchanged:
 
@@ -40,9 +42,10 @@ The installed physical loadout is unchanged:
 The manifest records the two known-working optical/IR versions and the newer
 coordinate-guided test. The INS version uses a seekerless SNS base, the normal
 missile/ATGM release channel, a damped 150 m cruise, and an experimental
-30 m descent / 120 m pop-up / 35-degree terminal dive. All share the same
-physical approximation and 250 kg PBXN-110 gameplay fill. See `asset.toml` for
-exact paths and tuning values.
+30 m descent / 250 m pop-up / 55-degree terminal dive. Its inherited Grom
+rocket flame and smoke are replaced by the AGM-84K turbojet-style effects. All
+variants share the same physical approximation and 250 kg PBXN-110 gameplay
+fill. See `asset.toml` for exact paths and tuning values.
 
 The asset is local and single-player-only. It does not add a genuine SCALP 3D
 model, TERPROM, terminal scene matching, tandem BROACH damage, or a multiplayer

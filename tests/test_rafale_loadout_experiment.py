@@ -50,7 +50,16 @@ def test_custom_rafale_registers_all_experimental_stores() -> None:
     assert text.count("rocketGuns/wt_agm_84k_scalp_ins_lo.blk") == 3
     assert text.count('presetType:t="AIR_TO_GROUND"') == 3
     assert text.count('iconType:t="missile_air_to_uni_large"') >= 7
-    assert text.count('iconType:t="guided_bomb_middle_jdam"') == 9
+    for station_name in (
+        "wt_agm84k_lo_slot3",
+        "wt_scalp_ins_lo_slot3",
+        "wt_agm84k_vlo_slot3",
+        "wt_agm84k_lo_slot10",
+        "wt_scalp_ins_lo_slot10",
+        "wt_agm84k_vlo_slot10",
+    ):
+        station = text.split(f'name:t="{station_name}"', 1)[0].rsplit("WeaponPreset {", 1)[1]
+        assert 'iconType:t="glide_bomb_default"' in station
     assert text.count('tier { idx:i=10 }') == 3
     assert text.count('tier { idx:i=2 }') == 3
     assert text.count('preset:t="damocles"') == 2
@@ -246,14 +255,17 @@ def test_scalp_ins_proxy_uses_coordinate_guidance_and_damped_altitude_schedule()
     assert '"@override:designationSourceType":t="camera"' in text
     assert '"@override:constantDesignationSourceType":t="camera"' in text
     assert 'timeToHitToAltitude0:p2=0.75, 5.0' in text
-    assert 'timeToHitToAltitude1:p2=2.25, 120.0' in text
+    assert 'timeToHitToAltitude1:p2=2.5, 250.0' in text
     assert 'timeToHitToAltitude2:p2=4.0, 30.0' in text
     assert 'timeToHitToAltitude3:p2=6.0, 150.0' in text
-    assert 'altitudeHoldTargetElevation:r=-35.0' in text
+    assert 'altitudeHoldTargetElevation:r=-55.0' in text
     assert 'altitudeHoldTargetOmegaMax:r=0.8' in text
     assert 'altitudeRateRateToClimb:r=0.12' in text
     assert 'climbDiffToAccelMult:r=0.0125' in text
-    assert 'altitudeHoldAngleLimith:p2=-35.0, 25.0' in text
+    assert 'altitudeHoldAngleLimith:p2=-60.0, 45.0' in text
+    assert '"@override:fireEffect":t=""' in text
+    assert '"@override:smokeEffect":t="smoke_exhaust_air"' in text
+    assert '"@override:hazeEffect":t=""' in text
     assert '"@override:propulsion1"' in text
     assert text.count('"@override:force":r=0.0') == 1
     assert '"@override:explosiveMass":r=250.0' in text
@@ -294,7 +306,8 @@ def test_scalp_asset_manifest_indexes_reusable_sources() -> None:
     assert manifest["ins_guidance_base"].endswith("su_grom_1.blk")
     assert manifest["integration"]["stations"] == [3, 10]
     assert manifest["integration"]["station_tiers"] == [10, 2]
-    assert manifest["integration"]["loadout_icon"] == "guided_bomb_middle_jdam"
+    assert manifest["integration"]["projectile_icon"] == "guided_bomb_middle_jdam"
+    assert manifest["integration"]["loadout_icon"] == "glide_bomb_default"
     assert {variant["id"] for variant in manifest["variants"]} == {
         "ir-lo-010",
         "ir-vlo-005",
@@ -306,8 +319,8 @@ def test_scalp_asset_manifest_indexes_reusable_sources() -> None:
 
     ins = next(variant for variant in manifest["variants"] if variant["id"] == "ins-lo-010")
     assert ins["release_channel"] == "atgm"
-    assert ins["terminal_profile_time_to_hit_s"] == [6.0, 4.0, 2.25, 0.75]
-    assert ins["terminal_profile_altitude_m"] == [150.0, 30.0, 120.0, 5.0]
+    assert ins["terminal_profile_time_to_hit_s"] == [6.0, 4.0, 2.5, 0.75]
+    assert ins["terminal_profile_altitude_m"] == [150.0, 30.0, 250.0, 5.0]
 
 
 def test_scalp_localization_covers_every_custom_weapon_filename() -> None:

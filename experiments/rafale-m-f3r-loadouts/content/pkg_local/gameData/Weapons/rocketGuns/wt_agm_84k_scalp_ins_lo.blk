@@ -37,6 +37,15 @@ bombCart:t="bomb_cart_kh59"
   "@override:explosiveMass":r=250.0
   gunnerFilterMaxDistMult:r=0.1
 
+  // Restore the AGM-84K turbojet-style exhaust presentation.  The seekerless
+  // Grom guidance base otherwise leaves a large solid-rocket flame and trail.
+  "@override:fireEffect":t=""
+  "@override:smokeEffect":t="smoke_exhaust_air"
+  "@override:smokeEffect2":t=""
+  "@override:hazeEffect":t=""
+  "@override:endSmokeViscosity":r=0.05
+  "@override:effectOffset":p3=-2.0, -0.225, 0.0
+
   "@override:propulsion0" {
     "@override:fireDelay":r=0.6
     "@override:impulse0" {
@@ -75,15 +84,15 @@ bombCart:t="bomb_cart_kh59"
       "@override:timeToGain3":p2=900.0, 1.0
       altitudeHoldEnabled:b=yes
       timeToHitToAltitude0:p2=0.75, 5.0
-      timeToHitToAltitude1:p2=2.25, 120.0
+      timeToHitToAltitude1:p2=2.5, 250.0
       timeToHitToAltitude2:p2=4.0, 30.0
       timeToHitToAltitude3:p2=6.0, 150.0
-      altitudeHoldTargetElevation:r=-35.0
+      altitudeHoldTargetElevation:r=-55.0
       altitudeHoldTargetOmegaMax:r=0.8
       altitudeDiffToClimb:r=0.2
       altitudeRateRateToClimb:r=0.12
       climbDiffToAccelMult:r=0.0125
-      altitudeHoldAngleLimith:p2=-35.0, 25.0
+      altitudeHoldAngleLimith:p2=-60.0, 45.0
       "@override:courseErrorAngleToAccelMult":r=1.5
       "@override:courseErrorFinalAngleCorrection":r=1.25
       "@override:timeOut":r=0.5
