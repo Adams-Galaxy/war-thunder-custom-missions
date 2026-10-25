@@ -50,6 +50,7 @@ def test_custom_rafale_registers_all_experimental_stores() -> None:
     assert text.count("rocketGuns/wt_agm_84k_scalp_ins_lo.blk") == 3
     assert text.count('presetType:t="AIR_TO_GROUND"') == 3
     assert text.count('iconType:t="missile_air_to_uni_large"') >= 7
+    assert text.count('iconType:t="guided_bomb_middle_jdam"') == 9
     assert text.count('tier { idx:i=10 }') == 3
     assert text.count('tier { idx:i=2 }') == 3
     assert text.count('preset:t="damocles"') == 2
@@ -110,6 +111,11 @@ def test_each_mission_enables_its_single_player_loadout() -> None:
         )[0]
         assert "crewSkillK:r=1.0" in player_unit
         assert "crewSkillK:r=0.0" not in player_unit
+        assert (
+            'name:t="t2_player01"\n'
+            '    tm:m=[[-0.73315784, 0.0, -0.680058515] [0.0, 1.0, 0.0] '
+            '[0.680058515, 0.0, -0.73315784] [15589.947, 1500.0, 43840.151]]'
+        ) in text
         assert "rankRange:ip2=" not in text
         assert text.count("{") == text.count("}")
 
@@ -186,6 +192,7 @@ def test_scalp_proxies_share_physical_approximation_but_differ_in_stealth() -> N
         assert '"@override:explosiveMass":r=250.0' in text
         assert '"@override:bulletName":t="SCALP-EG"' in text
         assert '"@override:gunnerOpticsName":t="SCALP-EG"' in text
+        assert '"@override:iconType":t="guided_bomb_middle_jdam"' in text
         assert '"@override:force":r=5400.0' in text
         assert text.count("{") == text.count("}")
     assert "gunnerFilterMaxDistMult:r=0.1" in lo
@@ -229,26 +236,31 @@ def test_scalp_proxies_share_physical_approximation_but_differ_in_stealth() -> N
 def test_scalp_ins_proxy_uses_coordinate_guidance_and_damped_altitude_schedule() -> None:
     text = SCALP_INS_PROXY.read_text()
 
-    assert 'include "#/develop/gameBase/gameData/Weapons/rocketGuns/us_agm_84k_slam_er.blk"' in text
+    assert 'include "#/develop/gameBase/gameData/Weapons/rocketGuns/su_grom_1.blk"' in text
+    assert 'us_agm_84k_slam_er.blk' not in text
+    assert '"@override:mesh":t="us_agm_84hk_slam_er_missile_na"' in text
     assert '"@override:guidanceType":t="sns"' in text
-    assert '"@override:uncageBeforeLaunch":b=no' in text
-    assert 'permanentlyActivated:b=yes' in text
+    assert 'opticalSeeker' not in text
+    assert '"@override:permanentlyActivated":b=yes' in text
     assert 'inertialNavigationMandatory:b=yes' in text
-    assert 'designationSourceType:t="camera"' in text
-    assert 'constantDesignationSourceType:t="camera"' in text
-    assert '"@override:timeToHitToAltitude0":p2=2.0, 5.0' in text
-    assert 'timeToHitToAltitude1:p2=10.0, 160.0' in text
-    assert 'timeToHitToAltitude2:p2=45.0, 240.0' in text
-    assert 'timeToHitToAltitude3:p2=180.0, 300.0' in text
-    assert '"@override:altitudeHoldTargetElevation":r=-30.0' in text
-    assert '"@override:altitudeHoldTargetOmegaMax":r=0.8' in text
-    assert '"@override:altitudeRateRateToClimb":r=0.12' in text
-    assert '"@override:climbDiffToAccelMult":r=0.0125' in text
-    assert '"@override:altitudeHoldAngleLimith":p2=-30.0, 15.0' in text
+    assert '"@override:designationSourceType":t="camera"' in text
+    assert '"@override:constantDesignationSourceType":t="camera"' in text
+    assert 'timeToHitToAltitude0:p2=0.75, 5.0' in text
+    assert 'timeToHitToAltitude1:p2=2.25, 120.0' in text
+    assert 'timeToHitToAltitude2:p2=4.0, 30.0' in text
+    assert 'timeToHitToAltitude3:p2=6.0, 150.0' in text
+    assert 'altitudeHoldTargetElevation:r=-35.0' in text
+    assert 'altitudeHoldTargetOmegaMax:r=0.8' in text
+    assert 'altitudeRateRateToClimb:r=0.12' in text
+    assert 'climbDiffToAccelMult:r=0.0125' in text
+    assert 'altitudeHoldAngleLimith:p2=-35.0, 25.0' in text
+    assert '"@override:propulsion1"' in text
+    assert text.count('"@override:force":r=0.0') == 1
     assert '"@override:explosiveMass":r=250.0' in text
     assert 'gunnerFilterMaxDistMult:r=0.1' in text
     assert '"@override:bulletName":t="SCALP-EG"' in text
     assert '"@override:gunnerOpticsName":t="SCALP-EG"' in text
+    assert '"@override:iconType":t="guided_bomb_middle_jdam"' in text
     assert text.count("{") == text.count("}")
 
     preset = (
@@ -268,7 +280,8 @@ def test_scalp_ins_proxy_uses_coordinate_guidance_and_damped_altitude_schedule()
     unit = UNIT.read_text()
     for station_name in ("wt_scalp_ins_lo_slot3", "wt_scalp_ins_lo_slot10"):
         station = unit.split(f'name:t="{station_name}"', 1)[1].split("WeaponPreset {", 1)[0]
-        assert 'trigger:t="guided bombs"' in station
+        assert 'trigger:t="atgm"' in station
+        assert 'trigger:t="guided bombs"' not in station
 
 
 def test_scalp_asset_manifest_indexes_reusable_sources() -> None:
@@ -278,8 +291,10 @@ def test_scalp_asset_manifest_indexes_reusable_sources() -> None:
     assert manifest["schema_version"] == 1
     assert manifest["id"] == "scalp-eg"
     assert manifest["display_name"] == "SCALP-EG"
+    assert manifest["ins_guidance_base"].endswith("su_grom_1.blk")
     assert manifest["integration"]["stations"] == [3, 10]
     assert manifest["integration"]["station_tiers"] == [10, 2]
+    assert manifest["integration"]["loadout_icon"] == "guided_bomb_middle_jdam"
     assert {variant["id"] for variant in manifest["variants"]} == {
         "ir-lo-010",
         "ir-vlo-005",
@@ -288,6 +303,11 @@ def test_scalp_asset_manifest_indexes_reusable_sources() -> None:
     for variant in manifest["variants"]:
         for key in ("weapon", "preset", "mission"):
             assert (ROOT / variant[key]).is_file()
+
+    ins = next(variant for variant in manifest["variants"] if variant["id"] == "ins-lo-010")
+    assert ins["release_channel"] == "atgm"
+    assert ins["terminal_profile_time_to_hit_s"] == [6.0, 4.0, 2.25, 0.75]
+    assert ins["terminal_profile_altitude_m"] == [150.0, 30.0, 120.0, 5.0]
 
 
 def test_scalp_localization_covers_every_custom_weapon_filename() -> None:

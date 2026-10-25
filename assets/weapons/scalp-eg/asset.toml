@@ -4,6 +4,7 @@ display_name = "SCALP-EG"
 full_name = "Système de croisière conventionnel autonome à longue portée d’emploi général"
 platform = "rafale_m_f3r"
 base_game_asset = "gameData/Weapons/rocketGuns/us_agm_84k_slam_er.blk"
+ins_guidance_base = "gameData/Weapons/rocketGuns/su_grom_1.blk"
 visual_model = "us_agm_84hk_slam_er_missile"
 status = "single-player gameplay proxy"
 
@@ -22,7 +23,7 @@ stations = [3, 10]
 station_tiers = [10, 2]
 targeting_pod_station = 6
 targeting_pod_preset = "damocles"
-loadout_icon = "missile_air_to_uni_large"
+loadout_icon = "guided_bomb_middle_jdam"
 loadout_category = "AIR_TO_GROUND"
 
 [[variants]]
@@ -46,14 +47,14 @@ mission = "experiments/rafale-m-f3r-loadouts/UserMissions/usr_wt_rafale_agm84k_v
 [[variants]]
 id = "ins-lo-010"
 display_name = "SCALP-EG INS test (LO 0.10)"
-guidance = "SNS coordinate guidance"
+guidance = "seekerless SNS coordinate guidance"
 interception_multiplier = 0.10
-release_channel = "guided bombs"
-cruise_altitudes_m = [300.0, 240.0, 160.0]
-terminal_altitude_m = 5.0
-terminal_elevation_deg = -30.0
-climb_limit_deg = 15.0
-dive_limit_deg = -30.0
+release_channel = "atgm"
+terminal_profile_time_to_hit_s = [6.0, 4.0, 2.25, 0.75]
+terminal_profile_altitude_m = [150.0, 30.0, 120.0, 5.0]
+terminal_elevation_deg = -35.0
+climb_limit_deg = 25.0
+dive_limit_deg = -35.0
 altitude_target_omega_max = 0.8
 altitude_rate_to_climb = 0.12
 climb_error_to_acceleration = 0.0125

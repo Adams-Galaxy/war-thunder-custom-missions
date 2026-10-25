@@ -38,10 +38,13 @@ launchers on the same fictional wing and wet-station arrangement.
 
 The three SCALP proxy missions share a public-data-based approximation: 1,300 kg total
 mass, 5.10 m length, subsonic turbojet performance, at least 250 km nominal
-range, and a roughly 450 kg two-stage BROACH penetrator warhead. The stock
-AGM-84K model and guidance remain because the game does not expose a SCALP
-model, TERPROM route planning, terminal scene matching, or tandem-warhead
-simulation to this local mission. The 250 kg explosive fill is a deliberately
+range, and a roughly 450 kg two-stage BROACH penetrator warhead. All three use
+the stock AGM-84K visual and reconstructed aerodynamics because the game does
+not expose a SCALP model, TERPROM route planning, terminal scene matching, or
+tandem-warhead simulation to this local mission. The two IR variants retain the
+AGM-84K optical guidance. The INS experiment instead inherits the seekerless
+SNS guidance path from Grom-1, with its boost stage disabled and the SCALP
+flight values restored explicitly. The 250 kg explosive fill is a deliberately
 punchy gameplay approximation, not a claimed real SCALP figure; the published
 450 kg figure describes the complete tandem warhead assembly. The extra blast
 stands in for some BROACH precursor and penetrator damage that War Thunder's
@@ -58,6 +61,8 @@ The custom unit inherits the complete stock `rafale_m_f3r` flight model and
 changes only weapon registration and station availability. Every experiment
 sets the player armada's `crewSkillK` to `1.0`, matching Gaijin player/training
 missions and avoiding the baseline zero-skill pilot used by the source map.
+Every mission also starts the Rafale at the map's NATO Air Spawn 1, 1,500 m
+above the western forward airfield, rather than at the original mission start.
 
 The LO mission sets `gunnerFilterMaxDistMult` to `0.1`, matching the AGM-154A1
 JSOW's current temporary SAM-AI pseudo-RCS treatment. The VLO mission sets it
@@ -66,17 +71,20 @@ These values affect AI air-defense interception priority/range; they are not
 physical radar-cross-section measurements or player-radar detection values.
 
 The additional `INS Test` preserves the working 0.1 interception treatment but
-switches the proxy to War Thunder's `sns` point-guidance path and the
-`guided bombs` release channel used by the game's native coordinate-guided
-stores. It is an A/B test for assigning an aiming point and launching from
-behind cover without an IR vehicle lock or the targeting-optics view. Its
-revised altitude schedule is 300 m while distant, 240 m on approach, 160 m
-during the terminal setup, and 5 m at impact. The height controller's response
-rate, acceleration gain, and maximum turn rate are deliberately reduced to
-dampen the stock AGM-84K's observed vertical oscillation. War Thunder exposes
-no explicit low-pass-filter setting, so this remains an approximation rather
-than real TERPROM route planning. The original LO and VLO missions remain
-available as known-working IR-guided baselines.
+uses War Thunder's seekerless Grom-1 `sns` point-guidance path. It returns to
+the missile/ATGM release channel so the unwanted guided-bomb CCRP symbology is
+not shown. This is an A/B test for assigning an aiming point and launching from
+behind cover without an IR vehicle lock or the targeting-optics view; whether
+the Rafale avionics permit that workflow still requires an in-game test. Its
+terminal schedule holds 150 m until roughly 1.5 km from impact, descends toward
+30 m around 1 km out, pops up to 120 m around 600 m out, then commands 5 m with
+a 35-degree terminal dive for the final approach. These distances are only
+rough estimates derived from time-to-hit at cruise speed. The height
+controller's response rate, acceleration gain, and maximum turn rate remain
+deliberately reduced to suppress vertical oscillation. War Thunder exposes no
+explicit low-pass-filter setting, so this remains an approximation rather than
+real TERPROM route planning. The original LO and VLO missions remain available
+as known-working IR-guided baselines.
 
 The hosted mission's 2018 formations normally depend on a multiplayer balance
 rank. These local copies make the already-selected 2018 templates unconditional
