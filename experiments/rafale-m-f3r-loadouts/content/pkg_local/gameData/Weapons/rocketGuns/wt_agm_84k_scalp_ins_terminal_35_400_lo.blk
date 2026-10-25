@@ -1,4 +1,4 @@
-// Experimental SCALP-EG coordinate-guidance proxy.
+// Medium-damped SCALP test: hold 35 m, then pop sharply to 400 m.
 // The seekerless Grom-1 base supplies a genuine SNS rocket guidance path rather
 // than leaving the included AGM-84K optical seeker active.  The AGM-84K visual,
 // aerodynamics and damped controller are restored explicitly below.
@@ -83,16 +83,17 @@ bombCart:t="bomb_cart_kh59"
       "@override:timeToGain2":p2=899.0, 1.0
       "@override:timeToGain3":p2=900.0, 1.0
       altitudeHoldEnabled:b=yes
-      timeToHitToAltitude0:p2=0.35, 5.0
-      timeToHitToAltitude1:p2=1.4, 240.0
-      timeToHitToAltitude2:p2=4.0, 25.0
-      timeToHitToAltitude3:p2=4.5, 80.0
-      altitudeHoldTargetElevation:r=-70.0
-      altitudeHoldTargetOmegaMax:r=0.8
+      timeToHitToAltitude0:p2=0.15, 5.0
+      timeToHitToAltitude1:p2=0.70, 400.0
+      timeToHitToAltitude2:p2=2.0, 35.0
+      timeToHitToAltitude3:p2=4.0, 35.0
+      timeToHitToAltitude4:p2=4.5, 80.0
+      altitudeHoldTargetElevation:r=-75.0
+      altitudeHoldTargetOmegaMax:r=1.05
       altitudeDiffToClimb:r=0.2
-      altitudeRateRateToClimb:r=0.12
-      climbDiffToAccelMult:r=0.0125
-      altitudeHoldAngleLimith:p2=-75.0, 70.0
+      altitudeRateRateToClimb:r=0.15
+      climbDiffToAccelMult:r=0.016
+      altitudeHoldAngleLimith:p2=-82.0, 78.0
       "@override:courseErrorAngleToAccelMult":r=1.5
       "@override:courseErrorFinalAngleCorrection":r=1.25
       "@override:timeOut":r=0.5

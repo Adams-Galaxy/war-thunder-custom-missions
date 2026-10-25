@@ -20,8 +20,8 @@ The package adds one custom unit based on `rafale_m_f3r` and eighteen missions:
 - `Southeastern City · Rafale M · 4× Kh-58UShK`
 - `Southeastern City · Rafale M · 8× LMUR`
 - `Southeastern City · Rafale M · 2× SCALP-EG (IR · LO 0.1)`
-- `Southeastern City · Rafale M · SCALP Late-70 Damped`
-- `Southeastern City · Rafale M · SCALP Ultra-Late Damped`
+- `Southeastern City · Rafale M · SCALP Terminal 35→400`
+- `Southeastern City · Rafale M · SCALP Terminal 40→500 Late`
 - `Southeastern City · Rafale M · SCALP Ultra-Late Medium`
 - `Southeastern City · Rafale M · 2× SCALP-EG (IR · VLO 0.05)`
 
@@ -75,12 +75,13 @@ physical radar-cross-section measurements or player-radar detection values.
 The three `INS` terminal tests preserve the working 0.1 interception treatment but
 use War Thunder's seekerless Grom-1 `sns` point-guidance path. They return to
 the missile/ATGM release channel so the unwanted guided-bomb CCRP symbology is
-not shown. They cruise near 80 m, descend toward 25 m, and command a late pop-up
-followed by a roughly 70-degree terminal dive. Test A retains the proven damped
-controller with the earlier late-loft timing. Test B applies that identical
-damping to the preferred ultra-late timing. Test C repeats B's timing with only
-moderately lighter damping. A-versus-B therefore isolates loft timing, while
-B-versus-C isolates damping strength. The listed distances are rough
+not shown. All now use the proven medium damping. Test A is the known-good
+ultra-late 25-to-260 m reference. Test B transitions from an 80 m cruise to a
+35 m terminal approach, holds it until about two seconds to impact, then pops
+to 400 m and commands a 75-degree dive. Test C holds 40 m until about 1.65
+seconds to impact, pops to 500 m, and commands an 80-degree dive. The extra
+altitude keyframe is supported by stock War Thunder missile definitions and
+prevents the pop-up from being smeared into one long shallow climb. The listed distances are rough
 time-to-impact estimates, not fixed map distances. War Thunder exposes no
 explicit low-pass-filter setting, so this remains an approximation rather than
 real TERPROM route planning. The original LO and VLO missions remain available

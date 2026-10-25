@@ -6,7 +6,7 @@ mission_settings{
     wing:t="t2_player01"
   }
   mission{
-    name:t="wt_rafale_scalp_ins_late70_damped_lo2_southeastern_city"
+    name:t="wt_rafale_scalp_ins_terminal_35_400_lo2_southeastern_city"
     type:t="singleMission"
     level:t="levels/air_south_eastern_city.bin"
     environment:t="Day"
@@ -29,8 +29,8 @@ mission_settings{
     afterRespawnDelaySec:i=30
     useSpawnDelay:b=yes
     timeToLoseInstantDetection:r=10
-    locName:t="Southeastern City · Rafale M · SCALP Late-70 Damped"
-    locDesc:t="Terminal-profile test A. Seekerless SCALP-EG proxy cruising near 80 m with the proven damped controller. It reaches roughly 25 m around 1 km from impact, begins a late pop-up toward 240 m around 350 m out, then commands a 70-degree terminal dive. It retains outside-optics release, turbojet-style exhaust, the 250 kg PBXN-110 gameplay fill, and the 0.1 SAM-AI interception-distance multiplier."
+    locName:t="Southeastern City · Rafale M · SCALP Terminal 35→400"
+    locDesc:t="Terminal-profile test B. Uses the proven medium damping. It transitions from an 80 m cruise to 35 m around the final kilometre, holds 35 m until roughly two seconds from impact, then commands a sharp pop to 400 m and a 75-degree terminal dive. It retains outside-optics release, turbojet-style exhaust, the 250 kg PBXN-110 gameplay fill, and the 0.1 SAM-AI interception-distance multiplier."
     scoreLimit:i=9000
     timeLimit:i=90
     deathPenaltyMul:r=0.2
@@ -5359,7 +5359,7 @@ units{
     closed_waypoints:b=no
     isShipSpline:b=no
     shipTurnRadius:r=100.0
-    weapons:t="wt_rafale_m_scalp_ins_lo2"
+    weapons:t="wt_rafale_m_scalp_ins_terminal_35_400_lo2"
     fuel:r=15.0
     bullets0:t=""
     bullets1:t=""

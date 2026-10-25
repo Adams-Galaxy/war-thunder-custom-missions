@@ -41,10 +41,10 @@ The installed physical loadout is unchanged:
 
 The manifest records the two known-working optical/IR versions and three
 coordinate-guided terminal tests. All INS versions use a seekerless SNS base,
-the normal missile/ATGM release channel, an 80 m cruise, a late 25 m descent,
-and a 70-degree pop-up/dive sequence. They isolate late versus ultra-late
-timing, then strong versus medium damping at the preferred ultra-late timing.
-Their inherited Grom rocket flame and
+the normal missile/ATGM release channel, and the proven medium damping. One is
+the known-good ultra-late reference; the other two use five altitude keyframes
+to hold a 35–40 m terminal approach before distinct 400–500 m pop-ups and much
+steeper commanded dives. Their inherited Grom rocket flame and
 smoke are replaced by the AGM-84K turbojet-style effects. All variants share
 the same physical approximation and 250 kg PBXN-110 gameplay fill. See
 `asset.toml` for exact paths and tuning values.

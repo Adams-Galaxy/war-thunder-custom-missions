@@ -22,8 +22,8 @@ SCALP_PROXY = (
     / "wt_agm_84k_slam_er_lo.blk"
 )
 SCALP_PROXY_VLO = SCALP_PROXY.with_name("wt_agm_84k_slam_er_vlo.blk")
-SCALP_INS_PROXY = SCALP_PROXY.with_name("wt_agm_84k_scalp_ins_lo.blk")
-SCALP_INS_ULTRALATE_DAMPED = SCALP_PROXY.with_name("wt_agm_84k_scalp_ins_ultralate_damped_lo.blk")
+SCALP_INS_TERMINAL_35_400 = SCALP_PROXY.with_name("wt_agm_84k_scalp_ins_terminal_35_400_lo.blk")
+SCALP_INS_TERMINAL_40_500 = SCALP_PROXY.with_name("wt_agm_84k_scalp_ins_terminal_40_500_lo.blk")
 SCALP_INS_ULTRALATE_MEDIUM = SCALP_PROXY.with_name("wt_agm_84k_scalp_ins_ultralate_medium_lo.blk")
 
 
@@ -49,20 +49,20 @@ def test_custom_rafale_registers_all_experimental_stores() -> None:
     assert text.count("containers/lmur_x2.blk") == 4
     assert text.count("rocketGuns/wt_agm_84k_slam_er_lo.blk") == 3
     assert text.count("rocketGuns/wt_agm_84k_slam_er_vlo.blk") == 3
-    assert text.count("rocketGuns/wt_agm_84k_scalp_ins_lo.blk") == 3
-    assert text.count("rocketGuns/wt_agm_84k_scalp_ins_ultralate_damped_lo.blk") == 3
+    assert text.count("rocketGuns/wt_agm_84k_scalp_ins_terminal_35_400_lo.blk") == 3
+    assert text.count("rocketGuns/wt_agm_84k_scalp_ins_terminal_40_500_lo.blk") == 3
     assert text.count("rocketGuns/wt_agm_84k_scalp_ins_ultralate_medium_lo.blk") == 3
     assert text.count('presetType:t="AIR_TO_GROUND"') == 5
     assert text.count('iconType:t="missile_air_to_uni_large"') >= 7
     for station_name in (
         "wt_agm84k_lo_slot3",
-        "wt_scalp_ins_lo_slot3",
-        "wt_scalp_ins_ultralate_damped_lo_slot3",
+        "wt_scalp_ins_terminal_35_400_lo_slot3",
+        "wt_scalp_ins_terminal_40_500_lo_slot3",
         "wt_scalp_ins_ultralate_medium_lo_slot3",
         "wt_agm84k_vlo_slot3",
         "wt_agm84k_lo_slot10",
-        "wt_scalp_ins_lo_slot10",
-        "wt_scalp_ins_ultralate_damped_lo_slot10",
+        "wt_scalp_ins_terminal_35_400_lo_slot10",
+        "wt_scalp_ins_terminal_40_500_lo_slot10",
         "wt_scalp_ins_ultralate_medium_lo_slot10",
         "wt_agm84k_vlo_slot10",
     ):
@@ -92,8 +92,8 @@ def test_each_mission_enables_its_single_player_loadout() -> None:
         "usr_wt_rafale_kh58ushk4.mission.blk": "wt_rafale_m_kh58ushk4",
         "usr_wt_rafale_lmur8.mission.blk": "wt_rafale_m_lmur8",
         "usr_wt_rafale_agm84k_lo2.mission.blk": "wt_rafale_m_agm84k_lo2",
-        "usr_wt_rafale_scalp_ins_lo2.mission.blk": "wt_rafale_m_scalp_ins_lo2",
-        "usr_wt_rafale_scalp_ins_ultralate_damped_lo2.mission.blk": "wt_rafale_m_scalp_ins_ultralate_damped_lo2",
+        "usr_wt_rafale_scalp_ins_terminal_35_400_lo2.mission.blk": "wt_rafale_m_scalp_ins_terminal_35_400_lo2",
+        "usr_wt_rafale_scalp_ins_terminal_40_500_lo2.mission.blk": "wt_rafale_m_scalp_ins_terminal_40_500_lo2",
         "usr_wt_rafale_scalp_ins_ultralate_medium_lo2.mission.blk": "wt_rafale_m_scalp_ins_ultralate_medium_lo2",
         "usr_wt_rafale_agm84k_vlo2.mission.blk": "wt_rafale_m_agm84k_vlo2",
     }
@@ -119,8 +119,8 @@ def test_each_mission_enables_its_single_player_loadout() -> None:
             "wt_rafale_m_kh58ushk4",
             "wt_rafale_m_lmur8",
             "wt_rafale_m_agm84k_lo2",
-            "wt_rafale_m_scalp_ins_lo2",
-            "wt_rafale_m_scalp_ins_ultralate_damped_lo2",
+            "wt_rafale_m_scalp_ins_terminal_35_400_lo2",
+            "wt_rafale_m_scalp_ins_terminal_40_500_lo2",
             "wt_rafale_m_scalp_ins_ultralate_medium_lo2",
             "wt_rafale_m_agm84k_vlo2",
         }:
@@ -254,8 +254,8 @@ def test_scalp_proxies_share_physical_approximation_but_differ_in_stealth() -> N
     assert 'slot:i=6\n  preset:t="damocles"' in vlo_preset
 
 
-def test_scalp_ins_proxy_uses_coordinate_guidance_and_damped_altitude_schedule() -> None:
-    text = SCALP_INS_PROXY.read_text()
+def test_scalp_ins_proxy_uses_coordinate_guidance_and_staged_terminal_profiles() -> None:
+    text = SCALP_INS_TERMINAL_35_400.read_text()
 
     assert 'include "#/develop/gameBase/gameData/Weapons/rocketGuns/su_grom_1.blk"' in text
     assert 'us_agm_84k_slam_er.blk' not in text
@@ -266,15 +266,16 @@ def test_scalp_ins_proxy_uses_coordinate_guidance_and_damped_altitude_schedule()
     assert 'inertialNavigationMandatory:b=yes' in text
     assert '"@override:designationSourceType":t="camera"' in text
     assert '"@override:constantDesignationSourceType":t="camera"' in text
-    assert 'timeToHitToAltitude0:p2=0.35, 5.0' in text
-    assert 'timeToHitToAltitude1:p2=1.4, 240.0' in text
-    assert 'timeToHitToAltitude2:p2=4.0, 25.0' in text
-    assert 'timeToHitToAltitude3:p2=4.5, 80.0' in text
-    assert 'altitudeHoldTargetElevation:r=-70.0' in text
-    assert 'altitudeHoldTargetOmegaMax:r=0.8' in text
-    assert 'altitudeRateRateToClimb:r=0.12' in text
-    assert 'climbDiffToAccelMult:r=0.0125' in text
-    assert 'altitudeHoldAngleLimith:p2=-75.0, 70.0' in text
+    assert 'timeToHitToAltitude0:p2=0.15, 5.0' in text
+    assert 'timeToHitToAltitude1:p2=0.70, 400.0' in text
+    assert 'timeToHitToAltitude2:p2=2.0, 35.0' in text
+    assert 'timeToHitToAltitude3:p2=4.0, 35.0' in text
+    assert 'timeToHitToAltitude4:p2=4.5, 80.0' in text
+    assert 'altitudeHoldTargetElevation:r=-75.0' in text
+    assert 'altitudeHoldTargetOmegaMax:r=1.05' in text
+    assert 'altitudeRateRateToClimb:r=0.15' in text
+    assert 'climbDiffToAccelMult:r=0.016' in text
+    assert 'altitudeHoldAngleLimith:p2=-82.0, 78.0' in text
     assert '"@override:fireEffect":t=""' in text
     assert '"@override:smokeEffect":t="smoke_exhaust_air"' in text
     assert '"@override:hazeEffect":t=""' in text
@@ -294,19 +295,19 @@ def test_scalp_ins_proxy_uses_coordinate_guidance_and_damped_altitude_schedule()
         / "gameData"
         / "flightModels"
         / "weaponPresets"
-        / "wt_rafale_m_scalp_ins_lo2.blk"
+        / "wt_rafale_m_scalp_ins_terminal_35_400_lo2.blk"
     ).read_text()
-    assert preset.count('preset:t="wt_scalp_ins_lo_slot') == 2
+    assert preset.count('preset:t="wt_scalp_ins_terminal_35_400_lo_slot') == 2
     assert 'slot:i=3' in preset
     assert 'slot:i=10' in preset
     assert 'slot:i=6\n  preset:t="damocles"' in preset
 
     unit = UNIT.read_text()
     for station_name in (
-        "wt_scalp_ins_lo_slot3",
-        "wt_scalp_ins_lo_slot10",
-        "wt_scalp_ins_ultralate_damped_lo_slot3",
-        "wt_scalp_ins_ultralate_damped_lo_slot10",
+        "wt_scalp_ins_terminal_35_400_lo_slot3",
+        "wt_scalp_ins_terminal_35_400_lo_slot10",
+        "wt_scalp_ins_terminal_40_500_lo_slot3",
+        "wt_scalp_ins_terminal_40_500_lo_slot10",
         "wt_scalp_ins_ultralate_medium_lo_slot3",
         "wt_scalp_ins_ultralate_medium_lo_slot10",
     ):
@@ -314,17 +315,23 @@ def test_scalp_ins_proxy_uses_coordinate_guidance_and_damped_altitude_schedule()
         assert 'trigger:t="atgm"' in station
         assert 'trigger:t="guided bombs"' not in station
 
-    ultralate_damped = SCALP_INS_ULTRALATE_DAMPED.read_text()
-    assert 'include "#/develop/gameBase/gameData/Weapons/rocketGuns/su_grom_1.blk"' in ultralate_damped
-    assert 'wt_agm_84k_scalp_ins_lo.blk' not in ultralate_damped
-    assert 'timeToHitToAltitude1:p2=1.1, 260.0' in ultralate_damped
-    assert 'altitudeHoldTargetOmegaMax:r=0.8' in ultralate_damped
-    assert 'altitudeRateRateToClimb:r=0.12' in ultralate_damped
-    assert 'climbDiffToAccelMult:r=0.0125' in ultralate_damped
+    terminal_40_500 = SCALP_INS_TERMINAL_40_500.read_text()
+    assert 'include "#/develop/gameBase/gameData/Weapons/rocketGuns/su_grom_1.blk"' in terminal_40_500
+    assert 'wt_agm_84k_scalp_ins_terminal_35_400_lo.blk' not in terminal_40_500
+    assert 'timeToHitToAltitude0:p2=0.10, 5.0' in terminal_40_500
+    assert 'timeToHitToAltitude1:p2=0.50, 500.0' in terminal_40_500
+    assert 'timeToHitToAltitude2:p2=1.65, 40.0' in terminal_40_500
+    assert 'timeToHitToAltitude3:p2=4.0, 40.0' in terminal_40_500
+    assert 'timeToHitToAltitude4:p2=4.5, 80.0' in terminal_40_500
+    assert 'altitudeHoldTargetElevation:r=-80.0' in terminal_40_500
+    assert 'altitudeHoldTargetOmegaMax:r=1.05' in terminal_40_500
+    assert 'altitudeRateRateToClimb:r=0.15' in terminal_40_500
+    assert 'climbDiffToAccelMult:r=0.016' in terminal_40_500
+    assert 'altitudeHoldAngleLimith:p2=-86.0, 82.0' in terminal_40_500
 
     ultralate_medium = SCALP_INS_ULTRALATE_MEDIUM.read_text()
     assert 'include "#/develop/gameBase/gameData/Weapons/rocketGuns/su_grom_1.blk"' in ultralate_medium
-    assert 'wt_agm_84k_scalp_ins_lo.blk' not in ultralate_medium
+    assert 'wt_agm_84k_scalp_ins_terminal_35_400_lo.blk' not in ultralate_medium
     assert 'timeToHitToAltitude0:p2=0.25, 5.0' in ultralate_medium
     assert 'timeToHitToAltitude1:p2=1.1, 260.0' in ultralate_medium
     assert 'timeToHitToAltitude2:p2=4.0, 25.0' in ultralate_medium
@@ -350,18 +357,18 @@ def test_scalp_asset_manifest_indexes_reusable_sources() -> None:
     assert {variant["id"] for variant in manifest["variants"]} == {
         "ir-lo-010",
         "ir-vlo-005",
-        "ins-lo-010",
-        "ins-ultralate-damped-lo-010",
+        "terminal-35-400-lo-010",
+        "terminal-40-500-lo-010",
         "ins-ultralate-medium-lo-010",
     }
     for variant in manifest["variants"]:
         for key in ("weapon", "preset", "mission"):
             assert (ROOT / variant[key]).is_file()
 
-    ins = next(variant for variant in manifest["variants"] if variant["id"] == "ins-lo-010")
+    ins = next(variant for variant in manifest["variants"] if variant["id"] == "terminal-35-400-lo-010")
     assert ins["release_channel"] == "atgm"
-    assert ins["terminal_profile_time_to_hit_s"] == [4.5, 4.0, 1.4, 0.35]
-    assert ins["terminal_profile_altitude_m"] == [80.0, 25.0, 240.0, 5.0]
+    assert ins["terminal_profile_time_to_hit_s"] == [4.5, 4.0, 2.0, 0.70, 0.15]
+    assert ins["terminal_profile_altitude_m"] == [80.0, 35.0, 35.0, 400.0, 5.0]
 
 
 def test_scalp_localization_covers_every_custom_weapon_filename() -> None:
@@ -372,8 +379,8 @@ def test_scalp_localization_covers_every_custom_weapon_filename() -> None:
     for weapon in (
         "wt_agm_84k_slam_er_lo",
         "wt_agm_84k_slam_er_vlo",
-        "wt_agm_84k_scalp_ins_lo",
-        "wt_agm_84k_scalp_ins_ultralate_damped_lo",
+        "wt_agm_84k_scalp_ins_terminal_35_400_lo",
+        "wt_agm_84k_scalp_ins_terminal_40_500_lo",
         "wt_agm_84k_scalp_ins_ultralate_medium_lo",
     ):
         assert f'"weapons/{weapon}"' in localization

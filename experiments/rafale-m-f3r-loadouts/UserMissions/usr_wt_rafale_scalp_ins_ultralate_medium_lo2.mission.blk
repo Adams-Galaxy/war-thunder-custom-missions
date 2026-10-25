@@ -30,7 +30,7 @@ mission_settings{
     useSpawnDelay:b=yes
     timeToLoseInstantDetection:r=10
     locName:t="Southeastern City · Rafale M · SCALP Ultra-Late Medium"
-    locDesc:t="Terminal-profile test C. This uses exactly the same ultra-late 80 m/25 m/260 m/70-degree path as test B, but with moderately lighter damping. Comparing B and C isolates the point where useful terminal response begins to reintroduce oscillation. It retains outside-optics release, turbojet-style exhaust, the 250 kg PBXN-110 gameplay fill, and the 0.1 interception treatment."
+    locDesc:t="Terminal-profile test A and known-good reference. It uses the medium damping that eliminated most oscillation, with the previously tested 80 m/25 m/260 m ultra-late path and 70-degree terminal command. Compare it with tests B and C to see the effect of holding low, delaying the pop, and adding vertical separation. It retains outside-optics release, turbojet-style exhaust, the 250 kg PBXN-110 gameplay fill, and the 0.1 interception treatment."
     scoreLimit:i=9000
     timeLimit:i=90
     deathPenaltyMul:r=0.2
