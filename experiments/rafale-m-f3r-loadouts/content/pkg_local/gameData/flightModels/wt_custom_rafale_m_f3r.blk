@@ -63,6 +63,10 @@ include "#/develop/gameBase/gameData/flightModels/rafale_m_f3r.blk"
     blk:t="gameData/flightModels/weaponPresets/wt_rafale_m_agm84k_lo2.blk"
   }
   preset {
+    name:t="wt_rafale_m_scalp_ins_lo2"
+    blk:t="gameData/flightModels/weaponPresets/wt_rafale_m_scalp_ins_lo2.blk"
+  }
+  preset {
     name:t="wt_rafale_m_agm84k_vlo2"
     blk:t="gameData/flightModels/weaponPresets/wt_rafale_m_agm84k_vlo2.blk"
   }
@@ -216,6 +220,23 @@ include "#/develop/gameBase/gameData/flightModels/rafale_m_f3r.blk"
       Weapon {
         trigger:t="atgm"
         blk:t="gameData/Weapons/rocketGuns/wt_agm_84k_slam_er_lo.blk"
+        emitter:t="pylon_at_730_001"
+        bullets:i=1
+        external:b=yes
+        separate:b=yes
+        machLimit:r=1.4
+      }
+    }
+
+    WeaponPreset {
+      iconType:t="missile_air_to_uni_large"
+      name:t="wt_scalp_ins_lo_slot3"
+      ShowNodes {
+        node:t="pylon_pu_708_001"
+      }
+      Weapon {
+        trigger:t="atgm"
+        blk:t="gameData/Weapons/rocketGuns/wt_agm_84k_scalp_ins_lo.blk"
         emitter:t="pylon_at_730_001"
         bullets:i=1
         external:b=yes
@@ -709,6 +730,23 @@ include "#/develop/gameBase/gameData/flightModels/rafale_m_f3r.blk"
       Weapon {
         trigger:t="atgm"
         blk:t="gameData/Weapons/rocketGuns/wt_agm_84k_slam_er_lo.blk"
+        emitter:t="pylon_at_730_002"
+        bullets:i=1
+        external:b=yes
+        separate:b=yes
+        machLimit:r=1.4
+      }
+    }
+
+    WeaponPreset {
+      iconType:t="missile_air_to_uni_large"
+      name:t="wt_scalp_ins_lo_slot10"
+      ShowNodes {
+        node:t="pylon_pu_708_002"
+      }
+      Weapon {
+        trigger:t="atgm"
+        blk:t="gameData/Weapons/rocketGuns/wt_agm_84k_scalp_ins_lo.blk"
         emitter:t="pylon_at_730_002"
         bullets:i=1
         external:b=yes

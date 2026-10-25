@@ -10,7 +10,7 @@ include "#/develop/gameBase/gameData/Weapons/rocketGuns/us_agm_84k_slam_er.blk"
   "@override:rangeMax":r=250000.0
   "@override:warheadMass":r=450.0
   "@override:explosiveType":t="pbxn_110"
-  "@override:explosiveMass":r=200.0
+  "@override:explosiveMass":r=250.0
   gunnerFilterMaxDistMult:r=0.1
 
   "@override:propulsion0" {

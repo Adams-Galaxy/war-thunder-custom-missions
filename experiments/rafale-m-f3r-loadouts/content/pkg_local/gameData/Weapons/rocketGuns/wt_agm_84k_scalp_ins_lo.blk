@@ -1,0 +1,47 @@
+// Experimental SCALP-EG coordinate-guidance proxy.
+// It keeps the proven LO 0.1 interception treatment and physical approximation,
+// but substitutes the game's SNS point-guidance path so it can be launched at
+// a saved/map-designated point without an IR/TV seeker lock.
+include "#/develop/gameBase/gameData/Weapons/rocketGuns/us_agm_84k_slam_er.blk"
+
+"@override:rocket" {
+  "@override:mass":r=1300.0
+  "@override:length":r=5.10
+  "@override:machMax":r=0.95
+  "@override:timeLife":r=900.0
+  "@override:maxDistance":r=250000.0
+  "@override:rangeMax":r=250000.0
+  "@override:guidanceType":t="sns"
+  "@override:warheadMass":r=450.0
+  "@override:explosiveType":t="pbxn_110"
+  "@override:explosiveMass":r=250.0
+  gunnerFilterMaxDistMult:r=0.1
+
+  "@override:propulsion0" {
+    "@override:impulse0" {
+      "@override:time":r=850.0
+      "@override:force":r=5400.0
+      "@override:massLost":r=200.0
+    }
+  }
+
+  "@override:guidance" {
+    "@override:uncageBeforeLaunch":b=no
+    "@override:useTrippleClickLockInTpv":b=no
+    permanentlyActivated:b=yes
+    inertialNavigationMandatory:b=yes
+    designationSourceType:t="camera"
+    constantDesignationSourceType:t="camera"
+    positionError:r=3.0
+
+    "@override:guidanceAutopilot" {
+      "@override:altitudeHoldEnabled":b=yes
+      "@override:timeToHitToAltitude0":p2=2.0, 8.0
+      timeToHitToAltitude1:p2=8.0, 25.0
+      timeToHitToAltitude2:p2=45.0, 45.0
+      timeToHitToAltitude3:p2=180.0, 60.0
+      "@override:altitudeHoldTargetElevation":r=-11.0
+      "@override:altitudeHoldAngleLimith":p2=-20.0, 15.0
+    }
+  }
+}
