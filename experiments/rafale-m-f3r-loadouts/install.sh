@@ -66,6 +66,9 @@ cp "$experiment_dir/content/pkg_local/gameData/flightModels/weaponPresets/wt_raf
 for profile in lead20_cap55 lead25_cap55 lead30_cap55 lead25_cap45 lead25_cap35 lead25_cap45_gain0125 lead20_cap45_gain0125 lead175_cap45_gain0125 lead15_cap45_gain0125 lead125_cap45_gain0125_damped lead10_cap45_gain0125_damped lead075_cap45_gain0125_damped; do
   cp "$experiment_dir/content/pkg_local/gameData/flightModels/weaponPresets/wt_rafale_m_scalp_turn_${profile}_lo2.blk" "$presets_dir/"
 done
+for profile in native12_45 native18_65 hybrid18_65; do
+  cp "$experiment_dir/content/pkg_local/gameData/flightModels/weaponPresets/wt_rafale_m_scalp_loft_${profile}_lo2.blk" "$presets_dir/"
+done
 cp "$experiment_dir/content/pkg_local/gameData/Weapons/rocketGuns/wt_agm_84k_slam_er_lo.blk" "$rocketguns_dir/"
 cp "$experiment_dir/content/pkg_local/gameData/Weapons/rocketGuns/wt_agm_84k_slam_er_vlo.blk" "$rocketguns_dir/"
 cp "$experiment_dir/content/pkg_local/gameData/Weapons/rocketGuns/wt_agm_84k_scalp_ins_terminal_35_600_lo.blk" "$rocketguns_dir/"
@@ -73,6 +76,9 @@ cp "$experiment_dir/content/pkg_local/gameData/Weapons/rocketGuns/wt_agm_84k_sca
 cp "$experiment_dir/content/pkg_local/gameData/Weapons/rocketGuns/wt_agm_84k_scalp_ins_ultralate_medium_lo.blk" "$rocketguns_dir/"
 for profile in lead20_cap55 lead25_cap55 lead30_cap55 lead25_cap45 lead25_cap35 lead25_cap45_gain0125 lead20_cap45_gain0125 lead175_cap45_gain0125 lead15_cap45_gain0125 lead125_cap45_gain0125_damped lead10_cap45_gain0125_damped lead075_cap45_gain0125_damped; do
   cp "$experiment_dir/content/pkg_local/gameData/Weapons/rocketGuns/wt_agm_84k_scalp_turn_${profile}_lo.blk" "$rocketguns_dir/"
+done
+for profile in native12_45 native18_65 hybrid18_65; do
+  cp "$experiment_dir/content/pkg_local/gameData/Weapons/rocketGuns/wt_agm_84k_scalp_loft_${profile}_lo.blk" "$rocketguns_dir/"
 done
 cp "$experiment_dir/UserMissions/usr_wt_rafale_spice250.mission.blk" "$missions_dir/"
 cp "$experiment_dir/UserMissions/usr_wt_rafale_brimstone.mission.blk" "$missions_dir/"
@@ -89,10 +95,10 @@ cp "$experiment_dir/UserMissions/usr_wt_rafale_kh58ushk4.mission.blk" "$missions
 cp "$experiment_dir/UserMissions/usr_wt_rafale_lmur8.mission.blk" "$missions_dir/"
 cp "$experiment_dir/UserMissions/usr_wt_rafale_agm84k_lo2.mission.blk" "$missions_dir/"
 cp "$experiment_dir/UserMissions/usr_wt_rafale_agm84k_vlo2.mission.blk" "$missions_dir/"
-for profile in lead125_cap45_gain0125_damped lead10_cap45_gain0125_damped lead075_cap45_gain0125_damped; do
-  cp "$experiment_dir/UserMissions/usr_wt_rafale_scalp_turn_${profile}_lo2.mission.blk" "$missions_dir/"
+for profile in native12_45 native18_65 hybrid18_65; do
+  cp "$experiment_dir/UserMissions/usr_wt_rafale_scalp_loft_${profile}_water_lo2.mission.blk" "$missions_dir/"
+  cp "$experiment_dir/UserMissions/usr_wt_rafale_scalp_loft_${profile}_ground_lo2.mission.blk" "$missions_dir/"
 done
-cp "$experiment_dir/UserMissions/usr_wt_rafale_scalp_turn_lead10_cap45_gain0125_damped_ground_lo2.mission.blk" "$missions_dir/"
 python3 "$experiment_dir/configure_localization.py" "$game_dir"
 
 printf 'Installed Rafale weapon experiments and their HUD names in:\n  %s\n  %s\n' "$flightmodels_dir" "$missions_dir"

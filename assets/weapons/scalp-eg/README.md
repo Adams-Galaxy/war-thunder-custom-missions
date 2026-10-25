@@ -53,6 +53,10 @@ gain and 45-degree cap while tightening descent timing from 2.5 to 1.5 seconds.
 Three additional profiles continue to 1.25, 1.0, and 0.75 seconds with a small
 further reduction in target omega and vertical-rate gain. A ground-range mission
 reuses the 1.0-second profile from NATO Air Spawn 1 at 1.5 km.
+Three geometry-driven alternatives remove the terminal time-to-altitude
+schedule entirely: moderate and steep native-loft profiles, plus an explicitly
+experimental hybrid that combines constant 35 m altitude hold with the steep
+native loft controller. Each geometry profile has water and ground missions.
 These terminal-profile tests spawn at 100 m facing the midpoint between the
 ships because the global descent-angle limiter needed for a safe high release
 would also constrain the terminal dive. Their inherited Grom rocket flame and

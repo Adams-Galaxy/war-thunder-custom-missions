@@ -39,6 +39,11 @@ SCALP_TURN_MATRIX = {
     "lead10_cap45_gain0125_damped": (1.00, 1.25, 45.0, 0.0125),
     "lead075_cap45_gain0125_damped": (0.75, 1.00, 45.0, 0.0125),
 }
+SCALP_LOFT_MATRIX = {
+    "native12_45": (False, 12.0, -45.0, 0.5),
+    "native18_65": (False, 18.0, -65.0, 1.0),
+    "hybrid18_65": (True, 18.0, -65.0, 1.0),
+}
 
 
 def test_custom_rafale_registers_all_experimental_stores() -> None:
@@ -68,7 +73,9 @@ def test_custom_rafale_registers_all_experimental_stores() -> None:
     assert text.count("rocketGuns/wt_agm_84k_scalp_ins_ultralate_medium_lo.blk") == 3
     for slug in SCALP_TURN_MATRIX:
         assert text.count(f"rocketGuns/wt_agm_84k_scalp_turn_{slug}_lo.blk") == 3
-    assert text.count('presetType:t="AIR_TO_GROUND"') == 17
+    for slug in SCALP_LOFT_MATRIX:
+        assert text.count(f"rocketGuns/wt_agm_84k_scalp_loft_{slug}_lo.blk") == 3
+    assert text.count('presetType:t="AIR_TO_GROUND"') == 20
     assert text.count('iconType:t="missile_air_to_uni_large"') >= 7
     for station_name in (
         "wt_agm84k_lo_slot3",
@@ -81,14 +88,15 @@ def test_custom_rafale_registers_all_experimental_stores() -> None:
         "wt_scalp_ins_terminal_40_1000_lo_slot10",
         "wt_scalp_ins_ultralate_medium_lo_slot10",
         *(f"wt_scalp_turn_{slug}_lo_slot{slot}" for slug in SCALP_TURN_MATRIX for slot in (3, 10)),
+        *(f"wt_scalp_loft_{slug}_lo_slot{slot}" for slug in SCALP_LOFT_MATRIX for slot in (3, 10)),
         "wt_agm84k_vlo_slot10",
     ):
         station = text.split(f'name:t="{station_name}"', 1)[0].rsplit("WeaponPreset {", 1)[1]
         assert 'iconType:t="glide_bomb_default"' in station
-    assert text.count('tier { idx:i=10 }') == 17
-    assert text.count('tier { idx:i=2 }') == 17
+    assert text.count('tier { idx:i=10 }') == 20
+    assert text.count('tier { idx:i=2 }') == 20
     assert text.count('preset:t="damocles"') == 2
-    assert text.count('blk:t="gameData/flightModels/weaponPresets/') == 30
+    assert text.count('blk:t="gameData/flightModels/weaponPresets/') == 33
     assert "gameData/FlightModels/weaponPresets/" not in text
     assert text.count("{") == text.count("}")
 
@@ -123,6 +131,11 @@ def test_each_mission_enables_its_single_player_loadout() -> None:
     cases["usr_wt_rafale_scalp_turn_lead10_cap45_gain0125_damped_ground_lo2.mission.blk"] = (
         "wt_rafale_m_scalp_turn_lead10_cap45_gain0125_damped_lo2"
     )
+    for slug in SCALP_LOFT_MATRIX:
+        for test_range in ("water", "ground"):
+            cases[f"usr_wt_rafale_scalp_loft_{slug}_{test_range}_lo2.mission.blk"] = (
+                f"wt_rafale_m_scalp_loft_{slug}_lo2"
+            )
 
     for filename, preset in cases.items():
         text = (EXPERIMENT / "UserMissions" / filename).read_text()
@@ -149,7 +162,7 @@ def test_each_mission_enables_its_single_player_loadout() -> None:
             "wt_rafale_m_scalp_ins_terminal_40_1000_lo2",
             "wt_rafale_m_scalp_ins_ultralate_medium_lo2",
             "wt_rafale_m_agm84k_vlo2",
-        } or preset.startswith("wt_rafale_m_scalp_turn_"):
+        } or preset.startswith(("wt_rafale_m_scalp_turn_", "wt_rafale_m_scalp_loft_")):
             assert "fuel:r=15.0" in text
         assert 'unitWakeUp{\n        target:t="t2_player01"' in text
         assert 'unitSetProperties{\n        object:t="t2_player01"\n        targetableByAi:b=no' in text
@@ -164,7 +177,7 @@ def test_each_mission_enables_its_single_player_loadout() -> None:
                 '    tm:m=[[-0.73315784, 0.0, -0.680058515] [0.0, 1.0, 0.0] '
                 '[0.680058515, 0.0, -0.73315784] [15589.947, 1500.0, 43840.151]]'
             ) in text
-        elif "scalp_turn_" in preset:
+        elif "scalp_turn_" in preset or "scalp_loft_" in preset:
             assert (
                 'name:t="t2_player01"\n'
                 '    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] '
@@ -438,6 +451,9 @@ def test_scalp_asset_manifest_indexes_reusable_sources() -> None:
         "terminal-turn-lead125-cap45-soft-damped-lo-010",
         "terminal-turn-lead10-cap45-soft-damped-lo-010",
         "terminal-turn-lead075-cap45-soft-damped-lo-010",
+        "geometry-loft-native-12-45-lo-010",
+        "geometry-loft-native-18-65-lo-010",
+        "geometry-loft-hybrid-18-65-lo-010",
     }
     for variant in manifest["variants"]:
         for key in ("weapon", "preset", "mission"):
@@ -461,6 +477,7 @@ def test_scalp_localization_covers_every_custom_weapon_filename() -> None:
         "wt_agm_84k_scalp_ins_terminal_40_1000_lo",
         "wt_agm_84k_scalp_ins_ultralate_medium_lo",
         *(f"wt_agm_84k_scalp_turn_{slug}_lo" for slug in SCALP_TURN_MATRIX),
+        *(f"wt_agm_84k_scalp_loft_{slug}_lo" for slug in SCALP_LOFT_MATRIX),
     ):
         assert f'"weapons/{weapon}"' in localization
         assert f'"weapons/{weapon}/short";"SCALP-EG"' in localization
@@ -505,3 +522,35 @@ def test_scalp_terminal_turn_matrix_is_controlled_and_complete() -> None:
         assert "[40000.0, 100.0, -52000.0]" in mission
         assert "tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [40000.0, 100.0, -52000.0]]" in mission
         assert mission.count("{") == mission.count("}")
+
+
+def test_scalp_geometry_loft_matrix_is_controlled_and_complete() -> None:
+    for slug, (hybrid, elevation, target_elevation, gain) in SCALP_LOFT_MATRIX.items():
+        weapon = (SCALP_PROXY.parent / f"wt_agm_84k_scalp_loft_{slug}_lo.blk").read_text()
+        preset = (
+            EXPERIMENT
+            / "content/pkg_local/gameData/flightModels/weaponPresets"
+            / f"wt_rafale_m_scalp_loft_{slug}_lo2.blk"
+        ).read_text()
+        assert '"@override:loftEnabled":b=yes' in weapon
+        assert f"loftElevation:r={elevation:g}" in weapon
+        assert f"loftTargetElevation:r={target_elevation:g}" in weapon
+        assert f"loftAngleToAccelMult:r={gain:g}" in weapon
+        assert "loftTargetOmegaMax:r=0.95" in weapon
+        if hybrid:
+            assert "altitudeHoldEnabled:b=yes" in weapon
+            assert "timeToHitToAltitude0:p2=0.0, 35.0" in weapon
+        else:
+            assert "altitudeHoldEnabled:b=no" in weapon
+            assert "timeToHitToAltitude" not in weapon
+        assert preset.count(f'preset:t="wt_scalp_loft_{slug}_lo_slot') == 2
+        for test_range, altitude in (("water", 100.0), ("ground", 1500.0)):
+            mission = (
+                EXPERIMENT
+                / "UserMissions"
+                / f"usr_wt_rafale_scalp_loft_{slug}_{test_range}_lo2.mission.blk"
+            ).read_text()
+            assert f'weapons:t="wt_rafale_m_scalp_loft_{slug}_lo2"' in mission
+            assert f", {altitude:.1f}," in mission
+            assert "No terminal time-to-altitude schedule." in mission
+            assert mission.count("{") == mission.count("}")

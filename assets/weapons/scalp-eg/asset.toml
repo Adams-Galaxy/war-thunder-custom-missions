@@ -308,6 +308,55 @@ preset = "experiments/rafale-m-f3r-loadouts/content/pkg_local/gameData/flightMod
 mission = "experiments/rafale-m-f3r-loadouts/UserMissions/usr_wt_rafale_scalp_turn_lead075_cap45_gain0125_damped_lo2.mission.blk"
 
 [[variants]]
+id = "geometry-loft-native-12-45-lo-010"
+display_name = "SCALP-EG native loft 12 / -45 (LO 0.10)"
+guidance = "seekerless SNS coordinate guidance with native loft"
+interception_multiplier = 0.10
+release_channel = "atgm"
+altitude_hold = false
+loft_elevation_deg = 12.0
+loft_target_elevation_deg = -45.0
+loft_angle_to_acceleration = 0.5
+loft_target_omega_max = 0.95
+weapon = "experiments/rafale-m-f3r-loadouts/content/pkg_local/gameData/Weapons/rocketGuns/wt_agm_84k_scalp_loft_native12_45_lo.blk"
+preset = "experiments/rafale-m-f3r-loadouts/content/pkg_local/gameData/flightModels/weaponPresets/wt_rafale_m_scalp_loft_native12_45_lo2.blk"
+mission = "experiments/rafale-m-f3r-loadouts/UserMissions/usr_wt_rafale_scalp_loft_native12_45_water_lo2.mission.blk"
+ground_mission = "experiments/rafale-m-f3r-loadouts/UserMissions/usr_wt_rafale_scalp_loft_native12_45_ground_lo2.mission.blk"
+
+[[variants]]
+id = "geometry-loft-native-18-65-lo-010"
+display_name = "SCALP-EG native loft 18 / -65 (LO 0.10)"
+guidance = "seekerless SNS coordinate guidance with native loft"
+interception_multiplier = 0.10
+release_channel = "atgm"
+altitude_hold = false
+loft_elevation_deg = 18.0
+loft_target_elevation_deg = -65.0
+loft_angle_to_acceleration = 1.0
+loft_target_omega_max = 0.95
+weapon = "experiments/rafale-m-f3r-loadouts/content/pkg_local/gameData/Weapons/rocketGuns/wt_agm_84k_scalp_loft_native18_65_lo.blk"
+preset = "experiments/rafale-m-f3r-loadouts/content/pkg_local/gameData/flightModels/weaponPresets/wt_rafale_m_scalp_loft_native18_65_lo2.blk"
+mission = "experiments/rafale-m-f3r-loadouts/UserMissions/usr_wt_rafale_scalp_loft_native18_65_water_lo2.mission.blk"
+ground_mission = "experiments/rafale-m-f3r-loadouts/UserMissions/usr_wt_rafale_scalp_loft_native18_65_ground_lo2.mission.blk"
+
+[[variants]]
+id = "geometry-loft-hybrid-18-65-lo-010"
+display_name = "SCALP-EG hybrid 35 m plus loft 18 / -65 (LO 0.10)"
+guidance = "seekerless SNS coordinate guidance with altitude hold and native loft"
+interception_multiplier = 0.10
+release_channel = "atgm"
+altitude_hold = true
+constant_altitude_m = 35.0
+loft_elevation_deg = 18.0
+loft_target_elevation_deg = -65.0
+loft_angle_to_acceleration = 1.0
+loft_target_omega_max = 0.95
+weapon = "experiments/rafale-m-f3r-loadouts/content/pkg_local/gameData/Weapons/rocketGuns/wt_agm_84k_scalp_loft_hybrid18_65_lo.blk"
+preset = "experiments/rafale-m-f3r-loadouts/content/pkg_local/gameData/flightModels/weaponPresets/wt_rafale_m_scalp_loft_hybrid18_65_lo2.blk"
+mission = "experiments/rafale-m-f3r-loadouts/UserMissions/usr_wt_rafale_scalp_loft_hybrid18_65_water_lo2.mission.blk"
+ground_mission = "experiments/rafale-m-f3r-loadouts/UserMissions/usr_wt_rafale_scalp_loft_hybrid18_65_ground_lo2.mission.blk"
+
+[[variants]]
 id = "ins-ultralate-medium-lo-010"
 display_name = "SCALP-EG INS Ultra-Late Medium (LO 0.10)"
 guidance = "seekerless SNS coordinate guidance"

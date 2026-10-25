@@ -38,6 +38,9 @@ rm -f "$presets_dir/wt_rafale_m_agm84k_vlo2.blk"
 for profile in lead20_cap55 lead25_cap55 lead30_cap55 lead25_cap45 lead25_cap35 lead25_cap45_gain0125 lead20_cap45_gain0125 lead175_cap45_gain0125 lead15_cap45_gain0125 lead125_cap45_gain0125_damped lead10_cap45_gain0125_damped lead075_cap45_gain0125_damped; do
   rm -f "$presets_dir/wt_rafale_m_scalp_turn_${profile}_lo2.blk"
 done
+for profile in native12_45 native18_65 hybrid18_65; do
+  rm -f "$presets_dir/wt_rafale_m_scalp_loft_${profile}_lo2.blk"
+done
 rm -f "$rocketguns_dir/wt_agm_84k_slam_er_lo.blk"
 rm -f "$rocketguns_dir/wt_agm_84k_slam_er_vlo.blk"
 rm -f "$rocketguns_dir/wt_agm_84k_scalp_ins_lo.blk"
@@ -51,6 +54,9 @@ rm -f "$rocketguns_dir/wt_agm_84k_scalp_ins_aggressive_lo.blk"
 rm -f "$rocketguns_dir/wt_agm_84k_scalp_ins_ultralate_lo.blk"
 for profile in lead20_cap55 lead25_cap55 lead30_cap55 lead25_cap45 lead25_cap35 lead25_cap45_gain0125 lead20_cap45_gain0125 lead175_cap45_gain0125 lead15_cap45_gain0125 lead125_cap45_gain0125_damped lead10_cap45_gain0125_damped lead075_cap45_gain0125_damped; do
   rm -f "$rocketguns_dir/wt_agm_84k_scalp_turn_${profile}_lo.blk"
+done
+for profile in native12_45 native18_65 hybrid18_65; do
+  rm -f "$rocketguns_dir/wt_agm_84k_scalp_loft_${profile}_lo.blk"
 done
 rm -f "$missions_dir/usr_wt_rafale_spice250.mission.blk"
 rm -f "$missions_dir/usr_wt_rafale_brimstone.mission.blk"
@@ -82,6 +88,10 @@ for profile in lead20_cap55 lead25_cap55 lead30_cap55 lead25_cap45 lead25_cap35 
   rm -f "$missions_dir/usr_wt_rafale_scalp_turn_${profile}_lo2.mission.blk"
 done
 rm -f "$missions_dir/usr_wt_rafale_scalp_turn_lead10_cap45_gain0125_damped_ground_lo2.mission.blk"
+for profile in native12_45 native18_65 hybrid18_65; do
+  rm -f "$missions_dir/usr_wt_rafale_scalp_loft_${profile}_water_lo2.mission.blk"
+  rm -f "$missions_dir/usr_wt_rafale_scalp_loft_${profile}_ground_lo2.mission.blk"
+done
 rm -f "$old_missions_dir/southeastern-city-rafale-spice250.blk"
 rm -f "$old_missions_dir/southeastern-city-rafale-brimstone.blk"
 rm -f "$old_missions_dir/southeastern-city-rafale-jsow.blk"

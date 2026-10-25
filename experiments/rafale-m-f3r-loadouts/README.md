@@ -124,6 +124,15 @@ gain from 0.15 to 0.135. The 1.0-second ground mission starts at NATO Air Spawn
 1 at 1.5 km, using the established west-facing transform. Regenerate this matrix with
 `python tools/build_scalp_terminal_matrix.py` after changing its variant table.
 
+Three geometry-driven loft experiments replace the self-referential terminal
+time-to-altitude schedule with the game's native loft controller. Native 12/-45
+is the moderate loft-only case; Native 18/-65 is a steeper and later loft-only
+case. Hybrid 35 m + 18/-65 deliberately enables constant 35 m altitude hold and
+the steep native loft controller simultaneously, even though no stock weapon in
+the inspected game data combines those systems. Each has a 100 m flat-water
+mission and a 1.5 km NATO Air Spawn 1 ground mission. Regenerate them with
+`python tools/build_scalp_loft_matrix.py`.
+
 Because the INS version inherits Grom-1 only to obtain its seekerless SNS
 guidance path, it explicitly replaces Grom's solid-rocket flame, smoke, and
 haze with the AGM-84K's long-burn turbojet-style exhaust presentation. The
