@@ -59,5 +59,6 @@ cp "$experiment_dir/UserMissions/usr_wt_rafale_lmur8.mission.blk" "$missions_dir
 cp "$experiment_dir/UserMissions/usr_wt_rafale_agm84k_lo2.mission.blk" "$missions_dir/"
 cp "$experiment_dir/UserMissions/usr_wt_rafale_scalp_ins_lo2.mission.blk" "$missions_dir/"
 cp "$experiment_dir/UserMissions/usr_wt_rafale_agm84k_vlo2.mission.blk" "$missions_dir/"
+python3 "$experiment_dir/configure_localization.py" "$game_dir"
 
-printf 'Installed Rafale weapon experiments in:\n  %s\n  %s\n' "$flightmodels_dir" "$missions_dir"
+printf 'Installed Rafale weapon experiments and their HUD names in:\n  %s\n  %s\n' "$flightmodels_dir" "$missions_dir"

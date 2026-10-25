@@ -226,7 +226,7 @@ def test_scalp_proxies_share_physical_approximation_but_differ_in_stealth() -> N
     assert 'slot:i=6\n  preset:t="damocles"' in vlo_preset
 
 
-def test_scalp_ins_proxy_uses_coordinate_guidance_and_low_altitude_schedule() -> None:
+def test_scalp_ins_proxy_uses_coordinate_guidance_and_damped_altitude_schedule() -> None:
     text = SCALP_INS_PROXY.read_text()
 
     assert 'include "#/develop/gameBase/gameData/Weapons/rocketGuns/us_agm_84k_slam_er.blk"' in text
@@ -237,14 +237,14 @@ def test_scalp_ins_proxy_uses_coordinate_guidance_and_low_altitude_schedule() ->
     assert 'designationSourceType:t="camera"' in text
     assert 'constantDesignationSourceType:t="camera"' in text
     assert '"@override:timeToHitToAltitude0":p2=2.0, 5.0' in text
-    assert 'timeToHitToAltitude1:p2=10.0, 80.0' in text
-    assert 'timeToHitToAltitude2:p2=45.0, 120.0' in text
-    assert 'timeToHitToAltitude3:p2=180.0, 150.0' in text
+    assert 'timeToHitToAltitude1:p2=10.0, 160.0' in text
+    assert 'timeToHitToAltitude2:p2=45.0, 240.0' in text
+    assert 'timeToHitToAltitude3:p2=180.0, 300.0' in text
     assert '"@override:altitudeHoldTargetElevation":r=-30.0' in text
-    assert '"@override:altitudeHoldTargetOmegaMax":r=2.5' in text
-    assert '"@override:altitudeRateRateToClimb":r=0.35' in text
-    assert '"@override:climbDiffToAccelMult":r=0.04' in text
-    assert '"@override:altitudeHoldAngleLimith":p2=-35.0, 25.0' in text
+    assert '"@override:altitudeHoldTargetOmegaMax":r=0.8' in text
+    assert '"@override:altitudeRateRateToClimb":r=0.12' in text
+    assert '"@override:climbDiffToAccelMult":r=0.0125' in text
+    assert '"@override:altitudeHoldAngleLimith":p2=-30.0, 15.0' in text
     assert '"@override:explosiveMass":r=250.0' in text
     assert 'gunnerFilterMaxDistMult:r=0.1' in text
     assert '"@override:bulletName":t="SCALP-EG"' in text
@@ -265,6 +265,11 @@ def test_scalp_ins_proxy_uses_coordinate_guidance_and_low_altitude_schedule() ->
     assert 'slot:i=10' in preset
     assert 'slot:i=6\n  preset:t="damocles"' in preset
 
+    unit = UNIT.read_text()
+    for station_name in ("wt_scalp_ins_lo_slot3", "wt_scalp_ins_lo_slot10"):
+        station = unit.split(f'name:t="{station_name}"', 1)[1].split("WeaponPreset {", 1)[0]
+        assert 'trigger:t="guided bombs"' in station
+
 
 def test_scalp_asset_manifest_indexes_reusable_sources() -> None:
     manifest_path = ROOT / "assets" / "weapons" / "scalp-eg" / "asset.toml"
@@ -283,3 +288,22 @@ def test_scalp_asset_manifest_indexes_reusable_sources() -> None:
     for variant in manifest["variants"]:
         for key in ("weapon", "preset", "mission"):
             assert (ROOT / variant[key]).is_file()
+
+
+def test_scalp_localization_covers_every_custom_weapon_filename() -> None:
+    localization = (
+        EXPERIMENT / "localization" / "wt_custom_weapons.csv"
+    ).read_text()
+
+    for weapon in (
+        "wt_agm_84k_slam_er_lo",
+        "wt_agm_84k_slam_er_vlo",
+        "wt_agm_84k_scalp_ins_lo",
+    ):
+        assert f'"weapons/{weapon}"' in localization
+        assert f'"weapons/{weapon}/short";"SCALP-EG"' in localization
+
+    installer = (EXPERIMENT / "install.sh").read_text()
+    uninstaller = (EXPERIMENT / "uninstall.sh").read_text()
+    assert 'configure_localization.py" "$game_dir"' in installer
+    assert 'configure_localization.py" --remove "$game_dir"' in uninstaller

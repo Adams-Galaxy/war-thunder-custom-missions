@@ -66,17 +66,17 @@ These values affect AI air-defense interception priority/range; they are not
 physical radar-cross-section measurements or player-radar detection values.
 
 The additional `INS Test` preserves the working 0.1 interception treatment but
-switches the proxy to War Thunder's `sns` point-guidance path. It is an A/B test
-for selecting a saved or map-designated aiming point and launching from behind
-cover without an IR vehicle lock. Its revised altitude schedule is 150 m while
-distant, 120 m on approach, 80 m during the terminal setup, and 5 m at impact.
-The climb controller may command up to 25 degrees and the terminal descent up
-to 35 degrees, with a -30 degree terminal target-elevation command. The greater
-clearance compensates for the stock AGM-84K autopilot's observed vertical
-oscillation over land. These values follow the structure used by the game's
-sea-skimming missile autopilots, but this remains an approximation rather than
-real TERPROM route planning. The original LO and VLO missions remain available
-as known-working IR-guided baselines.
+switches the proxy to War Thunder's `sns` point-guidance path and the
+`guided bombs` release channel used by the game's native coordinate-guided
+stores. It is an A/B test for assigning an aiming point and launching from
+behind cover without an IR vehicle lock or the targeting-optics view. Its
+revised altitude schedule is 300 m while distant, 240 m on approach, 160 m
+during the terminal setup, and 5 m at impact. The height controller's response
+rate, acceleration gain, and maximum turn rate are deliberately reduced to
+dampen the stock AGM-84K's observed vertical oscillation. War Thunder exposes
+no explicit low-pass-filter setting, so this remains an approximation rather
+than real TERPROM route planning. The original LO and VLO missions remain
+available as known-working IR-guided baselines.
 
 The hosted mission's 2018 formations normally depend on a multiplayer balance
 rank. These local copies make the already-selected 2018 templates unconditional
@@ -94,6 +94,15 @@ Open War Thunder, choose `Battles` → `User Missions`, and start one of the
 sixteen Rafale missions. The files are installed at the User Missions root using
 the conventional `usr_*.mission.blk` names expected by the single-player
 mission browser.
+
+The installer also adds one isolated `wt_custom_weapons.csv` table and enables
+War Thunder's `testLocalization` switch. This is required because the selected
+weapon HUD derives its lookup key from each custom BLK filename; overriding
+`bulletName` alone does not satisfy that lookup. The helper preserves one-time
+backups of `config.blk` and `lang/localization.blk`, and it leaves every existing
+localization table intact. On removal it deletes only its own table and manifest
+entry; it deliberately leaves `testLocalization` enabled in case the user's
+other custom text depends on it.
 
 ## Remove
 

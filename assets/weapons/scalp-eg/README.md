@@ -14,12 +14,12 @@ loadout generator.
 - British name for the same weapon family: **Storm Shadow**
 - Current visual/physics base: War Thunder's AGM-84K SLAM-ER asset
 
-`bulletName` and `gunnerOpticsName` are overridden to `SCALP-EG`. War Thunder
-therefore uses the correct short identity in the selected-weapon HUD instead of
-the inherited AGM-84K identity. A complete translated long name would require a
-custom localization table; this package deliberately avoids globally enabling
-War Thunder's `testLocalization` mode because that would also activate every
-other locally generated, potentially stale CSV file.
+`bulletName` and `gunnerOpticsName` are overridden to `SCALP-EG`. The in-flight
+selected-weapon HUD additionally derives a `/short` localization key from the
+custom BLK filename, so the experiment ships an isolated English localization
+table for all three proxy filenames. The installer registers that table and
+enables War Thunder's `testLocalization` mode while preserving the user's
+existing localization files.
 
 ## Loadout presentation
 
@@ -37,9 +37,10 @@ The installed physical loadout is unchanged:
 ## Variants
 
 The manifest records the two known-working optical/IR versions and the newer
-coordinate-guided low-altitude test. All share the same physical approximation
-and 250 kg PBXN-110 gameplay fill. See `asset.toml` for exact paths and tuning
-values.
+coordinate-guided test. The INS version uses a softened 300-to-160 m
+terrain-following profile and the native-style guided-bomb release channel.
+All share the same physical approximation and 250 kg PBXN-110 gameplay fill.
+See `asset.toml` for exact paths and tuning values.
 
 The asset is local and single-player-only. It does not add a genuine SCALP 3D
 model, TERPROM, terminal scene matching, tandem BROACH damage, or a multiplayer

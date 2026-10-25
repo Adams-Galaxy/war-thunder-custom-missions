@@ -1,7 +1,9 @@
 // Experimental SCALP-EG coordinate-guidance proxy.
 // It keeps the proven LO 0.1 interception treatment and physical approximation,
 // but substitutes the game's SNS point-guidance path so it can be launched at
-// a saved/map-designated point without an IR/TV seeker lock.
+// a saved/map-designated point without an IR/TV seeker lock.  The deliberately
+// soft altitude controller below trades very-low-level terrain following for a
+// smoother 300-to-160 m cruise and approach profile.
 include "#/develop/gameBase/gameData/Weapons/rocketGuns/us_agm_84k_slam_er.blk"
 
 "@override:rocket" {
@@ -39,14 +41,14 @@ include "#/develop/gameBase/gameData/Weapons/rocketGuns/us_agm_84k_slam_er.blk"
     "@override:guidanceAutopilot" {
       "@override:altitudeHoldEnabled":b=yes
       "@override:timeToHitToAltitude0":p2=2.0, 5.0
-      timeToHitToAltitude1:p2=10.0, 80.0
-      timeToHitToAltitude2:p2=45.0, 120.0
-      timeToHitToAltitude3:p2=180.0, 150.0
+      timeToHitToAltitude1:p2=10.0, 160.0
+      timeToHitToAltitude2:p2=45.0, 240.0
+      timeToHitToAltitude3:p2=180.0, 300.0
       "@override:altitudeHoldTargetElevation":r=-30.0
-      "@override:altitudeHoldTargetOmegaMax":r=2.5
-      "@override:altitudeRateRateToClimb":r=0.35
-      "@override:climbDiffToAccelMult":r=0.04
-      "@override:altitudeHoldAngleLimith":p2=-35.0, 25.0
+      "@override:altitudeHoldTargetOmegaMax":r=0.8
+      "@override:altitudeRateRateToClimb":r=0.12
+      "@override:climbDiffToAccelMult":r=0.0125
+      "@override:altitudeHoldAngleLimith":p2=-30.0, 15.0
     }
   }
 }

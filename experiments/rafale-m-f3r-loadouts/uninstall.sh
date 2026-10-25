@@ -52,5 +52,6 @@ rm -f "$old_missions_dir/southeastern-city-rafale-spice250.blk"
 rm -f "$old_missions_dir/southeastern-city-rafale-brimstone.blk"
 rm -f "$old_missions_dir/southeastern-city-rafale-jsow.blk"
 rmdir "$old_missions_dir" 2>/dev/null || true
+python3 "$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)/configure_localization.py" --remove "$game_dir"
 
 printf 'Removed the Rafale weapon experiment files.\n'
