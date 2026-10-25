@@ -40,12 +40,10 @@ SCALP_TURN_MATRIX = {
     "lead075_cap45_gain0125_damped": (0.75, 1.00, 45.0, 0.0125),
 }
 SCALP_LOFT_MATRIX = {
-    "manual20_600": ("hold", ((0.0, 600.0), (2.0, 600.0), (2.25, 35.0), (8.0, 35.0), (8.5, 80.0))),
-    "manual20_1000": ("hold", ((0.0, 1000.0), (2.0, 1000.0), (2.25, 35.0), (8.0, 35.0), (8.5, 80.0))),
-    "manual15_600": ("hold", ((0.0, 600.0), (1.5, 600.0), (1.75, 35.0), (8.0, 35.0), (8.5, 80.0))),
-    "manual15_1000": ("hold", ((0.0, 1000.0), (1.5, 1000.0), (1.75, 35.0), (8.0, 35.0), (8.5, 80.0))),
-    "manual10_600": ("hold", ((0.0, 600.0), (1.0, 600.0), (1.25, 35.0), (8.0, 35.0), (8.5, 80.0))),
-    "manual10_1000": ("hold", ((0.0, 1000.0), (1.0, 1000.0), (1.25, 35.0), (8.0, 35.0), (8.5, 80.0))),
+    "manual600_release10": ("hold", ((1.0, 600.0), (4.0, 600.0), (4.5, 35.0), (8.5, 35.0), (10.0, 80.0))),
+    "manual600_release15": ("hold", ((1.5, 600.0), (4.0, 600.0), (4.5, 35.0), (8.5, 35.0), (10.0, 80.0))),
+    "manual1000_release10": ("hold", ((1.0, 1000.0), (5.5, 1000.0), (6.0, 35.0), (8.5, 35.0), (10.0, 80.0))),
+    "manual1000_release15": ("hold", ((1.5, 1000.0), (5.5, 1000.0), (6.0, 35.0), (8.5, 35.0), (10.0, 80.0))),
 }
 
 
@@ -78,7 +76,7 @@ def test_custom_rafale_registers_all_experimental_stores() -> None:
         assert text.count(f"rocketGuns/wt_agm_84k_scalp_turn_{slug}_lo.blk") == 3
     for slug in SCALP_LOFT_MATRIX:
         assert text.count(f"rocketGuns/wt_agm_84k_scalp_loft_{slug}_lo.blk") == 3
-    assert text.count('presetType:t="AIR_TO_GROUND"') == 23
+    assert text.count('presetType:t="AIR_TO_GROUND"') == 21
     assert text.count('iconType:t="missile_air_to_uni_large"') >= 7
     for station_name in (
         "wt_agm84k_lo_slot3",
@@ -96,10 +94,10 @@ def test_custom_rafale_registers_all_experimental_stores() -> None:
     ):
         station = text.split(f'name:t="{station_name}"', 1)[0].rsplit("WeaponPreset {", 1)[1]
         assert 'iconType:t="glide_bomb_default"' in station
-    assert text.count('tier { idx:i=10 }') == 23
-    assert text.count('tier { idx:i=2 }') == 23
+    assert text.count('tier { idx:i=10 }') == 21
+    assert text.count('tier { idx:i=2 }') == 21
     assert text.count('preset:t="damocles"') == 2
-    assert text.count('blk:t="gameData/flightModels/weaponPresets/') == 36
+    assert text.count('blk:t="gameData/flightModels/weaponPresets/') == 34
     assert "gameData/FlightModels/weaponPresets/" not in text
     assert text.count("{") == text.count("}")
 
@@ -467,6 +465,10 @@ def test_scalp_asset_manifest_indexes_reusable_sources() -> None:
         "manual-loft-15-1000-no-return-lo-010",
         "manual-loft-10-600-no-return-lo-010",
         "manual-loft-10-1000-no-return-lo-010",
+        "manual-loft-600-release-10-lo-010",
+        "manual-loft-600-release-15-lo-010",
+        "manual-loft-1000-release-10-lo-010",
+        "manual-loft-1000-release-15-lo-010",
     }
     for variant in manifest["variants"]:
         for key in ("weapon", "preset", "mission"):
@@ -569,7 +571,7 @@ def test_scalp_geometry_loft_matrix_is_controlled_and_complete() -> None:
                 line for line in weapon.splitlines() if "timeToHitToAltitude" in line
             )
             assert ", 5" not in altitude_lines
-            assert "p2=0," in altitude_lines
+            assert "p2=0," not in altitude_lines
         assert preset.count(f'preset:t="wt_scalp_loft_{slug}_lo_slot') == 2
         for test_range, altitude in (("water", 100.0), ("ground", 1500.0)):
             mission = (
@@ -583,5 +585,5 @@ def test_scalp_geometry_loft_matrix_is_controlled_and_complete() -> None:
                 assert "recalculates the loft angle during flight" in mission
             else:
                 assert "no return-to-target altitude keyframe" in mission
-                assert "retained through zero seconds" in mission
+                assert "Altitude hold releases below" in mission
             assert mission.count("{") == mission.count("}")

@@ -516,6 +516,70 @@ mission = "experiments/rafale-m-f3r-loadouts/UserMissions/usr_wt_rafale_scalp_lo
 ground_mission = "experiments/rafale-m-f3r-loadouts/UserMissions/usr_wt_rafale_scalp_loft_manual10_1000_ground_lo2.mission.blk"
 
 [[variants]]
+id = "manual-loft-600-release-10-lo-010"
+display_name = "SCALP-EG manual loft to 600 m, release at 1.0 s (LO 0.10)"
+guidance = "seekerless SNS coordinate guidance with altitude hold"
+interception_multiplier = 0.10
+release_channel = "atgm"
+altitude_hold = true
+loft_enabled = false
+terminal_profile_time_to_hit_s = [10.0, 8.5, 4.5, 4.0, 1.0]
+terminal_profile_altitude_m = [80.0, 35.0, 35.0, 600.0, 600.0]
+automatic_terminal_dive_test = true
+weapon = "experiments/rafale-m-f3r-loadouts/content/pkg_local/gameData/Weapons/rocketGuns/wt_agm_84k_scalp_loft_manual600_release10_lo.blk"
+preset = "experiments/rafale-m-f3r-loadouts/content/pkg_local/gameData/flightModels/weaponPresets/wt_rafale_m_scalp_loft_manual600_release10_lo2.blk"
+mission = "experiments/rafale-m-f3r-loadouts/UserMissions/usr_wt_rafale_scalp_loft_manual600_release10_water_lo2.mission.blk"
+ground_mission = "experiments/rafale-m-f3r-loadouts/UserMissions/usr_wt_rafale_scalp_loft_manual600_release10_ground_lo2.mission.blk"
+
+[[variants]]
+id = "manual-loft-600-release-15-lo-010"
+display_name = "SCALP-EG manual loft to 600 m, release at 1.5 s (LO 0.10)"
+guidance = "seekerless SNS coordinate guidance with altitude hold"
+interception_multiplier = 0.10
+release_channel = "atgm"
+altitude_hold = true
+loft_enabled = false
+terminal_profile_time_to_hit_s = [10.0, 8.5, 4.5, 4.0, 1.5]
+terminal_profile_altitude_m = [80.0, 35.0, 35.0, 600.0, 600.0]
+automatic_terminal_dive_test = true
+weapon = "experiments/rafale-m-f3r-loadouts/content/pkg_local/gameData/Weapons/rocketGuns/wt_agm_84k_scalp_loft_manual600_release15_lo.blk"
+preset = "experiments/rafale-m-f3r-loadouts/content/pkg_local/gameData/flightModels/weaponPresets/wt_rafale_m_scalp_loft_manual600_release15_lo2.blk"
+mission = "experiments/rafale-m-f3r-loadouts/UserMissions/usr_wt_rafale_scalp_loft_manual600_release15_water_lo2.mission.blk"
+ground_mission = "experiments/rafale-m-f3r-loadouts/UserMissions/usr_wt_rafale_scalp_loft_manual600_release15_ground_lo2.mission.blk"
+
+[[variants]]
+id = "manual-loft-1000-release-10-lo-010"
+display_name = "SCALP-EG manual loft to 1000 m, release at 1.0 s (LO 0.10)"
+guidance = "seekerless SNS coordinate guidance with altitude hold"
+interception_multiplier = 0.10
+release_channel = "atgm"
+altitude_hold = true
+loft_enabled = false
+terminal_profile_time_to_hit_s = [10.0, 8.5, 6.0, 5.5, 1.0]
+terminal_profile_altitude_m = [80.0, 35.0, 35.0, 1000.0, 1000.0]
+automatic_terminal_dive_test = true
+weapon = "experiments/rafale-m-f3r-loadouts/content/pkg_local/gameData/Weapons/rocketGuns/wt_agm_84k_scalp_loft_manual1000_release10_lo.blk"
+preset = "experiments/rafale-m-f3r-loadouts/content/pkg_local/gameData/flightModels/weaponPresets/wt_rafale_m_scalp_loft_manual1000_release10_lo2.blk"
+mission = "experiments/rafale-m-f3r-loadouts/UserMissions/usr_wt_rafale_scalp_loft_manual1000_release10_water_lo2.mission.blk"
+ground_mission = "experiments/rafale-m-f3r-loadouts/UserMissions/usr_wt_rafale_scalp_loft_manual1000_release10_ground_lo2.mission.blk"
+
+[[variants]]
+id = "manual-loft-1000-release-15-lo-010"
+display_name = "SCALP-EG manual loft to 1000 m, release at 1.5 s (LO 0.10)"
+guidance = "seekerless SNS coordinate guidance with altitude hold"
+interception_multiplier = 0.10
+release_channel = "atgm"
+altitude_hold = true
+loft_enabled = false
+terminal_profile_time_to_hit_s = [10.0, 8.5, 6.0, 5.5, 1.5]
+terminal_profile_altitude_m = [80.0, 35.0, 35.0, 1000.0, 1000.0]
+automatic_terminal_dive_test = true
+weapon = "experiments/rafale-m-f3r-loadouts/content/pkg_local/gameData/Weapons/rocketGuns/wt_agm_84k_scalp_loft_manual1000_release15_lo.blk"
+preset = "experiments/rafale-m-f3r-loadouts/content/pkg_local/gameData/flightModels/weaponPresets/wt_rafale_m_scalp_loft_manual1000_release15_lo2.blk"
+mission = "experiments/rafale-m-f3r-loadouts/UserMissions/usr_wt_rafale_scalp_loft_manual1000_release15_water_lo2.mission.blk"
+ground_mission = "experiments/rafale-m-f3r-loadouts/UserMissions/usr_wt_rafale_scalp_loft_manual1000_release15_ground_lo2.mission.blk"
+
+[[variants]]
 id = "ins-ultralate-medium-lo-010"
 display_name = "SCALP-EG INS Ultra-Late Medium (LO 0.10)"
 guidance = "seekerless SNS coordinate guidance"

@@ -49,26 +49,28 @@ class Variant:
         return MISSIONS / f"usr_wt_rafale_scalp_loft_{self.slug}_ground_lo2.mission.blk"
 
 
-def manual_variant(lead_s: float, altitude_m: float) -> Variant:
-    lead_slug = f"{lead_s:.1f}".replace(".", "")
+def manual_variant(altitude_m: float, release_s: float) -> Variant:
+    release_slug = f"{release_s:.1f}".replace(".", "")
+    loft_reach_s = 4.0 if altitude_m == 600.0 else 5.5
+    loft_begin_s = loft_reach_s + 0.5
     return Variant(
-        f"manual{lead_slug}_{altitude_m:.0f}",
-        f"Manual Loft {lead_s:.1f} s · {altitude_m:.0f} m",
+        f"manual{altitude_m:.0f}_release{release_slug}",
+        f"Manual Loft {altitude_m:.0f} m · Release {release_s:.1f} s",
         "altitude_hold",
         altitude_points=(
-            (0.0, altitude_m),
-            (lead_s, altitude_m),
-            (lead_s + 0.25, 35.0),
-            (8.0, 35.0),
-            (8.5, 80.0),
+            (release_s, altitude_m),
+            (loft_reach_s, altitude_m),
+            (loft_begin_s, 35.0),
+            (8.5, 35.0),
+            (10.0, 80.0),
         ),
     )
 
 
 VARIANTS = tuple(
-    manual_variant(lead_s, altitude_m)
-    for lead_s in (2.0, 1.5, 1.0)
+    manual_variant(altitude_m, release_s)
     for altitude_m in (600.0, 1000.0)
+    for release_s in (1.0, 1.5)
 )
 
 
@@ -158,12 +160,14 @@ def mission_text(template: Path, variant: Variant, ground: bool) -> str:
             "This tests whether War Thunder recalculates the loft angle during flight or samples launch range once."
         )
     else:
-        lead_s, demanded_altitude = variant.altitude_points[1]
+        release_s, demanded_altitude = variant.altitude_points[0]
+        loft_reach_s, _ = variant.altitude_points[1]
+        loft_begin_s, _ = variant.altitude_points[2]
         description = (
-            f"Manual altitude-hold loft test, starting {location}. It cruises at 80 m, descends to 35 m, "
-            f"then reaches a {demanded_altitude:g} m command at {lead_s:g} seconds to impact through a "
-            "0.25-second transition. The same high command is retained through zero seconds; there is no "
-            "return-to-target altitude keyframe, so terminal target-elevation guidance must complete the dive."
+            f"Manual altitude-hold loft test, starting {location}. It transitions from 80 m at 10 seconds "
+            f"to 35 m at 8.5 seconds, holds level, then begins lofting at {loft_begin_s:g} seconds and "
+            f"reaches a {demanded_altitude:g} m command at {loft_reach_s:g} seconds. Altitude hold releases "
+            f"below {release_s:g} seconds with no downward keyframe, leaving terminal guidance to complete the dive."
         )
     return re.sub(
         r'^    locDesc:t=".*"$',
