@@ -5354,7 +5354,7 @@ units{
   }
   ships{
     name:t="scalp_water_target_left"
-    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-6000.0, 0.0, -89607.695]]
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [34000.0, 0.0, -41607.695]]
     unit_class:t="ussr_destroyer_rckt_pr956"
     objLayer:i=1
     closed_waypoints:b=no
@@ -5386,7 +5386,7 @@ units{
   }
   ships{
     name:t="scalp_water_target_right"
-    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [6000.0, 0.0, -89607.695]]
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [46000.0, 0.0, -41607.695]]
     unit_class:t="ussr_destroyer_rckt_pr956"
     objLayer:i=1
     closed_waypoints:b=no
@@ -5418,7 +5418,7 @@ units{
   }
   armada{
     name:t="t2_player01"
-    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 1500.0, -100000.0]]
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [40000.0, 1500.0, -52000.0]]
     unit_class:t="wt_custom_rafale_m_f3r"
     closed_waypoints:b=no
     isShipSpline:b=no

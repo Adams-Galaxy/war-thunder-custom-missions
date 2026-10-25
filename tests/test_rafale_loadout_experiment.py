@@ -136,12 +136,12 @@ def test_each_mission_enables_its_single_player_loadout() -> None:
             assert (
                 'name:t="t2_player01"\n'
                 '    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] '
-                '[0.0, 0.0, 1.0] [0.0, 1500.0, -100000.0]]'
+                '[0.0, 0.0, 1.0] [40000.0, 1500.0, -52000.0]]'
             ) in text
             assert text.count('name:t="scalp_water_target_left"') == 1
             assert text.count('name:t="scalp_water_target_right"') == 1
-            assert '[-6000.0, 0.0, -89607.695]' in text
-            assert '[6000.0, 0.0, -89607.695]' in text
+            assert '[34000.0, 0.0, -41607.695]' in text
+            assert '[46000.0, 0.0, -41607.695]' in text
             assert text.count('attack_type:t="hold_fire"') == 2
         else:
             assert (
