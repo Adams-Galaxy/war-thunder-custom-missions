@@ -56,6 +56,7 @@ def manual_variant(lead_s: float, altitude_m: float) -> Variant:
         f"Manual Loft {lead_s:.1f} s · {altitude_m:.0f} m",
         "altitude_hold",
         altitude_points=(
+            (0.0, altitude_m),
             (lead_s, altitude_m),
             (lead_s + 0.25, 35.0),
             (8.0, 35.0),
@@ -157,12 +158,12 @@ def mission_text(template: Path, variant: Variant, ground: bool) -> str:
             "This tests whether War Thunder recalculates the loft angle during flight or samples launch range once."
         )
     else:
-        lead_s, demanded_altitude = variant.altitude_points[0]
+        lead_s, demanded_altitude = variant.altitude_points[1]
         description = (
             f"Manual altitude-hold loft test, starting {location}. It cruises at 80 m, descends to 35 m, "
             f"then reaches a {demanded_altitude:g} m command at {lead_s:g} seconds to impact through a "
-            "0.25-second transition. There is deliberately no return-to-target altitude keyframe; "
-            "terminal target-elevation guidance must complete the dive automatically."
+            "0.25-second transition. The same high command is retained through zero seconds; there is no "
+            "return-to-target altitude keyframe, so terminal target-elevation guidance must complete the dive."
         )
     return re.sub(
         r'^    locDesc:t=".*"$',

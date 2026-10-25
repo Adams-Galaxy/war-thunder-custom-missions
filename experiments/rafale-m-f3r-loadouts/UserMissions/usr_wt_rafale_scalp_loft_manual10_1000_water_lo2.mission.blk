@@ -30,7 +30,7 @@ mission_settings{
     useSpawnDelay:b=yes
     timeToLoseInstantDetection:r=10
     locName:t="Southeastern City · SCALP Test · Manual Loft 1.0 s · 1000 m · Water"
-    locDesc:t="Manual altitude-hold loft test, starting 100 m over the flat-water range. It cruises at 80 m, descends to 35 m, then reaches a 1000 m command at 1 seconds to impact through a 0.25-second transition. There is deliberately no return-to-target altitude keyframe; terminal target-elevation guidance must complete the dive automatically."
+    locDesc:t="Manual altitude-hold loft test, starting 100 m over the flat-water range. It cruises at 80 m, descends to 35 m, then reaches a 1000 m command at 1 seconds to impact through a 0.25-second transition. The same high command is retained through zero seconds; there is no return-to-target altitude keyframe, so terminal target-elevation guidance must complete the dive."
     scoreLimit:i=9000
     timeLimit:i=90
     deathPenaltyMul:r=0.2

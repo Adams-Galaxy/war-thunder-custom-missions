@@ -128,10 +128,11 @@ Six manual-loft profiles use altitude hold both for terrain following and for a
 late pop-up. The missile cruises at 80 m, descends to 35 m inside roughly eight
 seconds to impact, and then ramps over 0.25 seconds to either a 600 m or 1000 m
 altitude command. Each altitude is tested at 2.0, 1.5, and 1.0 seconds to impact.
-There is deliberately no low-altitude keyframe after the pop-up: the preceding
-200 m experiment proved that terminal target-elevation guidance can complete the
-final dive automatically, while an explicit downward keyframe creates the
-unwanted feedback shelf. All six profiles share the same medium damping and a
+The demanded loft altitude is duplicated at zero seconds so altitude hold stays
+active after the transition instead of handing control back immediately. There
+is deliberately no low-altitude keyframe after the pop-up: terminal target-
+elevation guidance must complete the final dive without recreating the unwanted
+feedback shelf. All six profiles share the same medium damping and a
 70-degree climb allowance, so only demanded altitude and timing vary. Each has a
 100 m flat-water mission and a 1.5 km NATO Air Spawn 1 ground mission. Prior
 native, range-mapped, and altitude-hold controls remain in Git as test history,

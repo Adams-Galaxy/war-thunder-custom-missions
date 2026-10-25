@@ -40,12 +40,12 @@ SCALP_TURN_MATRIX = {
     "lead075_cap45_gain0125_damped": (0.75, 1.00, 45.0, 0.0125),
 }
 SCALP_LOFT_MATRIX = {
-    "manual20_600": ("hold", ((2.0, 600.0), (2.25, 35.0), (8.0, 35.0), (8.5, 80.0))),
-    "manual20_1000": ("hold", ((2.0, 1000.0), (2.25, 35.0), (8.0, 35.0), (8.5, 80.0))),
-    "manual15_600": ("hold", ((1.5, 600.0), (1.75, 35.0), (8.0, 35.0), (8.5, 80.0))),
-    "manual15_1000": ("hold", ((1.5, 1000.0), (1.75, 35.0), (8.0, 35.0), (8.5, 80.0))),
-    "manual10_600": ("hold", ((1.0, 600.0), (1.25, 35.0), (8.0, 35.0), (8.5, 80.0))),
-    "manual10_1000": ("hold", ((1.0, 1000.0), (1.25, 35.0), (8.0, 35.0), (8.5, 80.0))),
+    "manual20_600": ("hold", ((0.0, 600.0), (2.0, 600.0), (2.25, 35.0), (8.0, 35.0), (8.5, 80.0))),
+    "manual20_1000": ("hold", ((0.0, 1000.0), (2.0, 1000.0), (2.25, 35.0), (8.0, 35.0), (8.5, 80.0))),
+    "manual15_600": ("hold", ((0.0, 600.0), (1.5, 600.0), (1.75, 35.0), (8.0, 35.0), (8.5, 80.0))),
+    "manual15_1000": ("hold", ((0.0, 1000.0), (1.5, 1000.0), (1.75, 35.0), (8.0, 35.0), (8.5, 80.0))),
+    "manual10_600": ("hold", ((0.0, 600.0), (1.0, 600.0), (1.25, 35.0), (8.0, 35.0), (8.5, 80.0))),
+    "manual10_1000": ("hold", ((0.0, 1000.0), (1.0, 1000.0), (1.25, 35.0), (8.0, 35.0), (8.5, 80.0))),
 }
 
 
@@ -569,7 +569,7 @@ def test_scalp_geometry_loft_matrix_is_controlled_and_complete() -> None:
                 line for line in weapon.splitlines() if "timeToHitToAltitude" in line
             )
             assert ", 5" not in altitude_lines
-            assert "p2=0," not in altitude_lines
+            assert "p2=0," in altitude_lines
         assert preset.count(f'preset:t="wt_scalp_loft_{slug}_lo_slot') == 2
         for test_range, altitude in (("water", 100.0), ("ground", 1500.0)):
             mission = (
@@ -583,4 +583,5 @@ def test_scalp_geometry_loft_matrix_is_controlled_and_complete() -> None:
                 assert "recalculates the loft angle during flight" in mission
             else:
                 assert "no return-to-target altitude keyframe" in mission
+                assert "retained through zero seconds" in mission
             assert mission.count("{") == mission.count("}")
