@@ -40,18 +40,16 @@ SCALP_TURN_MATRIX = {
     "lead075_cap45_gain0125_damped": (0.75, 1.00, 45.0, 0.0125),
 }
 SCALP_LOFT_MATRIX = {
-    "response110": ("hold", ((1.5, 600.0), (4.0, 600.0), (4.5, 40.0), (8.5, 40.0), (11.0, 80.0))),
-    "response115": ("hold", ((1.5, 600.0), (4.0, 600.0), (4.5, 40.0), (8.5, 40.0), (11.0, 80.0))),
-    "response120": ("hold", ((1.5, 600.0), (4.0, 600.0), (4.5, 40.0), (8.5, 40.0), (11.0, 80.0))),
-    "response125": ("hold", ((1.5, 600.0), (4.0, 600.0), (4.5, 40.0), (8.5, 40.0), (11.0, 80.0))),
-    "response130": ("hold", ((1.5, 600.0), (4.0, 600.0), (4.5, 40.0), (8.5, 40.0), (11.0, 80.0))),
+    slug: ("hold", ((2.5, 700.0), (3.5, 700.0), (4.5, 500.0), (5.5, 250.0), (6.5, 40.0), (8.5, 40.0), (11.0, 80.0)))
+    for slug in ("response130", "response140", "response150", "response160", "response170", "response180")
 }
 SCALP_LOFT_DAMPING = {
-    "response110": (1.10, 0.165, 0.0155),
-    "response115": (1.15, 0.175, 0.0165),
-    "response120": (1.20, 0.185, 0.0175),
-    "response125": (1.25, 0.195, 0.0185),
     "response130": (1.30, 0.205, 0.0195),
+    "response140": (1.40, 0.205, 0.0195),
+    "response150": (1.50, 0.205, 0.0195),
+    "response160": (1.60, 0.205, 0.0195),
+    "response170": (1.70, 0.205, 0.0195),
+    "response180": (1.80, 0.205, 0.0195),
 }
 
 
@@ -84,7 +82,7 @@ def test_custom_rafale_registers_all_experimental_stores() -> None:
         assert text.count(f"rocketGuns/wt_agm_84k_scalp_turn_{slug}_lo.blk") == 3
     for slug in SCALP_LOFT_MATRIX:
         assert text.count(f"rocketGuns/wt_agm_84k_scalp_loft_{slug}_lo.blk") == 3
-    assert text.count('presetType:t="AIR_TO_GROUND"') == 22
+    assert text.count('presetType:t="AIR_TO_GROUND"') == 23
     assert text.count('iconType:t="missile_air_to_uni_large"') >= 7
     for station_name in (
         "wt_agm84k_lo_slot3",
@@ -102,10 +100,10 @@ def test_custom_rafale_registers_all_experimental_stores() -> None:
     ):
         station = text.split(f'name:t="{station_name}"', 1)[0].rsplit("WeaponPreset {", 1)[1]
         assert 'iconType:t="glide_bomb_default"' in station
-    assert text.count('tier { idx:i=10 }') == 22
-    assert text.count('tier { idx:i=2 }') == 22
+    assert text.count('tier { idx:i=10 }') == 23
+    assert text.count('tier { idx:i=2 }') == 23
     assert text.count('preset:t="damocles"') == 2
-    assert text.count('blk:t="gameData/flightModels/weaponPresets/') == 35
+    assert text.count('blk:t="gameData/flightModels/weaponPresets/') == 36
     assert "gameData/FlightModels/weaponPresets/" not in text
     assert text.count("{") == text.count("}")
 
@@ -488,6 +486,11 @@ def test_scalp_asset_manifest_indexes_reusable_sources() -> None:
         "manual-loft-response-120-lo-010",
         "manual-loft-response-125-lo-010",
         "manual-loft-response-130-lo-010",
+        "manual-loft-response-140-lo-010",
+        "manual-loft-response-150-lo-010",
+        "manual-loft-response-160-lo-010",
+        "manual-loft-response-170-lo-010",
+        "manual-loft-response-180-lo-010",
     }
     for variant in manifest["variants"]:
         for key in ("weapon", "preset", "mission"):

@@ -55,21 +55,25 @@ class Variant:
 def manual_variant(
     slug: str,
     label: str,
-    loft_transition_s: float,
     *,
     target_omega_max: float = 0.95,
     altitude_rate_gain: float = 0.135,
     climb_gain: float = 0.0125,
 ) -> Variant:
-    loft_reach_s = 4.0
-    loft_begin_s = loft_reach_s + loft_transition_s
+    # time-to-hit counts down.  Spread the climb over several commands so the
+    # faster controller does not receive one large 40 -> 700 m step.
+    terminal_release_s = 2.5
+    loft_reach_s = 3.5
+    loft_begin_s = 6.5
     return Variant(
         slug,
         label,
         "altitude_hold",
         altitude_points=(
-            (1.5, 600.0),
-            (loft_reach_s, 600.0),
+            (terminal_release_s, 700.0),
+            (loft_reach_s, 700.0),
+            (4.5, 500.0),
+            (5.5, 250.0),
             (loft_begin_s, 40.0),
             (8.5, 40.0),
             (11.0, 80.0),
@@ -82,45 +86,19 @@ def manual_variant(
 
 VARIANTS = (
     manual_variant(
-        "response110",
-        "Response 1.10 · Baseline",
-        0.50,
-        target_omega_max=1.10,
-        altitude_rate_gain=0.165,
-        climb_gain=0.0155,
-    ),
-    manual_variant(
-        "response115",
-        "Response 1.15",
-        0.50,
-        target_omega_max=1.15,
-        altitude_rate_gain=0.175,
-        climb_gain=0.0165,
-    ),
-    manual_variant(
-        "response120",
-        "Response 1.20",
-        0.50,
-        target_omega_max=1.20,
-        altitude_rate_gain=0.185,
-        climb_gain=0.0175,
-    ),
-    manual_variant(
-        "response125",
-        "Response 1.25",
-        0.50,
-        target_omega_max=1.25,
-        altitude_rate_gain=0.195,
-        climb_gain=0.0185,
-    ),
-    manual_variant(
         "response130",
-        "Response 1.30",
-        0.50,
+        "Response 1.30 · New Terminal Baseline",
         target_omega_max=1.30,
         altitude_rate_gain=0.205,
         climb_gain=0.0195,
     ),
+    # Isolate target omega: the rate/climb gains remain at the proven 1.30
+    # values so this ladder changes one controller parameter at a time.
+    manual_variant("response140", "Response 1.40", target_omega_max=1.40, altitude_rate_gain=0.205, climb_gain=0.0195),
+    manual_variant("response150", "Response 1.50", target_omega_max=1.50, altitude_rate_gain=0.205, climb_gain=0.0195),
+    manual_variant("response160", "Response 1.60", target_omega_max=1.60, altitude_rate_gain=0.205, climb_gain=0.0195),
+    manual_variant("response170", "Response 1.70", target_omega_max=1.70, altitude_rate_gain=0.205, climb_gain=0.0195),
+    manual_variant("response180", "Response 1.80", target_omega_max=1.80, altitude_rate_gain=0.205, climb_gain=0.0195),
 )
 
 
@@ -135,7 +113,8 @@ def weapon_text(variant: Variant) -> str:
     _, rest = text.split("\n", 1)
     text = f"// SCALP comparison experiment: {variant.label}.\n" + rest
 
-    # Every altitude-hold comparison uses the same damping that behaved well in game.
+    # These three values are separate altitude-controller stages, not a single
+    # damping knob.  The current ladder deliberately varies target omega only.
     text = replace_once(
         text,
         "altitudeHoldTargetOmegaMax:r=1.05",
@@ -224,13 +203,14 @@ def mission_text(template: Path, variant: Variant, ground: bool) -> str:
     else:
         release_s, demanded_altitude = variant.altitude_points[0]
         loft_reach_s, _ = variant.altitude_points[1]
-        loft_begin_s, _ = variant.altitude_points[2]
+        loft_begin_s, _ = variant.altitude_points[4]
         description = (
             f"Manual altitude-hold loft test, starting {location}. It transitions from 80 m at 11 seconds "
-            f"to 40 m at 8.5 seconds, holds level, then begins lofting at {loft_begin_s:g} seconds and "
+            f"to 40 m at 8.5 seconds, holds level, then begins a staged loft at {loft_begin_s:g} seconds and "
             f"reaches a {demanded_altitude:g} m command at {loft_reach_s:g} seconds. Altitude hold releases "
-            f"below {release_s:g} seconds with no downward keyframe. Damping is omega {variant.target_omega_max:g}, "
-            f"vertical-rate gain {variant.altitude_rate_gain:g}, climb gain {variant.climb_gain:g}."
+            f"below {release_s:g} seconds with no downward keyframe. Controller values are target omega "
+            f"{variant.target_omega_max:g}, altitude-rate feedback {variant.altitude_rate_gain:g}, and "
+            f"climb-error gain {variant.climb_gain:g}."
         )
     return re.sub(
         r'^    locDesc:t=".*"$',

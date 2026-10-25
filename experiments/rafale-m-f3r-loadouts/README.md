@@ -124,17 +124,17 @@ gain from 0.15 to 0.135. The 1.0-second ground mission starts at NATO Air Spawn
 1 at 1.5 km, using the established west-facing transform. Regenerate this matrix with
 `python tools/build_scalp_terminal_matrix.py` after changing its variant table.
 
-The functional 600 m loft is fixed while five ground-only profiles vary only
-coordinated altitude-controller responsiveness. All transition from 80 m at
-eleven seconds to a 40 m terrain-following command at 8.5 seconds, begin the
-established 0.5-second loft ramp at 4.5 seconds, reach 600 m at four seconds, and
-release altitude hold at 1.5 seconds. Response 1.10 is the confirmed stable
-baseline. Responses 1.15, 1.20, 1.25, and 1.30 progressively raise target omega,
-vertical-rate gain, and climb-error gain together until oscillation or other
-instability appears. This can reduce reaction lag over changing terrain but
-cannot provide true look-ahead terrain following because the game controller
-uses current radar altitude rather than terrain ahead. Only the 1.5 km NATO Air
-Spawn 1 ground missions are installed for this pass; water tests are omitted.
+Six ground-only profiles combine an earlier, smoother terminal path with a
+higher responsiveness ladder. All transition from 80 m at eleven seconds to a
+40 m terrain-following command at 8.5 seconds. The loft begins at 6.5 seconds,
+then stages the altitude command through 250 m at 5.5 seconds, 500 m at 4.5
+seconds, and 700 m at 3.5 seconds. Altitude hold hands off to terminal guidance
+at 2.5 seconds. This gives the final controller more time to settle and replaces
+the former single large altitude step with a broader curve. Response 1.30 is the
+new path baseline; responses 1.40 through 1.80 change only the raw target-omega
+limit. The altitude-rate feedback (0.205) and climb-error gain (0.0195) remain
+fixed, making this a one-variable test rather than increasing every controller
+stage together. Only the 1.5 km NATO Air Spawn 1 ground missions are installed.
 Prior tuning matrices remain in Git as test history but are moved out of the
 active mission menu. Regenerate the current matrix with
 `python tools/build_scalp_loft_matrix.py`.

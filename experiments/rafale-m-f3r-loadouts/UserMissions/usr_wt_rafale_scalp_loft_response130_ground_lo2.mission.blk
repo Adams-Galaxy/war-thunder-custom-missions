@@ -29,8 +29,8 @@ mission_settings{
     afterRespawnDelaySec:i=30
     useSpawnDelay:b=yes
     timeToLoseInstantDetection:r=10
-    locName:t="Southeastern City · SCALP Test · Response 1.30 · Ground"
-    locDesc:t="Manual altitude-hold loft test, starting NATO Air Spawn 1 at 1.5 km. It transitions from 80 m at 11 seconds to 40 m at 8.5 seconds, holds level, then begins lofting at 4.5 seconds and reaches a 600 m command at 4 seconds. Altitude hold releases below 1.5 seconds with no downward keyframe. Damping is omega 1.3, vertical-rate gain 0.205, climb gain 0.0195."
+    locName:t="Southeastern City · SCALP Test · Response 1.30 · New Terminal Baseline · Ground"
+    locDesc:t="Manual altitude-hold loft test, starting NATO Air Spawn 1 at 1.5 km. It transitions from 80 m at 11 seconds to 40 m at 8.5 seconds, holds level, then begins a staged loft at 6.5 seconds and reaches a 700 m command at 3.5 seconds. Altitude hold releases below 2.5 seconds with no downward keyframe. Controller values are target omega 1.3, altitude-rate feedback 0.205, and climb-error gain 0.0195."
     scoreLimit:i=9000
     timeLimit:i=90
     deathPenaltyMul:r=0.2

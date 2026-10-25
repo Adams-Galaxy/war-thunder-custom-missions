@@ -768,19 +768,99 @@ mission = "experiments/rafale-m-f3r-loadouts/UserMissions/usr_wt_rafale_scalp_lo
 
 [[variants]]
 id = "manual-loft-response-130-lo-010"
-display_name = "SCALP-EG 40 m baseline with response 1.30 and 1.5 s release (LO 0.10)"
+display_name = "SCALP-EG revised terminal baseline with response 1.30 (LO 0.10)"
 guidance = "seekerless SNS coordinate guidance with altitude hold"
 interception_multiplier = 0.10
 release_channel = "atgm"
 altitude_hold = true
-terminal_profile_time_to_hit_s = [11.0, 8.5, 4.5, 4.0, 1.5]
-terminal_profile_altitude_m = [80.0, 40.0, 40.0, 600.0, 600.0]
+terminal_profile_time_to_hit_s = [11.0, 8.5, 6.5, 5.5, 4.5, 3.5, 2.5]
+terminal_profile_altitude_m = [80.0, 40.0, 40.0, 250.0, 500.0, 700.0, 700.0]
 altitude_target_omega_max = 1.30
 altitude_rate_to_climb = 0.205
 climb_error_to_acceleration = 0.0195
 weapon = "experiments/rafale-m-f3r-loadouts/content/pkg_local/gameData/Weapons/rocketGuns/wt_agm_84k_scalp_loft_response130_lo.blk"
 preset = "experiments/rafale-m-f3r-loadouts/content/pkg_local/gameData/flightModels/weaponPresets/wt_rafale_m_scalp_loft_response130_lo2.blk"
 mission = "experiments/rafale-m-f3r-loadouts/UserMissions/usr_wt_rafale_scalp_loft_response130_ground_lo2.mission.blk"
+
+[[variants]]
+id = "manual-loft-response-140-lo-010"
+display_name = "SCALP-EG revised terminal path with response 1.40 (LO 0.10)"
+guidance = "seekerless SNS coordinate guidance with altitude hold"
+interception_multiplier = 0.10
+release_channel = "atgm"
+altitude_hold = true
+terminal_profile_time_to_hit_s = [11.0, 8.5, 6.5, 5.5, 4.5, 3.5, 2.5]
+terminal_profile_altitude_m = [80.0, 40.0, 40.0, 250.0, 500.0, 700.0, 700.0]
+altitude_target_omega_max = 1.40
+altitude_rate_to_climb = 0.205
+climb_error_to_acceleration = 0.0195
+weapon = "experiments/rafale-m-f3r-loadouts/content/pkg_local/gameData/Weapons/rocketGuns/wt_agm_84k_scalp_loft_response140_lo.blk"
+preset = "experiments/rafale-m-f3r-loadouts/content/pkg_local/gameData/flightModels/weaponPresets/wt_rafale_m_scalp_loft_response140_lo2.blk"
+mission = "experiments/rafale-m-f3r-loadouts/UserMissions/usr_wt_rafale_scalp_loft_response140_ground_lo2.mission.blk"
+
+[[variants]]
+id = "manual-loft-response-150-lo-010"
+display_name = "SCALP-EG revised terminal path with response 1.50 (LO 0.10)"
+guidance = "seekerless SNS coordinate guidance with altitude hold"
+interception_multiplier = 0.10
+release_channel = "atgm"
+altitude_hold = true
+terminal_profile_time_to_hit_s = [11.0, 8.5, 6.5, 5.5, 4.5, 3.5, 2.5]
+terminal_profile_altitude_m = [80.0, 40.0, 40.0, 250.0, 500.0, 700.0, 700.0]
+altitude_target_omega_max = 1.50
+altitude_rate_to_climb = 0.205
+climb_error_to_acceleration = 0.0195
+weapon = "experiments/rafale-m-f3r-loadouts/content/pkg_local/gameData/Weapons/rocketGuns/wt_agm_84k_scalp_loft_response150_lo.blk"
+preset = "experiments/rafale-m-f3r-loadouts/content/pkg_local/gameData/flightModels/weaponPresets/wt_rafale_m_scalp_loft_response150_lo2.blk"
+mission = "experiments/rafale-m-f3r-loadouts/UserMissions/usr_wt_rafale_scalp_loft_response150_ground_lo2.mission.blk"
+
+[[variants]]
+id = "manual-loft-response-160-lo-010"
+display_name = "SCALP-EG revised terminal path with response 1.60 (LO 0.10)"
+guidance = "seekerless SNS coordinate guidance with altitude hold"
+interception_multiplier = 0.10
+release_channel = "atgm"
+altitude_hold = true
+terminal_profile_time_to_hit_s = [11.0, 8.5, 6.5, 5.5, 4.5, 3.5, 2.5]
+terminal_profile_altitude_m = [80.0, 40.0, 40.0, 250.0, 500.0, 700.0, 700.0]
+altitude_target_omega_max = 1.60
+altitude_rate_to_climb = 0.205
+climb_error_to_acceleration = 0.0195
+weapon = "experiments/rafale-m-f3r-loadouts/content/pkg_local/gameData/Weapons/rocketGuns/wt_agm_84k_scalp_loft_response160_lo.blk"
+preset = "experiments/rafale-m-f3r-loadouts/content/pkg_local/gameData/flightModels/weaponPresets/wt_rafale_m_scalp_loft_response160_lo2.blk"
+mission = "experiments/rafale-m-f3r-loadouts/UserMissions/usr_wt_rafale_scalp_loft_response160_ground_lo2.mission.blk"
+
+[[variants]]
+id = "manual-loft-response-170-lo-010"
+display_name = "SCALP-EG revised terminal path with response 1.70 (LO 0.10)"
+guidance = "seekerless SNS coordinate guidance with altitude hold"
+interception_multiplier = 0.10
+release_channel = "atgm"
+altitude_hold = true
+terminal_profile_time_to_hit_s = [11.0, 8.5, 6.5, 5.5, 4.5, 3.5, 2.5]
+terminal_profile_altitude_m = [80.0, 40.0, 40.0, 250.0, 500.0, 700.0, 700.0]
+altitude_target_omega_max = 1.70
+altitude_rate_to_climb = 0.205
+climb_error_to_acceleration = 0.0195
+weapon = "experiments/rafale-m-f3r-loadouts/content/pkg_local/gameData/Weapons/rocketGuns/wt_agm_84k_scalp_loft_response170_lo.blk"
+preset = "experiments/rafale-m-f3r-loadouts/content/pkg_local/gameData/flightModels/weaponPresets/wt_rafale_m_scalp_loft_response170_lo2.blk"
+mission = "experiments/rafale-m-f3r-loadouts/UserMissions/usr_wt_rafale_scalp_loft_response170_ground_lo2.mission.blk"
+
+[[variants]]
+id = "manual-loft-response-180-lo-010"
+display_name = "SCALP-EG revised terminal path with response 1.80 (LO 0.10)"
+guidance = "seekerless SNS coordinate guidance with altitude hold"
+interception_multiplier = 0.10
+release_channel = "atgm"
+altitude_hold = true
+terminal_profile_time_to_hit_s = [11.0, 8.5, 6.5, 5.5, 4.5, 3.5, 2.5]
+terminal_profile_altitude_m = [80.0, 40.0, 40.0, 250.0, 500.0, 700.0, 700.0]
+altitude_target_omega_max = 1.80
+altitude_rate_to_climb = 0.205
+climb_error_to_acceleration = 0.0195
+weapon = "experiments/rafale-m-f3r-loadouts/content/pkg_local/gameData/Weapons/rocketGuns/wt_agm_84k_scalp_loft_response180_lo.blk"
+preset = "experiments/rafale-m-f3r-loadouts/content/pkg_local/gameData/flightModels/weaponPresets/wt_rafale_m_scalp_loft_response180_lo2.blk"
+mission = "experiments/rafale-m-f3r-loadouts/UserMissions/usr_wt_rafale_scalp_loft_response180_ground_lo2.mission.blk"
 
 [[variants]]
 id = "ins-ultralate-medium-lo-010"
