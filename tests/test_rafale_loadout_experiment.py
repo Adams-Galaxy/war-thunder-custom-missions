@@ -23,6 +23,8 @@ SCALP_PROXY = (
 )
 SCALP_PROXY_VLO = SCALP_PROXY.with_name("wt_agm_84k_slam_er_vlo.blk")
 SCALP_INS_PROXY = SCALP_PROXY.with_name("wt_agm_84k_scalp_ins_lo.blk")
+SCALP_INS_RESPONSIVE = SCALP_PROXY.with_name("wt_agm_84k_scalp_ins_aggressive_lo.blk")
+SCALP_INS_ULTRALATE = SCALP_PROXY.with_name("wt_agm_84k_scalp_ins_ultralate_lo.blk")
 
 
 def test_custom_rafale_registers_all_experimental_stores() -> None:
@@ -48,22 +50,28 @@ def test_custom_rafale_registers_all_experimental_stores() -> None:
     assert text.count("rocketGuns/wt_agm_84k_slam_er_lo.blk") == 3
     assert text.count("rocketGuns/wt_agm_84k_slam_er_vlo.blk") == 3
     assert text.count("rocketGuns/wt_agm_84k_scalp_ins_lo.blk") == 3
-    assert text.count('presetType:t="AIR_TO_GROUND"') == 3
+    assert text.count("rocketGuns/wt_agm_84k_scalp_ins_aggressive_lo.blk") == 3
+    assert text.count("rocketGuns/wt_agm_84k_scalp_ins_ultralate_lo.blk") == 3
+    assert text.count('presetType:t="AIR_TO_GROUND"') == 5
     assert text.count('iconType:t="missile_air_to_uni_large"') >= 7
     for station_name in (
         "wt_agm84k_lo_slot3",
         "wt_scalp_ins_lo_slot3",
+        "wt_scalp_ins_aggressive_lo_slot3",
+        "wt_scalp_ins_ultralate_lo_slot3",
         "wt_agm84k_vlo_slot3",
         "wt_agm84k_lo_slot10",
         "wt_scalp_ins_lo_slot10",
+        "wt_scalp_ins_aggressive_lo_slot10",
+        "wt_scalp_ins_ultralate_lo_slot10",
         "wt_agm84k_vlo_slot10",
     ):
         station = text.split(f'name:t="{station_name}"', 1)[0].rsplit("WeaponPreset {", 1)[1]
         assert 'iconType:t="glide_bomb_default"' in station
-    assert text.count('tier { idx:i=10 }') == 3
-    assert text.count('tier { idx:i=2 }') == 3
+    assert text.count('tier { idx:i=10 }') == 5
+    assert text.count('tier { idx:i=2 }') == 5
     assert text.count('preset:t="damocles"') == 2
-    assert text.count('blk:t="gameData/flightModels/weaponPresets/') == 16
+    assert text.count('blk:t="gameData/flightModels/weaponPresets/') == 18
     assert "gameData/FlightModels/weaponPresets/" not in text
     assert text.count("{") == text.count("}")
 
@@ -85,6 +93,8 @@ def test_each_mission_enables_its_single_player_loadout() -> None:
         "usr_wt_rafale_lmur8.mission.blk": "wt_rafale_m_lmur8",
         "usr_wt_rafale_agm84k_lo2.mission.blk": "wt_rafale_m_agm84k_lo2",
         "usr_wt_rafale_scalp_ins_lo2.mission.blk": "wt_rafale_m_scalp_ins_lo2",
+        "usr_wt_rafale_scalp_ins_aggressive_lo2.mission.blk": "wt_rafale_m_scalp_ins_aggressive_lo2",
+        "usr_wt_rafale_scalp_ins_ultralate_lo2.mission.blk": "wt_rafale_m_scalp_ins_ultralate_lo2",
         "usr_wt_rafale_agm84k_vlo2.mission.blk": "wt_rafale_m_agm84k_vlo2",
     }
 
@@ -110,6 +120,8 @@ def test_each_mission_enables_its_single_player_loadout() -> None:
             "wt_rafale_m_lmur8",
             "wt_rafale_m_agm84k_lo2",
             "wt_rafale_m_scalp_ins_lo2",
+            "wt_rafale_m_scalp_ins_aggressive_lo2",
+            "wt_rafale_m_scalp_ins_ultralate_lo2",
             "wt_rafale_m_agm84k_vlo2",
         }:
             assert "fuel:r=15.0" in text
@@ -254,15 +266,15 @@ def test_scalp_ins_proxy_uses_coordinate_guidance_and_damped_altitude_schedule()
     assert 'inertialNavigationMandatory:b=yes' in text
     assert '"@override:designationSourceType":t="camera"' in text
     assert '"@override:constantDesignationSourceType":t="camera"' in text
-    assert 'timeToHitToAltitude0:p2=0.75, 5.0' in text
-    assert 'timeToHitToAltitude1:p2=2.5, 250.0' in text
-    assert 'timeToHitToAltitude2:p2=4.0, 30.0' in text
-    assert 'timeToHitToAltitude3:p2=6.0, 150.0' in text
-    assert 'altitudeHoldTargetElevation:r=-55.0' in text
+    assert 'timeToHitToAltitude0:p2=0.35, 5.0' in text
+    assert 'timeToHitToAltitude1:p2=1.4, 240.0' in text
+    assert 'timeToHitToAltitude2:p2=2.8, 25.0' in text
+    assert 'timeToHitToAltitude3:p2=4.5, 80.0' in text
+    assert 'altitudeHoldTargetElevation:r=-70.0' in text
     assert 'altitudeHoldTargetOmegaMax:r=0.8' in text
     assert 'altitudeRateRateToClimb:r=0.12' in text
     assert 'climbDiffToAccelMult:r=0.0125' in text
-    assert 'altitudeHoldAngleLimith:p2=-60.0, 45.0' in text
+    assert 'altitudeHoldAngleLimith:p2=-75.0, 70.0' in text
     assert '"@override:fireEffect":t=""' in text
     assert '"@override:smokeEffect":t="smoke_exhaust_air"' in text
     assert '"@override:hazeEffect":t=""' in text
@@ -290,10 +302,31 @@ def test_scalp_ins_proxy_uses_coordinate_guidance_and_damped_altitude_schedule()
     assert 'slot:i=6\n  preset:t="damocles"' in preset
 
     unit = UNIT.read_text()
-    for station_name in ("wt_scalp_ins_lo_slot3", "wt_scalp_ins_lo_slot10"):
+    for station_name in (
+        "wt_scalp_ins_lo_slot3",
+        "wt_scalp_ins_lo_slot10",
+        "wt_scalp_ins_aggressive_lo_slot3",
+        "wt_scalp_ins_aggressive_lo_slot10",
+        "wt_scalp_ins_ultralate_lo_slot3",
+        "wt_scalp_ins_ultralate_lo_slot10",
+    ):
         station = unit.split(f'name:t="{station_name}"', 1)[1].split("WeaponPreset {", 1)[0]
         assert 'trigger:t="atgm"' in station
         assert 'trigger:t="guided bombs"' not in station
+
+    responsive = SCALP_INS_RESPONSIVE.read_text()
+    assert 'include "#/develop/gameBase/gameData/Weapons/rocketGuns/wt_agm_84k_scalp_ins_lo.blk"' in responsive
+    assert '"@override:altitudeHoldTargetOmegaMax":r=1.6' in responsive
+    assert '"@override:altitudeRateRateToClimb":r=0.20' in responsive
+    assert '"@override:climbDiffToAccelMult":r=0.0225' in responsive
+
+    ultralate = SCALP_INS_ULTRALATE.read_text()
+    assert 'timeToHitToAltitude0":p2=0.25, 5.0' in ultralate
+    assert 'timeToHitToAltitude1":p2=1.1, 260.0' in ultralate
+    assert 'timeToHitToAltitude2":p2=2.2, 25.0' in ultralate
+    assert 'timeToHitToAltitude3":p2=3.5, 80.0' in ultralate
+    assert 'altitudeHoldTargetOmegaMax":r=2.0' in ultralate
+    assert 'altitudeHoldAngleLimith":p2=-80.0, 75.0' in ultralate
 
 
 def test_scalp_asset_manifest_indexes_reusable_sources() -> None:
@@ -312,6 +345,8 @@ def test_scalp_asset_manifest_indexes_reusable_sources() -> None:
         "ir-lo-010",
         "ir-vlo-005",
         "ins-lo-010",
+        "ins-responsive-lo-010",
+        "ins-ultralate-lo-010",
     }
     for variant in manifest["variants"]:
         for key in ("weapon", "preset", "mission"):
@@ -319,8 +354,8 @@ def test_scalp_asset_manifest_indexes_reusable_sources() -> None:
 
     ins = next(variant for variant in manifest["variants"] if variant["id"] == "ins-lo-010")
     assert ins["release_channel"] == "atgm"
-    assert ins["terminal_profile_time_to_hit_s"] == [6.0, 4.0, 2.5, 0.75]
-    assert ins["terminal_profile_altitude_m"] == [150.0, 30.0, 250.0, 5.0]
+    assert ins["terminal_profile_time_to_hit_s"] == [4.5, 2.8, 1.4, 0.35]
+    assert ins["terminal_profile_altitude_m"] == [80.0, 25.0, 240.0, 5.0]
 
 
 def test_scalp_localization_covers_every_custom_weapon_filename() -> None:
@@ -332,6 +367,8 @@ def test_scalp_localization_covers_every_custom_weapon_filename() -> None:
         "wt_agm_84k_slam_er_lo",
         "wt_agm_84k_slam_er_vlo",
         "wt_agm_84k_scalp_ins_lo",
+        "wt_agm_84k_scalp_ins_aggressive_lo",
+        "wt_agm_84k_scalp_ins_ultralate_lo",
     ):
         assert f'"weapons/{weapon}"' in localization
         assert f'"weapons/{weapon}/short";"SCALP-EG"' in localization

@@ -4,7 +4,7 @@ This is an intentionally local, single-player-only experiment built on the
 peaceful South-Eastern City mission. It does not alter the stock Rafale or any
 hosted multiplayer mission.
 
-The package adds one custom unit based on `rafale_m_f3r` and sixteen missions:
+The package adds one custom unit based on `rafale_m_f3r` and eighteen missions:
 
 - `Southeastern City · Rafale M · 8× SPICE 250`
 - `Southeastern City · Rafale M · 6× Brimstone DM`
@@ -20,10 +20,12 @@ The package adds one custom unit based on `rafale_m_f3r` and sixteen missions:
 - `Southeastern City · Rafale M · 4× Kh-58UShK`
 - `Southeastern City · Rafale M · 8× LMUR`
 - `Southeastern City · Rafale M · 2× SCALP-EG (IR · LO 0.1)`
-- `Southeastern City · Rafale M · 2× SCALP-EG (INS · LO 0.1)`
+- `Southeastern City · Rafale M · SCALP Late-70 Damped`
+- `Southeastern City · Rafale M · SCALP Late-70 Responsive`
+- `Southeastern City · Rafale M · SCALP Ultra-Late 70`
 - `Southeastern City · Rafale M · 2× SCALP-EG (IR · VLO 0.05)`
 
-All sixteen loadouts carry the TALIOS pod. The five-JSOW variant uses twin racks
+All eighteen loadouts carry the TALIOS pod. The five-JSOW variant uses twin racks
 on the established multistore wing stations plus one centerline weapon. The
 nine-JSOW variant additionally repurposes both inner wet stations for twin
 racks; it is intentionally a fictional maximum-fit experiment. The surrounding
@@ -36,7 +38,7 @@ experiments also start at minimum fuel. Kh-38MT uses its infrared seeker,
 Kh-58UShK is a dedicated anti-radiation experiment, and LMUR uses four twin
 launchers on the same fictional wing and wet-station arrangement.
 
-The three SCALP proxy missions share a public-data-based approximation: 1,300 kg total
+The five SCALP proxy missions share a public-data-based approximation: 1,300 kg total
 mass, 5.10 m length, subsonic turbojet performance, at least 250 km nominal
 range, and a roughly 450 kg two-stage BROACH penetrator warhead. All three use
 the stock AGM-84K visual and reconstructed aerodynamics because the game does
@@ -55,7 +57,7 @@ Their reusable source index and machine-readable tuning data live in
 installable BLK files in this experiment remain canonical, so there is only one
 copy of each definition to keep synchronized.
 
-All three SCALP missions carry one proxy on each mirrored heavy wing station
+All five SCALP missions carry one proxy on each mirrored heavy wing station
 (aircraft slots 3 and 10), matching the normal two-missile Rafale arrangement.
 The custom unit inherits the complete stock `rafale_m_f3r` flight model and
 changes only weapon registration and station availability. Every experiment
@@ -70,21 +72,17 @@ to `0.05`, an intentionally fictional half-JSOW interception-distance test.
 These values affect AI air-defense interception priority/range; they are not
 physical radar-cross-section measurements or player-radar detection values.
 
-The additional `INS Test` preserves the working 0.1 interception treatment but
+The three `INS` terminal tests preserve the working 0.1 interception treatment but
 uses War Thunder's seekerless Grom-1 `sns` point-guidance path. It returns to
 the missile/ATGM release channel so the unwanted guided-bomb CCRP symbology is
-not shown. This is an A/B test for assigning an aiming point and launching from
-behind cover without an IR vehicle lock or the targeting-optics view; whether
-the Rafale avionics permit that workflow still requires an in-game test. Its
-terminal schedule holds 150 m until roughly 1.5 km from impact, descends toward
-30 m around 1 km out, pops up toward 250 m around 650 m out, then commands 5 m
-with a 55-degree terminal dive for the final approach. These distances are only
-rough estimates derived from time-to-hit at cruise speed. The height
-controller's response rate, acceleration gain, and maximum turn rate remain
-deliberately reduced to suppress vertical oscillation. War Thunder exposes no
-explicit low-pass-filter setting, so this remains an approximation rather than
-real TERPROM route planning. The original LO and VLO missions remain available
-as known-working IR-guided baselines.
+not shown. They cruise near 80 m, descend toward 25 m, and command a late pop-up
+followed by a roughly 70-degree terminal dive. Test A retains the proven damped
+controller, test B uses the same timing with stronger response, and test C moves
+the maneuver later again while applying maximum practical response and pitch
+authority. The listed distances are rough time-to-impact estimates, not fixed
+map distances. War Thunder exposes no explicit low-pass-filter setting, so this
+remains an approximation rather than real TERPROM route planning. The original
+LO and VLO missions remain available as known-working IR-guided baselines.
 
 Because the INS version inherits Grom-1 only to obtain its seekerless SNS
 guidance path, it explicitly replaces Grom's solid-rocket flame, smoke, and
@@ -104,7 +102,7 @@ Close War Thunder before installing, then run:
 ```
 
 Open War Thunder, choose `Battles` → `User Missions`, and start one of the
-sixteen Rafale missions. The files are installed at the User Missions root using
+eighteen Rafale missions. The files are installed at the User Missions root using
 the conventional `usr_*.mission.blk` names expected by the single-player
 mission browser.
 

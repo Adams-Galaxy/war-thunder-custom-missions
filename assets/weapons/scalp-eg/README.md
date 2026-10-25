@@ -18,7 +18,7 @@ loadout generator.
 `bulletName` and `gunnerOpticsName` are overridden to `SCALP-EG`. The in-flight
 selected-weapon HUD additionally derives a `/short` localization key from the
 custom BLK filename, so the experiment ships an isolated English localization
-table for all three proxy filenames. The installer registers that table and
+table for all five proxy filenames. The installer registers that table and
 enables War Thunder's `testLocalization` mode while preserving the user's
 existing localization files.
 
@@ -39,13 +39,14 @@ The installed physical loadout is unchanged:
 
 ## Variants
 
-The manifest records the two known-working optical/IR versions and the newer
-coordinate-guided test. The INS version uses a seekerless SNS base, the normal
-missile/ATGM release channel, a damped 150 m cruise, and an experimental
-30 m descent / 250 m pop-up / 55-degree terminal dive. Its inherited Grom
-rocket flame and smoke are replaced by the AGM-84K turbojet-style effects. All
-variants share the same physical approximation and 250 kg PBXN-110 gameplay
-fill. See `asset.toml` for exact paths and tuning values.
+The manifest records the two known-working optical/IR versions and three
+coordinate-guided terminal tests. All INS versions use a seekerless SNS base,
+the normal missile/ATGM release channel, an 80 m cruise, a late 25 m descent,
+and a 70-degree pop-up/dive sequence. They isolate damped, responsive, and
+ultra-late maximum-authority behavior. Their inherited Grom rocket flame and
+smoke are replaced by the AGM-84K turbojet-style effects. All variants share
+the same physical approximation and 250 kg PBXN-110 gameplay fill. See
+`asset.toml` for exact paths and tuning values.
 
 The asset is local and single-player-only. It does not add a genuine SCALP 3D
 model, TERPROM, terminal scene matching, tandem BROACH damage, or a multiplayer

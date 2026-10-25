@@ -1,0 +1,12 @@
+// Responsive-controller version of the late 70-degree SCALP terminal test.
+include "#/develop/gameBase/gameData/Weapons/rocketGuns/wt_agm_84k_scalp_ins_lo.blk"
+
+"@override:rocket" {
+  "@override:guidance" {
+    "@override:guidanceAutopilot" {
+      "@override:altitudeHoldTargetOmegaMax":r=1.6
+      "@override:altitudeRateRateToClimb":r=0.20
+      "@override:climbDiffToAccelMult":r=0.0225
+    }
+  }
+}

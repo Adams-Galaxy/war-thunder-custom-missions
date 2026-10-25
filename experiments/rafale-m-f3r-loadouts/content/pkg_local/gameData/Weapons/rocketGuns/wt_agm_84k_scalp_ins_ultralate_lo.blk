@@ -1,0 +1,18 @@
+// Ultra-late, maximum-authority version of the 70-degree SCALP terminal test.
+include "#/develop/gameBase/gameData/Weapons/rocketGuns/wt_agm_84k_scalp_ins_lo.blk"
+
+"@override:rocket" {
+  "@override:guidance" {
+    "@override:guidanceAutopilot" {
+      "@override:timeToHitToAltitude0":p2=0.25, 5.0
+      "@override:timeToHitToAltitude1":p2=1.1, 260.0
+      "@override:timeToHitToAltitude2":p2=2.2, 25.0
+      "@override:timeToHitToAltitude3":p2=3.5, 80.0
+      "@override:altitudeHoldTargetElevation":r=-70.0
+      "@override:altitudeHoldTargetOmegaMax":r=2.0
+      "@override:altitudeRateRateToClimb":r=0.225
+      "@override:climbDiffToAccelMult":r=0.03
+      "@override:altitudeHoldAngleLimith":p2=-80.0, 75.0
+    }
+  }
+}

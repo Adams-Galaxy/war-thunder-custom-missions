@@ -6,7 +6,7 @@ mission_settings{
     wing:t="t2_player01"
   }
   mission{
-    name:t="wt_rafale_scalp_ins_lo2_southeastern_city"
+    name:t="wt_rafale_scalp_ins_late70_damped_lo2_southeastern_city"
     type:t="singleMission"
     level:t="levels/air_south_eastern_city.bin"
     environment:t="Day"
@@ -29,8 +29,8 @@ mission_settings{
     afterRespawnDelaySec:i=30
     useSpawnDelay:b=yes
     timeToLoseInstantDetection:r=10
-    locName:t="Southeastern City · Rafale M · 2× SCALP-EG (INS · LO 0.1)"
-    locDesc:t="Experimental coordinate-guided SCALP-EG proxy with no inherited optical seeker. It uses the clean missile release channel, a damped 150 m cruise, and an experimental terminal profile: descend to 30 m near the target, pop up toward 250 m, then dive at roughly 55 degrees. It restores the AGM-84K turbojet-style exhaust, retains the 250 kg PBXN-110 gameplay fill, and uses the proven 0.1 SAM-AI interception-distance multiplier."
+    locName:t="Southeastern City · Rafale M · SCALP Late-70 Damped"
+    locDesc:t="Terminal-profile test A. Seekerless SCALP-EG proxy cruising near 80 m with the proven damped controller. It descends toward 25 m, begins a late pop-up toward 240 m around 700 m from impact, then commands a 70-degree terminal dive. It retains outside-optics release, turbojet-style exhaust, the 250 kg PBXN-110 gameplay fill, and the 0.1 SAM-AI interception-distance multiplier."
     scoreLimit:i=9000
     timeLimit:i=90
     deathPenaltyMul:r=0.2
