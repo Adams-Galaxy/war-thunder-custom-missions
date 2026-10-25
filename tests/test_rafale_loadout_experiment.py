@@ -40,10 +40,16 @@ SCALP_TURN_MATRIX = {
     "lead075_cap45_gain0125_damped": (0.75, 1.00, 45.0, 0.0125),
 }
 SCALP_LOFT_MATRIX = {
-    "manual600_release10": ("hold", ((1.0, 600.0), (4.0, 600.0), (4.5, 35.0), (8.5, 35.0), (10.0, 80.0))),
-    "manual600_release15": ("hold", ((1.5, 600.0), (4.0, 600.0), (4.5, 35.0), (8.5, 35.0), (10.0, 80.0))),
-    "manual1000_release10": ("hold", ((1.0, 1000.0), (5.5, 1000.0), (6.0, 35.0), (8.5, 35.0), (10.0, 80.0))),
-    "manual1000_release15": ("hold", ((1.5, 1000.0), (5.5, 1000.0), (6.0, 35.0), (8.5, 35.0), (10.0, 80.0))),
+    "baseline40": ("hold", ((1.0, 600.0), (4.0, 600.0), (4.5, 40.0), (8.5, 40.0), (11.0, 80.0))),
+    "smooth075": ("hold", ((1.0, 600.0), (4.0, 600.0), (4.75, 40.0), (8.5, 40.0), (11.0, 80.0))),
+    "smooth100": ("hold", ((1.0, 600.0), (4.0, 600.0), (5.0, 40.0), (8.5, 40.0), (11.0, 80.0))),
+    "smooth075_damped": ("hold", ((1.0, 600.0), (4.0, 600.0), (4.75, 40.0), (8.5, 40.0), (11.0, 80.0))),
+}
+SCALP_LOFT_DAMPING = {
+    "baseline40": (0.95, 0.135, 0.0125),
+    "smooth075": (0.95, 0.135, 0.0125),
+    "smooth100": (0.95, 0.135, 0.0125),
+    "smooth075_damped": (0.85, 0.12, 0.0105),
 }
 
 
@@ -469,6 +475,10 @@ def test_scalp_asset_manifest_indexes_reusable_sources() -> None:
         "manual-loft-600-release-15-lo-010",
         "manual-loft-1000-release-10-lo-010",
         "manual-loft-1000-release-15-lo-010",
+        "manual-loft-baseline-40-lo-010",
+        "manual-loft-smooth-075-lo-010",
+        "manual-loft-smooth-100-lo-010",
+        "manual-loft-smooth-075-damped-lo-010",
     }
     for variant in manifest["variants"]:
         for key in ("weapon", "preset", "mission"):
@@ -563,9 +573,10 @@ def test_scalp_geometry_loft_matrix_is_controlled_and_complete() -> None:
             for idx, (time_s, altitude_m) in enumerate(parameters):
                 assert f"timeToHitToAltitude{idx}:p2={time_s:g}, {altitude_m:g}" in weapon
             assert f"timeToHitToAltitude{len(parameters)}" not in weapon
-            assert "altitudeHoldTargetOmegaMax:r=0.95" in weapon
-            assert "altitudeRateRateToClimb:r=0.135" in weapon
-            assert "climbDiffToAccelMult:r=0.0125" in weapon
+            omega, rate_gain, climb_gain = SCALP_LOFT_DAMPING[slug]
+            assert f"altitudeHoldTargetOmegaMax:r={omega:g}" in weapon
+            assert f"altitudeRateRateToClimb:r={rate_gain:g}" in weapon
+            assert f"climbDiffToAccelMult:r={climb_gain:g}" in weapon
             assert "altitudeHoldAngleLimith:p2=-82.0, 70.0" in weapon
             altitude_lines = "\n".join(
                 line for line in weapon.splitlines() if "timeToHitToAltitude" in line

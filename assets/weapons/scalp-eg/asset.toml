@@ -580,6 +580,78 @@ mission = "experiments/rafale-m-f3r-loadouts/UserMissions/usr_wt_rafale_scalp_lo
 ground_mission = "experiments/rafale-m-f3r-loadouts/UserMissions/usr_wt_rafale_scalp_loft_manual1000_release15_ground_lo2.mission.blk"
 
 [[variants]]
+id = "manual-loft-baseline-40-lo-010"
+display_name = "SCALP-EG established 600 m loft baseline with 40 m terrain following (LO 0.10)"
+guidance = "seekerless SNS coordinate guidance with altitude hold"
+interception_multiplier = 0.10
+release_channel = "atgm"
+altitude_hold = true
+loft_enabled = false
+terminal_profile_time_to_hit_s = [11.0, 8.5, 4.5, 4.0, 1.0]
+terminal_profile_altitude_m = [80.0, 40.0, 40.0, 600.0, 600.0]
+altitude_target_omega_max = 0.95
+altitude_rate_to_climb = 0.135
+climb_error_to_acceleration = 0.0125
+weapon = "experiments/rafale-m-f3r-loadouts/content/pkg_local/gameData/Weapons/rocketGuns/wt_agm_84k_scalp_loft_baseline40_lo.blk"
+preset = "experiments/rafale-m-f3r-loadouts/content/pkg_local/gameData/flightModels/weaponPresets/wt_rafale_m_scalp_loft_baseline40_lo2.blk"
+mission = "experiments/rafale-m-f3r-loadouts/UserMissions/usr_wt_rafale_scalp_loft_baseline40_water_lo2.mission.blk"
+ground_mission = "experiments/rafale-m-f3r-loadouts/UserMissions/usr_wt_rafale_scalp_loft_baseline40_ground_lo2.mission.blk"
+
+[[variants]]
+id = "manual-loft-smooth-075-lo-010"
+display_name = "SCALP-EG 600 m loft with 40 m terrain following and 0.75 s loft ramp (LO 0.10)"
+guidance = "seekerless SNS coordinate guidance with altitude hold"
+interception_multiplier = 0.10
+release_channel = "atgm"
+altitude_hold = true
+loft_enabled = false
+terminal_profile_time_to_hit_s = [11.0, 8.5, 4.75, 4.0, 1.0]
+terminal_profile_altitude_m = [80.0, 40.0, 40.0, 600.0, 600.0]
+altitude_target_omega_max = 0.95
+altitude_rate_to_climb = 0.135
+climb_error_to_acceleration = 0.0125
+weapon = "experiments/rafale-m-f3r-loadouts/content/pkg_local/gameData/Weapons/rocketGuns/wt_agm_84k_scalp_loft_smooth075_lo.blk"
+preset = "experiments/rafale-m-f3r-loadouts/content/pkg_local/gameData/flightModels/weaponPresets/wt_rafale_m_scalp_loft_smooth075_lo2.blk"
+mission = "experiments/rafale-m-f3r-loadouts/UserMissions/usr_wt_rafale_scalp_loft_smooth075_water_lo2.mission.blk"
+ground_mission = "experiments/rafale-m-f3r-loadouts/UserMissions/usr_wt_rafale_scalp_loft_smooth075_ground_lo2.mission.blk"
+
+[[variants]]
+id = "manual-loft-smooth-100-lo-010"
+display_name = "SCALP-EG 600 m loft with 40 m terrain following and 1.00 s loft ramp (LO 0.10)"
+guidance = "seekerless SNS coordinate guidance with altitude hold"
+interception_multiplier = 0.10
+release_channel = "atgm"
+altitude_hold = true
+loft_enabled = false
+terminal_profile_time_to_hit_s = [11.0, 8.5, 5.0, 4.0, 1.0]
+terminal_profile_altitude_m = [80.0, 40.0, 40.0, 600.0, 600.0]
+altitude_target_omega_max = 0.95
+altitude_rate_to_climb = 0.135
+climb_error_to_acceleration = 0.0125
+weapon = "experiments/rafale-m-f3r-loadouts/content/pkg_local/gameData/Weapons/rocketGuns/wt_agm_84k_scalp_loft_smooth100_lo.blk"
+preset = "experiments/rafale-m-f3r-loadouts/content/pkg_local/gameData/flightModels/weaponPresets/wt_rafale_m_scalp_loft_smooth100_lo2.blk"
+mission = "experiments/rafale-m-f3r-loadouts/UserMissions/usr_wt_rafale_scalp_loft_smooth100_water_lo2.mission.blk"
+ground_mission = "experiments/rafale-m-f3r-loadouts/UserMissions/usr_wt_rafale_scalp_loft_smooth100_ground_lo2.mission.blk"
+
+[[variants]]
+id = "manual-loft-smooth-075-damped-lo-010"
+display_name = "SCALP-EG damped 600 m loft with 40 m terrain following and 0.75 s loft ramp (LO 0.10)"
+guidance = "seekerless SNS coordinate guidance with altitude hold"
+interception_multiplier = 0.10
+release_channel = "atgm"
+altitude_hold = true
+loft_enabled = false
+terminal_profile_time_to_hit_s = [11.0, 8.5, 4.75, 4.0, 1.0]
+terminal_profile_altitude_m = [80.0, 40.0, 40.0, 600.0, 600.0]
+altitude_target_omega_max = 0.85
+altitude_rate_to_climb = 0.12
+climb_error_to_acceleration = 0.0105
+weapon = "experiments/rafale-m-f3r-loadouts/content/pkg_local/gameData/Weapons/rocketGuns/wt_agm_84k_scalp_loft_smooth075_damped_lo.blk"
+preset = "experiments/rafale-m-f3r-loadouts/content/pkg_local/gameData/flightModels/weaponPresets/wt_rafale_m_scalp_loft_smooth075_damped_lo2.blk"
+mission = "experiments/rafale-m-f3r-loadouts/UserMissions/usr_wt_rafale_scalp_loft_smooth075_damped_water_lo2.mission.blk"
+ground_mission = "experiments/rafale-m-f3r-loadouts/UserMissions/usr_wt_rafale_scalp_loft_smooth075_damped_ground_lo2.mission.blk"
+
+[[variants]]
 id = "ins-ultralate-medium-lo-010"
 display_name = "SCALP-EG INS Ultra-Late Medium (LO 0.10)"
 guidance = "seekerless SNS coordinate guidance"

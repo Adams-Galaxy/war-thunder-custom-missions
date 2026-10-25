@@ -124,18 +124,20 @@ gain from 0.15 to 0.135. The 1.0-second ground mission starts at NATO Air Spawn
 1 at 1.5 km, using the established west-facing transform. Regenerate this matrix with
 `python tools/build_scalp_terminal_matrix.py` after changing its variant table.
 
-Four manual-loft profiles separate terrain-following descent, loft initiation,
-and terminal handoff. The missile transitions from 80 m at ten seconds to 35 m
-at 8.5 seconds, leaving several seconds to settle before lofting. The 600 m
-profiles begin their loft at 4.5 seconds and reach the high command at four;
-the 1000 m profiles begin at six seconds and reach it at 5.5. Each altitude is
-held until either 1.0 or 1.5 seconds, where the altitude schedule ends and hands
-control to terminal guidance. There is no interpolated downward keyframe. All
-four profiles share the same medium damping and 70-degree climb allowance. Each
-has a 100 m flat-water mission and a 1.5 km NATO Air Spawn 1 ground mission.
-Prior native, range-mapped, and manual timing matrices remain in Git as test
-history, but are moved out of the active mission menu. Regenerate the current
-matrix with `python tools/build_scalp_loft_matrix.py`.
+The established 600 m / 1.0-second handoff is now the baseline. Four profiles
+raise terrain following from 35 to 40 m and slow the initial descent: the command
+transitions from 80 m at eleven seconds to 40 m at 8.5 seconds, reducing the
+requested descent rate and the risk of overshooting into trees or terrain. The
+baseline retains the working 0.5-second loft ramp. Two variants stretch only
+that ramp to 0.75 or 1.0 seconds. A fourth combines the 0.75-second ramp with
+slightly lower target omega, vertical-rate gain, and climb gain to test whether
+additional controller damping improves the curve without suppressing the loft.
+All command 600 m at four seconds and release altitude hold at one second, with
+no interpolated downward keyframe. Each has a 100 m flat-water mission and a
+1.5 km NATO Air Spawn 1 ground mission. Prior native, range-mapped, and manual
+timing matrices remain in Git as test history but are moved out of the active
+mission menu. Regenerate the current matrix with
+`python tools/build_scalp_loft_matrix.py`.
 
 Because the INS version inherits Grom-1 only to obtain its seekerless SNS
 guidance path, it explicitly replaces Grom's solid-rocket flame, smoke, and

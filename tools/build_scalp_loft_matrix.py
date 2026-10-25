@@ -27,6 +27,9 @@ class Variant:
     loft_target_elevation_deg: float = -65.0
     loft_angle_gain: float = 0.75
     altitude_points: tuple[tuple[float, float], ...] = ()
+    target_omega_max: float = 0.95
+    altitude_rate_gain: float = 0.135
+    climb_gain: float = 0.0125
 
     @property
     def weapon_stem(self) -> str:
@@ -49,28 +52,46 @@ class Variant:
         return MISSIONS / f"usr_wt_rafale_scalp_loft_{self.slug}_ground_lo2.mission.blk"
 
 
-def manual_variant(altitude_m: float, release_s: float) -> Variant:
-    release_slug = f"{release_s:.1f}".replace(".", "")
-    loft_reach_s = 4.0 if altitude_m == 600.0 else 5.5
-    loft_begin_s = loft_reach_s + 0.5
+def manual_variant(
+    slug: str,
+    label: str,
+    loft_transition_s: float,
+    *,
+    target_omega_max: float = 0.95,
+    altitude_rate_gain: float = 0.135,
+    climb_gain: float = 0.0125,
+) -> Variant:
+    loft_reach_s = 4.0
+    loft_begin_s = loft_reach_s + loft_transition_s
     return Variant(
-        f"manual{altitude_m:.0f}_release{release_slug}",
-        f"Manual Loft {altitude_m:.0f} m · Release {release_s:.1f} s",
+        slug,
+        label,
         "altitude_hold",
         altitude_points=(
-            (release_s, altitude_m),
-            (loft_reach_s, altitude_m),
-            (loft_begin_s, 35.0),
-            (8.5, 35.0),
-            (10.0, 80.0),
+            (1.0, 600.0),
+            (loft_reach_s, 600.0),
+            (loft_begin_s, 40.0),
+            (8.5, 40.0),
+            (11.0, 80.0),
         ),
+        target_omega_max=target_omega_max,
+        altitude_rate_gain=altitude_rate_gain,
+        climb_gain=climb_gain,
     )
 
 
-VARIANTS = tuple(
-    manual_variant(altitude_m, release_s)
-    for altitude_m in (600.0, 1000.0)
-    for release_s in (1.0, 1.5)
+VARIANTS = (
+    manual_variant("baseline40", "Baseline 40 m · Loft Ramp 0.50 s", 0.50),
+    manual_variant("smooth075", "40 m · Loft Ramp 0.75 s", 0.75),
+    manual_variant("smooth100", "40 m · Loft Ramp 1.00 s", 1.00),
+    manual_variant(
+        "smooth075_damped",
+        "40 m · Loft Ramp 0.75 s · More Damped",
+        0.75,
+        target_omega_max=0.85,
+        altitude_rate_gain=0.12,
+        climb_gain=0.0105,
+    ),
 )
 
 
@@ -86,9 +107,21 @@ def weapon_text(variant: Variant) -> str:
     text = f"// SCALP comparison experiment: {variant.label}.\n" + rest
 
     # Every altitude-hold comparison uses the same damping that behaved well in game.
-    text = replace_once(text, "altitudeHoldTargetOmegaMax:r=1.05", "altitudeHoldTargetOmegaMax:r=0.95")
-    text = replace_once(text, "altitudeRateRateToClimb:r=0.15", "altitudeRateRateToClimb:r=0.135")
-    text = replace_once(text, "climbDiffToAccelMult:r=0.016", "climbDiffToAccelMult:r=0.0125")
+    text = replace_once(
+        text,
+        "altitudeHoldTargetOmegaMax:r=1.05",
+        f"altitudeHoldTargetOmegaMax:r={variant.target_omega_max:g}",
+    )
+    text = replace_once(
+        text,
+        "altitudeRateRateToClimb:r=0.15",
+        f"altitudeRateRateToClimb:r={variant.altitude_rate_gain:g}",
+    )
+    text = replace_once(
+        text,
+        "climbDiffToAccelMult:r=0.016",
+        f"climbDiffToAccelMult:r={variant.climb_gain:g}",
+    )
 
     if variant.mode == "range_loft":
         assert variant.range_map is not None
@@ -164,10 +197,11 @@ def mission_text(template: Path, variant: Variant, ground: bool) -> str:
         loft_reach_s, _ = variant.altitude_points[1]
         loft_begin_s, _ = variant.altitude_points[2]
         description = (
-            f"Manual altitude-hold loft test, starting {location}. It transitions from 80 m at 10 seconds "
-            f"to 35 m at 8.5 seconds, holds level, then begins lofting at {loft_begin_s:g} seconds and "
+            f"Manual altitude-hold loft test, starting {location}. It transitions from 80 m at 11 seconds "
+            f"to 40 m at 8.5 seconds, holds level, then begins lofting at {loft_begin_s:g} seconds and "
             f"reaches a {demanded_altitude:g} m command at {loft_reach_s:g} seconds. Altitude hold releases "
-            f"below {release_s:g} seconds with no downward keyframe, leaving terminal guidance to complete the dive."
+            f"below {release_s:g} seconds with no downward keyframe. Damping is omega {variant.target_omega_max:g}, "
+            f"vertical-rate gain {variant.altitude_rate_gain:g}, climb gain {variant.climb_gain:g}."
         )
     return re.sub(
         r'^    locDesc:t=".*"$',
