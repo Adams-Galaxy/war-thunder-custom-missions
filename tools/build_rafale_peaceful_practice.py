@@ -101,7 +101,6 @@ def build() -> str:
         object:t="t2_player01"
         targetableByAi:b=no
         isImmortal:b=yes
-        speed:r=900.0
       }
       unitForceRearmSpeed{
         target:t="t2_player01"

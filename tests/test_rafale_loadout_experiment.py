@@ -146,6 +146,10 @@ def test_peaceful_practice_loadout_and_mission() -> None:
     assert "isLimitedAmmo:b=no" in mission
     assert "rearmSpeedK:r=80.0" in mission
     assert 'object:t="t2_player01"\n        targetableByAi:b=no\n        isImmortal:b=yes' in mission
+    practice_trigger = mission.split("practice_player_support{", 1)[1].split(
+        "debug_in_multiplayer{", 1
+    )[0]
+    assert "speed:r=" not in practice_trigger
     assert "debug_in_multiplayer{\n    is_enabled:b=no" in mission
     assert "rankRange:ip2=" not in mission
     assert mission.count("{") == mission.count("}")
