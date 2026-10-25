@@ -19,8 +19,8 @@ The package adds one custom unit based on `rafale_m_f3r` and fifteen missions:
 - `Southeastern City · Rafale M · 4× Kh-38MT`
 - `Southeastern City · Rafale M · 4× Kh-58UShK`
 - `Southeastern City · Rafale M · 8× LMUR`
-- `Southeastern City · Rafale M · 5× AGM-84K LO (SCALP Proxy)`
-- `Southeastern City · Rafale M · 5× AGM-84K VLO (SCALP Proxy 0.05)`
+- `Southeastern City · Rafale M · 2× SCALP-EG Proxy (LO 0.1)`
+- `Southeastern City · Rafale M · 2× SCALP-EG Proxy (VLO 0.05)`
 
 All fifteen loadouts carry the TALIOS pod. The five-JSOW variant uses twin racks
 on the established multistore wing stations plus one centerline weapon. The
@@ -43,6 +43,13 @@ model, TERPROM route planning, terminal scene matching, or tandem-warhead
 simulation to this local mission. The 200 kg explosive fill is a deliberately
 punchy gameplay approximation, not a claimed real SCALP figure; the published
 450 kg figure describes the complete tandem warhead assembly.
+
+Both SCALP missions carry one proxy on each mirrored heavy wing station
+(aircraft slots 3 and 10), matching the normal two-missile Rafale arrangement.
+The custom unit inherits the complete stock `rafale_m_f3r` flight model and
+changes only weapon registration and station availability. Every experiment
+sets the player armada's `crewSkillK` to `1.0`, matching Gaijin player/training
+missions and avoiding the baseline zero-skill pilot used by the source map.
 
 The LO mission sets `gunnerFilterMaxDistMult` to `0.1`, matching the AGM-154A1
 JSOW's current temporary SAM-AI pseudo-RCS treatment. The VLO mission sets it

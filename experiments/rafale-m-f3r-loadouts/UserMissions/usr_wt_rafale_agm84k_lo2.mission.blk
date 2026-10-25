@@ -6,7 +6,7 @@ mission_settings{
     wing:t="t2_player01"
   }
   mission{
-    name:t="wt_rafale_agm84k_vlo5_southeastern_city"
+    name:t="wt_rafale_agm84k_lo2_southeastern_city"
     type:t="singleMission"
     level:t="levels/air_south_eastern_city.bin"
     environment:t="Day"
@@ -29,8 +29,8 @@ mission_settings{
     afterRespawnDelaySec:i=30
     useSpawnDelay:b=yes
     timeToLoseInstantDetection:r=10
-    locName:t="Southeastern City · Rafale M · 5× AGM-84K VLO (SCALP Proxy 0.05)"
-    locDesc:t="Local single-player SCALP-EG gameplay experiment using the peaceful Nuclear Escalation map. The proxy uses public SCALP mass, length, subsonic speed, range and approximate BROACH warhead mass while retaining the AGM-84K model and guidance. This VLO variant uses a 0.05 SAM-AI interception-distance multiplier, half the AGM-154 JSOW value; it is an intentionally fictional stealth test. All map units remain present but cannot attack the player."
+    locName:t="Southeastern City · Rafale M · 2× SCALP-EG Proxy (LO 0.1)"
+    locDesc:t="Local single-player SCALP-EG gameplay experiment using the peaceful Nuclear Escalation map. The proxy uses public SCALP mass, length, subsonic speed, range and approximate BROACH warhead mass while retaining the AGM-84K model and guidance. This LO variant uses the AGM-154 JSOW's 0.1 SAM-AI interception-distance multiplier. All map units remain present but cannot attack the player."
     scoreLimit:i=9000
     timeLimit:i=90
     deathPenaltyMul:r=0.2
@@ -5359,7 +5359,7 @@ units{
     closed_waypoints:b=no
     isShipSpline:b=no
     shipTurnRadius:r=100.0
-    weapons:t="wt_rafale_m_agm84k_vlo5"
+    weapons:t="wt_rafale_m_agm84k_lo2"
     fuel:r=15.0
     bullets0:t=""
     bullets1:t=""
@@ -5369,7 +5369,7 @@ units{
     bulletsCount1:i=0
     bulletsCount2:i=0
     bulletsCount3:i=0
-    crewSkillK:r=0.0
+    crewSkillK:r=1.0
     applyAllMods:b=yes
     props{
       army:i=2

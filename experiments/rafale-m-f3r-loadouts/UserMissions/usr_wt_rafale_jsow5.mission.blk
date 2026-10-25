@@ -5368,7 +5368,7 @@ units{
     bulletsCount1:i=0
     bulletsCount2:i=0
     bulletsCount3:i=0
-    crewSkillK:r=0.0
+    crewSkillK:r=1.0
     applyAllMods:b=yes
     props{
       army:i=2
