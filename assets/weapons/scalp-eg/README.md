@@ -48,7 +48,9 @@ to hold a 35–40 m terminal approach until five seconds from impact before
 distinct 600 m and deliberately exaggerated 1,000 m pop-ups. All three use an
 equilateral flat-water test range with two stationary 12 km targets. The six-profile
 matrix holds the commanded apex at 600 m while independently varying descent
-lead, climb-angle cap, and one softened climb gain. Their inherited Grom rocket flame and
+lead, climb-angle cap, and one softened climb gain. It also stages high-release
+descent through 2,000, 500, 80, and 35 m targets instead of commanding low-level
+flight immediately after launch. Their inherited Grom rocket flame and
 smoke are replaced by the AGM-84K turbojet-style effects. All variants share
 the same physical approximation and 250 kg PBXN-110 gameplay fill. See
 `asset.toml` for exact paths and tuning values.

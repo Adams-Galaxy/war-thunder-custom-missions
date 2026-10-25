@@ -30,7 +30,7 @@ mission_settings{
     useSpawnDelay:b=yes
     timeToLoseInstantDetection:r=10
     locName:t="Southeastern City · Rafale M · SCALP Turn 3.0s · 55°"
-    locDesc:t="Flat-water terminal-turn matrix. Medium damping, 35 m low approach, 600 m apex command, descent commanded 3.0 seconds before impact, and climb angle capped at 55 degrees. Climb gain is 0.016. Two stationary targets are exactly 12 km away."
+    locDesc:t="Flat-water terminal-turn matrix. Medium damping, 35 m low approach, 600 m apex command, descent commanded 3.0 seconds before impact, and climb angle capped at 55 degrees. Climb gain is 0.016. A staged 2,000/500/80 m ingress prevents high-release ground impact. Two stationary targets are exactly 12 km away."
     scoreLimit:i=9000
     timeLimit:i=90
     deathPenaltyMul:r=0.2
