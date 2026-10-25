@@ -73,12 +73,12 @@ include "#/develop/gameBase/gameData/flightModels/rafale_m_f3r.blk"
     }
   }
   preset {
-    name:t="wt_rafale_m_scalp_ins_terminal_35_400_lo2"
-    blk:t="gameData/flightModels/weaponPresets/wt_rafale_m_scalp_ins_terminal_35_400_lo2.blk"
+    name:t="wt_rafale_m_scalp_ins_terminal_35_600_lo2"
+    blk:t="gameData/flightModels/weaponPresets/wt_rafale_m_scalp_ins_terminal_35_600_lo2.blk"
     weaponConfig {
       presetType:t="AIR_TO_GROUND"
       Weapon {
-        blk:t="gameData/Weapons/rocketGuns/wt_agm_84k_scalp_ins_terminal_35_400_lo.blk"
+        blk:t="gameData/Weapons/rocketGuns/wt_agm_84k_scalp_ins_terminal_35_600_lo.blk"
         iconType:t="glide_bomb_default"
         amountPerTier:r=1.0
         tier { idx:i=10 }
@@ -87,12 +87,12 @@ include "#/develop/gameBase/gameData/flightModels/rafale_m_f3r.blk"
     }
   }
   preset {
-    name:t="wt_rafale_m_scalp_ins_terminal_40_500_lo2"
-    blk:t="gameData/flightModels/weaponPresets/wt_rafale_m_scalp_ins_terminal_40_500_lo2.blk"
+    name:t="wt_rafale_m_scalp_ins_terminal_40_1000_lo2"
+    blk:t="gameData/flightModels/weaponPresets/wt_rafale_m_scalp_ins_terminal_40_1000_lo2.blk"
     weaponConfig {
       presetType:t="AIR_TO_GROUND"
       Weapon {
-        blk:t="gameData/Weapons/rocketGuns/wt_agm_84k_scalp_ins_terminal_40_500_lo.blk"
+        blk:t="gameData/Weapons/rocketGuns/wt_agm_84k_scalp_ins_terminal_40_1000_lo.blk"
         iconType:t="glide_bomb_default"
         amountPerTier:r=1.0
         tier { idx:i=10 }
@@ -288,13 +288,13 @@ include "#/develop/gameBase/gameData/flightModels/rafale_m_f3r.blk"
 
     WeaponPreset {
       iconType:t="glide_bomb_default"
-      name:t="wt_scalp_ins_terminal_35_400_lo_slot3"
+      name:t="wt_scalp_ins_terminal_35_600_lo_slot3"
       ShowNodes {
         node:t="pylon_pu_708_001"
       }
       Weapon {
         trigger:t="atgm"
-        blk:t="gameData/Weapons/rocketGuns/wt_agm_84k_scalp_ins_terminal_35_400_lo.blk"
+        blk:t="gameData/Weapons/rocketGuns/wt_agm_84k_scalp_ins_terminal_35_600_lo.blk"
         emitter:t="pylon_at_730_001"
         bullets:i=1
         external:b=yes
@@ -305,13 +305,13 @@ include "#/develop/gameBase/gameData/flightModels/rafale_m_f3r.blk"
 
     WeaponPreset {
       iconType:t="glide_bomb_default"
-      name:t="wt_scalp_ins_terminal_40_500_lo_slot3"
+      name:t="wt_scalp_ins_terminal_40_1000_lo_slot3"
       ShowNodes {
         node:t="pylon_pu_708_001"
       }
       Weapon {
         trigger:t="atgm"
-        blk:t="gameData/Weapons/rocketGuns/wt_agm_84k_scalp_ins_terminal_40_500_lo.blk"
+        blk:t="gameData/Weapons/rocketGuns/wt_agm_84k_scalp_ins_terminal_40_1000_lo.blk"
         emitter:t="pylon_at_730_001"
         bullets:i=1
         external:b=yes
@@ -832,13 +832,13 @@ include "#/develop/gameBase/gameData/flightModels/rafale_m_f3r.blk"
 
     WeaponPreset {
       iconType:t="glide_bomb_default"
-      name:t="wt_scalp_ins_terminal_35_400_lo_slot10"
+      name:t="wt_scalp_ins_terminal_35_600_lo_slot10"
       ShowNodes {
         node:t="pylon_pu_708_002"
       }
       Weapon {
         trigger:t="atgm"
-        blk:t="gameData/Weapons/rocketGuns/wt_agm_84k_scalp_ins_terminal_35_400_lo.blk"
+        blk:t="gameData/Weapons/rocketGuns/wt_agm_84k_scalp_ins_terminal_35_600_lo.blk"
         emitter:t="pylon_at_730_002"
         bullets:i=1
         external:b=yes
@@ -849,13 +849,13 @@ include "#/develop/gameBase/gameData/flightModels/rafale_m_f3r.blk"
 
     WeaponPreset {
       iconType:t="glide_bomb_default"
-      name:t="wt_scalp_ins_terminal_40_500_lo_slot10"
+      name:t="wt_scalp_ins_terminal_40_1000_lo_slot10"
       ShowNodes {
         node:t="pylon_pu_708_002"
       }
       Weapon {
         trigger:t="atgm"
-        blk:t="gameData/Weapons/rocketGuns/wt_agm_84k_scalp_ins_terminal_40_500_lo.blk"
+        blk:t="gameData/Weapons/rocketGuns/wt_agm_84k_scalp_ins_terminal_40_1000_lo.blk"
         emitter:t="pylon_at_730_002"
         bullets:i=1
         external:b=yes

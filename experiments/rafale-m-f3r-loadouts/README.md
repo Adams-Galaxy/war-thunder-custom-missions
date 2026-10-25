@@ -20,9 +20,9 @@ The package adds one custom unit based on `rafale_m_f3r` and eighteen missions:
 - `Southeastern City · Rafale M · 4× Kh-58UShK`
 - `Southeastern City · Rafale M · 8× LMUR`
 - `Southeastern City · Rafale M · 2× SCALP-EG (IR · LO 0.1)`
-- `Southeastern City · Rafale M · SCALP Terminal 35→400`
-- `Southeastern City · Rafale M · SCALP Terminal 40→500 Late`
-- `Southeastern City · Rafale M · SCALP Ultra-Late Medium`
+- `Southeastern City · Rafale M · SCALP 5s 35→600`
+- `Southeastern City · Rafale M · SCALP 5s 40→1000`
+- `Southeastern City · Rafale M · SCALP Water Reference`
 - `Southeastern City · Rafale M · 2× SCALP-EG (IR · VLO 0.05)`
 
 All eighteen loadouts carry the TALIOS pod. The five-JSOW variant uses twin racks
@@ -76,10 +76,11 @@ The three `INS` terminal tests preserve the working 0.1 interception treatment b
 use War Thunder's seekerless Grom-1 `sns` point-guidance path. They return to
 the missile/ATGM release channel so the unwanted guided-bomb CCRP symbology is
 not shown. All now use the proven medium damping. Test A is the known-good
-ultra-late 25-to-260 m reference. Test B transitions from an 80 m cruise to a
-35 m terminal approach, holds it until about two seconds to impact, then pops
-to 400 m and commands a 75-degree dive. Test C holds 40 m until about 1.65
-seconds to impact, pops to 500 m, and commands an 80-degree dive. The extra
+ultra-late 25-to-260 m reference. Test B holds a 35 m terminal approach until
+five seconds to impact, then gives the controller time to climb toward 600 m.
+Test C uses the same five-second start but deliberately commands a 1,000 m
+apex from 40 m, testing whether a large altitude error overcomes the damping.
+The extra
 altitude keyframe is supported by stock War Thunder missile definitions and
 prevents the pop-up from being smeared into one long shallow climb. The listed distances are rough
 time-to-impact estimates, not fixed map distances. War Thunder exposes no
@@ -91,6 +92,11 @@ All three INS weapon files directly include the stock Grom-1 definition. An
 earlier attempt to make tests B and C include test A's custom `pkg_local` BLK
 caused repeatable fatal game crashes, so the variants are intentionally
 standalone despite the duplicated base tuning.
+
+All three terminal-profile missions use the same flat-water test range. The
+Rafale starts at `(0, 1500, -100000)` and two unarmed stationary destroyers sit
+exactly 12 km away at the other corners of an equilateral triangle. This removes
+terrain-height ambiguity and gives one target per missile.
 
 Because the INS version inherits Grom-1 only to obtain its seekerless SNS
 guidance path, it explicitly replaces Grom's solid-rocket flame, smoke, and

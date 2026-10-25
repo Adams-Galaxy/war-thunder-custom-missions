@@ -6,7 +6,7 @@ mission_settings{
     wing:t="t2_player01"
   }
   mission{
-    name:t="wt_rafale_scalp_ins_terminal_40_500_lo2_southeastern_city"
+    name:t="wt_rafale_scalp_ins_terminal_35_600_lo2_southeastern_city"
     type:t="singleMission"
     level:t="levels/air_south_eastern_city.bin"
     environment:t="Day"
@@ -29,8 +29,8 @@ mission_settings{
     afterRespawnDelaySec:i=30
     useSpawnDelay:b=yes
     timeToLoseInstantDetection:r=10
-    locName:t="Southeastern City · Rafale M · SCALP Terminal 40→500 Late"
-    locDesc:t="Terminal-profile test C. Uses the proven medium damping. It transitions from an 80 m cruise to 40 m around the final kilometre, holds 40 m until roughly 1.65 seconds from impact, then commands a very late pop to 500 m and an 80-degree terminal dive. This is the most aggressive profile. It retains outside-optics release, turbojet-style exhaust, the 250 kg PBXN-110 gameplay fill, and the 0.1 interception treatment."
+    locName:t="Southeastern City · Rafale M · SCALP 5s 35→600"
+    locDesc:t="Flat-water terminal-profile test B. Uses the proven medium damping. It holds 35 m, begins its pop five seconds before impact, targets a 600 m apex around 1.2 seconds out, then commands a 75-degree terminal dive. Two stationary targets are exactly 12 km away, 30 degrees left and right of the initial heading."
     scoreLimit:i=9000
     timeLimit:i=90
     deathPenaltyMul:r=0.2
@@ -5352,14 +5352,78 @@ units{
     way{
     }
   }
++  ships{
+    name:t="scalp_water_target_left"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-6000.0, 0.0, -89607.695]]
+    unit_class:t="ussr_destroyer_rckt_pr956"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+    props{
+      army:i=1
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=1
+      formation_step:p2=1.0, 1.0
+      formation_noise:p2=0.0, 0.0
+      attack_type:t="hold_fire"
+      isDelayed:b=no
+    }
+    way{
+    }
+  }
+  ships{
+    name:t="scalp_water_target_right"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [6000.0, 0.0, -89607.695]]
+    unit_class:t="ussr_destroyer_rckt_pr956"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+    props{
+      army:i=1
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=1
+      formation_step:p2=1.0, 1.0
+      formation_noise:p2=0.0, 0.0
+      attack_type:t="hold_fire"
+      isDelayed:b=no
+    }
+    way{
+    }
+  }
   armada{
     name:t="t2_player01"
-    tm:m=[[-0.73315784, 0.0, -0.680058515] [0.0, 1.0, 0.0] [0.680058515, 0.0, -0.73315784] [15589.947, 1500.0, 43840.151]]
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 1500.0, -100000.0]]
     unit_class:t="wt_custom_rafale_m_f3r"
     closed_waypoints:b=no
     isShipSpline:b=no
     shipTurnRadius:r=100.0
-    weapons:t="wt_rafale_m_scalp_ins_terminal_40_500_lo2"
+    weapons:t="wt_rafale_m_scalp_ins_terminal_35_600_lo2"
     fuel:r=15.0
     bullets0:t=""
     bullets1:t=""
