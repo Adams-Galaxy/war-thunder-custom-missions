@@ -153,6 +153,14 @@ def test_each_mission_enables_its_single_player_loadout() -> None:
         assert text.count("{") == text.count("}")
 
 
+def test_experiment_blks_do_not_contain_patch_markers() -> None:
+    for path in EXPERIMENT.rglob("*.blk"):
+        for line_number, line in enumerate(path.read_text().splitlines(), start=1):
+            assert not line.startswith(("+", "-")), (
+                f"{path.relative_to(ROOT)}:{line_number} contains a stray patch marker"
+            )
+
+
 def test_presets_select_both_heavy_stations_and_talios() -> None:
     presets = EXPERIMENT / "content" / "pkg_local" / "gameData" / "flightModels" / "weaponPresets"
 

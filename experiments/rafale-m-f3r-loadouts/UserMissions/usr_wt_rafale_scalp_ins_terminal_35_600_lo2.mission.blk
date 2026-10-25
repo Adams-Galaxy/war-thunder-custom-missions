@@ -5352,7 +5352,7 @@ units{
     way{
     }
   }
-+  ships{
+  ships{
     name:t="scalp_water_target_left"
     tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-6000.0, 0.0, -89607.695]]
     unit_class:t="ussr_destroyer_rckt_pr956"
