@@ -22,6 +22,15 @@ SCALP_PROXY = (
     / "wt_agm_84k_slam_er_lo.blk"
 )
 SCALP_PROXY_VLO = SCALP_PROXY.with_name("wt_agm_84k_slam_er_vlo.blk")
+KH38_TRIPLE = (
+    EXPERIMENT
+    / "content"
+    / "pkg_local"
+    / "gameData"
+    / "Weapons"
+    / "containers"
+    / "wt_kh38mt_x3.blk"
+)
 SCALP_INS_TERMINAL_35_600 = SCALP_PROXY.with_name("wt_agm_84k_scalp_ins_terminal_35_600_lo.blk")
 SCALP_INS_TERMINAL_40_1000 = SCALP_PROXY.with_name("wt_agm_84k_scalp_ins_terminal_40_1000_lo.blk")
 SCALP_INS_ULTRALATE_MEDIUM = SCALP_PROXY.with_name("wt_agm_84k_scalp_ins_ultralate_medium_lo.blk")
@@ -73,7 +82,8 @@ def test_custom_rafale_registers_all_experimental_stores() -> None:
     assert text.count("rocketGuns/su_kh_38mt.blk") == 4
     assert text.count("rocketGuns/su_kh_58ushk.blk") == 4
     assert text.count("containers/lmur_x2.blk") == 4
-    assert text.count("rocketGuns/wt_agm_84k_slam_er_lo.blk") == 3
+    assert text.count("rocketGuns/wt_agm_84k_slam_er_lo.blk") == 7
+    assert text.count("containers/wt_kh38mt_x3.blk") == 2
     assert text.count("rocketGuns/wt_agm_84k_slam_er_vlo.blk") == 3
     assert text.count("rocketGuns/wt_agm_84k_scalp_ins_terminal_35_600_lo.blk") == 3
     assert text.count("rocketGuns/wt_agm_84k_scalp_ins_terminal_40_1000_lo.blk") == 3
@@ -82,7 +92,7 @@ def test_custom_rafale_registers_all_experimental_stores() -> None:
         assert text.count(f"rocketGuns/wt_agm_84k_scalp_turn_{slug}_lo.blk") == 3
     for slug in SCALP_LOFT_MATRIX:
         assert text.count(f"rocketGuns/wt_agm_84k_scalp_loft_{slug}_lo.blk") == 3
-    assert text.count('presetType:t="AIR_TO_GROUND"') == 23
+    assert text.count('presetType:t="AIR_TO_GROUND"') == 24
     assert text.count('iconType:t="missile_air_to_uni_large"') >= 7
     for station_name in (
         "wt_agm84k_lo_slot3",
@@ -100,12 +110,45 @@ def test_custom_rafale_registers_all_experimental_stores() -> None:
     ):
         station = text.split(f'name:t="{station_name}"', 1)[0].rsplit("WeaponPreset {", 1)[1]
         assert 'iconType:t="glide_bomb_default"' in station
-    assert text.count('tier { idx:i=10 }') == 23
-    assert text.count('tier { idx:i=2 }') == 23
+    assert text.count('tier { idx:i=10 }') == 24
+    assert text.count('tier { idx:i=2 }') == 24
     assert text.count('preset:t="damocles"') == 2
-    assert text.count('blk:t="gameData/flightModels/weaponPresets/') == 36
+    assert text.count('blk:t="gameData/flightModels/weaponPresets/') == 37
     assert "gameData/FlightModels/weaponPresets/" not in text
     assert text.count("{") == text.count("}")
+
+
+def test_peaceful_practice_loadout_and_mission() -> None:
+    container = KH38_TRIPLE.read_text()
+    assert 'mesh:t="lau_88a"' in container
+    assert container.count('emitter:t="lau_88a_agm_65_') == 3
+    assert 'blk:t="gameData/Weapons/rocketGuns/su_kh_38mt.blk"' in container
+    assert "bullets:i=3" in container
+
+    preset = (
+        EXPERIMENT
+        / "content/pkg_local/gameData/flightModels/weaponPresets"
+        / "wt_rafale_m_practice_kh38mt6_scalp3.blk"
+    ).read_text()
+    assert preset.count("wt_kh38mt_x3_slot") == 2
+    assert preset.count("wt_agm84k_lo_slot") == 3
+    assert 'preset:t="damocles"' in preset
+
+    mission = (
+        EXPERIMENT
+        / "UserMissions/usr_wt_rafale_peaceful_practice_kh38mt6_scalp3.mission.blk"
+    ).read_text()
+    assert 'type:t="singleMission"' in mission
+    assert 'weapons:t="wt_rafale_m_practice_kh38mt6_scalp3"' in mission
+    assert "maxRespawns:i=-1" in mission
+    assert "afterRespawnDelaySec:i=1" in mission
+    assert "isLimitedFuel:b=no" in mission
+    assert "isLimitedAmmo:b=no" in mission
+    assert "rearmSpeedK:r=80.0" in mission
+    assert 'object:t="t2_player01"\n        targetableByAi:b=no\n        isImmortal:b=yes' in mission
+    assert "debug_in_multiplayer{\n    is_enabled:b=no" in mission
+    assert "rankRange:ip2=" not in mission
+    assert mission.count("{") == mission.count("}")
 
 
 def test_each_mission_enables_its_single_player_loadout() -> None:

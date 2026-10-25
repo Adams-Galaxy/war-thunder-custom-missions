@@ -6,11 +6,12 @@ game_dir=${1:-/games/SteamLibrary/steamapps/common/War Thunder}
 flightmodels_dir="$game_dir/content/pkg_local/gameData/flightModels"
 presets_dir="$flightmodels_dir/weaponPresets"
 rocketguns_dir="$game_dir/content/pkg_local/gameData/Weapons/rocketGuns"
+containers_dir="$game_dir/content/pkg_local/gameData/Weapons/containers"
 missions_dir="$game_dir/UserMissions"
 old_missions_dir="$missions_dir/Rafale weapon experiments"
 superseded_scalp_dir="$game_dir/disabled-user-missions/scalp-terminal-archive/geometry-loft-superseded"
 
-mkdir -p "$presets_dir" "$rocketguns_dir" "$missions_dir" "$superseded_scalp_dir"
+mkdir -p "$presets_dir" "$rocketguns_dir" "$containers_dir" "$missions_dir" "$superseded_scalp_dir"
 
 # Keep the active mission menu focused on the current comparison matrix while
 # preserving the preceding native/hybrid geometry tests for later reference.
@@ -68,6 +69,7 @@ cp "$experiment_dir/content/pkg_local/gameData/flightModels/weaponPresets/wt_raf
 cp "$experiment_dir/content/pkg_local/gameData/flightModels/weaponPresets/wt_rafale_m_agm84h3.blk" "$presets_dir/"
 cp "$experiment_dir/content/pkg_local/gameData/flightModels/weaponPresets/wt_rafale_m_agm84k5.blk" "$presets_dir/"
 cp "$experiment_dir/content/pkg_local/gameData/flightModels/weaponPresets/wt_rafale_m_kh38mt4.blk" "$presets_dir/"
+cp "$experiment_dir/content/pkg_local/gameData/flightModels/weaponPresets/wt_rafale_m_practice_kh38mt6_scalp3.blk" "$presets_dir/"
 cp "$experiment_dir/content/pkg_local/gameData/flightModels/weaponPresets/wt_rafale_m_kh58ushk4.blk" "$presets_dir/"
 cp "$experiment_dir/content/pkg_local/gameData/flightModels/weaponPresets/wt_rafale_m_lmur8.blk" "$presets_dir/"
 cp "$experiment_dir/content/pkg_local/gameData/flightModels/weaponPresets/wt_rafale_m_agm84k_lo2.blk" "$presets_dir/"
@@ -82,6 +84,7 @@ for profile in response130 response140 response150 response160 response170 respo
   cp "$experiment_dir/content/pkg_local/gameData/flightModels/weaponPresets/wt_rafale_m_scalp_loft_${profile}_lo2.blk" "$presets_dir/"
 done
 cp "$experiment_dir/content/pkg_local/gameData/Weapons/rocketGuns/wt_agm_84k_slam_er_lo.blk" "$rocketguns_dir/"
+cp "$experiment_dir/content/pkg_local/gameData/Weapons/containers/wt_kh38mt_x3.blk" "$containers_dir/"
 cp "$experiment_dir/content/pkg_local/gameData/Weapons/rocketGuns/wt_agm_84k_slam_er_vlo.blk" "$rocketguns_dir/"
 cp "$experiment_dir/content/pkg_local/gameData/Weapons/rocketGuns/wt_agm_84k_scalp_ins_terminal_35_600_lo.blk" "$rocketguns_dir/"
 cp "$experiment_dir/content/pkg_local/gameData/Weapons/rocketGuns/wt_agm_84k_scalp_ins_terminal_40_1000_lo.blk" "$rocketguns_dir/"
@@ -103,6 +106,7 @@ cp "$experiment_dir/UserMissions/usr_wt_rafale_agm65g12.mission.blk" "$missions_
 cp "$experiment_dir/UserMissions/usr_wt_rafale_agm84h3.mission.blk" "$missions_dir/"
 cp "$experiment_dir/UserMissions/usr_wt_rafale_agm84k5.mission.blk" "$missions_dir/"
 cp "$experiment_dir/UserMissions/usr_wt_rafale_kh38mt4.mission.blk" "$missions_dir/"
+cp "$experiment_dir/UserMissions/usr_wt_rafale_peaceful_practice_kh38mt6_scalp3.mission.blk" "$missions_dir/"
 cp "$experiment_dir/UserMissions/usr_wt_rafale_kh58ushk4.mission.blk" "$missions_dir/"
 cp "$experiment_dir/UserMissions/usr_wt_rafale_lmur8.mission.blk" "$missions_dir/"
 cp "$experiment_dir/UserMissions/usr_wt_rafale_agm84k_lo2.mission.blk" "$missions_dir/"

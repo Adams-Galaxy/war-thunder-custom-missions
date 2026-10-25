@@ -4,7 +4,7 @@ This is an intentionally local, single-player-only experiment built on the
 peaceful South-Eastern City mission. It does not alter the stock Rafale or any
 hosted multiplayer mission.
 
-The package adds one custom unit based on `rafale_m_f3r` and twenty-four missions:
+The package adds one custom unit based on `rafale_m_f3r` and a collection of missions, including:
 
 - `Southeastern City · Rafale M · 8× SPICE 250`
 - `Southeastern City · Rafale M · 6× Brimstone DM`
@@ -17,6 +17,7 @@ The package adds one custom unit based on `rafale_m_f3r` and twenty-four mission
 - `Southeastern City · Rafale M · 3× AGM-84H SLAM-ER`
 - `Southeastern City · Rafale M · 5× AGM-84K SLAM-ER`
 - `Southeastern City · Rafale M · 4× Kh-38MT`
+- `Southeastern City · Peaceful Rafale Practice`
 - `Southeastern City · Rafale M · 4× Kh-58UShK`
 - `Southeastern City · Rafale M · 8× LMUR`
 - `Southeastern City · Rafale M · 2× SCALP-EG (IR · LO 0.1)`
@@ -43,6 +44,18 @@ minimum-fuel load rather than the CDK's default full tanks. The three Russian
 experiments also start at minimum fuel. Kh-38MT uses its infrared seeker,
 Kh-58UShK is a dedicated anti-radiation experiment, and LMUR uses four twin
 launchers on the same fictional wing and wet-station arrangement.
+
+The Peaceful Rafale Practice mission is the long-session sandbox. It preserves
+the maintained Peaceful Exploration map and its units, makes the player
+continuously invisible to AI and immortal, permits unlimited respawns with a
+short delay, and enables unlimited fuel and ammunition. Its loadout combines
+six powered imaging-infrared Kh-38MTs with three SCALP-EG proxies that retain
+the stock AGM-84K native navigation and loft logic. The six Kh-38MTs use two
+fictional three-round LAU-88-based racks; their geometry and integration are a
+gameplay convenience, not a claim about a real Rafale loadout. An 80× airborne
+rearm-speed action is reapplied every second so it also survives respawning.
+Regenerate the mission after editing its source rules with
+`python tools/build_rafale_peaceful_practice.py`.
 
 The five SCALP proxy missions share a public-data-based approximation: 1,300 kg total
 mass, 5.10 m length, subsonic turbojet performance, at least 250 km nominal
