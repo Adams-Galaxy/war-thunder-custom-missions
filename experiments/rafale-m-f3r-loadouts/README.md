@@ -107,11 +107,8 @@ Rafale starts at `(40000, 1500, -52000)` and two unarmed stationary destroyers s
 exactly 12 km away at the other corners of an equilateral triangle. This removes
 terrain-height ambiguity and gives one target per missile.
 
-Six additional terminal-turn missions form a controlled tuning matrix. All use
-a staged high-release ingress command of 2,000 m at 40 seconds, 500 m at 20
-seconds, 80 m at 10 seconds, and 35 m at 6 seconds before impact. This prevents
-the altitude controller from commanding an immediate sea-level dive when the
-weapon is released several kilometres up. They then use the same 600 m apex
+Six additional terminal-turn missions form a controlled tuning matrix. All are
+intended for low-altitude release and use the same 35 m low approach, 600 m apex
 command, medium damping, and 0.25-second
 apex-to-descent command transition. Three command the descent 2.0, 2.5, or 3.0
 seconds before impact with a 55-degree climb cap. Two hold the 2.5-second timing

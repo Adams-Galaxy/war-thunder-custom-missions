@@ -455,9 +455,9 @@ def test_scalp_terminal_turn_matrix_is_controlled_and_complete() -> None:
         assert f"timeToHitToAltitude0:p2={turnover:.2f}, 5.0" in weapon
         assert f"timeToHitToAltitude1:p2={apex:.2f}, 600.0" in weapon
         assert "timeToHitToAltitude2:p2=6.0, 35.0" in weapon
-        assert "timeToHitToAltitude3:p2=10.0, 80.0" in weapon
-        assert "timeToHitToAltitude4:p2=20.0, 500.0" in weapon
-        assert "timeToHitToAltitude5:p2=40.0, 2000.0" in weapon
+        assert "timeToHitToAltitude3:p2=8.0, 35.0" in weapon
+        assert "timeToHitToAltitude4:p2=8.5, 80.0" in weapon
+        assert "timeToHitToAltitude5" not in weapon
         assert f"climbDiffToAccelMult:r={gain:g}" in weapon
         assert f"altitudeHoldAngleLimith:p2=-82.0, {cap:.1f}" in weapon
         assert weapon.count("{") == weapon.count("}")

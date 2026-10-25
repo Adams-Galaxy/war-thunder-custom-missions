@@ -79,12 +79,6 @@ def weapon_text(variant: Variant) -> str:
     text = replace_once(text, "timeToHitToAltitude0:p2=0.95, 5.0", f"timeToHitToAltitude0:p2={variant.turnover_s:.2f}, 5.0")
     text = replace_once(text, "timeToHitToAltitude1:p2=1.20, 600.0", f"timeToHitToAltitude1:p2={variant.apex_command_s:.2f}, 600.0")
     text = replace_once(text, "timeToHitToAltitude2:p2=5.0, 35.0", "timeToHitToAltitude2:p2=6.0, 35.0")
-    text = replace_once(text, "timeToHitToAltitude3:p2=8.0, 35.0", "timeToHitToAltitude3:p2=10.0, 80.0")
-    text = replace_once(
-        text,
-        "timeToHitToAltitude4:p2=8.5, 80.0",
-        "timeToHitToAltitude4:p2=20.0, 500.0\n      timeToHitToAltitude5:p2=40.0, 2000.0",
-    )
     text = replace_once(text, "climbDiffToAccelMult:r=0.016", f"climbDiffToAccelMult:r={variant.climb_gain:g}")
     text = replace_once(text, "altitudeHoldAngleLimith:p2=-82.0, 78.0", f"altitudeHoldAngleLimith:p2=-82.0, {variant.climb_cap_deg:.1f}")
     return text
@@ -121,8 +115,8 @@ def mission_text(variant: Variant) -> str:
         "Flat-water terminal-turn matrix. Medium damping, 35 m low approach, "
         f"600 m apex command, descent commanded {variant.turnover_s:.1f} seconds before impact, "
         f"and climb angle capped at {variant.climb_cap_deg:.0f} degrees. "
-        f"Climb gain is {variant.climb_gain:g}. A staged 2,000/500/80 m ingress prevents "
-        "high-release ground impact. Two stationary targets are exactly 12 km away."
+        f"Climb gain is {variant.climb_gain:g}. This terminal-profile test is intended for "
+        "low-altitude release. Two stationary targets are exactly 12 km away."
     )
     text = re.sub(
         r'^    locDesc:t=".*"$',
