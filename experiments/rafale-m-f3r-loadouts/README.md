@@ -124,19 +124,20 @@ gain from 0.15 to 0.135. The 1.0-second ground mission starts at NATO Air Spawn
 1 at 1.5 km, using the established west-facing transform. Regenerate this matrix with
 `python tools/build_scalp_terminal_matrix.py` after changing its variant table.
 
-The functional 600 m loft is now fixed while four profiles vary only coordinated
-altitude-controller responsiveness. All transition from 80 m at eleven seconds
-to a 40 m terrain-following command at 8.5 seconds, begin the established
-0.5-second loft ramp at 4.5 seconds, reach 600 m at four seconds, and release
-altitude hold at 1.5 seconds so terminal guidance has more time to acquire the
-final approach. Response 0.95 retains the previous medium-damped gains. Response
-1.00, 1.05, and 1.10 progressively raise target omega, vertical-rate gain, and
-climb-error gain together. This can reduce reaction lag over changing terrain,
-but cannot provide true look-ahead terrain following because the game controller
-uses current radar altitude rather than terrain ahead. Each profile has a 100 m
-flat-water mission and a 1.5 km NATO Air Spawn 1 ground mission. Prior tuning
-matrices remain in Git as test history but are moved out of the active mission
-menu. Regenerate the current matrix with `python tools/build_scalp_loft_matrix.py`.
+The functional 600 m loft is fixed while five ground-only profiles vary only
+coordinated altitude-controller responsiveness. All transition from 80 m at
+eleven seconds to a 40 m terrain-following command at 8.5 seconds, begin the
+established 0.5-second loft ramp at 4.5 seconds, reach 600 m at four seconds, and
+release altitude hold at 1.5 seconds. Response 1.10 is the confirmed stable
+baseline. Responses 1.15, 1.20, 1.25, and 1.30 progressively raise target omega,
+vertical-rate gain, and climb-error gain together until oscillation or other
+instability appears. This can reduce reaction lag over changing terrain but
+cannot provide true look-ahead terrain following because the game controller
+uses current radar altitude rather than terrain ahead. Only the 1.5 km NATO Air
+Spawn 1 ground missions are installed for this pass; water tests are omitted.
+Prior tuning matrices remain in Git as test history but are moved out of the
+active mission menu. Regenerate the current matrix with
+`python tools/build_scalp_loft_matrix.py`.
 
 Because the INS version inherits Grom-1 only to obtain its seekerless SNS
 guidance path, it explicitly replaces Grom's solid-rocket flame, smoke, and

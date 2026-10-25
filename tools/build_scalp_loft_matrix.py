@@ -81,30 +81,45 @@ def manual_variant(
 
 
 VARIANTS = (
-    manual_variant("response095", "Response 0.95 · Baseline", 0.50),
-    manual_variant(
-        "response100",
-        "Response 1.00 · Mild",
-        0.50,
-        target_omega_max=1.0,
-        altitude_rate_gain=0.145,
-        climb_gain=0.0135,
-    ),
-    manual_variant(
-        "response105",
-        "Response 1.05 · Medium",
-        0.50,
-        target_omega_max=1.05,
-        altitude_rate_gain=0.155,
-        climb_gain=0.0145,
-    ),
     manual_variant(
         "response110",
-        "Response 1.10 · High",
+        "Response 1.10 · Baseline",
         0.50,
         target_omega_max=1.10,
         altitude_rate_gain=0.165,
         climb_gain=0.0155,
+    ),
+    manual_variant(
+        "response115",
+        "Response 1.15",
+        0.50,
+        target_omega_max=1.15,
+        altitude_rate_gain=0.175,
+        climb_gain=0.0165,
+    ),
+    manual_variant(
+        "response120",
+        "Response 1.20",
+        0.50,
+        target_omega_max=1.20,
+        altitude_rate_gain=0.185,
+        climb_gain=0.0175,
+    ),
+    manual_variant(
+        "response125",
+        "Response 1.25",
+        0.50,
+        target_omega_max=1.25,
+        altitude_rate_gain=0.195,
+        climb_gain=0.0185,
+    ),
+    manual_variant(
+        "response130",
+        "Response 1.30",
+        0.50,
+        target_omega_max=1.30,
+        altitude_rate_gain=0.205,
+        climb_gain=0.0195,
     ),
 )
 
@@ -298,7 +313,6 @@ def main() -> None:
     for variant in VARIANTS:
         (WEAPONS / f"{variant.weapon_stem}.blk").write_text(weapon_text(variant))
         (PRESETS / f"{variant.loadout}.blk").write_text(preset_text(variant))
-        variant.water_mission.write_text(mission_text(WATER_MISSION_TEMPLATE, variant, False))
         variant.ground_mission.write_text(mission_text(GROUND_MISSION_TEMPLATE, variant, True))
     update_aircraft()
 

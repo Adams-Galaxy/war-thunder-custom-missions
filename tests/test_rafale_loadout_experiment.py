@@ -40,16 +40,18 @@ SCALP_TURN_MATRIX = {
     "lead075_cap45_gain0125_damped": (0.75, 1.00, 45.0, 0.0125),
 }
 SCALP_LOFT_MATRIX = {
-    "response095": ("hold", ((1.5, 600.0), (4.0, 600.0), (4.5, 40.0), (8.5, 40.0), (11.0, 80.0))),
-    "response100": ("hold", ((1.5, 600.0), (4.0, 600.0), (4.5, 40.0), (8.5, 40.0), (11.0, 80.0))),
-    "response105": ("hold", ((1.5, 600.0), (4.0, 600.0), (4.5, 40.0), (8.5, 40.0), (11.0, 80.0))),
     "response110": ("hold", ((1.5, 600.0), (4.0, 600.0), (4.5, 40.0), (8.5, 40.0), (11.0, 80.0))),
+    "response115": ("hold", ((1.5, 600.0), (4.0, 600.0), (4.5, 40.0), (8.5, 40.0), (11.0, 80.0))),
+    "response120": ("hold", ((1.5, 600.0), (4.0, 600.0), (4.5, 40.0), (8.5, 40.0), (11.0, 80.0))),
+    "response125": ("hold", ((1.5, 600.0), (4.0, 600.0), (4.5, 40.0), (8.5, 40.0), (11.0, 80.0))),
+    "response130": ("hold", ((1.5, 600.0), (4.0, 600.0), (4.5, 40.0), (8.5, 40.0), (11.0, 80.0))),
 }
 SCALP_LOFT_DAMPING = {
-    "response095": (0.95, 0.135, 0.0125),
-    "response100": (1.0, 0.145, 0.0135),
-    "response105": (1.05, 0.155, 0.0145),
     "response110": (1.10, 0.165, 0.0155),
+    "response115": (1.15, 0.175, 0.0165),
+    "response120": (1.20, 0.185, 0.0175),
+    "response125": (1.25, 0.195, 0.0185),
+    "response130": (1.30, 0.205, 0.0195),
 }
 
 
@@ -82,7 +84,7 @@ def test_custom_rafale_registers_all_experimental_stores() -> None:
         assert text.count(f"rocketGuns/wt_agm_84k_scalp_turn_{slug}_lo.blk") == 3
     for slug in SCALP_LOFT_MATRIX:
         assert text.count(f"rocketGuns/wt_agm_84k_scalp_loft_{slug}_lo.blk") == 3
-    assert text.count('presetType:t="AIR_TO_GROUND"') == 21
+    assert text.count('presetType:t="AIR_TO_GROUND"') == 22
     assert text.count('iconType:t="missile_air_to_uni_large"') >= 7
     for station_name in (
         "wt_agm84k_lo_slot3",
@@ -100,10 +102,10 @@ def test_custom_rafale_registers_all_experimental_stores() -> None:
     ):
         station = text.split(f'name:t="{station_name}"', 1)[0].rsplit("WeaponPreset {", 1)[1]
         assert 'iconType:t="glide_bomb_default"' in station
-    assert text.count('tier { idx:i=10 }') == 21
-    assert text.count('tier { idx:i=2 }') == 21
+    assert text.count('tier { idx:i=10 }') == 22
+    assert text.count('tier { idx:i=2 }') == 22
     assert text.count('preset:t="damocles"') == 2
-    assert text.count('blk:t="gameData/flightModels/weaponPresets/') == 34
+    assert text.count('blk:t="gameData/flightModels/weaponPresets/') == 35
     assert "gameData/FlightModels/weaponPresets/" not in text
     assert text.count("{") == text.count("}")
 
@@ -139,10 +141,9 @@ def test_each_mission_enables_its_single_player_loadout() -> None:
         "wt_rafale_m_scalp_turn_lead10_cap45_gain0125_damped_lo2"
     )
     for slug in SCALP_LOFT_MATRIX:
-        for test_range in ("water", "ground"):
-            cases[f"usr_wt_rafale_scalp_loft_{slug}_{test_range}_lo2.mission.blk"] = (
-                f"wt_rafale_m_scalp_loft_{slug}_lo2"
-            )
+        cases[f"usr_wt_rafale_scalp_loft_{slug}_ground_lo2.mission.blk"] = (
+            f"wt_rafale_m_scalp_loft_{slug}_lo2"
+        )
 
     for filename, preset in cases.items():
         text = (EXPERIMENT / "UserMissions" / filename).read_text()
@@ -483,6 +484,10 @@ def test_scalp_asset_manifest_indexes_reusable_sources() -> None:
         "manual-loft-response-100-lo-010",
         "manual-loft-response-105-lo-010",
         "manual-loft-response-110-lo-010",
+        "manual-loft-response-115-lo-010",
+        "manual-loft-response-120-lo-010",
+        "manual-loft-response-125-lo-010",
+        "manual-loft-response-130-lo-010",
     }
     for variant in manifest["variants"]:
         for key in ("weapon", "preset", "mission"):
@@ -588,17 +593,16 @@ def test_scalp_geometry_loft_matrix_is_controlled_and_complete() -> None:
             assert ", 5" not in altitude_lines
             assert "p2=0," not in altitude_lines
         assert preset.count(f'preset:t="wt_scalp_loft_{slug}_lo_slot') == 2
-        for test_range, altitude in (("water", 100.0), ("ground", 1500.0)):
-            mission = (
-                EXPERIMENT
-                / "UserMissions"
-                / f"usr_wt_rafale_scalp_loft_{slug}_{test_range}_lo2.mission.blk"
-            ).read_text()
-            assert f'weapons:t="wt_rafale_m_scalp_loft_{slug}_lo2"' in mission
-            assert f", {altitude:.1f}," in mission
-            if mode == "range":
-                assert "recalculates the loft angle during flight" in mission
-            else:
-                assert "no return-to-target altitude keyframe" in mission
-                assert "Altitude hold releases below" in mission
-            assert mission.count("{") == mission.count("}")
+        mission = (
+            EXPERIMENT
+            / "UserMissions"
+            / f"usr_wt_rafale_scalp_loft_{slug}_ground_lo2.mission.blk"
+        ).read_text()
+        assert f'weapons:t="wt_rafale_m_scalp_loft_{slug}_lo2"' in mission
+        assert ", 1500.0," in mission
+        if mode == "range":
+            assert "recalculates the loft angle during flight" in mission
+        else:
+            assert "no downward keyframe" in mission
+            assert "Altitude hold releases below" in mission
+        assert mission.count("{") == mission.count("}")
