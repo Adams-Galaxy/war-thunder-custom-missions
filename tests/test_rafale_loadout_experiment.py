@@ -35,6 +35,9 @@ SCALP_TURN_MATRIX = {
     "lead20_cap45_gain0125": (2.00, 2.25, 45.0, 0.0125),
     "lead175_cap45_gain0125": (1.75, 2.00, 45.0, 0.0125),
     "lead15_cap45_gain0125": (1.50, 1.75, 45.0, 0.0125),
+    "lead125_cap45_gain0125_damped": (1.25, 1.50, 45.0, 0.0125),
+    "lead10_cap45_gain0125_damped": (1.00, 1.25, 45.0, 0.0125),
+    "lead075_cap45_gain0125_damped": (0.75, 1.00, 45.0, 0.0125),
 }
 
 
@@ -65,7 +68,7 @@ def test_custom_rafale_registers_all_experimental_stores() -> None:
     assert text.count("rocketGuns/wt_agm_84k_scalp_ins_ultralate_medium_lo.blk") == 3
     for slug in SCALP_TURN_MATRIX:
         assert text.count(f"rocketGuns/wt_agm_84k_scalp_turn_{slug}_lo.blk") == 3
-    assert text.count('presetType:t="AIR_TO_GROUND"') == 14
+    assert text.count('presetType:t="AIR_TO_GROUND"') == 17
     assert text.count('iconType:t="missile_air_to_uni_large"') >= 7
     for station_name in (
         "wt_agm84k_lo_slot3",
@@ -82,10 +85,10 @@ def test_custom_rafale_registers_all_experimental_stores() -> None:
     ):
         station = text.split(f'name:t="{station_name}"', 1)[0].rsplit("WeaponPreset {", 1)[1]
         assert 'iconType:t="glide_bomb_default"' in station
-    assert text.count('tier { idx:i=10 }') == 14
-    assert text.count('tier { idx:i=2 }') == 14
+    assert text.count('tier { idx:i=10 }') == 17
+    assert text.count('tier { idx:i=2 }') == 17
     assert text.count('preset:t="damocles"') == 2
-    assert text.count('blk:t="gameData/flightModels/weaponPresets/') == 27
+    assert text.count('blk:t="gameData/flightModels/weaponPresets/') == 30
     assert "gameData/FlightModels/weaponPresets/" not in text
     assert text.count("{") == text.count("}")
 
@@ -116,6 +119,9 @@ def test_each_mission_enables_its_single_player_loadout() -> None:
             f"usr_wt_rafale_scalp_turn_{slug}_lo2.mission.blk": f"wt_rafale_m_scalp_turn_{slug}_lo2"
             for slug in SCALP_TURN_MATRIX
         }
+    )
+    cases["usr_wt_rafale_scalp_turn_lead10_cap45_gain0125_damped_ground_lo2.mission.blk"] = (
+        "wt_rafale_m_scalp_turn_lead10_cap45_gain0125_damped_lo2"
     )
 
     for filename, preset in cases.items():
@@ -152,7 +158,13 @@ def test_each_mission_enables_its_single_player_loadout() -> None:
         )[0]
         assert "crewSkillK:r=1.0" in player_unit
         assert "crewSkillK:r=0.0" not in player_unit
-        if "scalp_turn_" in preset:
+        if filename.endswith("_ground_lo2.mission.blk"):
+            assert (
+                'name:t="t2_player01"\n'
+                '    tm:m=[[-0.73315784, 0.0, -0.680058515] [0.0, 1.0, 0.0] '
+                '[0.680058515, 0.0, -0.73315784] [15589.947, 1500.0, 43840.151]]'
+            ) in text
+        elif "scalp_turn_" in preset:
             assert (
                 'name:t="t2_player01"\n'
                 '    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] '
@@ -423,6 +435,9 @@ def test_scalp_asset_manifest_indexes_reusable_sources() -> None:
         "terminal-turn-lead20-cap45-soft-lo-010",
         "terminal-turn-lead175-cap45-soft-lo-010",
         "terminal-turn-lead15-cap45-soft-lo-010",
+        "terminal-turn-lead125-cap45-soft-damped-lo-010",
+        "terminal-turn-lead10-cap45-soft-damped-lo-010",
+        "terminal-turn-lead075-cap45-soft-damped-lo-010",
     }
     for variant in manifest["variants"]:
         for key in ("weapon", "preset", "mission"):
@@ -475,6 +490,12 @@ def test_scalp_terminal_turn_matrix_is_controlled_and_complete() -> None:
         assert "timeToHitToAltitude3:p2=8.0, 35.0" in weapon
         assert "timeToHitToAltitude4:p2=8.5, 80.0" in weapon
         assert "timeToHitToAltitude5" not in weapon
+        if slug.endswith("_damped"):
+            assert "altitudeHoldTargetOmegaMax:r=0.95" in weapon
+            assert "altitudeRateRateToClimb:r=0.135" in weapon
+        else:
+            assert "altitudeHoldTargetOmegaMax:r=1.05" in weapon
+            assert "altitudeRateRateToClimb:r=0.15" in weapon
         assert f"climbDiffToAccelMult:r={gain:g}" in weapon
         assert f"altitudeHoldAngleLimith:p2=-82.0, {cap:.1f}" in weapon
         assert weapon.count("{") == weapon.count("}")

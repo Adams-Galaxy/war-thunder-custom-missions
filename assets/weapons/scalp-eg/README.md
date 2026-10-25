@@ -40,16 +40,19 @@ The installed physical loadout is unchanged:
 ## Variants
 
 The manifest records the two known-working optical/IR versions, three earlier
-coordinate-guided terminal tests, and nine controlled terminal-turn profiles.
+coordinate-guided terminal tests, and twelve controlled terminal-turn profiles.
 All INS versions use a seekerless SNS base,
 the normal missile/ATGM release channel, and the proven medium damping. One is
 the known-good ultra-late reference; the other two use five altitude keyframes
 to hold a 35–40 m terminal approach until five seconds from impact before
 distinct 600 m and deliberately exaggerated 1,000 m pop-ups. All three use an
-equilateral flat-water test range with two stationary 12 km targets. The nine-profile
+equilateral flat-water test range with two stationary 12 km targets. The twelve-profile
 matrix holds the commanded apex at 600 m while independently varying descent
 lead, climb-angle cap, and climb gain. Four profiles share the softened 0.0125
 gain and 45-degree cap while tightening descent timing from 2.5 to 1.5 seconds.
+Three additional profiles continue to 1.25, 1.0, and 0.75 seconds with a small
+further reduction in target omega and vertical-rate gain. A ground-range mission
+reuses the 1.0-second profile from NATO Air Spawn 1 at 1.5 km.
 These terminal-profile tests spawn at 100 m facing the midpoint between the
 ships because the global descent-angle limiter needed for a safe high release
 would also constrain the terminal dive. Their inherited Grom rocket flame and

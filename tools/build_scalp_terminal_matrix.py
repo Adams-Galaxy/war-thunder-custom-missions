@@ -15,6 +15,7 @@ AIRCRAFT = EXPERIMENT / "content/pkg_local/gameData/flightModels/wt_custom_rafal
 
 WEAPON_TEMPLATE = WEAPONS / "wt_agm_84k_scalp_ins_terminal_35_600_lo.blk"
 MISSION_TEMPLATE = MISSIONS / "usr_wt_rafale_scalp_ins_terminal_35_600_lo2.mission.blk"
+GROUND_MISSION_TEMPLATE = MISSIONS / "usr_wt_rafale_agm84k_lo2.mission.blk"
 
 
 @dataclass(frozen=True)
@@ -23,6 +24,8 @@ class Variant:
     turnover_s: float
     climb_cap_deg: float
     climb_gain: float = 0.016
+    target_omega_max: float = 1.05
+    altitude_rate_gain: float = 0.15
 
     @property
     def apex_command_s(self) -> float:
@@ -68,7 +71,13 @@ VARIANTS = (
     Variant("lead20_cap45_gain0125", 2.0, 45.0, 0.0125),
     Variant("lead175_cap45_gain0125", 1.75, 45.0, 0.0125),
     Variant("lead15_cap45_gain0125", 1.5, 45.0, 0.0125),
+    Variant("lead125_cap45_gain0125_damped", 1.25, 45.0, 0.0125, 0.95, 0.135),
+    Variant("lead10_cap45_gain0125_damped", 1.0, 45.0, 0.0125, 0.95, 0.135),
+    Variant("lead075_cap45_gain0125_damped", 0.75, 45.0, 0.0125, 0.95, 0.135),
 )
+
+GROUND_VARIANT_SLUG = "lead10_cap45_gain0125_damped"
+GROUND_MISSION = MISSIONS / "usr_wt_rafale_scalp_turn_lead10_cap45_gain0125_damped_ground_lo2.mission.blk"
 
 
 def replace_once(text: str, old: str, new: str) -> str:
@@ -88,6 +97,8 @@ def weapon_text(variant: Variant) -> str:
     text = replace_once(text, "timeToHitToAltitude0:p2=0.95, 5.0", f"timeToHitToAltitude0:p2={variant.turnover_s:.2f}, 5.0")
     text = replace_once(text, "timeToHitToAltitude1:p2=1.20, 600.0", f"timeToHitToAltitude1:p2={variant.apex_command_s:.2f}, 600.0")
     text = replace_once(text, "timeToHitToAltitude2:p2=5.0, 35.0", "timeToHitToAltitude2:p2=6.0, 35.0")
+    text = replace_once(text, "altitudeHoldTargetOmegaMax:r=1.05", f"altitudeHoldTargetOmegaMax:r={variant.target_omega_max:g}")
+    text = replace_once(text, "altitudeRateRateToClimb:r=0.15", f"altitudeRateRateToClimb:r={variant.altitude_rate_gain:g}")
     text = replace_once(text, "climbDiffToAccelMult:r=0.016", f"climbDiffToAccelMult:r={variant.climb_gain:g}")
     text = replace_once(text, "altitudeHoldAngleLimith:p2=-82.0, 78.0", f"altitudeHoldAngleLimith:p2=-82.0, {variant.climb_cap_deg:.1f}")
     return text
@@ -140,6 +151,30 @@ def mission_text(variant: Variant) -> str:
         flags=re.MULTILINE,
     )
     return text
+
+
+def ground_mission_text(variant: Variant) -> str:
+    text = GROUND_MISSION_TEMPLATE.read_text().replace(
+        "wt_rafale_m_agm84k_lo2", variant.loadout
+    )
+    text = re.sub(
+        r'^    locName:t=".*"$',
+        f'    locName:t="Southeastern City · Rafale M · SCALP Ground · {variant.display_suffix}"',
+        text,
+        count=1,
+        flags=re.MULTILINE,
+    )
+    description = (
+        "Ground-range terminal test using the 1.0-second softened and slightly more damped profile. "
+        "The Rafale starts at NATO Air Spawn 1 at 1.5 km, facing west across the ground target area."
+    )
+    return re.sub(
+        r'^    locDesc:t=".*"$',
+        f'    locDesc:t="{description}"',
+        text,
+        count=1,
+        flags=re.MULTILINE,
+    )
 
 
 def preset_registration(variant: Variant) -> str:
@@ -217,6 +252,8 @@ def main() -> None:
         (WEAPONS / f"{variant.weapon_stem}.blk").write_text(weapon_text(variant))
         (PRESETS / f"{variant.loadout}.blk").write_text(preset_text(variant))
         (MISSIONS / f"{variant.mission_stem}.blk").write_text(mission_text(variant))
+    ground_variant = next(v for v in VARIANTS if v.slug == GROUND_VARIANT_SLUG)
+    GROUND_MISSION.write_text(ground_mission_text(ground_variant))
     update_aircraft()
 
 

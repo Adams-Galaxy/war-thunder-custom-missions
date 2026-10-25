@@ -107,7 +107,10 @@ Rafale starts at `(40000, 1500, -52000)` and two unarmed stationary destroyers s
 exactly 12 km away at the other corners of an equilateral triangle. This removes
 terrain-height ambiguity and gives one target per missile.
 
-Nine additional terminal-turn missions form a controlled tuning matrix. They
+Twelve terminal-turn definitions form a controlled tuning matrix. The current
+playable set is the 1.25, 1.0, and 0.75-second water tests plus a 1.0-second
+ground-range mission; older mission files remain in Git as reference material
+but are removed from the active User Missions folder during this tuning pass. They
 spawn the Rafale at 100 m over water, with its identity transform pointing at
 the midpoint between the two ships. All use the same 35 m low approach, 600 m
 apex command, medium damping, and 0.25-second
@@ -115,8 +118,10 @@ apex-to-descent command transition. Three command the descent 2.0, 2.5, or 3.0
 seconds before impact with a 55-degree climb cap. Two hold the 2.5-second timing
 while lowering the cap to 45 or 35 degrees. Four softened 45-degree profiles use
 a climb gain of 0.0125 and command descent at 2.5, 2.0, 1.75, or 1.5 seconds
-before impact. This isolates whether a shorter soft response removes the apex
-shelf without restoring oscillation. Regenerate this matrix with
+before impact. Three further profiles tighten that to 1.25, 1.0, and 0.75
+seconds while slightly lowering target omega from 1.05 to 0.95 and vertical-rate
+gain from 0.15 to 0.135. The 1.0-second ground mission starts at NATO Air Spawn
+1 at 1.5 km, using the established west-facing transform. Regenerate this matrix with
 `python tools/build_scalp_terminal_matrix.py` after changing its variant table.
 
 Because the INS version inherits Grom-1 only to obtain its seekerless SNS
