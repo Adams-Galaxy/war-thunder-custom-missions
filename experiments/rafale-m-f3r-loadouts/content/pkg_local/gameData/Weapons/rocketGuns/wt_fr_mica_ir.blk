@@ -1,0 +1,50 @@
+// Experimental MICA-IR proxy.
+// Preserve the stock MICA-EM body, motor, aerodynamics, datalink/INS and
+// autopilot, replacing only the terminal RF seeker with a passive IIR proxy.
+include "#/develop/gameBase/gameData/Weapons/rocketGuns/fr_mica_em.blk"
+
+"@override:rocket" {
+  "@override:bulletName":t="wt_fr_mica_ir"
+  "@override:guidanceType":t="optical"
+  "@override:guidanceSfx":t="alarm_con_scan"
+
+  "@override:guidance" {
+    "@override:warmUpTime":r=0.3
+    "@override:workTime":r=100.0
+    "@override:uncageBeforeLaunch":b=yes
+    "@override:lockDistance":r=25000.0
+    "@override:inertialNavigation":b=yes
+    "@override:lockAfterLaunch":b=yes
+    "@override:useTargetVel":b=yes
+    "@override:lockTimeOut":r=0.75
+    "@override:breakLockMaxTime":r=3.0
+    disableTOFInHud:b=yes
+
+    // Imaging-IR approximation: broad cueing gimbal, narrow tracking gate and
+    // AIM-9M-style spectral rejection. The 25 km value is terminal seeker
+    // acquisition, not the missile's datalink-supported launch envelope.
+    opticalSeeker {
+      rangeBand0:r=25000.0
+      rangeBand1:r=6500.0
+      rangeBand2:r=22000.0
+      rangeBand3:r=22000.0
+      rangeBand7:r=13000.0
+      rangeMax:r=25000.0
+      fov:r=2.0
+      gateWidth:r=0.35
+      minAngleToSun:r=5.0
+      lockAngleMax:r=55.0
+      angleMax:r=70.0
+      rateMax:r=60.0
+      prolongationTimeMax:r=2.0
+      designationSourceType:t="sensor"
+      designationSourceType:t="radar"
+      designationSourceType:t="helmet"
+      constantDesignationSourceType:t="sensor"
+      constantDesignationSourceType:t="radar"
+      bandMaskToReject:i=4
+      signalRelRejectedTreshold:r=0.1
+      rejectionReactionTime:r=0.02
+    }
+  }
+}

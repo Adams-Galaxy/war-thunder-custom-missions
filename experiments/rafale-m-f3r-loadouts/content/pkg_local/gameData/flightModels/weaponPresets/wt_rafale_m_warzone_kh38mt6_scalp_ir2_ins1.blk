@@ -1,6 +1,6 @@
 Weapon {
   slot:i=1
-  preset:t="r550_magic_2_slot1_default"
+  preset:t="wt_mica_ir_slot1"
 }
 Weapon {
   slot:i=2
@@ -44,5 +44,5 @@ Weapon {
 }
 Weapon {
   slot:i=12
-  preset:t="r550_magic_2_slot12_default"
+  preset:t="wt_mica_ir_slot12"
 }

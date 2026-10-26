@@ -89,6 +89,24 @@ include "#/develop/gameBase/gameData/flightModels/rafale_m_f3r.blk"
     }
   }
   preset {
+    name:t="wt_rafale_m_mica_ir6"
+    blk:t="gameData/flightModels/weaponPresets/wt_rafale_m_mica_ir6.blk"
+    weaponConfig {
+      presetType:t="AIR_TO_AIR"
+      Weapon {
+        blk:t="gameData/Weapons/rocketGuns/wt_fr_mica_ir.blk"
+        iconType:t="missile_type_f_air_to_air_midrange"
+        amountPerTier:r=1.0
+        tier { idx:i=12 }
+        tier { idx:i=11 }
+        tier { idx:i=8 }
+        tier { idx:i=4 }
+        tier { idx:i=1 }
+        tier { idx:i=0 }
+      }
+    }
+  }
+  preset {
     name:t="wt_rafale_m_kh58ushk4"
     blk:t="gameData/flightModels/weaponPresets/wt_rafale_m_kh58ushk4.blk"
   }
@@ -425,6 +443,42 @@ include "#/develop/gameBase/gameData/flightModels/rafale_m_f3r.blk"
 }
 
 "@override:WeaponSlots" {
+  // Block 2 is aircraft slot 1 (left wingtip).
+  "@override:WeaponSlot[2]" {
+    WeaponPreset {
+      iconType:t="missile_type_f_air_to_air_midrange"
+      name:t="wt_mica_ir_slot1"
+      Weapon {
+        trigger:t="aam"
+        external:b=yes
+        separate:b=yes
+        blk:t="gameData/Weapons/rocketGuns/wt_fr_mica_ir.blk"
+        emitter:t="rocket_mica_001"
+        bullets:i=1
+      }
+    }
+  }
+
+  // Block 3 is aircraft slot 2 (left auxiliary MICA station).
+  "@override:WeaponSlot[3]" {
+    WeaponPreset {
+      iconType:t="missile_type_f_air_to_air_midrange"
+      name:t="wt_mica_ir_slot2"
+      ShowNodes {
+        node:t="pylon_rafale_mica_aux_001"
+        node:t="pylon_rafale_mica_aux_rail_001"
+      }
+      Weapon {
+        trigger:t="aam"
+        external:b=yes
+        separate:b=yes
+        blk:t="gameData/Weapons/rocketGuns/wt_fr_mica_ir.blk"
+        emitter:t="rocket_mica_002"
+        bullets:i=1
+      }
+    }
+  }
+
   // WeaponSlot blocks are numbered from 1 by the BLK override parser.
   // Block 4 is aircraft slot 3 (left heavy wing station).
   "@override:WeaponSlot[4]" {
@@ -1149,6 +1203,25 @@ include "#/develop/gameBase/gameData/flightModels/rafale_m_f3r.blk"
     }
   }
 
+  // Block 6 is aircraft slot 5 (left fuselage MICA station).
+  "@override:WeaponSlot[6]" {
+    WeaponPreset {
+      iconType:t="missile_type_f_air_to_air_midrange"
+      name:t="wt_mica_ir_slot5"
+      ShowNodes {
+        node:t="pylon_rafale_fuse_mica_001"
+      }
+      Weapon {
+        trigger:t="aam"
+        external:b=yes
+        separate:b=yes
+        blk:t="gameData/Weapons/rocketGuns/wt_fr_mica_ir.blk"
+        emitter:t="rocket_mica_004"
+        bullets:i=1
+      }
+    }
+  }
+
   // Block 8 is aircraft slot 7 (centerline heavy station).
   "@override:WeaponSlot[8]" {
     WeaponPreset {
@@ -1236,6 +1309,25 @@ include "#/develop/gameBase/gameData/flightModels/rafale_m_f3r.blk"
       }
     }
 
+  }
+
+  // Block 9 is aircraft slot 8 (right fuselage MICA station).
+  "@override:WeaponSlot[9]" {
+    WeaponPreset {
+      iconType:t="missile_type_f_air_to_air_midrange"
+      name:t="wt_mica_ir_slot8"
+      ShowNodes {
+        node:t="pylon_rafale_fuse_mica_002"
+      }
+      Weapon {
+        trigger:t="aam"
+        external:b=yes
+        separate:b=yes
+        blk:t="gameData/Weapons/rocketGuns/wt_fr_mica_ir.blk"
+        emitter:t="rocket_mica_005"
+        bullets:i=1
+      }
+    }
   }
 
   // Block 10 is aircraft slot 9 (right inner wet station).
@@ -1957,6 +2049,42 @@ include "#/develop/gameBase/gameData/flightModels/rafale_m_f3r.blk"
         external:b=yes
         separate:b=yes
         machLimit:r=1.4
+      }
+    }
+  }
+
+  // Block 12 is aircraft slot 11 (right auxiliary MICA station).
+  "@override:WeaponSlot[12]" {
+    WeaponPreset {
+      iconType:t="missile_type_f_air_to_air_midrange"
+      name:t="wt_mica_ir_slot11"
+      ShowNodes {
+        node:t="pylon_rafale_mica_aux_002"
+        node:t="pylon_rafale_mica_aux_rail_002"
+      }
+      Weapon {
+        trigger:t="aam"
+        external:b=yes
+        separate:b=yes
+        blk:t="gameData/Weapons/rocketGuns/wt_fr_mica_ir.blk"
+        emitter:t="rocket_mica_007"
+        bullets:i=1
+      }
+    }
+  }
+
+  // Block 13 is aircraft slot 12 (right wingtip).
+  "@override:WeaponSlot[13]" {
+    WeaponPreset {
+      iconType:t="missile_type_f_air_to_air_midrange"
+      name:t="wt_mica_ir_slot12"
+      Weapon {
+        trigger:t="aam"
+        external:b=yes
+        separate:b=yes
+        blk:t="gameData/Weapons/rocketGuns/wt_fr_mica_ir.blk"
+        emitter:t="rocket_mica_008"
+        bullets:i=1
       }
     }
   }

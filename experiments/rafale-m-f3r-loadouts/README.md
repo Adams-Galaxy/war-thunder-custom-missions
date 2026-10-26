@@ -19,6 +19,7 @@ The package adds one custom unit based on `rafale_m_f3r` and a collection of mis
 - `Southeastern City · Rafale M · 4× Kh-38MT`
 - `Southeastern City · Peaceful Rafale Practice`
 - `Southeastern City · Rafale War-Zone Practice`
+- `Southeastern City · MICA-IR Datalink Range`
 - `Southeastern City · Rafale M · 4× Kh-58UShK`
 - `Southeastern City · Rafale M · 8× LMUR`
 - `Southeastern City · Rafale M · 2× SCALP-EG (IR · LO 0.1)`
@@ -62,7 +63,7 @@ The separate War-Zone Practice mission keeps the stock Normal-mode strategic
 and short-range defenses active. Its player Rafale carries six Kh-38MTs, two
 `SCALP-EG IR` proxies using the stock AGM-84K navigation, one centerline
 `SCALP-EG INS` using the response-1.30 80-to-40-m terrain-following profile and
-staged terminal arc, two wingtip Magic 2s, and four MICA-EMs. Four Su-30SM2s are tasked to hunt the player, while a
+staged terminal arc, two wingtip MICA-IR proxies, and four MICA-EMs. Four Su-30SM2s are tasked to hunt the player, while a
 MiG-35 patrol and friendly Rafale CAP contest the wider airspace. Russian
 Su-25SM3s, Su-34s, and Ka-52s oppose NATO A-10Cs, F-15Es, and F/A-18E Super
 Hornets over the ground battle. All aircraft are organized as separated pairs
@@ -76,6 +77,18 @@ enemy aircraft manually. The player
 is neither invisible nor immortal, but retains unlimited respawns, fuel,
 ammunition, and accelerated airborne rearm. Regenerate it with
 `python tools/build_rafale_warzone_practice.py`.
+
+The MICA-IR Datalink Range is a dedicated peaceful air-to-air sandbox. Its
+Rafale carries six experimental MICA-IRs and is invisible to AI, immortal, and
+supplied with unlimited fuel, ammunition, respawns, and accelerated airborne
+rearm. Six unarmed hostile aircraft begin at different ranges, heights, and
+aspects; they maneuver around the player without firing and respawn eight
+seconds after being destroyed. The proxy inherits the stock MICA-EM body,
+motor, aerodynamics, autopilot, inertial navigation, and datalink, then swaps
+the terminal active-radar seeker for a passive imaging-IR approximation. This
+lets the game express a radar-cued, datalink-supported launch followed by
+passive terminal homing, although whether the engine performs that optical
+lock-after-launch handoff correctly remains an in-game validation point.
 
 The five SCALP proxy missions share a public-data-based approximation: 1,300 kg total
 mass, 5.10 m length, subsonic turbojet performance, at least 250 km nominal

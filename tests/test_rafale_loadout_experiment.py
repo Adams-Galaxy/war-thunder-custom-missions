@@ -22,6 +22,7 @@ SCALP_PROXY = (
     / "wt_agm_84k_slam_er_lo.blk"
 )
 SCALP_PROXY_VLO = SCALP_PROXY.with_name("wt_agm_84k_slam_er_vlo.blk")
+MICA_IR = SCALP_PROXY.with_name("wt_fr_mica_ir.blk")
 KH38_TRIPLE = (
     EXPERIMENT
     / "content"
@@ -166,7 +167,7 @@ def test_warzone_practice_loadout_and_mission() -> None:
     assert preset.count("wt_kh38mt_x3_slot") == 2
     assert preset.count("wt_agm84k_lo_slot") == 2
     assert preset.count("wt_scalp_loft_response130_lo_slot7") == 1
-    assert preset.count("r550_magic_2_slot") == 2
+    assert preset.count("wt_mica_ir_slot") == 2
     assert preset.count("mica_em_slot") == 4
     assert 'preset:t="damocles"' in preset
 
@@ -253,6 +254,56 @@ def test_warzone_practice_loadout_and_mission() -> None:
     ):
         assert f'target:t="{target}"' in mission
     assert "rankRange:ip2=" not in mission
+    assert mission.count("{") == mission.count("}")
+
+
+def test_mica_ir_proxy_and_peaceful_demo() -> None:
+    missile = MICA_IR.read_text()
+    assert 'include "#/develop/gameBase/gameData/Weapons/rocketGuns/fr_mica_em.blk"' in missile
+    assert '"@override:guidanceType":t="optical"' in missile
+    assert '"@override:inertialNavigation":b=yes' in missile
+    assert '"@override:lockAfterLaunch":b=yes' in missile
+    assert "datalink:b=yes" not in missile  # inherited unchanged from MICA-EM
+    assert "opticalSeeker {" in missile
+    assert "rangeMax:r=25000.0" in missile
+    assert "gateWidth:r=0.35" in missile
+
+    unit = UNIT.read_text()
+    assert 'name:t="wt_rafale_m_mica_ir6"' in unit
+    for slot in (1, 2, 5, 8, 11, 12):
+        assert f'name:t="wt_mica_ir_slot{slot}"' in unit
+
+    preset = (
+        EXPERIMENT
+        / "content/pkg_local/gameData/flightModels/weaponPresets"
+        / "wt_rafale_m_mica_ir6.blk"
+    ).read_text()
+    assert preset.count('preset:t="wt_mica_ir_slot') == 6
+
+    mission = (
+        EXPERIMENT / "UserMissions/usr_wt_rafale_mica_ir_demo.mission.blk"
+    ).read_text()
+    assert 'type:t="singleMission"' in mission
+    assert 'weapons:t="wt_rafale_m_mica_ir6"' in mission
+    assert "maxRespawns:i=-1" in mission
+    assert "isLimitedFuel:b=no" in mission
+    assert "isLimitedAmmo:b=no" in mission
+    assert "rearmSpeedK:r=80.0" in mission
+    assert 'object:t="t2_player01"\n        targetableByAi:b=no\n        isImmortal:b=yes' in mission
+    targets = (
+        "mica_ir_hot_near",
+        "mica_ir_hot_far",
+        "mica_ir_cross_left",
+        "mica_ir_cross_right",
+        "mica_ir_cold_far",
+        "mica_ir_low_hot",
+    )
+    for target in targets:
+        assert mission.count(f'name:t="{target}"') == 1
+        assert f'object_name:t="{target}"' in mission
+        block = mission.split(f'name:t="{target}"', 1)[1].split("  armada{", 1)[0]
+        assert 'weapons:t=""' in block
+        assert "targetableByAi:b=no" in block
     assert mission.count("{") == mission.count("}")
 
 

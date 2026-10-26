@@ -71,6 +71,7 @@ cp "$experiment_dir/content/pkg_local/gameData/flightModels/weaponPresets/wt_raf
 cp "$experiment_dir/content/pkg_local/gameData/flightModels/weaponPresets/wt_rafale_m_kh38mt4.blk" "$presets_dir/"
 cp "$experiment_dir/content/pkg_local/gameData/flightModels/weaponPresets/wt_rafale_m_practice_kh38mt6_scalp3.blk" "$presets_dir/"
 cp "$experiment_dir/content/pkg_local/gameData/flightModels/weaponPresets/wt_rafale_m_warzone_kh38mt6_scalp_ir2_ins1.blk" "$presets_dir/"
+cp "$experiment_dir/content/pkg_local/gameData/flightModels/weaponPresets/wt_rafale_m_mica_ir6.blk" "$presets_dir/"
 cp "$experiment_dir/content/pkg_local/gameData/flightModels/weaponPresets/wt_rafale_m_kh58ushk4.blk" "$presets_dir/"
 cp "$experiment_dir/content/pkg_local/gameData/flightModels/weaponPresets/wt_rafale_m_lmur8.blk" "$presets_dir/"
 cp "$experiment_dir/content/pkg_local/gameData/flightModels/weaponPresets/wt_rafale_m_agm84k_lo2.blk" "$presets_dir/"
@@ -85,6 +86,7 @@ for profile in response130 response140 response150 response160 response170 respo
   cp "$experiment_dir/content/pkg_local/gameData/flightModels/weaponPresets/wt_rafale_m_scalp_loft_${profile}_lo2.blk" "$presets_dir/"
 done
 cp "$experiment_dir/content/pkg_local/gameData/Weapons/rocketGuns/wt_agm_84k_slam_er_lo.blk" "$rocketguns_dir/"
+cp "$experiment_dir/content/pkg_local/gameData/Weapons/rocketGuns/wt_fr_mica_ir.blk" "$rocketguns_dir/"
 cp "$experiment_dir/content/pkg_local/gameData/Weapons/containers/wt_kh38mt_x3.blk" "$containers_dir/"
 cp "$experiment_dir/content/pkg_local/gameData/Weapons/rocketGuns/wt_agm_84k_slam_er_vlo.blk" "$rocketguns_dir/"
 cp "$experiment_dir/content/pkg_local/gameData/Weapons/rocketGuns/wt_agm_84k_scalp_ins_terminal_35_600_lo.blk" "$rocketguns_dir/"
@@ -109,6 +111,7 @@ cp "$experiment_dir/UserMissions/usr_wt_rafale_agm84k5.mission.blk" "$missions_d
 cp "$experiment_dir/UserMissions/usr_wt_rafale_kh38mt4.mission.blk" "$missions_dir/"
 cp "$experiment_dir/UserMissions/usr_wt_rafale_peaceful_practice_kh38mt6_scalp3.mission.blk" "$missions_dir/"
 cp "$experiment_dir/UserMissions/usr_wt_rafale_warzone_practice.mission.blk" "$missions_dir/"
+cp "$experiment_dir/UserMissions/usr_wt_rafale_mica_ir_demo.mission.blk" "$missions_dir/"
 cp "$experiment_dir/UserMissions/usr_wt_rafale_kh58ushk4.mission.blk" "$missions_dir/"
 cp "$experiment_dir/UserMissions/usr_wt_rafale_lmur8.mission.blk" "$missions_dir/"
 cp "$experiment_dir/UserMissions/usr_wt_rafale_agm84k_lo2.mission.blk" "$missions_dir/"

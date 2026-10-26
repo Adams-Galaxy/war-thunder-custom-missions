@@ -1,0 +1,24 @@
+Weapon {
+  slot:i=1
+  preset:t="wt_mica_ir_slot1"
+}
+Weapon {
+  slot:i=2
+  preset:t="wt_mica_ir_slot2"
+}
+Weapon {
+  slot:i=5
+  preset:t="wt_mica_ir_slot5"
+}
+Weapon {
+  slot:i=8
+  preset:t="wt_mica_ir_slot8"
+}
+Weapon {
+  slot:i=11
+  preset:t="wt_mica_ir_slot11"
+}
+Weapon {
+  slot:i=12
+  preset:t="wt_mica_ir_slot12"
+}
