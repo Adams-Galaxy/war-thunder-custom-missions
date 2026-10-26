@@ -11,8 +11,8 @@ include "#/develop/gameBase/gameData/Weapons/rocketGuns/su_grom_1.blk"
 bombCart:t="bomb_cart_kh59"
 
 "@override:rocket" {
-  "@override:bulletName":t="SCALP-EG"
-  "@override:gunnerOpticsName":t="SCALP-EG"
+  "@override:bulletName":t="SCALP-EG INS"
+  "@override:gunnerOpticsName":t="SCALP-EG INS"
   "@override:iconType":t="guided_bomb_middle_jdam"
   "@override:caliber":r=0.343
   "@override:mass":r=1300.0

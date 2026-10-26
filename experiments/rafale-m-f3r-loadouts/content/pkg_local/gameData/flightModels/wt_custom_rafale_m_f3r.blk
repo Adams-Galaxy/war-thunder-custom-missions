@@ -443,6 +443,86 @@ include "#/develop/gameBase/gameData/flightModels/rafale_m_f3r.blk"
 }
 
 "@override:WeaponSlots" {
+  // Block 1 is the common cannon/countermeasure station. This fictional
+  // practice preset keeps the gun and provides 256 dedicated flares plus 256
+  // dedicated chaff cartridges, avoiding the stock 52-cartridge mixed set.
+  "@override:WeaponSlot[1]" {
+    WeaponPreset {
+      name:t="wt_giat_cm_max"
+      Weapon {
+        trigger:t="cannon"
+        blk:t="gameData/Weapons/cannonGLAT_M791.blk"
+        emitter:t="flare1"
+        flash:t="flare1"
+        dm:t="cannon1_dm"
+        bullets:i=125
+        spread:r=1.1
+        traceOffset:i=1
+        counterIndex:i=1
+      }
+      Weapon {
+        dummy:b=yes
+        trigger:t="gunner0"
+        triggerGroup:t="primary"
+        blk:t="gameData/Weapons/dummy_weapon.blk"
+        emitter:t="optic1_gun"
+        defaultYaw:r=0.0
+        defaultPitch:r=0.0
+        speedYaw:r=200.0
+        speedPitch:r=200.0
+        parkInDeadzone:b=yes
+        aimForOperatedShell:b=yes
+        turret {
+          head:t="optic1_turret"
+          gun:t="optic1_gun"
+          mainTurret:b=yes
+        }
+        limits {
+          yaw:p2=-90.0, 90.0
+          pitch:p2=-90.0, 90.0
+        }
+      }
+      Weapon {
+        trigger:t="countermeasures"
+        blk:t="gameData/Weapons/rocketGuns/countermeasure_split_launcher_jet_only_flare_large.blk"
+        emitter:t="emtr_flare2"
+        bullets:i=128
+        external:b=yes
+        separate:b=yes
+        bulletsCartridge:i=1
+      }
+      Weapon {
+        trigger:t="countermeasures"
+        blk:t="gameData/Weapons/rocketGuns/countermeasure_split_launcher_jet_only_flare_large.blk"
+        emitter:t="emtr_flare5"
+        bullets:i=128
+        external:b=yes
+        separate:b=yes
+        bulletsCartridge:i=1
+      }
+      Weapon {
+        trigger:t="countermeasures"
+        blk:t="gameData/Weapons/rocketGuns/countermeasure_split_launcher_jet_only_chaff_large.blk"
+        emitter:t="emtr_flare3"
+        bullets:i=128
+        external:b=yes
+        separate:b=yes
+        brakeChuteRange:p2=0.0, 0.0
+        bulletsCartridge:i=1
+      }
+      Weapon {
+        trigger:t="countermeasures"
+        blk:t="gameData/Weapons/rocketGuns/countermeasure_split_launcher_jet_only_chaff_large.blk"
+        emitter:t="emtr_flare6"
+        bullets:i=128
+        external:b=yes
+        separate:b=yes
+        brakeChuteRange:p2=0.0, 0.0
+        bulletsCartridge:i=1
+      }
+    }
+  }
+
   // Block 2 is aircraft slot 1 (left wingtip).
   "@override:WeaponSlot[2]" {
     WeaponPreset {

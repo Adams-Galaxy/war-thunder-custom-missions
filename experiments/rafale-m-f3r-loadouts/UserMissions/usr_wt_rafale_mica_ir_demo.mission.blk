@@ -207,7 +207,7 @@ triggers{
     }
     events{
       periodicEvent{
-        time:r=2.0
+        time:r=0.25
       }
     }
     conditions{
@@ -230,6 +230,14 @@ triggers{
         target:t="mica_ir_cold_far"
       }
       unitWakeUp{
+        target:t="mica_ir_low_hot"
+      }
+      unitSetZeroAmmo{
+        target:t="mica_ir_hot_near"
+        target:t="mica_ir_hot_far"
+        target:t="mica_ir_cross_left"
+        target:t="mica_ir_cross_right"
+        target:t="mica_ir_cold_far"
         target:t="mica_ir_low_hot"
       }
       unitAttackTarget{

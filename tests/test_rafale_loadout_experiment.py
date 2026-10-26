@@ -167,8 +167,9 @@ def test_warzone_practice_loadout_and_mission() -> None:
     assert preset.count("wt_kh38mt_x3_slot") == 2
     assert preset.count("wt_agm84k_lo_slot") == 2
     assert preset.count("wt_scalp_loft_response130_lo_slot7") == 1
-    assert preset.count("wt_mica_ir_slot") == 2
-    assert preset.count("mica_em_slot") == 4
+    assert preset.count("wt_mica_ir_slot") == 0
+    assert preset.count("mica_em_slot") == 6
+    assert 'preset:t="wt_giat_cm_max"' in preset
     assert 'preset:t="damocles"' in preset
 
     unit = UNIT.read_text()
@@ -270,6 +271,13 @@ def test_mica_ir_proxy_and_peaceful_demo() -> None:
 
     unit = UNIT.read_text()
     assert 'name:t="wt_rafale_m_mica_ir6"' in unit
+    assert 'name:t="wt_giat_cm_max"' in unit
+    extended_cm = unit.split('name:t="wt_giat_cm_max"', 1)[1].split(
+        "    WeaponPreset {", 1
+    )[0]
+    assert extended_cm.count("bullets:i=128") == 4
+    assert "countermeasure_split_launcher_jet_only_flare_large.blk" in extended_cm
+    assert "countermeasure_split_launcher_jet_only_chaff_large.blk" in extended_cm
     for slot in (1, 2, 5, 8, 11, 12):
         assert f'name:t="wt_mica_ir_slot{slot}"' in unit
 
@@ -279,6 +287,7 @@ def test_mica_ir_proxy_and_peaceful_demo() -> None:
         / "wt_rafale_m_mica_ir6.blk"
     ).read_text()
     assert preset.count('preset:t="wt_mica_ir_slot') == 6
+    assert 'preset:t="wt_giat_cm_max"' in preset
 
     mission = (
         EXPERIMENT / "UserMissions/usr_wt_rafale_mica_ir_demo.mission.blk"
@@ -304,6 +313,9 @@ def test_mica_ir_proxy_and_peaceful_demo() -> None:
         block = mission.split(f'name:t="{target}"', 1)[1].split("  armada{", 1)[0]
         assert 'weapons:t=""' in block
         assert "targetableByAi:b=no" in block
+    zero_ammo = mission.split("unitSetZeroAmmo{", 1)[1].split("      }", 1)[0]
+    for target in targets:
+        assert f'target:t="{target}"' in zero_ammo
     assert mission.count("{") == mission.count("}")
 
 

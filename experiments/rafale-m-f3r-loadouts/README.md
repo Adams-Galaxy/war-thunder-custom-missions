@@ -63,7 +63,7 @@ The separate War-Zone Practice mission keeps the stock Normal-mode strategic
 and short-range defenses active. Its player Rafale carries six Kh-38MTs, two
 `SCALP-EG IR` proxies using the stock AGM-84K navigation, one centerline
 `SCALP-EG INS` using the response-1.30 80-to-40-m terrain-following profile and
-staged terminal arc, two wingtip MICA-IR proxies, and four MICA-EMs. Four Su-30SM2s are tasked to hunt the player, while a
+staged terminal arc and six standard MICA-EMs. Four Su-30SM2s are tasked to hunt the player, while a
 MiG-35 patrol and friendly Rafale CAP contest the wider airspace. Russian
 Su-25SM3s, Su-34s, and Ka-52s oppose NATO A-10Cs, F-15Es, and F/A-18E Super
 Hornets over the ground battle. All aircraft are organized as separated pairs
@@ -89,6 +89,12 @@ the terminal active-radar seeker for a passive imaging-IR approximation. This
 lets the game express a radar-cued, datalink-supported launch followed by
 passive terminal homing, although whether the engine performs that optical
 lock-after-launch handoff correctly remains an in-game validation point.
+
+The Peaceful Practice, War-Zone Practice, and MICA-IR range presets use a
+fictional extended countermeasure station containing 256 dedicated flares and
+256 dedicated chaff cartridges. This replaces the stock common preset's 52
+mixed cartridges for long practice sessions without changing the missile or
+gun stations.
 
 The five SCALP proxy missions share a public-data-based approximation: 1,300 kg total
 mass, 5.10 m length, subsonic turbojet performance, at least 250 km nominal

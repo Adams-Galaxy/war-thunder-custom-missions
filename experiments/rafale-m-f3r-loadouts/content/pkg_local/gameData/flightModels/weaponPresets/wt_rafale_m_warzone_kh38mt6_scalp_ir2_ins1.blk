@@ -1,6 +1,10 @@
 Weapon {
+  slot:i=0
+  preset:t="wt_giat_cm_max"
+}
+Weapon {
   slot:i=1
-  preset:t="wt_mica_ir_slot1"
+  preset:t="mica_em_slot1"
 }
 Weapon {
   slot:i=2
@@ -44,5 +48,5 @@ Weapon {
 }
 Weapon {
   slot:i=12
-  preset:t="wt_mica_ir_slot12"
+  preset:t="mica_em_slot12"
 }

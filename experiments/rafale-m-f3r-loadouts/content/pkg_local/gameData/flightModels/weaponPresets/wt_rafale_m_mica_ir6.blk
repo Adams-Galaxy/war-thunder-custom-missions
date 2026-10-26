@@ -1,4 +1,8 @@
 Weapon {
+  slot:i=0
+  preset:t="wt_giat_cm_max"
+}
+Weapon {
   slot:i=1
   preset:t="wt_mica_ir_slot1"
 }

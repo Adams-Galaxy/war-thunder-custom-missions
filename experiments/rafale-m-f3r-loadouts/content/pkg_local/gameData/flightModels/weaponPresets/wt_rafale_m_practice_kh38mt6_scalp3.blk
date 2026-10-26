@@ -1,4 +1,8 @@
 Weapon {
+  slot:i=0
+  preset:t="wt_giat_cm_max"
+}
+Weapon {
   slot:i=3
   preset:t="wt_kh38mt_x3_slot3"
 }
