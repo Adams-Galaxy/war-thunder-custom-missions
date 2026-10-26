@@ -65,6 +65,27 @@ include "#/develop/gameBase/gameData/flightModels/rafale_m_f3r.blk"
     }
   }
   preset {
+    name:t="wt_rafale_m_warzone_kh38mt6_scalp_ir2_ins1"
+    blk:t="gameData/flightModels/weaponPresets/wt_rafale_m_warzone_kh38mt6_scalp_ir2_ins1.blk"
+    weaponConfig {
+      presetType:t="AIR_TO_GROUND"
+      Weapon {
+        blk:t="gameData/Weapons/rocketGuns/wt_agm_84k_slam_er_lo.blk"
+        iconType:t="glide_bomb_default"
+        amountPerTier:r=1.0
+        tier { idx:i=10 }
+        tier { idx:i=2 }
+      }
+      Weapon {
+        blk:t="gameData/Weapons/rocketGuns/wt_agm_84k_scalp_loft_response130_lo.blk"
+        iconType:t="glide_bomb_default"
+        amountPerTier:r=1.0
+        tier { idx:i=10 }
+        tier { idx:i=2 }
+      }
+    }
+  }
+  preset {
     name:t="wt_rafale_m_kh58ushk4"
     blk:t="gameData/flightModels/weaponPresets/wt_rafale_m_kh58ushk4.blk"
   }
@@ -1153,6 +1174,23 @@ include "#/develop/gameBase/gameData/flightModels/rafale_m_f3r.blk"
       Weapon {
         trigger:t="atgm"
         blk:t="gameData/Weapons/rocketGuns/wt_agm_84k_slam_er_lo.blk"
+        emitter:t="bomb_gbu_24_003"
+        bullets:i=1
+        external:b=yes
+        separate:b=yes
+        machLimit:r=1.4
+      }
+    }
+
+    WeaponPreset {
+      iconType:t="glide_bomb_default"
+      name:t="wt_scalp_loft_response130_lo_slot7"
+      ShowNodes {
+        node:t="pylon_rafale_central"
+      }
+      Weapon {
+        trigger:t="atgm"
+        blk:t="gameData/Weapons/rocketGuns/wt_agm_84k_scalp_loft_response130_lo.blk"
         emitter:t="bomb_gbu_24_003"
         bullets:i=1
         external:b=yes

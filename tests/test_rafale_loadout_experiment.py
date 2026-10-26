@@ -82,7 +82,7 @@ def test_custom_rafale_registers_all_experimental_stores() -> None:
     assert text.count("rocketGuns/su_kh_38mt.blk") == 4
     assert text.count("rocketGuns/su_kh_58ushk.blk") == 4
     assert text.count("containers/lmur_x2.blk") == 4
-    assert text.count("rocketGuns/wt_agm_84k_slam_er_lo.blk") == 7
+    assert text.count("rocketGuns/wt_agm_84k_slam_er_lo.blk") == 8
     assert text.count("containers/wt_kh38mt_x3.blk") == 2
     assert text.count("rocketGuns/wt_agm_84k_slam_er_vlo.blk") == 3
     assert text.count("rocketGuns/wt_agm_84k_scalp_ins_terminal_35_600_lo.blk") == 3
@@ -91,8 +91,9 @@ def test_custom_rafale_registers_all_experimental_stores() -> None:
     for slug in SCALP_TURN_MATRIX:
         assert text.count(f"rocketGuns/wt_agm_84k_scalp_turn_{slug}_lo.blk") == 3
     for slug in SCALP_LOFT_MATRIX:
-        assert text.count(f"rocketGuns/wt_agm_84k_scalp_loft_{slug}_lo.blk") == 3
-    assert text.count('presetType:t="AIR_TO_GROUND"') == 24
+        expected = 5 if slug == "response130" else 3
+        assert text.count(f"rocketGuns/wt_agm_84k_scalp_loft_{slug}_lo.blk") == expected
+    assert text.count('presetType:t="AIR_TO_GROUND"') == 25
     assert text.count('iconType:t="missile_air_to_uni_large"') >= 7
     for station_name in (
         "wt_agm84k_lo_slot3",
@@ -101,6 +102,7 @@ def test_custom_rafale_registers_all_experimental_stores() -> None:
         "wt_scalp_ins_ultralate_medium_lo_slot3",
         "wt_agm84k_vlo_slot3",
         "wt_agm84k_lo_slot10",
+        "wt_scalp_loft_response130_lo_slot7",
         "wt_scalp_ins_terminal_35_600_lo_slot10",
         "wt_scalp_ins_terminal_40_1000_lo_slot10",
         "wt_scalp_ins_ultralate_medium_lo_slot10",
@@ -110,10 +112,10 @@ def test_custom_rafale_registers_all_experimental_stores() -> None:
     ):
         station = text.split(f'name:t="{station_name}"', 1)[0].rsplit("WeaponPreset {", 1)[1]
         assert 'iconType:t="glide_bomb_default"' in station
-    assert text.count('tier { idx:i=10 }') == 24
-    assert text.count('tier { idx:i=2 }') == 24
+    assert text.count('tier { idx:i=10 }') == 26
+    assert text.count('tier { idx:i=2 }') == 26
     assert text.count('preset:t="damocles"') == 2
-    assert text.count('blk:t="gameData/flightModels/weaponPresets/') == 37
+    assert text.count('blk:t="gameData/flightModels/weaponPresets/') == 38
     assert "gameData/FlightModels/weaponPresets/" not in text
     assert text.count("{") == text.count("}")
 
@@ -151,6 +153,73 @@ def test_peaceful_practice_loadout_and_mission() -> None:
     )[0]
     assert "speed:r=" not in practice_trigger
     assert "debug_in_multiplayer{\n    is_enabled:b=no" in mission
+    assert "rankRange:ip2=" not in mission
+    assert mission.count("{") == mission.count("}")
+
+
+def test_warzone_practice_loadout_and_mission() -> None:
+    preset = (
+        EXPERIMENT
+        / "content/pkg_local/gameData/flightModels/weaponPresets"
+        / "wt_rafale_m_warzone_kh38mt6_scalp_ir2_ins1.blk"
+    ).read_text()
+    assert preset.count("wt_kh38mt_x3_slot") == 2
+    assert preset.count("wt_agm84k_lo_slot") == 2
+    assert preset.count("wt_scalp_loft_response130_lo_slot7") == 1
+    assert 'preset:t="damocles"' in preset
+
+    mission = (
+        EXPERIMENT / "UserMissions/usr_wt_rafale_warzone_practice.mission.blk"
+    ).read_text()
+    assert 'type:t="singleMission"' in mission
+    assert 'weapons:t="wt_rafale_m_warzone_kh38mt6_scalp_ir2_ins1"' in mission
+    assert "maxRespawns:i=-1" in mission
+    assert "isLimitedFuel:b=no" in mission
+    assert "isLimitedAmmo:b=no" in mission
+    assert "rearmSpeedK:r=80.0" in mission
+    support = mission.split("practice_player_support{", 1)[1].split(
+        "warzone_initial_package{", 1
+    )[0]
+    assert "targetableByAi" not in support
+    assert "isImmortal" not in support
+    assert "speed:r=" not in support
+    expected_units = {
+        "war_t1_su30_hunters": ("su_30sm2", "su_30sm2_default", 4),
+        "war_t1_mig35_cap": ("mig_35", "mig_35_default", 4),
+        "war_t1_su25_rockets": ("su_25sm3", "su_25sm3_b8m", 4),
+        "war_t1_su34_strike": ("su_34", "su_34_rocket_s13", 2),
+        "war_t1_ka52_attack": ("ka_52", "ka_52_rocket_vyhr_c_8_ko", 4),
+        "war_t2_rafale_cap": ("rafale_c_f3", "rafale_c_f3_default", 4),
+        "war_t2_a10_rockets": ("a_10c", "a_10c_lau_131_default", 4),
+        "war_t2_f15e_strike": ("f_15e", "f_15e_agm_65g", 2),
+        "war_t2_fa18e_strike": ("fa_18e_block_2", "fa_18e_block_2_apkws_m282", 2),
+    }
+    for name, (unit_class, weapons, count) in expected_units.items():
+        block = mission.split(f'name:t="{name}"', 1)[1].split("  armada{", 1)[0]
+        assert f'unit_class:t="{unit_class}"' in block
+        assert f'weapons:t="{weapons}"' in block
+        assert f"count:i={count}" in block
+        assert mission.count(f'target:t="{name}"') == 1
+    for protected in (
+        "war_t1_su25_rockets",
+        "war_t1_su34_strike",
+        "war_t1_ka52_attack",
+        "war_t2_a10_rockets",
+        "war_t2_f15e_strike",
+        "war_t2_fa18e_strike",
+    ):
+        block = mission.split(f'name:t="{protected}"', 1)[1].split("  armada{", 1)[0]
+        assert "targetableByAi:b=no" in block
+    assert 'attack_type:t="attack_player_B"' in mission
+    for trigger, time, state in (
+        ("warzone_initial_spaa_window_open", 25.0, "yes"),
+        ("warzone_initial_spaa_window_close", 40.0, "no"),
+        ("warzone_second_spaa_window_open", 70.0, "yes"),
+        ("warzone_second_spaa_window_close", 85.0, "no"),
+    ):
+        block = mission.split(f"{trigger}{{", 1)[1].split("  debug_in_multiplayer{", 1)[0]
+        assert f"value:r={time:.1f}" in block
+        assert f"targetableByAi:b={state}" in block
     assert "rankRange:ip2=" not in mission
     assert mission.count("{") == mission.count("}")
 

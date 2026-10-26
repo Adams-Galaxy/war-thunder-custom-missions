@@ -18,6 +18,7 @@ The package adds one custom unit based on `rafale_m_f3r` and a collection of mis
 - `Southeastern City · Rafale M · 5× AGM-84K SLAM-ER`
 - `Southeastern City · Rafale M · 4× Kh-38MT`
 - `Southeastern City · Peaceful Rafale Practice`
+- `Southeastern City · Rafale War-Zone Practice`
 - `Southeastern City · Rafale M · 4× Kh-58UShK`
 - `Southeastern City · Rafale M · 8× LMUR`
 - `Southeastern City · Rafale M · 2× SCALP-EG (IR · LO 0.1)`
@@ -56,6 +57,23 @@ gameplay convenience, not a claim about a real Rafale loadout. An 80× airborne
 rearm-speed action is reapplied every second so it also survives respawning.
 Regenerate the mission after editing its source rules with
 `python tools/build_rafale_peaceful_practice.py`.
+
+The separate War-Zone Practice mission keeps the stock Normal-mode strategic
+and short-range defenses active. Its player Rafale carries six Kh-38MTs, two
+`SCALP-EG IR` proxies using the stock AGM-84K navigation, and one centerline
+`SCALP-EG INS` using the response-1.30 80-to-40-m terrain-following profile and
+staged terminal arc. Four Su-30SM2s are tasked to hunt the player, while a
+MiG-35 patrol and friendly Rafale CAP contest the wider airspace. Russian
+Su-25SM3s, Su-34s, and Ka-52s oppose NATO A-10Cs, F-15Es, and F/A-18E Super
+Hornets over the ground battle. The low strike packages are hidden from AI
+targeting during ingress, exposed to AI SPAA during a 15-second attack window,
+then hidden again so the map's dense air defenses can fire without erasing the
+whole package immediately. This switch affects AI selection only; the player
+can still find and engage enemy aircraft manually. A second package enters 45
+seconds after mission start to spread load and traffic. The player
+is neither invisible nor immortal, but retains unlimited respawns, fuel,
+ammunition, and accelerated airborne rearm. Regenerate it with
+`python tools/build_rafale_warzone_practice.py`.
 
 The five SCALP proxy missions share a public-data-based approximation: 1,300 kg total
 mass, 5.10 m length, subsonic turbojet performance, at least 250 km nominal
