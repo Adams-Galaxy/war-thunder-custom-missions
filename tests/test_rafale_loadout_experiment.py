@@ -165,8 +165,8 @@ def test_warzone_practice_loadout_and_mission() -> None:
         / "wt_rafale_m_warzone_kh38mt6_scalp_ir2_ins1.blk"
     ).read_text()
     assert preset.count("wt_kh38mt_x3_slot") == 2
-    assert preset.count("wt_agm84k_lo_slot") == 2
-    assert preset.count("wt_scalp_loft_response130_lo_slot7") == 1
+    assert preset.count("wt_agm84k_lo_slot") == 3
+    assert preset.count("wt_scalp_loft_response130_lo_slot7") == 0
     assert preset.count("wt_mica_ir_slot") == 0
     assert preset.count("mica_em_slot") == 6
     assert 'preset:t="wt_giat_cm_max"' in preset
@@ -182,6 +182,7 @@ def test_warzone_practice_loadout_and_mission() -> None:
         EXPERIMENT / "UserMissions/usr_wt_rafale_warzone_practice.mission.blk"
     ).read_text()
     assert 'type:t="singleMission"' in mission
+    assert 'restoreType:t="manual"' in mission
     assert 'weapons:t="wt_rafale_m_warzone_kh38mt6_scalp_ir2_ins1"' in mission
     assert "maxRespawns:i=-1" in mission
     assert "isLimitedFuel:b=no" in mission
@@ -190,6 +191,14 @@ def test_warzone_practice_loadout_and_mission() -> None:
     player = mission.split('name:t="t2_player01"', 1)[1].split("  armada{", 1)[0]
     assert "fuel:r=3.0" in player
     assert "rearmSpeedK:r=80.0" in mission
+    respawn = mission.split("practice_player_infinite_respawn{", 1)[1].split(
+        "  warzone_initial_package{", 1
+    )[0]
+    assert 'object_type:t="isKilled"' in respawn
+    assert 'object:t="t2_player01"' in respawn
+    assert 'target:t="war_player_respawn_area"' in respawn
+    assert "enableAfterComplete:b=yes" in respawn
+    assert "war_player_respawn_area{" in mission
     support = mission.split("practice_player_support{", 1)[1].split(
         "warzone_initial_package{", 1
     )[0]
@@ -197,17 +206,17 @@ def test_warzone_practice_loadout_and_mission() -> None:
     assert "isImmortal" not in support
     assert "speed:r=" not in support
     expected_units = {
-        "war_t1_su30_hunters_a": ("su_30sm2", "su_30sm2_default", 2),
-        "war_t1_su30_hunters_b": ("su_30sm2", "su_30sm2_default", 2),
-        "war_t1_mig35_cap_a": ("mig_35", "mig_35_default", 2),
-        "war_t1_mig35_cap_b": ("mig_35", "mig_35_default", 2),
+        "war_t1_su30_hunters_a": ("su_30sm2", "su_30sm2_default", 4),
+        "war_t1_su30_hunters_b": ("su_30sm2", "su_30sm2_default", 4),
+        "war_t1_mig35_cap_a": ("mig_35", "mig_35_default", 4),
+        "war_t1_mig35_cap_b": ("mig_35", "mig_35_default", 4),
         "war_t1_su25_rockets_a": ("su_25sm3", "su_25sm3_b8m", 2),
         "war_t1_su25_rockets_b": ("su_25sm3", "su_25sm3_b8m", 2),
         "war_t1_su34_strike": ("su_34", "su_34_rocket_s13", 2),
-        "war_t1_ka52_attack_a": ("ka_52", "ka_52_rocket_vyhr_c_8_ko", 2),
-        "war_t1_ka52_attack_b": ("ka_52", "ka_52_rocket_vyhr_c_8_ko", 2),
-        "war_t2_rafale_cap_a": ("rafale_c_f3", "rafale_c_f3_default", 2),
-        "war_t2_rafale_cap_b": ("rafale_c_f3", "rafale_c_f3_default", 2),
+        "war_t1_ka52_attack_a": ("ka_52", "ka_52_9k127", 2),
+        "war_t1_ka52_attack_b": ("ka_52", "ka_52_9k127", 2),
+        "war_t2_rafale_cap_a": ("rafale_c_f3", "rafale_c_f3_default", 4),
+        "war_t2_rafale_cap_b": ("rafale_c_f3", "rafale_c_f3_default", 4),
         "war_t2_a10_rockets_a": ("a_10c", "a_10c_lau_131_default", 2),
         "war_t2_a10_rockets_b": ("a_10c", "a_10c_lau_131_default", 2),
         "war_t2_f15e_strike": ("f_15e", "f_15e_agm_65g", 2),
@@ -237,24 +246,33 @@ def test_warzone_practice_loadout_and_mission() -> None:
         assert "_attack_gate{" in block
     assert 'attack_type:t="attack_player_B"' in mission
     for trigger, next_trigger, time, state in (
-        ("warzone_initial_spaa_window_open", "warzone_initial_spaa_window_close", 68.0, "yes"),
-        ("warzone_initial_spaa_window_close", "warzone_second_spaa_window_open", 98.0, "no"),
-        ("warzone_second_spaa_window_open", "warzone_second_spaa_window_close", 123.0, "yes"),
-        ("warzone_second_spaa_window_close", "warzone_third_spaa_window_open", 153.0, "no"),
-        ("warzone_third_spaa_window_open", "warzone_third_spaa_window_close", 178.0, "yes"),
-        ("warzone_third_spaa_window_close", "debug_in_multiplayer", 208.0, "no"),
+        ("warzone_initial_spaa_window_open", "warzone_initial_spaa_window_close", 43.0, "yes"),
+        ("warzone_initial_spaa_window_close", "warzone_second_spaa_window_open", 68.0, "no"),
+        ("warzone_second_spaa_window_open", "warzone_second_spaa_window_close", 68.0, "yes"),
+        ("warzone_second_spaa_window_close", "warzone_third_spaa_window_open", 93.0, "no"),
+        ("warzone_third_spaa_window_open", "warzone_third_spaa_window_close", 93.0, "yes"),
+        ("warzone_third_spaa_window_close", "warzone_fighter_spaa_window_1_open", 118.0, "no"),
     ):
         block = mission.split(f"{trigger}{{", 1)[1].split(f"  {next_trigger}{{", 1)[0]
         assert f"value:r={time:.1f}" in block
         assert f"targetableByAi:b={state}" in block
     for trigger, next_trigger, time in (
-        ("warzone_initial_strike_commit", "warzone_second_strike_commit", 70.0),
-        ("warzone_second_strike_commit", "warzone_third_strike_commit", 125.0),
-        ("warzone_third_strike_commit", "warzone_initial_spaa_window_open", 180.0),
+        ("warzone_initial_strike_commit", "warzone_second_strike_commit", 45.0),
+        ("warzone_second_strike_commit", "warzone_third_strike_commit", 70.0),
+        ("warzone_third_strike_commit", "warzone_initial_spaa_window_open", 95.0),
     ):
         block = mission.split(f"{trigger}{{", 1)[1].split(f"  {next_trigger}{{", 1)[0]
         assert f"value:r={time:.1f}" in block
         assert 'attack_type:t="attack_target"' in block
+    for trigger, next_trigger, time, state in (
+        ("warzone_fighter_spaa_window_1_open", "warzone_fighter_spaa_window_1_close", 30.0, "yes"),
+        ("warzone_fighter_spaa_window_1_close", "warzone_fighter_spaa_window_2_open", 42.0, "no"),
+        ("warzone_fighter_spaa_window_2_open", "warzone_fighter_spaa_window_2_close", 100.0, "yes"),
+        ("warzone_fighter_spaa_window_2_close", "debug_in_multiplayer", 112.0, "no"),
+    ):
+        block = mission.split(f"{trigger}{{", 1)[1].split(f"  {next_trigger}{{", 1)[0]
+        assert f"value:r={time:.1f}" in block
+        assert f"targetableByAi:b={state}" in block
     assert '[15589.947, 650.0, 43840.151]' in mission
     for target in (
         "t2_base_02",

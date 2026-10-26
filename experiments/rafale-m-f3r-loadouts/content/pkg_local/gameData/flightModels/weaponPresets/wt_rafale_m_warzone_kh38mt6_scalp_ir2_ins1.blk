@@ -28,7 +28,7 @@ Weapon {
 }
 Weapon {
   slot:i=7
-  preset:t="wt_scalp_loft_response130_lo_slot7"
+  preset:t="wt_agm84k_lo_slot7"
 }
 Weapon {
   slot:i=8

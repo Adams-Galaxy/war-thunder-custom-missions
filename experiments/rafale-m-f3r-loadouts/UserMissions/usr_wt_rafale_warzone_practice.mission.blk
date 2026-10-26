@@ -8,6 +8,7 @@ mission_settings{
   mission{
     name:t="wt_rafale_warzone_practice"
     type:t="singleMission"
+    restoreType:t="manual"
     level:t="levels/air_south_eastern_city.bin"
     environment:t="Day"
     weather:t="clear"
@@ -193,6 +194,42 @@ triggers{
 
     }
   }
+  practice_player_infinite_respawn{
+    is_enabled:b=yes
+    comments:t="Manual single-player respawn avoids the fixed attempts limit and returns the player over NATO Air Spawn 1."
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+    events{
+      periodicEvent{
+        time:r=0.5
+      }
+    }
+    conditions{
+      unitWhenStatus{
+        object:t="t2_player01"
+        object_type:t="isKilled"
+        check_objects:t="any"
+      }
+    }
+    actions{
+      wait{
+        time:r=2.0
+      }
+      unitRespawn{
+        delay:r=0.0
+        offset:p3=0.0, 0.0, 0.0
+        object:t="t2_player01"
+        target:t="war_player_respawn_area"
+        randomSpawn:b=no
+      }
+    }
+    else_actions{
+
+    }
+  }
   warzone_initial_package{
     is_enabled:b=yes
     comments:t="Staggered war-zone air package. Low strike groups remain manually targetable but are hidden from AI SPAA."
@@ -281,7 +318,7 @@ triggers{
     }
     conditions{
       missionWhenTime{
-        value:r=55.0
+        value:r=10.0
       }
     }
     actions{
@@ -364,7 +401,7 @@ triggers{
     }
     conditions{
       missionWhenTime{
-        value:r=110.0
+        value:r=20.0
       }
     }
     actions{
@@ -431,7 +468,7 @@ triggers{
     }
     conditions{
       missionWhenTime{
-        value:r=70.0
+        value:r=45.0
       }
     }
     actions{
@@ -495,7 +532,7 @@ triggers{
     }
     conditions{
       missionWhenTime{
-        value:r=125.0
+        value:r=70.0
       }
     }
     actions{
@@ -546,7 +583,7 @@ triggers{
     }
     conditions{
       missionWhenTime{
-        value:r=180.0
+        value:r=95.0
       }
     }
     actions{
@@ -622,7 +659,7 @@ triggers{
     }
     conditions{
       missionWhenTime{
-        value:r=68.0
+        value:r=43.0
       }
     }
     actions{
@@ -658,7 +695,7 @@ triggers{
     }
     conditions{
       missionWhenTime{
-        value:r=98.0
+        value:r=68.0
       }
     }
     actions{
@@ -694,7 +731,7 @@ triggers{
     }
     conditions{
       missionWhenTime{
-        value:r=123.0
+        value:r=68.0
       }
     }
     actions{
@@ -726,7 +763,7 @@ triggers{
     }
     conditions{
       missionWhenTime{
-        value:r=153.0
+        value:r=93.0
       }
     }
     actions{
@@ -758,7 +795,7 @@ triggers{
     }
     conditions{
       missionWhenTime{
-        value:r=178.0
+        value:r=93.0
       }
     }
     actions{
@@ -798,7 +835,7 @@ triggers{
     }
     conditions{
       missionWhenTime{
-        value:r=208.0
+        value:r=118.0
       }
     }
     actions{
@@ -816,6 +853,198 @@ triggers{
       }
       unitSetProperties{
         object:t="war_t2_fa18e_strike"
+        targetableByAi:b=no
+      }
+    }
+    else_actions{
+
+    }
+  }
+  warzone_fighter_spaa_window_1_open{
+    is_enabled:b=yes
+    comments:t="Open or close a short AI-SPAA engagement window for low strike packages."
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+    events{
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+    conditions{
+      missionWhenTime{
+        value:r=30.0
+      }
+    }
+    actions{
+      unitSetProperties{
+        object:t="war_t1_su30_hunters_a"
+        targetableByAi:b=yes
+      }
+      unitSetProperties{
+        object:t="war_t1_su30_hunters_b"
+        targetableByAi:b=yes
+      }
+      unitSetProperties{
+        object:t="war_t1_mig35_cap_a"
+        targetableByAi:b=yes
+      }
+      unitSetProperties{
+        object:t="war_t1_mig35_cap_b"
+        targetableByAi:b=yes
+      }
+      unitSetProperties{
+        object:t="war_t2_rafale_cap_a"
+        targetableByAi:b=yes
+      }
+      unitSetProperties{
+        object:t="war_t2_rafale_cap_b"
+        targetableByAi:b=yes
+      }
+    }
+    else_actions{
+
+    }
+  }
+  warzone_fighter_spaa_window_1_close{
+    is_enabled:b=yes
+    comments:t="Open or close a short AI-SPAA engagement window for low strike packages."
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+    events{
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+    conditions{
+      missionWhenTime{
+        value:r=42.0
+      }
+    }
+    actions{
+      unitSetProperties{
+        object:t="war_t1_su30_hunters_a"
+        targetableByAi:b=no
+      }
+      unitSetProperties{
+        object:t="war_t1_su30_hunters_b"
+        targetableByAi:b=no
+      }
+      unitSetProperties{
+        object:t="war_t1_mig35_cap_a"
+        targetableByAi:b=no
+      }
+      unitSetProperties{
+        object:t="war_t1_mig35_cap_b"
+        targetableByAi:b=no
+      }
+      unitSetProperties{
+        object:t="war_t2_rafale_cap_a"
+        targetableByAi:b=no
+      }
+      unitSetProperties{
+        object:t="war_t2_rafale_cap_b"
+        targetableByAi:b=no
+      }
+    }
+    else_actions{
+
+    }
+  }
+  warzone_fighter_spaa_window_2_open{
+    is_enabled:b=yes
+    comments:t="Open or close a short AI-SPAA engagement window for low strike packages."
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+    events{
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+    conditions{
+      missionWhenTime{
+        value:r=100.0
+      }
+    }
+    actions{
+      unitSetProperties{
+        object:t="war_t1_su30_hunters_a"
+        targetableByAi:b=yes
+      }
+      unitSetProperties{
+        object:t="war_t1_su30_hunters_b"
+        targetableByAi:b=yes
+      }
+      unitSetProperties{
+        object:t="war_t1_mig35_cap_a"
+        targetableByAi:b=yes
+      }
+      unitSetProperties{
+        object:t="war_t1_mig35_cap_b"
+        targetableByAi:b=yes
+      }
+      unitSetProperties{
+        object:t="war_t2_rafale_cap_a"
+        targetableByAi:b=yes
+      }
+      unitSetProperties{
+        object:t="war_t2_rafale_cap_b"
+        targetableByAi:b=yes
+      }
+    }
+    else_actions{
+
+    }
+  }
+  warzone_fighter_spaa_window_2_close{
+    is_enabled:b=yes
+    comments:t="Open or close a short AI-SPAA engagement window for low strike packages."
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+    events{
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+    conditions{
+      missionWhenTime{
+        value:r=112.0
+      }
+    }
+    actions{
+      unitSetProperties{
+        object:t="war_t1_su30_hunters_a"
+        targetableByAi:b=no
+      }
+      unitSetProperties{
+        object:t="war_t1_su30_hunters_b"
+        targetableByAi:b=no
+      }
+      unitSetProperties{
+        object:t="war_t1_mig35_cap_a"
+        targetableByAi:b=no
+      }
+      unitSetProperties{
+        object:t="war_t1_mig35_cap_b"
+        targetableByAi:b=no
+      }
+      unitSetProperties{
+        object:t="war_t2_rafale_cap_a"
+        targetableByAi:b=no
+      }
+      unitSetProperties{
+        object:t="war_t2_rafale_cap_b"
         targetableByAi:b=no
       }
     }
@@ -6972,7 +7201,7 @@ units{
   }
   armada{
     name:t="war_t1_su30_hunters_a"
-    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-18000.000, 5600.000, 33000.000]]
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-5000.000, 2500.000, 48000.000]]
     unit_class:t="su_30sm2"
     closed_waypoints:b=no
     isShipSpline:b=no
@@ -6991,7 +7220,7 @@ units{
     applyAllMods:b=yes
     props{
       army:i=1
-      count:i=2
+      count:i=4
       numInWing:i=2
       free_distance:r=180.0
       floating_distance:r=100.0
@@ -7003,6 +7232,7 @@ units{
       targetGnd:b=no
       isDelayed:b=yes
       skill:i=4
+      targetableByAi:b=no
       speed:r=260.0
       plane{
         wing_formation:t="Echelon"
@@ -7022,7 +7252,7 @@ units{
   }
   armada{
     name:t="war_t1_su30_hunters_b"
-    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-33000.000, 4800.000, 8000.000]]
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-5000.000, 1800.000, 20000.000]]
     unit_class:t="su_30sm2"
     closed_waypoints:b=no
     isShipSpline:b=no
@@ -7041,7 +7271,7 @@ units{
     applyAllMods:b=yes
     props{
       army:i=1
-      count:i=2
+      count:i=4
       numInWing:i=2
       free_distance:r=180.0
       floating_distance:r=100.0
@@ -7053,6 +7283,7 @@ units{
       targetGnd:b=no
       isDelayed:b=yes
       skill:i=4
+      targetableByAi:b=no
       speed:r=260.0
       plane{
         wing_formation:t="Echelon"
@@ -7072,7 +7303,7 @@ units{
   }
   armada{
     name:t="war_t1_mig35_cap_a"
-    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-36000.000, 6200.000, 41000.000]]
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-12000.000, 3200.000, 42000.000]]
     unit_class:t="mig_35"
     closed_waypoints:b=no
     isShipSpline:b=no
@@ -7091,7 +7322,7 @@ units{
     applyAllMods:b=yes
     props{
       army:i=1
-      count:i=2
+      count:i=4
       numInWing:i=2
       free_distance:r=180.0
       floating_distance:r=100.0
@@ -7103,6 +7334,7 @@ units{
       targetGnd:b=no
       isDelayed:b=yes
       skill:i=4
+      targetableByAi:b=no
       speed:r=250.0
       plane{
         wing_formation:t="Echelon"
@@ -7122,7 +7354,7 @@ units{
   }
   armada{
     name:t="war_t1_mig35_cap_b"
-    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-41000.000, 4300.000, -3000.000]]
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-10000.000, 2500.000, 15000.000]]
     unit_class:t="mig_35"
     closed_waypoints:b=no
     isShipSpline:b=no
@@ -7141,7 +7373,7 @@ units{
     applyAllMods:b=yes
     props{
       army:i=1
-      count:i=2
+      count:i=4
       numInWing:i=2
       free_distance:r=180.0
       floating_distance:r=100.0
@@ -7153,6 +7385,7 @@ units{
       targetGnd:b=no
       isDelayed:b=yes
       skill:i=4
+      targetableByAi:b=no
       speed:r=250.0
       plane{
         wing_formation:t="Echelon"
@@ -7383,7 +7616,7 @@ units{
     closed_waypoints:b=no
     isShipSpline:b=no
     shipTurnRadius:r=100.0
-    weapons:t="ka_52_rocket_vyhr_c_8_ko"
+    weapons:t="ka_52_9k127"
     fuel:r=100.0
     bullets0:t=""
     bullets1:t=""
@@ -7449,7 +7682,7 @@ units{
     closed_waypoints:b=no
     isShipSpline:b=no
     shipTurnRadius:r=100.0
-    weapons:t="ka_52_rocket_vyhr_c_8_ko"
+    weapons:t="ka_52_9k127"
     fuel:r=100.0
     bullets0:t=""
     bullets1:t=""
@@ -7510,7 +7743,7 @@ units{
   }
   armada{
     name:t="war_t2_rafale_cap_a"
-    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [34000.000, 5900.000, 36000.000]]
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [12000.000, 3000.000, 48000.000]]
     unit_class:t="rafale_c_f3"
     closed_waypoints:b=no
     isShipSpline:b=no
@@ -7529,7 +7762,7 @@ units{
     applyAllMods:b=yes
     props{
       army:i=2
-      count:i=2
+      count:i=4
       numInWing:i=2
       free_distance:r=180.0
       floating_distance:r=100.0
@@ -7541,6 +7774,7 @@ units{
       targetGnd:b=no
       isDelayed:b=yes
       skill:i=4
+      targetableByAi:b=no
       speed:r=260.0
       plane{
         wing_formation:t="Echelon"
@@ -7560,7 +7794,7 @@ units{
   }
   armada{
     name:t="war_t2_rafale_cap_b"
-    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [43000.000, 4500.000, 8000.000]]
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [10000.000, 2500.000, 18000.000]]
     unit_class:t="rafale_c_f3"
     closed_waypoints:b=no
     isShipSpline:b=no
@@ -7579,7 +7813,7 @@ units{
     applyAllMods:b=yes
     props{
       army:i=2
-      count:i=2
+      count:i=4
       numInWing:i=2
       free_distance:r=180.0
       floating_distance:r=100.0
@@ -7591,6 +7825,7 @@ units{
       targetGnd:b=no
       isDelayed:b=yes
       skill:i=4
+      targetableByAi:b=no
       speed:r=260.0
       plane{
         wing_formation:t="Echelon"
@@ -10298,6 +10533,14 @@ units{
   }
 }
 areas{
+  war_player_respawn_area{
+    type:t="Sphere"
+    tm:m=[[250.0, 0.0, 0.0] [0.0, 250.0, 0.0] [0.0, 0.0, 250.0] [15589.947, 650.0, 43840.151]]
+    objLayer:i=0
+    props{
+
+    }
+  }
   battlearea{
     type:t="Box"
     tm:m=[[121000.0, 0.0, 0.0] [0.0, 10000.0, 0.0] [0.0, 0.0, 121000.0] [0.0, 0.0, 0.0]]

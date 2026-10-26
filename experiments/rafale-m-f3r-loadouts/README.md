@@ -61,23 +61,27 @@ Regenerate the mission after editing its source rules with
 
 The separate War-Zone Practice mission keeps the stock Normal-mode strategic
 and short-range defenses active. Its player Rafale carries six Kh-38MTs, two
-`SCALP-EG IR` proxies using the stock AGM-84K navigation, one centerline
-`SCALP-EG INS` using the response-1.30 80-to-40-m terrain-following profile and
-staged terminal arc and six standard MICA-EMs. Four Su-30SM2s are tasked to hunt the player, while a
-MiG-35 patrol and friendly Rafale CAP contest the wider airspace. Russian
+`SCALP-EG IR` proxies on the wing stations, a third `SCALP-EG IR` on the
+centerline, and six standard MICA-EMs. Eight Su-30SM2s are tasked to hunt the
+player, while eight MiG-35s and eight friendly Rafales contest the wider
+airspace. Russian
 Su-25SM3s, Su-34s, and Ka-52s oppose NATO A-10Cs, F-15Es, and F/A-18E Super
 Hornets over the ground battle. All aircraft are organized as separated pairs
-entering in three packages at 0, 55, and 110 seconds. Each strike pair receives
+entering in three packages at 0, 10, and 20 seconds. Each strike pair receives
 a low-altitude northern or southern ingress route before it receives a specific
 enemy base or strongpoint rather than a broad fire-at-will order. Strike orders
-are delayed until 70, 125, and 180 seconds so the generic attack AI cannot
+are delayed until 45, 70, and 95 seconds so the generic attack AI cannot
 immediately discard the route and climb from its spawn. The low strike packages
 are hidden from AI targeting during ingress, exposed to AI SPAA during a
-30-second attack window, then hidden again so the map's dense air defenses can
+25-second attack window, then hidden again so the map's dense air defenses can
 fire without erasing the whole package immediately.
+Fighter groups are likewise protected except for two twelve-second SPAA
+exposure windows, giving them a chance to establish the air battle first.
 This switch affects AI selection only; the player can still find and engage
 enemy aircraft manually. The player
-is neither invisible nor immortal, but retains unlimited respawns, fuel,
+is neither invisible nor immortal. A repeatable manual-mode death trigger
+respawns the Rafale over NATO Air Spawn 1 after two seconds, avoiding the
+single-player attempts system's fixed life count while retaining unlimited fuel,
 ammunition, and accelerated airborne rearm. Its mission fuel fraction and
 aircraft fuel field are both set to roughly one minute; unlimited fuel prevents
 that light starting load from draining. Regenerate it with
