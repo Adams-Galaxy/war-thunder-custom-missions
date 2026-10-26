@@ -93,7 +93,7 @@ def test_custom_rafale_registers_all_experimental_stores() -> None:
     for slug in SCALP_LOFT_MATRIX:
         expected = 5 if slug == "response130" else 3
         assert text.count(f"rocketGuns/wt_agm_84k_scalp_loft_{slug}_lo.blk") == expected
-    assert text.count('presetType:t="AIR_TO_GROUND"') == 25
+    assert text.count('presetType:t="AIR_TO_GROUND"') == 26
     assert text.count('iconType:t="missile_air_to_uni_large"') >= 7
     for station_name in (
         "wt_agm84k_lo_slot3",
@@ -166,7 +166,15 @@ def test_warzone_practice_loadout_and_mission() -> None:
     assert preset.count("wt_kh38mt_x3_slot") == 2
     assert preset.count("wt_agm84k_lo_slot") == 2
     assert preset.count("wt_scalp_loft_response130_lo_slot7") == 1
+    assert preset.count("r550_magic_2_slot") == 2
+    assert preset.count("mica_em_slot") == 4
     assert 'preset:t="damocles"' in preset
+
+    unit = UNIT.read_text()
+    registration = unit.split(
+        'name:t="wt_rafale_m_warzone_kh38mt6_scalp_ir2_ins1"', 1
+    )[1].split("  preset {", 1)[0]
+    assert registration.count("weaponConfig {") == 2
 
     mission = (
         EXPERIMENT / "UserMissions/usr_wt_rafale_warzone_practice.mission.blk"
@@ -184,13 +192,19 @@ def test_warzone_practice_loadout_and_mission() -> None:
     assert "isImmortal" not in support
     assert "speed:r=" not in support
     expected_units = {
-        "war_t1_su30_hunters": ("su_30sm2", "su_30sm2_default", 4),
-        "war_t1_mig35_cap": ("mig_35", "mig_35_default", 4),
-        "war_t1_su25_rockets": ("su_25sm3", "su_25sm3_b8m", 4),
+        "war_t1_su30_hunters_a": ("su_30sm2", "su_30sm2_default", 2),
+        "war_t1_su30_hunters_b": ("su_30sm2", "su_30sm2_default", 2),
+        "war_t1_mig35_cap_a": ("mig_35", "mig_35_default", 2),
+        "war_t1_mig35_cap_b": ("mig_35", "mig_35_default", 2),
+        "war_t1_su25_rockets_a": ("su_25sm3", "su_25sm3_b8m", 2),
+        "war_t1_su25_rockets_b": ("su_25sm3", "su_25sm3_b8m", 2),
         "war_t1_su34_strike": ("su_34", "su_34_rocket_s13", 2),
-        "war_t1_ka52_attack": ("ka_52", "ka_52_rocket_vyhr_c_8_ko", 4),
-        "war_t2_rafale_cap": ("rafale_c_f3", "rafale_c_f3_default", 4),
-        "war_t2_a10_rockets": ("a_10c", "a_10c_lau_131_default", 4),
+        "war_t1_ka52_attack_a": ("ka_52", "ka_52_rocket_vyhr_c_8_ko", 2),
+        "war_t1_ka52_attack_b": ("ka_52", "ka_52_rocket_vyhr_c_8_ko", 2),
+        "war_t2_rafale_cap_a": ("rafale_c_f3", "rafale_c_f3_default", 2),
+        "war_t2_rafale_cap_b": ("rafale_c_f3", "rafale_c_f3_default", 2),
+        "war_t2_a10_rockets_a": ("a_10c", "a_10c_lau_131_default", 2),
+        "war_t2_a10_rockets_b": ("a_10c", "a_10c_lau_131_default", 2),
         "war_t2_f15e_strike": ("f_15e", "f_15e_agm_65g", 2),
         "war_t2_fa18e_strike": ("fa_18e_block_2", "fa_18e_block_2_apkws_m282", 2),
     }
@@ -201,10 +215,13 @@ def test_warzone_practice_loadout_and_mission() -> None:
         assert f"count:i={count}" in block
         assert mission.count(f'target:t="{name}"') == 1
     for protected in (
-        "war_t1_su25_rockets",
+        "war_t1_su25_rockets_a",
+        "war_t1_su25_rockets_b",
         "war_t1_su34_strike",
-        "war_t1_ka52_attack",
-        "war_t2_a10_rockets",
+        "war_t1_ka52_attack_a",
+        "war_t1_ka52_attack_b",
+        "war_t2_a10_rockets_a",
+        "war_t2_a10_rockets_b",
         "war_t2_f15e_strike",
         "war_t2_fa18e_strike",
     ):
@@ -212,14 +229,29 @@ def test_warzone_practice_loadout_and_mission() -> None:
         assert "targetableByAi:b=no" in block
     assert 'attack_type:t="attack_player_B"' in mission
     for trigger, time, state in (
-        ("warzone_initial_spaa_window_open", 25.0, "yes"),
-        ("warzone_initial_spaa_window_close", 40.0, "no"),
-        ("warzone_second_spaa_window_open", 70.0, "yes"),
-        ("warzone_second_spaa_window_close", 85.0, "no"),
+        ("warzone_initial_spaa_window_open", 30.0, "yes"),
+        ("warzone_initial_spaa_window_close", 36.0, "no"),
+        ("warzone_second_spaa_window_open", 85.0, "yes"),
+        ("warzone_second_spaa_window_close", 91.0, "no"),
+        ("warzone_third_spaa_window_open", 140.0, "yes"),
+        ("warzone_third_spaa_window_close", 146.0, "no"),
     ):
         block = mission.split(f"{trigger}{{", 1)[1].split("  debug_in_multiplayer{", 1)[0]
         assert f"value:r={time:.1f}" in block
         assert f"targetableByAi:b={state}" in block
+    assert '[15589.947, 650.0, 43840.151]' in mission
+    for target in (
+        "t2_base_02",
+        "t2_strongpoint_02",
+        "t1_base_03",
+        "t2_base_03",
+        "t1_base_02",
+        "t2_base_04",
+        "t2_strongpoint_07",
+        "t1_base_04",
+        "t1_strongpoint_02",
+    ):
+        assert f'target:t="{target}"' in mission
     assert "rankRange:ip2=" not in mission
     assert mission.count("{") == mission.count("}")
 

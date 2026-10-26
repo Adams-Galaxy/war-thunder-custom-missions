@@ -119,11 +119,13 @@ def attack_action(
     *,
     player_attracted: bool = False,
     weapon_type: str = "all",
+    target: str | None = None,
 ) -> str:
     attracted = "\n        playerAttracted:b=yes\n        playerAttractedCount:i=4" if player_attracted else ""
+    target_line = f'\n        target:t="{target}"' if target else ""
     return f'''      unitAttackTarget{{
         object:t="{object_name}"
-        attack_type:t="{attack_type}"
+        attack_type:t="{attack_type}"{target_line}
         targetTypeName:t="{target_type}"
         targetDistMax:r=65000.0{attracted}
         fightInArea:t="battlearea"
@@ -134,7 +136,11 @@ def attack_action(
       }}'''
 
 
-def warzone_trigger(name: str, units: list[tuple[str, str, str, bool, str]], delay: float | None) -> str:
+def warzone_trigger(
+    name: str,
+    units: list[tuple[str, str, str, bool, str, bool, str | None]],
+    delay: float | None,
+) -> str:
     if delay is None:
         events = "      initMission{\n\n      }"
         conditions = ""
@@ -144,7 +150,12 @@ def warzone_trigger(name: str, units: list[tuple[str, str, str, bool, str]], del
         value:r={delay:.1f}
       }}'''
     actions: list[str] = []
-    for unit, attack_type, target_type, attracted, weapon_type in units:
+    for unit, attack_type, target_type, attracted, weapon_type, protected, target in units:
+        if protected:
+            actions.append(f'''      unitSetProperties{{
+        object:t="{unit}"
+        targetableByAi:b=no
+      }}''')
         actions.append(f'''      unitWakeUp{{
         target:t="{unit}"
       }}''')
@@ -155,6 +166,7 @@ def warzone_trigger(name: str, units: list[tuple[str, str, str, bool, str]], del
                 target_type,
                 player_attracted=attracted,
                 weapon_type=weapon_type,
+                target=target,
             )
         )
     return f'''  {name}{{
@@ -280,27 +292,39 @@ def build() -> str:
     text = text.replace("  debug_in_multiplayer{\n    is_enabled:b=yes", "  debug_in_multiplayer{\n    is_enabled:b=no", 1)
 
     initial_units = [
-        ("war_t1_su30_hunters", "attack_player_B", "airplane", True, "all"),
-        ("war_t1_su25_rockets", "fire_at_will_gnd", "surface", False, "rockets"),
-        ("war_t1_ka52_attack", "fire_at_will_gnd", "surface", False, "all"),
-        ("war_t2_rafale_cap", "fire_at_will_air", "airplane", False, "all"),
-        ("war_t2_a10_rockets", "fire_at_will_gnd", "surface", False, "rockets"),
+        ("war_t1_su30_hunters_a", "attack_player_B", "airplane", True, "all", False, None),
+        ("war_t1_su25_rockets_a", "attack_target", "surface", False, "rockets", True, "t2_base_02"),
+        ("war_t1_ka52_attack_a", "attack_target", "surface", False, "all", True, "t2_strongpoint_02"),
+        ("war_t2_rafale_cap_a", "fire_at_will_air", "airplane", False, "all", False, None),
+        ("war_t2_a10_rockets_a", "attack_target", "surface", False, "rockets", True, "t1_base_03"),
     ]
     second_units = [
-        ("war_t1_mig35_cap", "fire_at_will_air", "airplane", False, "all"),
-        ("war_t1_su34_strike", "fire_at_will_gnd", "surface", False, "rockets"),
-        ("war_t2_f15e_strike", "fire_at_will_gnd", "surface", False, "all"),
-        ("war_t2_fa18e_strike", "fire_at_will_gnd", "surface", False, "rockets"),
+        ("war_t1_su30_hunters_b", "attack_player_B", "airplane", True, "all", False, None),
+        ("war_t1_mig35_cap_a", "fire_at_will_air", "airplane", False, "all", False, None),
+        ("war_t1_su34_strike", "attack_target", "surface", False, "rockets", True, "t2_base_03"),
+        ("war_t2_rafale_cap_b", "fire_at_will_air", "airplane", False, "all", False, None),
+        ("war_t2_f15e_strike", "attack_target", "surface", False, "all", True, "t1_base_02"),
+    ]
+    third_units = [
+        ("war_t1_mig35_cap_b", "fire_at_will_air", "airplane", False, "all", False, None),
+        ("war_t1_su25_rockets_b", "attack_target", "surface", False, "rockets", True, "t2_base_04"),
+        ("war_t1_ka52_attack_b", "attack_target", "surface", False, "all", True, "t2_strongpoint_07"),
+        ("war_t2_a10_rockets_b", "attack_target", "surface", False, "rockets", True, "t1_base_04"),
+        ("war_t2_fa18e_strike", "attack_target", "surface", False, "rockets", True, "t1_strongpoint_02"),
     ]
     trigger_insert = text.index("  debug_in_multiplayer{")
     triggers = warzone_trigger("warzone_initial_package", initial_units, None)
-    triggers += "\n" + warzone_trigger("warzone_second_package", second_units, 45.0) + "\n"
-    initial_strikers = ("war_t1_su25_rockets", "war_t1_ka52_attack", "war_t2_a10_rockets")
-    second_strikers = ("war_t1_su34_strike", "war_t2_f15e_strike", "war_t2_fa18e_strike")
-    triggers += ai_targeting_window_trigger("warzone_initial_spaa_window_open", initial_strikers, 25.0, True) + "\n"
-    triggers += ai_targeting_window_trigger("warzone_initial_spaa_window_close", initial_strikers, 40.0, False) + "\n"
-    triggers += ai_targeting_window_trigger("warzone_second_spaa_window_open", second_strikers, 70.0, True) + "\n"
-    triggers += ai_targeting_window_trigger("warzone_second_spaa_window_close", second_strikers, 85.0, False) + "\n"
+    triggers += "\n" + warzone_trigger("warzone_second_package", second_units, 55.0) + "\n"
+    triggers += "\n" + warzone_trigger("warzone_third_package", third_units, 110.0) + "\n"
+    initial_strikers = ("war_t1_su25_rockets_a", "war_t1_ka52_attack_a", "war_t2_a10_rockets_a")
+    third_strikers = ("war_t1_su25_rockets_b", "war_t1_ka52_attack_b", "war_t2_a10_rockets_b", "war_t2_fa18e_strike")
+    second_strikers = ("war_t1_su34_strike", "war_t2_f15e_strike")
+    triggers += ai_targeting_window_trigger("warzone_initial_spaa_window_open", initial_strikers, 30.0, True) + "\n"
+    triggers += ai_targeting_window_trigger("warzone_initial_spaa_window_close", initial_strikers, 36.0, False) + "\n"
+    triggers += ai_targeting_window_trigger("warzone_second_spaa_window_open", second_strikers, 85.0, True) + "\n"
+    triggers += ai_targeting_window_trigger("warzone_second_spaa_window_close", second_strikers, 91.0, False) + "\n"
+    triggers += ai_targeting_window_trigger("warzone_third_spaa_window_open", third_strikers, 140.0, True) + "\n"
+    triggers += ai_targeting_window_trigger("warzone_third_spaa_window_close", third_strikers, 146.0, False) + "\n"
     text = text[:trigger_insert] + triggers + text[trigger_insert:]
 
     # Rank-based selectors only work in the multiplayer room. Their removal is
@@ -312,19 +336,28 @@ def build() -> str:
     player = reference[ref_start:ref_end].replace(
         "wt_rafale_m_kh38mt4", "wt_rafale_m_warzone_kh38mt6_scalp_ir2_ins1"
     )
+    player = player.replace(
+        "[15589.947, 1500.0, 43840.151]", "[15589.947, 650.0, 43840.151]"
+    )
     start, end = named_armada(text, "t2_player01")
     text = text[:start] + player + text[end:]
 
     aircraft = [
-        armada("war_t1_su30_hunters", "su_30sm2", "su_30sm2_default", 1, 4, (-12000, 6200, 26000), "attack_player_B", "ATTACK_AIR", speed=260),
-        armada("war_t1_mig35_cap", "mig_35", "mig_35_default", 1, 4, (-30000, 5200, 2000), "fire_at_will_air", "ATTACK_AIR", speed=250),
-        armada("war_t1_su25_rockets", "su_25sm3", "su_25sm3_b8m", 1, 4, (-19903, 320, 23793), "fire_at_will_gnd", "ATTACK_GROUND", protected_from_ai=True, speed=170),
-        armada("war_t1_su34_strike", "su_34", "su_34_rocket_s13", 1, 2, (-25555, 850, 39305), "fire_at_will_gnd", "ATTACK_GROUND", protected_from_ai=True, speed=220),
-        armada("war_t1_ka52_attack", "ka_52", "ka_52_rocket_vyhr_c_8_ko", 1, 4, (-19903, 220, 23793), "fire_at_will_gnd", "ATTACK_GROUND", protected_from_ai=True, speed=70),
-        armada("war_t2_rafale_cap", "rafale_c_f3", "rafale_c_f3_default", 2, 4, (31500, 5800, 21000), "fire_at_will_air", "ATTACK_AIR", speed=260),
-        armada("war_t2_a10_rockets", "a_10c", "a_10c_lau_131_default", 2, 4, (5326, 420, 34319), "fire_at_will_gnd", "ATTACK_GROUND", protected_from_ai=True, speed=155),
-        armada("war_t2_f15e_strike", "f_15e", "f_15e_agm_65g", 2, 2, (13453, 950, 42180), "fire_at_will_gnd", "ATTACK_GROUND", protected_from_ai=True, speed=230),
-        armada("war_t2_fa18e_strike", "fa_18e_block_2", "fa_18e_block_2_apkws_m282", 2, 2, (24500, 1200, 47500), "fire_at_will_gnd", "ATTACK_GROUND", protected_from_ai=True, speed=220),
+        armada("war_t1_su30_hunters_a", "su_30sm2", "su_30sm2_default", 1, 2, (-18000, 5600, 33000), "attack_player_B", "ATTACK_AIR", speed=260),
+        armada("war_t1_su30_hunters_b", "su_30sm2", "su_30sm2_default", 1, 2, (-33000, 4800, 8000), "attack_player_B", "ATTACK_AIR", speed=260),
+        armada("war_t1_mig35_cap_a", "mig_35", "mig_35_default", 1, 2, (-36000, 6200, 41000), "fire_at_will_air", "ATTACK_AIR", speed=250),
+        armada("war_t1_mig35_cap_b", "mig_35", "mig_35_default", 1, 2, (-41000, 4300, -3000), "fire_at_will_air", "ATTACK_AIR", speed=250),
+        armada("war_t1_su25_rockets_a", "su_25sm3", "su_25sm3_b8m", 1, 2, (-24000, 260, 32000), "hold_fire", "ATTACK_GROUND", protected_from_ai=True, speed=170),
+        armada("war_t1_su25_rockets_b", "su_25sm3", "su_25sm3_b8m", 1, 2, (-22000, 230, 8000), "hold_fire", "ATTACK_GROUND", protected_from_ai=True, speed=170),
+        armada("war_t1_su34_strike", "su_34", "su_34_rocket_s13", 1, 2, (-32000, 520, 48000), "hold_fire", "ATTACK_GROUND", protected_from_ai=True, speed=220),
+        armada("war_t1_ka52_attack_a", "ka_52", "ka_52_rocket_vyhr_c_8_ko", 1, 2, (-13000, 170, 38000), "hold_fire", "ATTACK_GROUND", protected_from_ai=True, speed=70),
+        armada("war_t1_ka52_attack_b", "ka_52", "ka_52_rocket_vyhr_c_8_ko", 1, 2, (-17000, 150, 17000), "hold_fire", "ATTACK_GROUND", protected_from_ai=True, speed=70),
+        armada("war_t2_rafale_cap_a", "rafale_c_f3", "rafale_c_f3_default", 2, 2, (34000, 5900, 36000), "fire_at_will_air", "ATTACK_AIR", speed=260),
+        armada("war_t2_rafale_cap_b", "rafale_c_f3", "rafale_c_f3_default", 2, 2, (43000, 4500, 8000), "fire_at_will_air", "ATTACK_AIR", speed=260),
+        armada("war_t2_a10_rockets_a", "a_10c", "a_10c_lau_131_default", 2, 2, (12000, 250, 46000), "hold_fire", "ATTACK_GROUND", protected_from_ai=True, speed=155),
+        armada("war_t2_a10_rockets_b", "a_10c", "a_10c_lau_131_default", 2, 2, (9000, 230, 18000), "hold_fire", "ATTACK_GROUND", protected_from_ai=True, speed=155),
+        armada("war_t2_f15e_strike", "f_15e", "f_15e_agm_65g", 2, 2, (28000, 720, 52000), "hold_fire", "ATTACK_GROUND", protected_from_ai=True, speed=230),
+        armada("war_t2_fa18e_strike", "fa_18e_block_2", "fa_18e_block_2_apkws_m282", 2, 2, (32000, 670, 28000), "hold_fire", "ATTACK_GROUND", protected_from_ai=True, speed=220),
     ]
     ships_at = text.index("  ships{")
     text = text[:ships_at] + "\n".join(aircraft) + "\n" + text[ships_at:]

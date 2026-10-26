@@ -210,10 +210,10 @@ triggers{
     }
     actions{
       unitWakeUp{
-        target:t="war_t1_su30_hunters"
+        target:t="war_t1_su30_hunters_a"
       }
       unitAttackTarget{
-        object:t="war_t1_su30_hunters"
+        object:t="war_t1_su30_hunters_a"
         attack_type:t="attack_player_B"
         targetTypeName:t="airplane"
         targetDistMax:r=65000.0
@@ -225,12 +225,17 @@ triggers{
         weaponType:t="all"
         groupAttackMode:t="wing"
       }
+      unitSetProperties{
+        object:t="war_t1_su25_rockets_a"
+        targetableByAi:b=no
+      }
       unitWakeUp{
-        target:t="war_t1_su25_rockets"
+        target:t="war_t1_su25_rockets_a"
       }
       unitAttackTarget{
-        object:t="war_t1_su25_rockets"
-        attack_type:t="fire_at_will_gnd"
+        object:t="war_t1_su25_rockets_a"
+        attack_type:t="attack_target"
+        target:t="t2_base_02"
         targetTypeName:t="surface"
         targetDistMax:r=65000.0
         fightInArea:t="battlearea"
@@ -239,12 +244,17 @@ triggers{
         weaponType:t="rockets"
         groupAttackMode:t="wing"
       }
+      unitSetProperties{
+        object:t="war_t1_ka52_attack_a"
+        targetableByAi:b=no
+      }
       unitWakeUp{
-        target:t="war_t1_ka52_attack"
+        target:t="war_t1_ka52_attack_a"
       }
       unitAttackTarget{
-        object:t="war_t1_ka52_attack"
-        attack_type:t="fire_at_will_gnd"
+        object:t="war_t1_ka52_attack_a"
+        attack_type:t="attack_target"
+        target:t="t2_strongpoint_02"
         targetTypeName:t="surface"
         targetDistMax:r=65000.0
         fightInArea:t="battlearea"
@@ -254,10 +264,10 @@ triggers{
         groupAttackMode:t="wing"
       }
       unitWakeUp{
-        target:t="war_t2_rafale_cap"
+        target:t="war_t2_rafale_cap_a"
       }
       unitAttackTarget{
-        object:t="war_t2_rafale_cap"
+        object:t="war_t2_rafale_cap_a"
         attack_type:t="fire_at_will_air"
         targetTypeName:t="airplane"
         targetDistMax:r=65000.0
@@ -267,12 +277,17 @@ triggers{
         weaponType:t="all"
         groupAttackMode:t="wing"
       }
+      unitSetProperties{
+        object:t="war_t2_a10_rockets_a"
+        targetableByAi:b=no
+      }
       unitWakeUp{
-        target:t="war_t2_a10_rockets"
+        target:t="war_t2_a10_rockets_a"
       }
       unitAttackTarget{
-        object:t="war_t2_a10_rockets"
-        attack_type:t="fire_at_will_gnd"
+        object:t="war_t2_a10_rockets_a"
+        attack_type:t="attack_target"
+        target:t="t1_base_03"
         targetTypeName:t="surface"
         targetDistMax:r=65000.0
         fightInArea:t="battlearea"
@@ -301,15 +316,31 @@ triggers{
     }
     conditions{
       missionWhenTime{
-        value:r=45.0
+        value:r=55.0
       }
     }
     actions{
       unitWakeUp{
-        target:t="war_t1_mig35_cap"
+        target:t="war_t1_su30_hunters_b"
       }
       unitAttackTarget{
-        object:t="war_t1_mig35_cap"
+        object:t="war_t1_su30_hunters_b"
+        attack_type:t="attack_player_B"
+        targetTypeName:t="airplane"
+        targetDistMax:r=65000.0
+        playerAttracted:b=yes
+        playerAttractedCount:i=4
+        fightInArea:t="battlearea"
+        fightAreaRadius:r=52000.0
+        fightAreaOuterRadius:r=60000.0
+        weaponType:t="all"
+        groupAttackMode:t="wing"
+      }
+      unitWakeUp{
+        target:t="war_t1_mig35_cap_a"
+      }
+      unitAttackTarget{
+        object:t="war_t1_mig35_cap_a"
         attack_type:t="fire_at_will_air"
         targetTypeName:t="airplane"
         targetDistMax:r=65000.0
@@ -319,12 +350,17 @@ triggers{
         weaponType:t="all"
         groupAttackMode:t="wing"
       }
+      unitSetProperties{
+        object:t="war_t1_su34_strike"
+        targetableByAi:b=no
+      }
       unitWakeUp{
         target:t="war_t1_su34_strike"
       }
       unitAttackTarget{
         object:t="war_t1_su34_strike"
-        attack_type:t="fire_at_will_gnd"
+        attack_type:t="attack_target"
+        target:t="t2_base_03"
         targetTypeName:t="surface"
         targetDistMax:r=65000.0
         fightInArea:t="battlearea"
@@ -334,11 +370,30 @@ triggers{
         groupAttackMode:t="wing"
       }
       unitWakeUp{
+        target:t="war_t2_rafale_cap_b"
+      }
+      unitAttackTarget{
+        object:t="war_t2_rafale_cap_b"
+        attack_type:t="fire_at_will_air"
+        targetTypeName:t="airplane"
+        targetDistMax:r=65000.0
+        fightInArea:t="battlearea"
+        fightAreaRadius:r=52000.0
+        fightAreaOuterRadius:r=60000.0
+        weaponType:t="all"
+        groupAttackMode:t="wing"
+      }
+      unitSetProperties{
+        object:t="war_t2_f15e_strike"
+        targetableByAi:b=no
+      }
+      unitWakeUp{
         target:t="war_t2_f15e_strike"
       }
       unitAttackTarget{
         object:t="war_t2_f15e_strike"
-        attack_type:t="fire_at_will_gnd"
+        attack_type:t="attack_target"
+        target:t="t1_base_02"
         targetTypeName:t="surface"
         targetDistMax:r=65000.0
         fightInArea:t="battlearea"
@@ -347,12 +402,113 @@ triggers{
         weaponType:t="all"
         groupAttackMode:t="wing"
       }
+    }
+    else_actions{
+
+    }
+  }
+
+  warzone_third_package{
+    is_enabled:b=yes
+    comments:t="Staggered war-zone air package. Low strike groups remain manually targetable but are hidden from AI SPAA."
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+    events{
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+    conditions{
+      missionWhenTime{
+        value:r=110.0
+      }
+    }
+    actions{
+      unitWakeUp{
+        target:t="war_t1_mig35_cap_b"
+      }
+      unitAttackTarget{
+        object:t="war_t1_mig35_cap_b"
+        attack_type:t="fire_at_will_air"
+        targetTypeName:t="airplane"
+        targetDistMax:r=65000.0
+        fightInArea:t="battlearea"
+        fightAreaRadius:r=52000.0
+        fightAreaOuterRadius:r=60000.0
+        weaponType:t="all"
+        groupAttackMode:t="wing"
+      }
+      unitSetProperties{
+        object:t="war_t1_su25_rockets_b"
+        targetableByAi:b=no
+      }
+      unitWakeUp{
+        target:t="war_t1_su25_rockets_b"
+      }
+      unitAttackTarget{
+        object:t="war_t1_su25_rockets_b"
+        attack_type:t="attack_target"
+        target:t="t2_base_04"
+        targetTypeName:t="surface"
+        targetDistMax:r=65000.0
+        fightInArea:t="battlearea"
+        fightAreaRadius:r=52000.0
+        fightAreaOuterRadius:r=60000.0
+        weaponType:t="rockets"
+        groupAttackMode:t="wing"
+      }
+      unitSetProperties{
+        object:t="war_t1_ka52_attack_b"
+        targetableByAi:b=no
+      }
+      unitWakeUp{
+        target:t="war_t1_ka52_attack_b"
+      }
+      unitAttackTarget{
+        object:t="war_t1_ka52_attack_b"
+        attack_type:t="attack_target"
+        target:t="t2_strongpoint_07"
+        targetTypeName:t="surface"
+        targetDistMax:r=65000.0
+        fightInArea:t="battlearea"
+        fightAreaRadius:r=52000.0
+        fightAreaOuterRadius:r=60000.0
+        weaponType:t="all"
+        groupAttackMode:t="wing"
+      }
+      unitSetProperties{
+        object:t="war_t2_a10_rockets_b"
+        targetableByAi:b=no
+      }
+      unitWakeUp{
+        target:t="war_t2_a10_rockets_b"
+      }
+      unitAttackTarget{
+        object:t="war_t2_a10_rockets_b"
+        attack_type:t="attack_target"
+        target:t="t1_base_04"
+        targetTypeName:t="surface"
+        targetDistMax:r=65000.0
+        fightInArea:t="battlearea"
+        fightAreaRadius:r=52000.0
+        fightAreaOuterRadius:r=60000.0
+        weaponType:t="rockets"
+        groupAttackMode:t="wing"
+      }
+      unitSetProperties{
+        object:t="war_t2_fa18e_strike"
+        targetableByAi:b=no
+      }
       unitWakeUp{
         target:t="war_t2_fa18e_strike"
       }
       unitAttackTarget{
         object:t="war_t2_fa18e_strike"
-        attack_type:t="fire_at_will_gnd"
+        attack_type:t="attack_target"
+        target:t="t1_strongpoint_02"
         targetTypeName:t="surface"
         targetDistMax:r=65000.0
         fightInArea:t="battlearea"
@@ -381,20 +537,20 @@ triggers{
     }
     conditions{
       missionWhenTime{
-        value:r=25.0
+        value:r=30.0
       }
     }
     actions{
       unitSetProperties{
-        object:t="war_t1_su25_rockets"
+        object:t="war_t1_su25_rockets_a"
         targetableByAi:b=yes
       }
       unitSetProperties{
-        object:t="war_t1_ka52_attack"
+        object:t="war_t1_ka52_attack_a"
         targetableByAi:b=yes
       }
       unitSetProperties{
-        object:t="war_t2_a10_rockets"
+        object:t="war_t2_a10_rockets_a"
         targetableByAi:b=yes
       }
     }
@@ -417,20 +573,20 @@ triggers{
     }
     conditions{
       missionWhenTime{
-        value:r=40.0
+        value:r=36.0
       }
     }
     actions{
       unitSetProperties{
-        object:t="war_t1_su25_rockets"
+        object:t="war_t1_su25_rockets_a"
         targetableByAi:b=no
       }
       unitSetProperties{
-        object:t="war_t1_ka52_attack"
+        object:t="war_t1_ka52_attack_a"
         targetableByAi:b=no
       }
       unitSetProperties{
-        object:t="war_t2_a10_rockets"
+        object:t="war_t2_a10_rockets_a"
         targetableByAi:b=no
       }
     }
@@ -453,7 +609,7 @@ triggers{
     }
     conditions{
       missionWhenTime{
-        value:r=70.0
+        value:r=85.0
       }
     }
     actions{
@@ -463,10 +619,6 @@ triggers{
       }
       unitSetProperties{
         object:t="war_t2_f15e_strike"
-        targetableByAi:b=yes
-      }
-      unitSetProperties{
-        object:t="war_t2_fa18e_strike"
         targetableByAi:b=yes
       }
     }
@@ -489,7 +641,7 @@ triggers{
     }
     conditions{
       missionWhenTime{
-        value:r=85.0
+        value:r=91.0
       }
     }
     actions{
@@ -499,6 +651,82 @@ triggers{
       }
       unitSetProperties{
         object:t="war_t2_f15e_strike"
+        targetableByAi:b=no
+      }
+    }
+    else_actions{
+
+    }
+  }
+  warzone_third_spaa_window_open{
+    is_enabled:b=yes
+    comments:t="Open or close a short AI-SPAA engagement window for low strike packages."
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+    events{
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+    conditions{
+      missionWhenTime{
+        value:r=140.0
+      }
+    }
+    actions{
+      unitSetProperties{
+        object:t="war_t1_su25_rockets_b"
+        targetableByAi:b=yes
+      }
+      unitSetProperties{
+        object:t="war_t1_ka52_attack_b"
+        targetableByAi:b=yes
+      }
+      unitSetProperties{
+        object:t="war_t2_a10_rockets_b"
+        targetableByAi:b=yes
+      }
+      unitSetProperties{
+        object:t="war_t2_fa18e_strike"
+        targetableByAi:b=yes
+      }
+    }
+    else_actions{
+
+    }
+  }
+  warzone_third_spaa_window_close{
+    is_enabled:b=yes
+    comments:t="Open or close a short AI-SPAA engagement window for low strike packages."
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+    events{
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+    conditions{
+      missionWhenTime{
+        value:r=146.0
+      }
+    }
+    actions{
+      unitSetProperties{
+        object:t="war_t1_su25_rockets_b"
+        targetableByAi:b=no
+      }
+      unitSetProperties{
+        object:t="war_t1_ka52_attack_b"
+        targetableByAi:b=no
+      }
+      unitSetProperties{
+        object:t="war_t2_a10_rockets_b"
         targetableByAi:b=no
       }
       unitSetProperties{
@@ -5314,7 +5542,7 @@ units{
   }
   armada{
     name:t="t2_player01"
-    tm:m=[[-0.73315784, 0.0, -0.680058515] [0.0, 1.0, 0.0] [0.680058515, 0.0, -0.73315784] [15589.947, 1500.0, 43840.151]]
+    tm:m=[[-0.73315784, 0.0, -0.680058515] [0.0, 1.0, 0.0] [0.680058515, 0.0, -0.73315784] [15589.947, 650.0, 43840.151]]
     unit_class:t="wt_custom_rafale_m_f3r"
     closed_waypoints:b=no
     isShipSpline:b=no
@@ -6658,8 +6886,8 @@ units{
     }
   }
   armada{
-    name:t="war_t1_su30_hunters"
-    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-12000.000, 6200.000, 26000.000]]
+    name:t="war_t1_su30_hunters_a"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-18000.000, 5600.000, 33000.000]]
     unit_class:t="su_30sm2"
     closed_waypoints:b=no
     isShipSpline:b=no
@@ -6678,7 +6906,7 @@ units{
     applyAllMods:b=yes
     props{
       army:i=1
-      count:i=4
+      count:i=2
       numInWing:i=2
       free_distance:r=180.0
       floating_distance:r=100.0
@@ -6707,8 +6935,57 @@ units{
     }
   }
   armada{
-    name:t="war_t1_mig35_cap"
-    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-30000.000, 5200.000, 2000.000]]
+    name:t="war_t1_su30_hunters_b"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-33000.000, 4800.000, 8000.000]]
+    unit_class:t="su_30sm2"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="su_30sm2_default"
+    fuel:r=100.0
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=1.0
+    applyAllMods:b=yes
+    props{
+      army:i=1
+      count:i=2
+      numInWing:i=2
+      free_distance:r=180.0
+      floating_distance:r=100.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=10000.0
+      attack_type:t="attack_player_B"
+      canLeaveRouteForAtack:b=yes
+      targetAir:b=yes
+      targetGnd:b=no
+      isDelayed:b=yes
+      skill:i=4
+      speed:r=260.0
+      plane{
+        wing_formation:t="Echelon"
+        row_distances:r=8.0
+        col_distances:r=8.0
+        super_formation:t="Echelon"
+        super_row_distances:r=4.0
+        super_col_distances:r=4.0
+        ai_skill:t="ACE"
+        aggressiveWingman:b=yes
+        task:t="ATTACK_AIR"
+      }
+    }
+    way{
+    }
+  }
+  armada{
+    name:t="war_t1_mig35_cap_a"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-36000.000, 6200.000, 41000.000]]
     unit_class:t="mig_35"
     closed_waypoints:b=no
     isShipSpline:b=no
@@ -6727,7 +7004,7 @@ units{
     applyAllMods:b=yes
     props{
       army:i=1
-      count:i=4
+      count:i=2
       numInWing:i=2
       free_distance:r=180.0
       floating_distance:r=100.0
@@ -6756,8 +7033,57 @@ units{
     }
   }
   armada{
-    name:t="war_t1_su25_rockets"
-    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-19903.000, 320.000, 23793.000]]
+    name:t="war_t1_mig35_cap_b"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-41000.000, 4300.000, -3000.000]]
+    unit_class:t="mig_35"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="mig_35_default"
+    fuel:r=100.0
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=1.0
+    applyAllMods:b=yes
+    props{
+      army:i=1
+      count:i=2
+      numInWing:i=2
+      free_distance:r=180.0
+      floating_distance:r=100.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=10000.0
+      attack_type:t="fire_at_will_air"
+      canLeaveRouteForAtack:b=yes
+      targetAir:b=yes
+      targetGnd:b=no
+      isDelayed:b=yes
+      skill:i=4
+      speed:r=250.0
+      plane{
+        wing_formation:t="Echelon"
+        row_distances:r=8.0
+        col_distances:r=8.0
+        super_formation:t="Echelon"
+        super_row_distances:r=4.0
+        super_col_distances:r=4.0
+        ai_skill:t="ACE"
+        aggressiveWingman:b=yes
+        task:t="ATTACK_AIR"
+      }
+    }
+    way{
+    }
+  }
+  armada{
+    name:t="war_t1_su25_rockets_a"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-24000.000, 260.000, 32000.000]]
     unit_class:t="su_25sm3"
     closed_waypoints:b=no
     isShipSpline:b=no
@@ -6776,13 +7102,63 @@ units{
     applyAllMods:b=yes
     props{
       army:i=1
-      count:i=4
+      count:i=2
       numInWing:i=2
       free_distance:r=180.0
       floating_distance:r=100.0
       minimum_distance_to_earth:r=20.0
       altLimit:r=10000.0
-      attack_type:t="fire_at_will_gnd"
+      attack_type:t="hold_fire"
+      canLeaveRouteForAtack:b=yes
+      targetAir:b=no
+      targetGnd:b=yes
+      isDelayed:b=yes
+      skill:i=4
+      targetableByAi:b=no
+      speed:r=170.0
+      plane{
+        wing_formation:t="Echelon"
+        row_distances:r=8.0
+        col_distances:r=8.0
+        super_formation:t="Echelon"
+        super_row_distances:r=4.0
+        super_col_distances:r=4.0
+        ai_skill:t="ACE"
+        aggressiveWingman:b=yes
+        task:t="ATTACK_GROUND"
+      }
+    }
+    way{
+    }
+  }
+  armada{
+    name:t="war_t1_su25_rockets_b"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-22000.000, 230.000, 8000.000]]
+    unit_class:t="su_25sm3"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="su_25sm3_b8m"
+    fuel:r=100.0
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=1.0
+    applyAllMods:b=yes
+    props{
+      army:i=1
+      count:i=2
+      numInWing:i=2
+      free_distance:r=180.0
+      floating_distance:r=100.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=10000.0
+      attack_type:t="hold_fire"
       canLeaveRouteForAtack:b=yes
       targetAir:b=no
       targetGnd:b=yes
@@ -6807,7 +7183,7 @@ units{
   }
   armada{
     name:t="war_t1_su34_strike"
-    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-25555.000, 850.000, 39305.000]]
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-32000.000, 520.000, 48000.000]]
     unit_class:t="su_34"
     closed_waypoints:b=no
     isShipSpline:b=no
@@ -6832,7 +7208,7 @@ units{
       floating_distance:r=100.0
       minimum_distance_to_earth:r=20.0
       altLimit:r=10000.0
-      attack_type:t="fire_at_will_gnd"
+      attack_type:t="hold_fire"
       canLeaveRouteForAtack:b=yes
       targetAir:b=no
       targetGnd:b=yes
@@ -6856,8 +7232,8 @@ units{
     }
   }
   armada{
-    name:t="war_t1_ka52_attack"
-    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-19903.000, 220.000, 23793.000]]
+    name:t="war_t1_ka52_attack_a"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-13000.000, 170.000, 38000.000]]
     unit_class:t="ka_52"
     closed_waypoints:b=no
     isShipSpline:b=no
@@ -6876,13 +7252,13 @@ units{
     applyAllMods:b=yes
     props{
       army:i=1
-      count:i=4
+      count:i=2
       numInWing:i=2
       free_distance:r=180.0
       floating_distance:r=100.0
       minimum_distance_to_earth:r=20.0
       altLimit:r=10000.0
-      attack_type:t="fire_at_will_gnd"
+      attack_type:t="hold_fire"
       canLeaveRouteForAtack:b=yes
       targetAir:b=no
       targetGnd:b=yes
@@ -6906,8 +7282,58 @@ units{
     }
   }
   armada{
-    name:t="war_t2_rafale_cap"
-    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [31500.000, 5800.000, 21000.000]]
+    name:t="war_t1_ka52_attack_b"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-17000.000, 150.000, 17000.000]]
+    unit_class:t="ka_52"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="ka_52_rocket_vyhr_c_8_ko"
+    fuel:r=100.0
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=1.0
+    applyAllMods:b=yes
+    props{
+      army:i=1
+      count:i=2
+      numInWing:i=2
+      free_distance:r=180.0
+      floating_distance:r=100.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=10000.0
+      attack_type:t="hold_fire"
+      canLeaveRouteForAtack:b=yes
+      targetAir:b=no
+      targetGnd:b=yes
+      isDelayed:b=yes
+      skill:i=4
+      targetableByAi:b=no
+      speed:r=70.0
+      plane{
+        wing_formation:t="Echelon"
+        row_distances:r=8.0
+        col_distances:r=8.0
+        super_formation:t="Echelon"
+        super_row_distances:r=4.0
+        super_col_distances:r=4.0
+        ai_skill:t="ACE"
+        aggressiveWingman:b=yes
+        task:t="ATTACK_GROUND"
+      }
+    }
+    way{
+    }
+  }
+  armada{
+    name:t="war_t2_rafale_cap_a"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [34000.000, 5900.000, 36000.000]]
     unit_class:t="rafale_c_f3"
     closed_waypoints:b=no
     isShipSpline:b=no
@@ -6926,7 +7352,7 @@ units{
     applyAllMods:b=yes
     props{
       army:i=2
-      count:i=4
+      count:i=2
       numInWing:i=2
       free_distance:r=180.0
       floating_distance:r=100.0
@@ -6955,8 +7381,57 @@ units{
     }
   }
   armada{
-    name:t="war_t2_a10_rockets"
-    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [5326.000, 420.000, 34319.000]]
+    name:t="war_t2_rafale_cap_b"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [43000.000, 4500.000, 8000.000]]
+    unit_class:t="rafale_c_f3"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="rafale_c_f3_default"
+    fuel:r=100.0
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=1.0
+    applyAllMods:b=yes
+    props{
+      army:i=2
+      count:i=2
+      numInWing:i=2
+      free_distance:r=180.0
+      floating_distance:r=100.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=10000.0
+      attack_type:t="fire_at_will_air"
+      canLeaveRouteForAtack:b=yes
+      targetAir:b=yes
+      targetGnd:b=no
+      isDelayed:b=yes
+      skill:i=4
+      speed:r=260.0
+      plane{
+        wing_formation:t="Echelon"
+        row_distances:r=8.0
+        col_distances:r=8.0
+        super_formation:t="Echelon"
+        super_row_distances:r=4.0
+        super_col_distances:r=4.0
+        ai_skill:t="ACE"
+        aggressiveWingman:b=yes
+        task:t="ATTACK_AIR"
+      }
+    }
+    way{
+    }
+  }
+  armada{
+    name:t="war_t2_a10_rockets_a"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [12000.000, 250.000, 46000.000]]
     unit_class:t="a_10c"
     closed_waypoints:b=no
     isShipSpline:b=no
@@ -6975,13 +7450,63 @@ units{
     applyAllMods:b=yes
     props{
       army:i=2
-      count:i=4
+      count:i=2
       numInWing:i=2
       free_distance:r=180.0
       floating_distance:r=100.0
       minimum_distance_to_earth:r=20.0
       altLimit:r=10000.0
-      attack_type:t="fire_at_will_gnd"
+      attack_type:t="hold_fire"
+      canLeaveRouteForAtack:b=yes
+      targetAir:b=no
+      targetGnd:b=yes
+      isDelayed:b=yes
+      skill:i=4
+      targetableByAi:b=no
+      speed:r=155.0
+      plane{
+        wing_formation:t="Echelon"
+        row_distances:r=8.0
+        col_distances:r=8.0
+        super_formation:t="Echelon"
+        super_row_distances:r=4.0
+        super_col_distances:r=4.0
+        ai_skill:t="ACE"
+        aggressiveWingman:b=yes
+        task:t="ATTACK_GROUND"
+      }
+    }
+    way{
+    }
+  }
+  armada{
+    name:t="war_t2_a10_rockets_b"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [9000.000, 230.000, 18000.000]]
+    unit_class:t="a_10c"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="a_10c_lau_131_default"
+    fuel:r=100.0
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=1.0
+    applyAllMods:b=yes
+    props{
+      army:i=2
+      count:i=2
+      numInWing:i=2
+      free_distance:r=180.0
+      floating_distance:r=100.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=10000.0
+      attack_type:t="hold_fire"
       canLeaveRouteForAtack:b=yes
       targetAir:b=no
       targetGnd:b=yes
@@ -7006,7 +7531,7 @@ units{
   }
   armada{
     name:t="war_t2_f15e_strike"
-    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [13453.000, 950.000, 42180.000]]
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [28000.000, 720.000, 52000.000]]
     unit_class:t="f_15e"
     closed_waypoints:b=no
     isShipSpline:b=no
@@ -7031,7 +7556,7 @@ units{
       floating_distance:r=100.0
       minimum_distance_to_earth:r=20.0
       altLimit:r=10000.0
-      attack_type:t="fire_at_will_gnd"
+      attack_type:t="hold_fire"
       canLeaveRouteForAtack:b=yes
       targetAir:b=no
       targetGnd:b=yes
@@ -7056,7 +7581,7 @@ units{
   }
   armada{
     name:t="war_t2_fa18e_strike"
-    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [24500.000, 1200.000, 47500.000]]
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [32000.000, 670.000, 28000.000]]
     unit_class:t="fa_18e_block_2"
     closed_waypoints:b=no
     isShipSpline:b=no
@@ -7081,7 +7606,7 @@ units{
       floating_distance:r=100.0
       minimum_distance_to_earth:r=20.0
       altLimit:r=10000.0
-      attack_type:t="fire_at_will_gnd"
+      attack_type:t="hold_fire"
       canLeaveRouteForAtack:b=yes
       targetAir:b=no
       targetGnd:b=yes

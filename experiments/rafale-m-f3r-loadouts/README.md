@@ -60,17 +60,19 @@ Regenerate the mission after editing its source rules with
 
 The separate War-Zone Practice mission keeps the stock Normal-mode strategic
 and short-range defenses active. Its player Rafale carries six Kh-38MTs, two
-`SCALP-EG IR` proxies using the stock AGM-84K navigation, and one centerline
+`SCALP-EG IR` proxies using the stock AGM-84K navigation, one centerline
 `SCALP-EG INS` using the response-1.30 80-to-40-m terrain-following profile and
-staged terminal arc. Four Su-30SM2s are tasked to hunt the player, while a
+staged terminal arc, two wingtip Magic 2s, and four MICA-EMs. Four Su-30SM2s are tasked to hunt the player, while a
 MiG-35 patrol and friendly Rafale CAP contest the wider airspace. Russian
 Su-25SM3s, Su-34s, and Ka-52s oppose NATO A-10Cs, F-15Es, and F/A-18E Super
-Hornets over the ground battle. The low strike packages are hidden from AI
-targeting during ingress, exposed to AI SPAA during a 15-second attack window,
-then hidden again so the map's dense air defenses can fire without erasing the
-whole package immediately. This switch affects AI selection only; the player
-can still find and engage enemy aircraft manually. A second package enters 45
-seconds after mission start to spread load and traffic. The player
+Hornets over the ground battle. All aircraft are organized as separated pairs
+entering in three packages at 0, 55, and 110 seconds. Each strike pair receives
+a specific enemy base or strongpoint rather than a broad fire-at-will order.
+The low strike packages are hidden from AI targeting during ingress, exposed
+to AI SPAA during a six-second attack window, then hidden again so the map's
+dense air defenses can fire without erasing the whole package immediately.
+This switch affects AI selection only; the player can still find and engage
+enemy aircraft manually. The player
 is neither invisible nor immortal, but retains unlimited respawns, fuel,
 ammunition, and accelerated airborne rearm. Regenerate it with
 `python tools/build_rafale_warzone_practice.py`.

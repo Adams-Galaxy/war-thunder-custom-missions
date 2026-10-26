@@ -1,10 +1,22 @@
 Weapon {
+  slot:i=1
+  preset:t="r550_magic_2_slot1_default"
+}
+Weapon {
+  slot:i=2
+  preset:t="mica_em_slot2_default"
+}
+Weapon {
   slot:i=3
   preset:t="wt_kh38mt_x3_slot3"
 }
 Weapon {
   slot:i=4
   preset:t="wt_agm84k_lo_slot4"
+}
+Weapon {
+  slot:i=5
+  preset:t="mica_em_slot5"
 }
 Weapon {
   slot:i=6
@@ -15,10 +27,22 @@ Weapon {
   preset:t="wt_scalp_loft_response130_lo_slot7"
 }
 Weapon {
+  slot:i=8
+  preset:t="mica_em_slot8"
+}
+Weapon {
   slot:i=9
   preset:t="wt_agm84k_lo_slot9"
 }
 Weapon {
   slot:i=10
   preset:t="wt_kh38mt_x3_slot10"
+}
+Weapon {
+  slot:i=11
+  preset:t="mica_em_slot11_default"
+}
+Weapon {
+  slot:i=12
+  preset:t="r550_magic_2_slot12_default"
 }
