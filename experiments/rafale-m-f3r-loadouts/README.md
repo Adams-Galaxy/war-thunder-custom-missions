@@ -68,14 +68,19 @@ MiG-35 patrol and friendly Rafale CAP contest the wider airspace. Russian
 Su-25SM3s, Su-34s, and Ka-52s oppose NATO A-10Cs, F-15Es, and F/A-18E Super
 Hornets over the ground battle. All aircraft are organized as separated pairs
 entering in three packages at 0, 55, and 110 seconds. Each strike pair receives
-a specific enemy base or strongpoint rather than a broad fire-at-will order.
-The low strike packages are hidden from AI targeting during ingress, exposed
-to AI SPAA during a six-second attack window, then hidden again so the map's
-dense air defenses can fire without erasing the whole package immediately.
+a low-altitude northern or southern ingress route before it receives a specific
+enemy base or strongpoint rather than a broad fire-at-will order. Strike orders
+are delayed until 70, 125, and 180 seconds so the generic attack AI cannot
+immediately discard the route and climb from its spawn. The low strike packages
+are hidden from AI targeting during ingress, exposed to AI SPAA during a
+30-second attack window, then hidden again so the map's dense air defenses can
+fire without erasing the whole package immediately.
 This switch affects AI selection only; the player can still find and engage
 enemy aircraft manually. The player
 is neither invisible nor immortal, but retains unlimited respawns, fuel,
-ammunition, and accelerated airborne rearm. Regenerate it with
+ammunition, and accelerated airborne rearm. Its mission fuel fraction and
+aircraft fuel field are both set to roughly one minute; unlimited fuel prevents
+that light starting load from draining. Regenerate it with
 `python tools/build_rafale_warzone_practice.py`.
 
 The MICA-IR Datalink Range is a dedicated peaceful air-to-air sandbox. Its

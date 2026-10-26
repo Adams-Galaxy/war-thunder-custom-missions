@@ -186,6 +186,9 @@ def test_warzone_practice_loadout_and_mission() -> None:
     assert "maxRespawns:i=-1" in mission
     assert "isLimitedFuel:b=no" in mission
     assert "isLimitedAmmo:b=no" in mission
+    assert "fuelAmount:r=0.03" in mission
+    player = mission.split('name:t="t2_player01"', 1)[1].split("  armada{", 1)[0]
+    assert "fuel:r=3.0" in player
     assert "rearmSpeedK:r=80.0" in mission
     support = mission.split("practice_player_support{", 1)[1].split(
         "warzone_initial_package{", 1
@@ -229,18 +232,29 @@ def test_warzone_practice_loadout_and_mission() -> None:
     ):
         block = mission.split(f'name:t="{protected}"', 1)[1].split("  armada{", 1)[0]
         assert "targetableByAi:b=no" in block
+        assert "canLeaveRouteForAtack:b=no" in block
+        assert 'task:t="FLY_WAYPOINT"' in block
+        assert "_attack_gate{" in block
     assert 'attack_type:t="attack_player_B"' in mission
-    for trigger, time, state in (
-        ("warzone_initial_spaa_window_open", 30.0, "yes"),
-        ("warzone_initial_spaa_window_close", 36.0, "no"),
-        ("warzone_second_spaa_window_open", 85.0, "yes"),
-        ("warzone_second_spaa_window_close", 91.0, "no"),
-        ("warzone_third_spaa_window_open", 140.0, "yes"),
-        ("warzone_third_spaa_window_close", 146.0, "no"),
+    for trigger, next_trigger, time, state in (
+        ("warzone_initial_spaa_window_open", "warzone_initial_spaa_window_close", 68.0, "yes"),
+        ("warzone_initial_spaa_window_close", "warzone_second_spaa_window_open", 98.0, "no"),
+        ("warzone_second_spaa_window_open", "warzone_second_spaa_window_close", 123.0, "yes"),
+        ("warzone_second_spaa_window_close", "warzone_third_spaa_window_open", 153.0, "no"),
+        ("warzone_third_spaa_window_open", "warzone_third_spaa_window_close", 178.0, "yes"),
+        ("warzone_third_spaa_window_close", "debug_in_multiplayer", 208.0, "no"),
     ):
-        block = mission.split(f"{trigger}{{", 1)[1].split("  debug_in_multiplayer{", 1)[0]
+        block = mission.split(f"{trigger}{{", 1)[1].split(f"  {next_trigger}{{", 1)[0]
         assert f"value:r={time:.1f}" in block
         assert f"targetableByAi:b={state}" in block
+    for trigger, next_trigger, time in (
+        ("warzone_initial_strike_commit", "warzone_second_strike_commit", 70.0),
+        ("warzone_second_strike_commit", "warzone_third_strike_commit", 125.0),
+        ("warzone_third_strike_commit", "warzone_initial_spaa_window_open", 180.0),
+    ):
+        block = mission.split(f"{trigger}{{", 1)[1].split(f"  {next_trigger}{{", 1)[0]
+        assert f"value:r={time:.1f}" in block
+        assert 'attack_type:t="attack_target"' in block
     assert '[15589.947, 650.0, 43840.151]' in mission
     for target in (
         "t2_base_02",
