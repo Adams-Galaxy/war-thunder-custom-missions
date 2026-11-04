@@ -13,8 +13,10 @@ class PolandForrestalLakeTests(unittest.TestCase):
         self.assertIn('level:t="levels/avg_poland.bin"', text)
         self.assertEqual(text.count('unit_class:t="us_aircraftcarrier_forrestal_ai"'), 1)
         self.assertIn('target:t="us_forrestal_lake"', text)
-        self.assertEqual(text.count('name:t="t1_player'), 16)
-        self.assertEqual(text.count('name:t="t2_player'), 16)
+        # These are the exact player-wing counts from the live Poland TDM
+        # source, rather than guesses made by a hand-authored mission shell.
+        self.assertEqual(text.count('wing:t="t1_player'), 16)
+        self.assertEqual(text.count('wing:t="t2_player'), 17)
         self.assertEqual(text.count("{"), text.count("}"))
 
 
