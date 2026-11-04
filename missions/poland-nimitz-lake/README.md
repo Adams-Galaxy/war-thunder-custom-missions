@@ -1,8 +1,8 @@
-# Poland · Nimitz Lake
+# Poland · Forrestal Lake
 
 A standalone multiplayer custom-room mission for the normal Poland ground map.
-It places the new `us_aircraftcarrier_nimitz_ai`—the largest U.S. carrier in
-the installed client—stationary in the central lake, on Team A. It has sixteen
+It places `us_aircraftcarrier_forrestal_ai`—the largest U.S. carrier available
+in the current live client—stationary in the central lake, on Team A. It has sixteen
 player slots per team, ground and air spawns for both teams, and a Team A
 carrier-takeoff spawn.
 

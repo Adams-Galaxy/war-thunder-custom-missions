@@ -69,8 +69,8 @@ mission_settings{{
     level:t="levels/avg_poland.bin"
     environment:t="Day"
     weather:t="clear"
-    locName:t="Poland · Nimitz Lake"
-    locDesc:t="Standard Poland ground map with a stationary USS Nimitz in the central lake."
+    locName:t="Poland · Forrestal Lake"
+    locDesc:t="Standard Poland ground map with a stationary USS Forrestal in the central lake."
     scoreLimit:i=5000
     timeLimit:i=60
     afterRespawnDelaySec:i=15
@@ -96,7 +96,7 @@ triggers{{
       missionMarkAsRespawnPoint{{ loc_name:t="Team B Ground" radius:r=-1.0 target:t="t2_ground_spawn" team:t="B" tags{{ tank:b=yes helicopter:b=yes }} }}
       missionMarkAsRespawnPoint{{ loc_name:t="Team A Air" radius:r=-1.0 target:t="t1_air_spawn" team:t="A" tags{{ air:b=yes }} }}
       missionMarkAsRespawnPoint{{ loc_name:t="Team B Air" radius:r=-1.0 target:t="t2_air_spawn" team:t="B" tags{{ air:b=yes }} }}
-      missionMarkAsRespawnPoint{{ loc_name:t="USS Nimitz · Lake" radius:r=-1.0 target:t="us_nimitz_lake" team:t="A" isAirfield:b=yes tags{{ carrier_take_off:b=yes }} }}
+      missionMarkAsRespawnPoint{{ loc_name:t="USS Forrestal · Lake" radius:r=-1.0 target:t="us_forrestal_lake" team:t="A" isAirfield:b=yes tags{{ carrier_take_off:b=yes }} }}
     }}
     else_actions{{ }}
   }}
@@ -109,10 +109,10 @@ effects{{ }}
 units{{
 {slots}
   ships{{
-    name:t="us_nimitz_lake"
+    name:t="us_forrestal_lake"
     // The lake centre on the normal Poland layout.
     tm:m=[[0.0, 0.0, -1.0] [0.0, 1.0, 0.0] [1.0, 0.0, 0.0] [2018.0, 0.0, 2037.0]]
-    unit_class:t="us_aircraftcarrier_nimitz_ai"
+    unit_class:t="us_aircraftcarrier_forrestal_ai"
     objLayer:i=1
     closed_waypoints:b=no
     isShipSpline:b=no
