@@ -11,6 +11,8 @@ MISSION_DIR = ROOT / "missions" / "ne-archipelago-2018"
 SOURCE = MISSION_DIR / "source.blk"
 SOUTHEASTERN_CITY_DIR = ROOT / "missions" / "ne-southeastern-city"
 SOUTHEASTERN_CITY_SOURCE = SOUTHEASTERN_CITY_DIR / "source.blk"
+KAMCHATKA_DIR = ROOT / "missions" / "ne-kamchatka-2018"
+KAMCHATKA_SOURCE = KAMCHATKA_DIR / "source.blk"
 ARCHIPELAGO_SOURCE = MISSION_DIR / "source.blk"
 SOUTHEASTERN_DIAGNOSTICS_DIR = SOUTHEASTERN_CITY_DIR / "diagnostics"
 
@@ -86,6 +88,33 @@ def set_english_metadata(text: str, tag: str, detail: str) -> str:
     )
     if (title_count, description_count) != (1, 1):
         raise ValueError("Could not replace mission title and description")
+    return text
+
+
+def set_kamchatka_metadata(text: str, tag: str, detail: str) -> str:
+    """Give a standalone Kamchatka variant a URL-safe English identity."""
+    title = f'Nuclear Escalation · Kamchatka (2018) [{tag}]'
+    description = (
+        "Custom version of the official Nuclear Escalation mission. "
+        "Stars mark Soviet-aligned air defenses; crosses mark NATO. "
+        f"{detail}"
+    )
+    text, title_count = re.subn(
+        r'^\s*locName:t="[^"]*"$',
+        f'    locName:t="{title}"',
+        text,
+        count=1,
+        flags=re.MULTILINE,
+    )
+    text, description_count = re.subn(
+        r'^\s*locDesc:t="[^"]*"$',
+        f'    locDesc:t="{description}"',
+        text,
+        count=1,
+        flags=re.MULTILINE,
+    )
+    if (title_count, description_count) != (1, 1):
+        raise ValueError("Could not replace Kamchatka metadata")
     return text
 
 
@@ -1788,6 +1817,58 @@ def build_southeastern_city_variants() -> None:
         )
 
 
+def build_kamchatka_variants() -> None:
+    """Build the initial 2018 Kamchatka family from the official layout.
+
+    These deliberately retain the official spawn topology for the first
+    release.  Kamchatka has no inherited quick-start co-ordinates; those are
+    only added after validating them in-game on this terrain.
+    """
+    source = KAMCHATKA_SOURCE.read_text(encoding="utf-8")
+
+    normal = set_kamchatka_metadata(
+        source,
+        "NORMAL",
+        "All strategic and airfield defenses retain their stock behavior.",
+    )
+
+    silent = disable_sam_channels(source)
+    sead = override_both_airfield_long_range_defenses(silent, expected_airfields=12)
+    sead = set_kamchatka_metadata(
+        sead,
+        "SEAD TRAINING · AIRFIELD SAMS 18 KM",
+        "Strategic S-300 and SAMP/T sites remain targetable but cannot engage; "
+        "HQ-11 and SPYDER sensors activate only within 18 km.",
+    )
+
+    easy = override_all_direct_2018_air_defenses(silent)
+    easy = set_kamchatka_metadata(
+        easy,
+        "EASY · STRATEGIC SAMS DISABLED",
+        "All strategic sites remain physically present but cannot engage. "
+        "HQ-11 and SPYDER sensors activate within 18 km, Pantsir within 8 km, "
+        "and directly configurable 2S6 and Crotale units within 6 km.",
+    )
+
+    peaceful = enable_peaceful_player_protection(silent)
+    peaceful = set_kamchatka_metadata(
+        peaceful,
+        "PEACEFUL EXPLORATION",
+        "All map units remain present, strategic sites have zero engagement "
+        "channels, and every player vehicle is continuously hidden from AI "
+        "targeting and made immortal.",
+    )
+
+    for name, variant in {
+        "normal.blk": normal,
+        "sead-training-hq11-18km.blk": sead,
+        "no-long-range-sams.blk": easy,
+        "peaceful-exploration.blk": peaceful,
+    }.items():
+        assert_balanced(variant)
+        (KAMCHATKA_DIR / name).write_text(variant, encoding="utf-8")
+
+
 def write_variant(name: str, text: str) -> None:
     assert_balanced(text)
     (MISSION_DIR / name).write_text(text, encoding="utf-8")
@@ -1945,6 +2026,7 @@ def main() -> None:
     )
 
     build_southeastern_city_variants()
+    build_kamchatka_variants()
 
     # Keep the lower-era families on the same one-command regeneration path.
     from build_all_eras import build_all_era_variants

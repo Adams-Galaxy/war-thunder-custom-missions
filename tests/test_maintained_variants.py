@@ -1,4 +1,5 @@
 import unittest
+import re
 from pathlib import Path
 
 
@@ -39,6 +40,7 @@ class MaintainedVariantTests(unittest.TestCase):
         for relative_path in (
             "missions/ne-archipelago-2018/source.blk",
             "missions/ne-southeastern-city/normal.blk",
+            "missions/ne-kamchatka-2018/normal.blk",
         ):
             with self.subTest(mission=relative_path):
                 text = (REPO_ROOT / relative_path).read_text()
@@ -73,6 +75,7 @@ class MaintainedVariantTests(unittest.TestCase):
         for relative_path in (
             "missions/ne-archipelago-2018/peaceful-exploration.blk",
             "missions/ne-southeastern-city/peaceful-exploration.blk",
+            "missions/ne-kamchatka-2018/peaceful-exploration.blk",
         ):
             with self.subTest(mission=relative_path):
                 text = (REPO_ROOT / relative_path).read_text()
@@ -93,6 +96,7 @@ class MaintainedVariantTests(unittest.TestCase):
         cases = {
             "missions/ne-archipelago-2018/no-lrsam.blk": (84, 6, 12),
             "missions/ne-southeastern-city/no-long-range-sams.blk": (72, 5, 10),
+            "missions/ne-kamchatka-2018/no-long-range-sams.blk": (84, 6, 12),
         }
         for relative_path, expected in cases.items():
             with self.subTest(mission=relative_path):
@@ -116,6 +120,7 @@ class MaintainedVariantTests(unittest.TestCase):
         cases = {
             "missions/ne-archipelago-2018/sead-training-hq11-18km.blk": 12,
             "missions/ne-southeastern-city/sead-training-hq11-18km.blk": 10,
+            "missions/ne-kamchatka-2018/sead-training-hq11-18km.blk": 12,
         }
         for relative_path, airfield_count in cases.items():
             with self.subTest(mission=relative_path):
@@ -130,6 +135,19 @@ class MaintainedVariantTests(unittest.TestCase):
                 self.assertEqual(
                     text.count("sam_site__missile_channels_max:i=0"), 16
                 )
+
+    def test_kamchatka_source_is_a_standalone_official_2018_snapshot(self) -> None:
+        text = (
+            REPO_ROOT / "missions/ne-kamchatka-2018/source.blk"
+        ).read_text()
+        self.assertIn('level:t="levels/air_kamchatka.bin"', text)
+        self.assertIn('customHUD:t="nuclearEscalation"', text)
+        self.assertNotIn("import_record{", text)
+        self.assertEqual(text.count("sam_site_s300{"), 8)
+        self.assertEqual(text.count("sam_site_sampt{"), 8)
+        self.assertEqual(len(re.findall(r'name:t="t1_player\d+"', text)), 32)
+        self.assertEqual(len(re.findall(r'name:t="t2_player\d+"', text)), 32)
+        self.assertEqual(text.count("{"), text.count("}"))
 
 
 if __name__ == "__main__":

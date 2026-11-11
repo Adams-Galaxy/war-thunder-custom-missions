@@ -6,12 +6,13 @@ Version-controlled custom missions and variants for War Thunder.
 
 - [Nuclear Escalation — Archipelago (2018)](missions/ne-archipelago-2018/README.md)
 - [Nuclear Escalation — Southeastern City](missions/ne-southeastern-city/README.md)
+- [Nuclear Escalation — Kamchatka / Volcano Valley (2018)](missions/ne-kamchatka-2018/README.md)
 - [Nuclear Escalation — Archipelago (1970 Early, 1970 Late, and 1980)](missions/ne-archipelago-all-eras/README.md)
 - [Nuclear Escalation — Southeastern City (1970 Early, 1970 Late, and 1980)](missions/ne-southeastern-city-all-eras/README.md)
 
-Local single-player experiments:
+Local single-player content:
 
-- [Rafale M F3-R experimental loadouts](experiments/rafale-m-f3r-loadouts/README.md)
+- [WTFTD custom weapons and Rafale mission bundles](wtftd-library/README.md)
 
 The `.blk` links in each mission folder are intended for War Thunder's
 **Missions by URL** menu. If the game rejects a URL, remove the `https://`
